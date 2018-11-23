@@ -1,4 +1,5 @@
-const shelljs = require('shelljs/global')
+require('shelljs/global')
+const shelljs = require('shelljs')
 const chalk = require('chalk')
 const moment = require('moment')
 const prompts = require('prompts')
@@ -7,7 +8,7 @@ class App {
     global.chalk = chalk
     global.log = this.log
     global.now = this.now
-    global.prompts = this.prompts
+    global.prompts = prompts
     global.execAsync = this.execAsync
     this.init()
   }
@@ -58,14 +59,15 @@ class App {
     const response = await prompts({
       type: 'select',
       name: 'action',
-      message: 'Choice Deploy Mode',
+      message: 'Choice deploy mode',
       choices: [
-        { title: 'Just execute single command group', value: 'commandGroup' },
         { title: 'Setup environment', value: 'setupEnv' },
+        { title: 'Just execute single command group', value: 'commandGroup' },
         { title: 'Deploy webpack', value: 'webpack' },
         { title: 'Deploy laravel', value: 'laravel' },
         { title: 'Rsync only', value: 'rsync' },
         { title: 'Custom command', value: 'command' },
+        { title: 'Sign domain', value: 'domain' },
       ]
     })
 
