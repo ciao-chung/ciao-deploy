@@ -25,6 +25,7 @@ class App {
   }
 
   execAsync(command, options = {}) {
+    log(`RUN: ${command}`)
     let computedOptions = {
       async: true,
       ...options,
