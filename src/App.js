@@ -7,8 +7,8 @@ class App {
     global.chalk = chalk
     global.log = this.log
     global.now = this.now
+    global.prompts = this.prompts
     global.execAsync = this.execAsync
-    this.action = null
     this.init()
   }
 
@@ -46,8 +46,16 @@ class App {
     })
   }
 
+  initActions() {
+    this.actions = {
+      setupEnv: require('./Actions/SetupEnv'),
+    }
+  }
+
   async init() {
-    let response = await prompts({
+    this.initActions()
+
+    const response = await prompts({
       type: 'select',
       name: 'action',
       message: 'Choice Deploy Mode',
@@ -59,14 +67,15 @@ class App {
         { title: 'Rsync only', value: 'rsync' },
         { title: 'Custom command', value: 'command' },
       ]
-    });
+    })
 
-    if(!response.action) {
+    if(!this.actions[response.action]) {
       log('Action type is invalid', 'red')
       return
     }
 
-    this.action = response.action
+    const action = this.actions[response.action]()
+    action.start()
   }
 }
 
