@@ -1,8 +1,9 @@
-class Git{
+import BaseCommand from '../BaseCommand'
+class Git extends BaseCommand{
   async exec() {
-    await execAsync(`apt-get update`)
-    await execAsync('apt-get install git -y')
-    await execAsync('apt-get install tig -y')
+    await execAsync(`sudo apt-get update`)
+    await execAsync(`sudo apt-get install git -y`)
+    await execAsync(`sudo apt-get install tig -y`)
   }
 }
 

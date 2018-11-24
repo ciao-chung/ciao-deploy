@@ -1,4 +1,7 @@
+const InstallFishShell = require('../Commands/Env/FishShell')
 const InstallGit = require('../Commands/Env/Git')
+const InstallPhp = require('../Commands/Env/Php')
+const InstallComposer = require('../Commands/Env/Composer')
 class BaseRunner {
   constructor() {
     this.init()
@@ -7,7 +10,10 @@ class BaseRunner {
   async init() {
     this.commands = {
       env: {
-        installGit: InstallGit,
+        InstallFishShell,
+        InstallGit,
+        InstallPhp,
+        InstallComposer,
       }
     }
   }
