@@ -8,30 +8,8 @@
 
 ## Actions
 - Setup environment
-  - Web server
+  - Web server(Command > Base environment)
   - Workspace
-  
-## Web Server Install Task (Setup environment)
-
-- Fish
-  - Install fish shell
-  - Install omf
-  - Setup base fish config
-- Git
-  - Install git
-  - Install tig
-- Php
-  - Install php7
-- Composer
-  - Install composer
-  - Setup composer as global command
-- MySQL
-  - Install MySQL
-  - Setup default user/password
-- PhpMyAdmin
-  - Install phpmyadmin
-  - Setup username/password
-  - Enable rewrite module
 
 ## Installation
 
@@ -44,3 +22,33 @@ sudo yarn global add https://github.com/ciao-chung/ciao-deploy.git
 ```bash
 sudo deploy
 ```
+
+
+## Command
+
+### Base environment
+
+**Fish Shell**
+- Install fish shell
+- Install omf
+- Setup base fish config
+
+**Git**
+- Install git
+- Install tig
+
+**PHP**
+- Install php7
+
+**Composer**
+- Install composer
+- Setup composer as global command
+
+**MySQL**
+- Install MySQL
+- Setup default user/password
+
+**PhpMyAdmin**
+- Install phpmyadmin
+- Setup username/password
+- Enable rewrite module
