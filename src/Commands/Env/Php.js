@@ -1,4 +1,4 @@
-import BaseCommand from '../BaseCommand'
+const BaseCommand = require('../BaseCommand')
 class Php extends BaseCommand{
   async exec() {
     await execAsync(`sudo apt-get update`)

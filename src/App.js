@@ -3,9 +3,12 @@ const shelljs = require('shelljs')
 const chalk = require('chalk')
 const moment = require('moment')
 const prompts = require('prompts')
+const { readFileSync } = require('fs')
+const { argv } = require('yargs')
 class App {
   constructor() {
     global.chalk = chalk
+    global.config = null
     global.log = this.log
     global.now = this.now
     global.prompts = prompts
@@ -78,7 +81,18 @@ class App {
     }
 
     const action = this.actions[response.action]()
-    action.start()
+    await this.setupConfig()
+    await action.init()
+  }
+
+  async setupConfig() {
+    if(!argv.config) return
+
+    try {
+      global.config = await JSON.parse(readFileSync(argv.config, 'utf8'))
+    } catch(error) {
+      log(error, 'red')
+    }
   }
 }
 

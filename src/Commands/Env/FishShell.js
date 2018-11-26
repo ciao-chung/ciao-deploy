@@ -1,4 +1,4 @@
-import BaseCommand from '../BaseCommand'
+const BaseCommand = require('../BaseCommand')
 class FishShell extends BaseCommand{
   async exec() {
     // install fish shell

@@ -1,3 +1,4 @@
+const InstallBase = require('../Commands/Env/Base')
 const InstallFishShell = require('../Commands/Env/FishShell')
 const InstallGit = require('../Commands/Env/Git')
 const InstallPhp = require('../Commands/Env/Php')
@@ -10,6 +11,7 @@ class BaseRunner {
   async init() {
     this.commands = {
       env: {
+        InstallBase,
         InstallFishShell,
         InstallGit,
         InstallPhp,
