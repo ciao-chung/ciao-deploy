@@ -6,6 +6,7 @@ const InstallComposer = require('../Commands/Env/Composer')
 const InstallMySql = require('../Commands/Env/MySql')
 const MySqlCreateUser = require('../Commands/Env/MySqlCreateUser')
 const InstallPhpMyAdmin = require('../Commands/Env/PhpMyAdmin')
+const InstallLetsEncrypt = require('../Commands/Env/WebServer/LetsEncrypt')
 class BaseRunner {
   constructor() {
     this.init()
@@ -22,7 +23,8 @@ class BaseRunner {
         InstallMySql,
         MySqlCreateUser,
         InstallPhpMyAdmin,
-      }
+        InstallLetsEncrypt,
+      },
     }
   }
 

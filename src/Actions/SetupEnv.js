@@ -25,7 +25,8 @@ class SetupEnv extends BaseAction{
   }
 
   async setupWebServer() {
-    this.runners.EnvBaseRunner().start()
+    await this.runners.EnvBaseRunner().start()
+    await this.runners.EnvWebServerRunner().start()
   }
 
   async setupWorkspace() {

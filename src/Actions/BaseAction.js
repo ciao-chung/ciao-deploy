@@ -1,5 +1,6 @@
 const { argv } = require('yargs')
 const EnvBaseRunner = require('../Runners/Env/EnvBaseRunner')
+const EnvWebServerRunner = require('../Runners/Env/EnvWebServerRunner')
 class BaseAction {
   constructor() {
     this.init()
@@ -8,7 +9,8 @@ class BaseAction {
   async init() {
     this.args = argv
     this.runners = {
-      EnvBaseRunner
+      EnvBaseRunner,
+      EnvWebServerRunner,
     }
   }
 }
