@@ -29,7 +29,7 @@ class SetupEnv extends BaseAction{
   }
 
   async installFishShell() {
-    await this.runners.EnvFishRunner().start()
+    await this.runners.EnvFishRunner().install()
   }
 
   async setupFishShell() {
