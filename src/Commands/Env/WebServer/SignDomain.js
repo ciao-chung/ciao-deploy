@@ -9,8 +9,8 @@ class SignDomain extends BaseCommand{
       return
     }
 
-    if(typeof domains != 'array') {
-      log(`Sign domain fail: ${error}`, 'red')
+    if(typeof domains != 'object') {
+      log(`Sign domain fail: domains property in config must be array type`, 'red')
       return
     }
 

@@ -73,8 +73,6 @@ class App {
         { title: 'Setup environment', value: 'setupEnv' },
         { title: 'Run Single Command', value: 'singleCommand' },
         { title: 'Custom command', value: 'command' },
-        { title: 'Sign domain', value: 'domain' },
-        { title: 'Sign Let\'s Encrypt credential', value: 'ssl' },
       ]
     })
 
