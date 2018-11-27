@@ -3,6 +3,9 @@ const InstallFishShell = require('../Commands/Env/FishShell')
 const InstallGit = require('../Commands/Env/Git')
 const InstallPhp = require('../Commands/Env/Php')
 const InstallComposer = require('../Commands/Env/Composer')
+const InstallMySql = require('../Commands/Env/MySql')
+const MySqlCreateUser = require('../Commands/Env/MySqlCreateUser')
+const InstallPhpMyAdmin = require('../Commands/Env/PhpMyAdmin')
 class BaseRunner {
   constructor() {
     this.init()
@@ -16,6 +19,9 @@ class BaseRunner {
         InstallGit,
         InstallPhp,
         InstallComposer,
+        InstallMySql,
+        MySqlCreateUser,
+        InstallPhpMyAdmin,
       }
     }
   }

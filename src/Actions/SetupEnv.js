@@ -12,6 +12,7 @@ class SetupEnv extends BaseAction{
       choices: [
         { title: 'Web server', value: 'webserver' },
         { title: 'Workspace', value: 'workspace' },
+        { title: 'Create MySQL User', value: 'mysqlCreateUser' },
       ]
     })
 

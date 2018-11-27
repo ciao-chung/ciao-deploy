@@ -66,12 +66,9 @@ class App {
       message: 'Choice deploy mode',
       choices: [
         { title: 'Setup environment', value: 'setupEnv' },
-        { title: 'Just execute single command group', value: 'commandGroup' },
-        { title: 'Deploy webpack', value: 'webpack' },
-        { title: 'Deploy laravel', value: 'laravel' },
-        { title: 'Rsync only', value: 'rsync' },
         { title: 'Custom command', value: 'command' },
         { title: 'Sign domain', value: 'domain' },
+        { title: 'Sign Let\'s Encrypt credential', value: 'ssl' },
       ]
     })
 
@@ -83,6 +80,7 @@ class App {
     const action = this.actions[response.action]()
     await this.setupConfig()
     await action.init()
+    await action.start()
   }
 
   async setupConfig() {
