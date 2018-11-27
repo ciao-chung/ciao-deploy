@@ -29,11 +29,14 @@ class App {
   }
 
   execAsync(command, options = {}) {
-    log(`RUN: ${command}`)
     let computedOptions = {
       async: true,
       ...options,
     }
+
+    log(`RUN: ${command}`)
+    if(options.cwd) log(`cwd: ${options.cwd}`)
+
     return new Promise((resolve, reject) => {
       shelljs.exec(command, computedOptions, async(code, stdout, stderr) => {
         if(code != 0) {
