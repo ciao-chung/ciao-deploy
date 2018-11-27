@@ -30,7 +30,7 @@ class SignDomain extends BaseCommand{
     await execAsync(`sudo service apache2 restart`)
   }
 
-  async _getDomainConfig(domain, path) {
+  _getDomainConfig(domain, path) {
     return `
 <VirtualHost *:80>
     ServerName ${domain}
