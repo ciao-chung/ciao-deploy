@@ -1,8 +1,6 @@
 const BaseCommand = require('../BaseCommand')
 class FishShellSetup extends BaseCommand{
   async exec() {
-    await execAsync(`fish`)
-
     // set as default shell
     await execAsync(`sudo usermod -s /usr/bin/fish $USER`)
 
