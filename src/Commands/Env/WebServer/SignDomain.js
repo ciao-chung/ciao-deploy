@@ -36,8 +36,8 @@ class SignDomain extends BaseCommand{
     ServerName ${domain}
     ServerAlias www.${domain}
     DocumentRoot ${path}
-    ErrorLog $${APACHE_LOG_DIR}/error.log
-    CustomLog $${APACHE_LOG_DIR}/access.log combined
+    ErrorLog $\{APACHE_LOG_DIR\}/error.log
+    CustomLog $\{APACHE_LOG_DIR\}/access.log combined
     
         <Directory ${path}/>
             Options Indexes FollowSymLinks MultiViews
