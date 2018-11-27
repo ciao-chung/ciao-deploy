@@ -7,7 +7,7 @@ class MySqlCreateUser extends BaseCommand{
       await execAsync(`mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '${username}'@'%' IDENTIFIED BY '${password}' WITH GRANT OPTION"`)
       await execAsync(`mysql -uroot -e " FLUSH PRIVILEGES"`)
     } catch(error) {
-      log(`Create MySQL user fail: ${error}`, 'red')
+      log(`Create MySQL user fail: ${JSON.stringify(error)}`, 'red')
     }
   }
 }
