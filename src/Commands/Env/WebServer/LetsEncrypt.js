@@ -5,7 +5,7 @@ class LetsEncrypt extends BaseCommand{
     await execAsync(`sudo apt-get install python-letsencrypt-apache -y`)
     await execAsync(`sudo wget https://dl.eff.org/certbot-auto`)
     await execAsync(`sudo mv certbot-auto ${certbotPath}`)
-    await execAsync(`sudo chmod a+x certbot-auto`)
+    await execAsync(`sudo chmod a+x certbot-auto`, { cwd: certbotPath })
   }
 }
 
