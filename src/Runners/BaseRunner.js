@@ -1,5 +1,6 @@
 const InstallBase = require('../Commands/Env/Base')
 const InstallFishShell = require('../Commands/Env/FishShell')
+const FishShellSetup = require('../Commands/Env/FishShellSetup')
 const InstallGit = require('../Commands/Env/Git')
 const InstallPhp = require('../Commands/Env/Php')
 const InstallComposer = require('../Commands/Env/Composer')
@@ -19,6 +20,7 @@ class BaseRunner {
       env: {
         InstallBase,
         InstallFishShell,
+        FishShellSetup,
         InstallGit,
         InstallPhp,
         InstallComposer,

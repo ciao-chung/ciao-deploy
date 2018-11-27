@@ -55,6 +55,7 @@ class App {
   initActions() {
     this.actions = {
       setupEnv: require('./Actions/SetupEnv'),
+      singleCommand: require('./Actions/SingleCommand'),
     }
   }
 
@@ -67,6 +68,7 @@ class App {
       message: 'Choice deploy mode',
       choices: [
         { title: 'Setup environment', value: 'setupEnv' },
+        { title: 'Run Single Command', value: 'singleCommand' },
         { title: 'Custom command', value: 'command' },
         { title: 'Sign domain', value: 'domain' },
         { title: 'Sign Let\'s Encrypt credential', value: 'ssl' },

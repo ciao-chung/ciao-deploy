@@ -1,7 +1,11 @@
 const BaseRunner = require('../BaseRunner')
 class EnvFishRunner extends BaseRunner{
-  async start() {
+  async install() {
     await this.commands.env.InstallFishShell.exec()
+  }
+
+  async setup() {
+    await this.commands.env.FishShellSetup.exec()
   }
 }
 

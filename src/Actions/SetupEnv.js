@@ -2,7 +2,8 @@ const BaseAction = require('./BaseAction.js')
 class SetupEnv extends BaseAction{
   async start() {
     this.env = {
-      fish: () => this.installFishShell(),
+      installFishShell: () => this.installFishShell(),
+      setupFishShell: () => this.setupFishShell(),
       webserver: () => this.setupWebServer(),
       workspace: () => this.setupWorkspace(),
     }
@@ -11,7 +12,8 @@ class SetupEnv extends BaseAction{
       name: 'env',
       message: 'Choice environment',
       choices: [
-        { title: 'Install Fish Shell', value: 'fish' },
+        { title: 'Install Fish Shell', value: 'installFishShell' },
+        { title: 'Setup Fish Shell', value: 'setupFishShell' },
         { title: 'Web server', value: 'webserver' },
         { title: 'Workspace', value: 'workspace' },
         { title: 'Create MySQL User', value: 'mysqlCreateUser' },
@@ -28,6 +30,10 @@ class SetupEnv extends BaseAction{
 
   async installFishShell() {
     await this.runners.EnvFishRunner().start()
+  }
+
+  async setupFishShell() {
+    await this.runners.EnvFishRunner().setup()
   }
 
   async setupWebServer() {
