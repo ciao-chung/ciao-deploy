@@ -7,6 +7,7 @@ const InstallMySql = require('../Commands/Env/MySql')
 const MySqlCreateUser = require('../Commands/Env/MySqlCreateUser')
 const InstallPhpMyAdmin = require('../Commands/Env/PhpMyAdmin')
 const InstallLetsEncrypt = require('../Commands/Env/WebServer/LetsEncrypt')
+const SignDomain = require('../Commands/Env/WebServer/SignDomain')
 class BaseRunner {
   constructor() {
     this.init()
@@ -23,7 +24,10 @@ class BaseRunner {
         InstallMySql,
         MySqlCreateUser,
         InstallPhpMyAdmin,
-        InstallLetsEncrypt,
+        webserver: {
+          InstallLetsEncrypt,
+          SignDomain,
+        }
       },
     }
   }

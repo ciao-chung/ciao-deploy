@@ -13,6 +13,7 @@ class App {
     global.now = this.now
     global.prompts = prompts
     global.execAsync = this.execAsync
+    global.certbotPath = '/home'
     this.init()
   }
 
