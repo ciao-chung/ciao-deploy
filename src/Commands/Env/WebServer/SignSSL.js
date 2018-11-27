@@ -1,20 +1,16 @@
 const BaseCommand = require('../../BaseCommand')
 class SignSSL extends BaseCommand{
   async exec() {
-    let sslConfig
     try {
-      sslConfig = config.ssl
+      config.ssl.sign
     } catch(error) {
       log(`Sign SSL fail: ${error}`, 'red')
       return
     }
 
-    if(typeof sslConfig.sign != 'array') {
-      log(`Sign SSL fail: ${error}`, 'red')
-      return
-    }
+    log(config.ssl)
 
-    for(const domain of sslConfig.sign) {
+    for(const domain of config.ssl.sign) {
       await this._sign(domain)
     }
   }
