@@ -17,13 +17,13 @@ class SignSSL extends BaseCommand{
 
   async _sign(domain) {
     try {
-      const email = config.ssl.email
+      config.ssl.email
     } catch(error) {
       log(`Sign SSL fail: ${error}`, 'red')
       return
     }
 
-    await execAsync(`./certbot-auto --apache --redirect --keep-until-expiring --no-eff-email --agree-tos --email ${email} --domains ${domain}`, { cwd: certbotPath })
+    await execAsync(`./certbot-auto --apache --redirect --keep-until-expiring --no-eff-email --agree-tos --email ${config.ssl.email} --domains ${domain}`, { cwd: certbotPath })
   }
 }
 
