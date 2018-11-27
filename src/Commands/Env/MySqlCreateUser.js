@@ -4,8 +4,10 @@ class MySqlCreateUser extends BaseCommand{
     try {
       const username = config.mysql.username
       const password = config.mysql.password
+      const rootPassword = config.mysql.rootPassword
+      await execAsync(`export MYSQL_PWD=${rootPassword}`)
       await execAsync(`mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '${username}'@'%' IDENTIFIED BY '${password}' WITH GRANT OPTION"`)
-      await execAsync(`mysql -uroot -e " FLUSH PRIVILEGES"`)
+      await execAsync(`mysql -uroot -e "FLUSH PRIVILEGES"`)
     } catch(error) {
       log(`Create MySQL user fail: ${JSON.stringify(error)}`, 'red')
     }

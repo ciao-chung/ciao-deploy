@@ -4,11 +4,11 @@ class PhpMyAdmin extends BaseCommand{
     try {
       const password = config.mysql.rootPassword
       await execAsync(`sudo apt-get update`)
-      await execAsync(`debconf-set-selections <<< 'phpmyadmin phpmyadmin/dbconfig-install boolean true'`)
-      await execAsync(`debconf-set-selections <<< 'phpmyadmin phpmyadmin/app-password-confirm password ${password}'`)
-      await execAsync(`debconf-set-selections <<< 'phpmyadmin phpmyadmin/mysql/admin-pass password ${password}'`)
-      await execAsync(`debconf-set-selections <<< 'phpmyadmin phpmyadmin/mysql/app-pass password ${password}'`)
-      await execAsync(`debconf-set-selections <<< 'phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2'`)
+      await execAsync(`echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | sudo debconf-set-selections`)
+      await execAsync(`echo "phpmyadmin phpmyadmin/app-password-confirm password ${password}" | sudo debconf-set-selections`)
+      await execAsync(`echo "phpmyadmin phpmyadmin/mysql/admin-pass password ${password}" | sudo debconf-set-selections`)
+      await execAsync(`echo "phpmyadmin phpmyadmin/mysql/app-pass password ${password}" | sudo debconf-set-selections`)
+      await execAsync(`echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | sudo debconf-set-selections`)
       await execAsync(`sudo apt-get install phpmyadmin -y`)
       await execAsync(`sudo a2enmod rewrite`)
       await execAsync(`sudo service apache2 restart`)

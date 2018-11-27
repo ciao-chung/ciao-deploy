@@ -4,8 +4,8 @@ class MySql extends BaseCommand{
     try {
       const password = config.mysql.rootPassword
       await execAsync(`sudo apt-get update`)
-      await execAsync(`sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password ${password}'`)
-      await execAsync(`sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password ${password}'`)
+      await execAsync(`echo "mysql-server mysql-server/root_password password ${password}" | sudo debconf-set-selections`)
+      await execAsync(`echo "mysql-server mysql-server/root_password_again password ${password}" | sudo debconf-set-selections`)
       await execAsync(`sudo apt-get install mysql-server -y`)
     } catch(error) {
       log(`Install MySQL fail: ${JSON.stringify(error)}`, 'red')
