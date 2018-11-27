@@ -22,7 +22,7 @@ class SignDomain extends BaseCommand{
 
   async _sign(domain, domainConfig) {
     const configContent = this._getDomainConfig(domain, domainConfig.path)
-    const configFilePath = this.resolve(__dirname, `${domain}.conf`)
+    const configFilePath = this.resolve('/tmp', `${domain}.conf`)
     log(`Start sign domain: ${domain}`, 'green')
     await this.writeFileSync(configFilePath, configContent, 'utf-8')
     await execAsync(`sudo mv ${configFilePath} /etc/apache2/sites-available/`)
