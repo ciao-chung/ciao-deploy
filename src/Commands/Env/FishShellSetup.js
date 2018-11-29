@@ -1,12 +1,6 @@
 const BaseCommand = require('../BaseCommand')
 class FishShellSetup extends BaseCommand{
   async exec() {
-    // set as default shell
-    // await execAsync(`sudo usermod -s /usr/bin/fish $USER`)
-
-    // show full path in fish shell
-    // await execAsync(`set -U fish_prompt_pwd_dir_length 0`)
-
     // setup fish config
     this.writeFileSync(
       this.resolve(this.homedir, '.config/fish/config.fish'),
