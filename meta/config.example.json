@@ -17,8 +17,10 @@
   "mysql": {
     "rootPassword": "foobar",
     "createUsers": [
-      { "username": "foo", "password": "bar" }
-    ]
+      { "username": "foo", "password": "foo" },
+      { "username": "bar", "password": "bar" }
+    ],
+    "deleteUsers": ["foo"]
   },
   "git": {
     "username": "Ciao Chung",

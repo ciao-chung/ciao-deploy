@@ -6,6 +6,7 @@ const InstallPhp = require('../Commands/Env/Php')
 const InstallComposer = require('../Commands/Env/Composer')
 const InstallMySql = require('../Commands/Env/MySql')
 const MySqlCreateUser = require('../Commands/Env/MySqlCreateUser')
+const MySqlDeleteUser = require('../Commands/Env/MySqlDeleteUser')
 const InstallPhpMyAdmin = require('../Commands/Env/PhpMyAdmin')
 const InstallLetsEncrypt = require('../Commands/Env/WebServer/LetsEncrypt')
 const SignDomain = require('../Commands/Env/WebServer/SignDomain')
@@ -26,6 +27,7 @@ class BaseRunner {
         InstallComposer,
         InstallMySql,
         MySqlCreateUser,
+        MySqlDeleteUser,
         InstallPhpMyAdmin,
         webserver: {
           InstallLetsEncrypt,
