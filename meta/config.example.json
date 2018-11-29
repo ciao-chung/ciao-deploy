@@ -16,8 +16,9 @@
   },
   "mysql": {
     "rootPassword": "foobar",
-    "username": "foo",
-    "password": "bar"
+    "createUsers": [
+      { "username": "foo", "password": "bar" }
+    ]
   },
   "git": {
     "username": "Ciao Chung",
