@@ -20,7 +20,13 @@ sudo yarn global add https://github.com/ciao-chung/ciao-deploy.git
 ## Execute
 
 ```bash
-sudo deploy
+deploy
+```
+
+**With config json**
+
+```bash
+deploy --config=/path/to/config.json
 ```
 
 
