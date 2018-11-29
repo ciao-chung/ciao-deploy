@@ -59,6 +59,7 @@ class App {
     this.actions = {
       setupEnv: require('./Actions/SetupEnv'),
       singleCommand: require('./Actions/SingleCommand'),
+      dumpConfig: require('./Actions/DumpConfig'),
     }
   }
 
@@ -73,6 +74,7 @@ class App {
         { title: 'Setup environment', value: 'setupEnv' },
         { title: 'Run Single Command', value: 'singleCommand' },
         { title: 'Custom command', value: 'command' },
+        { title: 'Dump config.json file', value: 'dumpConfig' },
       ]
     })
 
