@@ -12,7 +12,8 @@ class FishShell extends BaseCommand{
     await execAsync(`curl -L https://get.oh-my.fish > install`)
     await execAsync(`fish install --path=~/.local/share/omf --config=~/.config/omf`)
     await execAsync(`rm ./install`)
-    await execAsync(`omf install gitstatus`)
+    log('To install theme continue, execute: "omf install gitstatus"', 'green')
+    log('To set fish shell as default shell, execute: "sudo usermod -s /usr/bin/fish [username]"', 'green')
   }
 }
 
