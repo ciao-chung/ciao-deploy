@@ -6,6 +6,7 @@ class MySqlCreateUser extends BaseCommand{
       const password = config.mysql.password
       const rootPassword = config.mysql.rootPassword
       await execAsync(`export MYSQL_PWD=${rootPassword}`)
+      await execAsync(`sleep 0.5`)
       await execAsync(`mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '${username}'@'%' IDENTIFIED BY '${password}' WITH GRANT OPTION"`)
       await execAsync(`mysql -uroot -e "FLUSH PRIVILEGES"`)
     } catch(error) {
