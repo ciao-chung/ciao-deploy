@@ -32,19 +32,35 @@ deploy --config=/path/to/config.json
 
 ## Command
 
-### Base environment
-
-**Fish Shell**
+### Install Fish Shell
 - Install fish shell
-- Install omf
+
+### Setup Fish Shell
 - Setup base fish config
+
+### MySQL create user
+
+- Create mysql user
+
+### MySQL delete user
+
+- Delete mysql user
+
+### Base environment
 
 **Git**
 - Install git
 - Install tig
 
 **PHP**
-- Install php7
+- Install php7.1
+- Install php7.1-mysql
+- Install php7.1-mbstring
+- Install php7.1-mcrypt
+- Install php7.1-gd
+- Install php7.1-zip
+- Install php7.1-dom
+- Install libapache2-mod-php7.1
 
 **Composer**
 - Install composer
@@ -58,3 +74,7 @@ deploy --config=/path/to/config.json
 - Install phpmyadmin
 - Setup username/password
 - Enable rewrite module
+
+### Web server environment
+
+- Install certbot

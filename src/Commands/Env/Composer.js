@@ -6,6 +6,7 @@ class Composer extends BaseCommand{
     await execAsync(`php composer-setup.php`)
     await execAsync(`php -r "unlink('composer-setup.php');"`)
     await execAsync(`sudo mv composer.phar /usr/local/bin/composer`)
+    await execAsync(`composer`)
   }
 }
 

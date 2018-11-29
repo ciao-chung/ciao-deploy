@@ -3,7 +3,9 @@ class Git extends BaseCommand{
   async exec() {
     await execAsync(`sudo apt-get update`)
     await execAsync(`sudo apt-get install git -y`)
+    await execAsync(`git --version`)
     await execAsync(`sudo apt-get install tig -y`)
+    await execAsync(`tig --version`)
 
     try {
       const username = config.git.username
