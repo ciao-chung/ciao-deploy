@@ -7,7 +7,7 @@ class BaseRunner {
     this.commands = {
       env: {
         base: {
-          title: 'Env: Install base',
+          title: 'Env: Install Base',
           instance: require('../Commands/Env/Base'),
         },
         git: {
