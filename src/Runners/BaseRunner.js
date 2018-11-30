@@ -1,16 +1,3 @@
-const InstallBase = require('../Commands/Env/Base')
-const InstallFishShell = require('../Commands/Env/FishShell')
-const FishShellSetup = require('../Commands/Env/FishShellSetup')
-const InstallGit = require('../Commands/Env/Git')
-const InstallPhp = require('../Commands/Env/Php')
-const InstallComposer = require('../Commands/Env/Composer')
-const InstallMySql = require('../Commands/Env/MySql')
-const MySqlCreateUser = require('../Commands/Env/MySqlCreateUser')
-const MySqlDeleteUser = require('../Commands/Env/MySqlDeleteUser')
-const InstallPhpMyAdmin = require('../Commands/Env/PhpMyAdmin')
-const InstallLetsEncrypt = require('../Commands/Env/WebServer/LetsEncrypt')
-const SignDomain = require('../Commands/Env/WebServer/SignDomain')
-const SignSSL = require('../Commands/Env/WebServer/SignSSL')
 class BaseRunner {
   constructor() {
     this.init()
@@ -19,21 +6,66 @@ class BaseRunner {
   async init() {
     this.commands = {
       env: {
-        InstallBase,
-        InstallFishShell,
-        FishShellSetup,
-        InstallGit,
-        InstallPhp,
-        InstallComposer,
-        InstallMySql,
-        MySqlCreateUser,
-        MySqlDeleteUser,
-        InstallPhpMyAdmin,
-        webserver: {
-          InstallLetsEncrypt,
-          SignDomain,
-          SignSSL,
-        }
+        base: {
+          title: 'Env: Install base',
+          instance: require('../Commands/Env/Base'),
+        },
+        git: {
+          title: 'Env: Install Git',
+          instance: require('../Commands/Env/Git'),
+        },
+        php: {
+          title: 'Env: Install PHP',
+          instance: require('../Commands/Env/Php'),
+        },
+        composer: {
+          title: 'Env: Install Composer',
+          instance: require('../Commands/Env/Composer'),
+        },
+        phpMyAdmin: {
+          title: 'Env: Install PhpMyAdmin',
+          instance: require('../Commands/Env/PhpMyAdmin'),
+        },
+      },
+      fish: {
+        install: {
+          title: 'Fish Shell: Install',
+          instance: require('../Commands/Fish/Install'),
+        },
+        setupConfig: {
+          title: 'Fish Shell: Setup Config',
+          instance: require('../Commands/Fish/SetupConfig'),
+        },
+      },
+      mysql: {
+        install: {
+          title: 'MySQL: Install',
+          instance: require('../Commands/MySQL/Install'),
+        },
+        createUser: {
+          title: 'MySQL: Create User',
+          instance: require('../Commands/MySQL/CreateUser'),
+        },
+        deleteUser: {
+          title: 'MySQL: Delete User',
+          instance: require('../Commands/MySQL/DeleteUser'),
+        },
+      },
+      apache: {
+        signDomain: {
+          title: 'Apache: Sign Domain',
+          instance: require('../Commands/Apache/SignDomain'),
+        },
+      },
+      letsEncrypt: {
+        install: {
+          title: 'Let\s Encrypt: Install CertBot',
+          instance: require('../Commands/LetsEncrypt/Install'),
+        },
+        signSSL: {
+          title: 'Let\s Encrypt: Install Sign SSL',
+          instance: require('../Commands/LetsEncrypt/SignSSL'),
+        },
       },
     }
   }

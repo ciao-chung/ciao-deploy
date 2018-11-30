@@ -2,10 +2,10 @@ const BaseAction = require('./BaseAction.js')
 class SetupEnv extends BaseAction{
   async start() {
     this.env = {
-      installFishShell: () => this.installFishShell(),
-      setupFishShell: () => this.setupFishShell(),
-      webserver: () => this.setupWebServer(),
-      workspace: () => this.setupWorkspace(),
+      installFishShell: async () => await this.runners.EnvFishRunner().install(),
+      setupFishShell: async () => await this.runners.EnvFishRunner().setup(),
+      webServer: async () => await this.runners.EnvWebServerRunner().start(),
+      workSpace: async () => {},
     }
     const response = await prompts({
       type: 'select',
@@ -14,9 +14,8 @@ class SetupEnv extends BaseAction{
       choices: [
         { title: 'Install Fish Shell', value: 'installFishShell' },
         { title: 'Setup Fish Shell', value: 'setupFishShell' },
-        { title: 'Web server', value: 'webserver' },
-        { title: 'Workspace', value: 'workspace' },
-        { title: 'Create MySQL User', value: 'mysqlCreateUser' },
+        { title: 'Web server', value: 'webServer' },
+        { title: 'Workspace', value: 'workSpace' },
       ]
     })
 
@@ -26,23 +25,6 @@ class SetupEnv extends BaseAction{
     }
 
     this.env[response.env]()
-  }
-
-  async installFishShell() {
-    await this.runners.EnvFishRunner().install()
-  }
-
-  async setupFishShell() {
-    await this.runners.EnvFishRunner().setup()
-  }
-
-  async setupWebServer() {
-    await this.runners.EnvBaseRunner().start()
-    await this.runners.EnvWebServerRunner().start()
-  }
-
-  async setupWorkspace() {
-
   }
 }
 

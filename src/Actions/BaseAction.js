@@ -1,7 +1,6 @@
 const { argv } = require('yargs')
-const EnvFishRunner = require('../Runners/Env/EnvFishRunner')
-const EnvBaseRunner = require('../Runners/Env/EnvBaseRunner')
-const EnvWebServerRunner = require('../Runners/Env/EnvWebServerRunner')
+const EnvFishRunner = require('../Runners/EnvFishRunner')
+const EnvWebServerRunner = require('../Runners/EnvWebServerRunner')
 const SingleCommandRunner = require('../Runners/SingleCommandRunner')
 class BaseAction {
   constructor() {
@@ -12,7 +11,6 @@ class BaseAction {
     this.args = argv
     this.runners = {
       EnvFishRunner,
-      EnvBaseRunner,
       EnvWebServerRunner,
       SingleCommandRunner,
     }
