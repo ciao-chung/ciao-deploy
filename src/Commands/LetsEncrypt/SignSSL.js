@@ -1,4 +1,4 @@
-const BaseCommand = require('../../BaseCommand')
+const BaseCommand = require('../BaseCommand')
 class SignSSL extends BaseCommand{
   async exec() {
     try {

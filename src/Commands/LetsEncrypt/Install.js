@@ -1,4 +1,4 @@
-const BaseCommand = require('../../BaseCommand')
+const BaseCommand = require('../BaseCommand')
 class LetsEncrypt extends BaseCommand{
   async exec() {
     await execAsync(`sudo apt-get update`)

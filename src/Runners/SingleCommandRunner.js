@@ -2,48 +2,55 @@ const BaseRunner = require('./BaseRunner')
 class SingleCommandRunner extends BaseRunner{
   async start() {
     const commands = {
-      envInstallBase: this.commands.env.InstallBase,
-      envInstallFishShell: this.commands.env.InstallFishShell,
-      envFishShellSetup: this.commands.env.FishShellSetup,
-      envInstallGit: this.commands.env.InstallGit,
-      envInstallPhp: this.commands.env.InstallPhp,
-      envInstallComposer: this.commands.env.InstallComposer,
-      envInstallMySql: this.commands.env.InstallMySql,
-      envMySqlCreateUser: this.commands.env.MySqlCreateUser,
-      envMySqlDeleteUser: this.commands.env.MySqlDeleteUser,
-      envInstallPhpMyAdmin: this.commands.env.InstallPhpMyAdmin,
-      envWebServerInstallLetsEncrypt: this.commands.env.webserver.InstallLetsEncrypt,
-      envWebServerSignDomain: this.commands.env.webserver.SignDomain,
-      envWebServerSignSSL: this.commands.env.webserver.SignSSL,
+      // fish
+      envInstallFishShell: this.commands.fish.install,
+      envFishShellSetup: this.commands.fish.setupConfig,
+
+      // env base
+      envInstallBase: this.commands.env.base,
+      envInstallGit: this.commands.env.git,
+      envInstallPhp: this.commands.env.php,
+      envInstallComposer: this.commands.env.composer,
+      envInstallPhpMyAdmin: this.commands.env.phpMyAdmin,
+
+      // mysql
+      envInstallMySql: this.commands.mysql.install,
+      envMySqlCreateUser: this.commands.mysql.createUser,
+      envMySqlDeleteUser: this.commands.mysql.deleteUser,
+
+      // apache
+      envWebServerSignDomain: this.commands.apache.signDomain,
+
+      // mysql
+      envWebServerInstallLetsEncrypt: this.commands.letsEncrypt.install,
+      envWebServerSignSSL: this.commands.letsEncrypt.signSSL,
+    }
+
+    let commandList = []
+    for(const commandGroupName in this.commands) {
+      const commandGroup = this.commands[commandGroupName]
+      for(const commandName in commandGroup) {
+        const command = commandGroup[commandName]
+        commandList.push({
+          title: command.title,
+          value: command.instance,
+        })
+      }
     }
 
     const response = await prompts({
       type: 'select',
       name: 'command',
       message: 'Choice Command',
-      choices: [
-        { title: 'Env: Install base', value: 'envInstallBase' },
-        { title: 'Env: Install Fish Shell', value: 'envInstallFishShell' },
-        { title: 'Env: Fish Shell setup', value: 'envFishShellSetup' },
-        { title: 'Env: Install git', value: 'envInstallGit' },
-        { title: 'Env: Install PHP', value: 'envInstallPhp' },
-        { title: 'Env: Install composer', value: 'envInstallComposer' },
-        { title: 'Env: Install MySQL', value: 'envInstallMySql' },
-        { title: 'Env: Mysql create user', value: 'envMySqlCreateUser' },
-        { title: 'Env: Mysql delete user', value: 'envMySqlDeleteUser' },
-        { title: 'Env: Install phpMyAdmin', value: 'envInstallPhpMyAdmin' },
-        { title: 'Env WebServer: Install Let\'s Encrypt', value: 'envWebServerInstallLetsEncrypt' },
-        { title: 'Env WebServer: Sign domain', value: 'envWebServerSignDomain' },
-        { title: 'Env WebServer: Sign SSL', value: 'envWebServerSignSSL' },
-      ]
+      choices: commandList,
     })
 
-    if(!commands[response.command]) {
+    if(!response.command) {
       log(`Command Not Found`, 'red')
       return
     }
 
-    commands[response.command].exec()
+    response.command.exec()
   }
 }
 
