@@ -2,6 +2,8 @@
 
 > A environment configuration and deploy tool which is based on node.js
 
+![deploy](meta/deploy.gif)
+
 ## Required
 
 - Node.js 8.x up
