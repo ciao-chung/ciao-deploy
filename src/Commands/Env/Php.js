@@ -3,9 +3,9 @@ class Php extends BaseCommand{
   async exec() {
     await execAsync(`sudo apt-get update`)
     await execAsync(`sudo add-apt-repository ppa:ondrej/php -y`)
-    await execAsync(`php --version`)
     await execAsync(`sudo apt-get update`)
     await execAsync(`sudo apt-get install php7.1 -y`)
+    await execAsync(`php --version`)
     await execAsync(`sudo apt-get install php7.1-mysql -y`)
     await execAsync(`sudo apt-get install php7.1-mbstring -y`)
     await execAsync(`sudo apt-get install php7.1-mcrypt -y`)
