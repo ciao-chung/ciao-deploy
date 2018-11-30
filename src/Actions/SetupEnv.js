@@ -16,8 +16,13 @@ class SetupEnv extends BaseAction{
         { title: 'Setup Fish Shell', value: 'setupFishShell' },
         { title: 'Web server', value: 'webServer' },
         { title: 'Workspace', value: 'workSpace' },
+        { title: 'Exit', value: 'exit' },
       ]
     })
+
+    if(response.env == 'exit') {
+      return
+    }
 
     if(!this.env[response.env]) {
       log('Environment type is invalid', 'red')

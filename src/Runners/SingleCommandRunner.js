@@ -38,12 +38,21 @@ class SingleCommandRunner extends BaseRunner{
       }
     }
 
+    commandList.push({
+      title: 'Exit',
+      value: 'exit',
+    })
+
     const response = await prompts({
       type: 'select',
       name: 'command',
       message: 'Choice Command',
       choices: commandList,
     })
+
+    if(response.command == 'exit') {
+      return
+    }
 
     if(!response.command) {
       log(`Command Not Found`, 'red')
