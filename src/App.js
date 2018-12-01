@@ -38,6 +38,11 @@ class App {
     if(options.cwd) log(`cwd: ${options.cwd}`)
 
     return new Promise((resolve, reject) => {
+      if(argv.debug) {
+        resolve()
+        return
+      }
+
       shelljs.exec(command, computedOptions, async(code, stdout, stderr) => {
         if(code != 0) {
           log(stderr, 'red')
