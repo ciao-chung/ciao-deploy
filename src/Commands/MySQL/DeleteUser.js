@@ -1,5 +1,5 @@
 const BaseCommand = require('../BaseCommand')
-class MySqlCreateUser extends BaseCommand{
+class MySqlDeleteUser extends BaseCommand{
   async exec() {
     try {
       this.shelljs.env['MYSQL_PWD'] = config.mysqlRootPassword
@@ -13,4 +13,4 @@ class MySqlCreateUser extends BaseCommand{
   }
 }
 
-module.exports = new MySqlCreateUser()
+module.exports = new MySqlDeleteUser()

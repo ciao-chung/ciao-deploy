@@ -1,5 +1,5 @@
 const BaseCommand = require('../BaseCommand')
-class MySql extends BaseCommand{
+class MySqlListUser extends BaseCommand{
   async exec() {
     try {
       this.shelljs.env['MYSQL_PWD'] = config.mysqlRootPassword
@@ -11,4 +11,4 @@ class MySql extends BaseCommand{
   }
 }
 
-module.exports = new MySql()
+module.exports = new MySqlListUser()

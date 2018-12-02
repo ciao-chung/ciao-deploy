@@ -12,5 +12,43 @@
   "gitUsername": "Ciao Chung",
   "gitEmail": "foobar@gmail.com",
   "sslNotificationEmail": "foobar@com",
-  "sslSignDomains": ["foobar@com"]
+  "sslSignDomains": ["foobar@com"],
+  "laravelDeploy": [
+    {
+      "git": "git@foobar.com/repo.git",
+      "migrate": true,
+      "init": true,
+      "env": {
+        "debug": "false",
+        "queue": "sync",
+        "cors": "http://localhost:8083",
+        "db": {
+          "name": "db",
+          "username": "foobar",
+          "password": "foobar"
+        },
+        "mail": {
+          "username": "foobar",
+          "password": "foobar"
+        },
+        "photo": {
+          "storePath": "/",
+          "baseUrl": "http://localhost:9000/storage",
+          "disk": "public",
+          "version": "v01"
+        },
+        "aws": {
+          "accessKeyId": "accessKeyId",
+          "secretAccessKey": "secretAccessKey",
+          "region": "ap-northeast-1",
+          "bucket": "bucket"
+        },
+        "gcs": {
+          "projectId": "projectId",
+          "keyFilePath": "/path/to/key/file",
+          "bucket": "bucket"
+        }
+      }
+    }
+  ]
 }
