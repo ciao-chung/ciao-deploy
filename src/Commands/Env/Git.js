@@ -8,8 +8,8 @@ class Git extends BaseCommand{
     await execAsync(`tig --version`)
 
     try {
-      const username = config.git.username
-      const email = config.git.email
+      const username = config.gitUsername
+      const email = config.gitEmail
       await execAsync(`git config --global user.name "${username}"`)
       await execAsync(`git config --global user.email "${email}"`)
     } catch (error) {

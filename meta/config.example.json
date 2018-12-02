@@ -1,29 +1,16 @@
 {
-  "domains": {
-    "foo.com": {
-      "path": "/path/to/web"
-    },
-    "bar.com": {
-      "path": "/path/to/web"
-    }
-  },
-  "ssl": {
-    "email": "foobar@com",
-    "sign": [
-      "foo.com",
-      "bar.com"
-    ]
-  },
-  "mysql": {
-    "rootPassword": "foobar",
-    "createUsers": [
-      { "username": "foo", "password": "foo" },
-      { "username": "bar", "password": "bar" }
-    ],
-    "deleteUsers": ["foo"]
-  },
-  "git": {
-    "username": "Ciao Chung",
-    "email": "foobar@gmail.com"
-  }
+  "signDomains": [
+    { "domain": "foo.com", "path": "/path/to/web" },
+    { "domain": "bar.com", "path": "/path/to/web" }
+  ],
+  "mysqlRootPassword": "foobar",
+  "mysqlCreateUsers": [
+    { "username": "foo", "password": "foo" },
+    { "username": "bar", "password": "bar" }
+  ],
+  "mysqlDeleteUsers": ["foo"],
+  "gitUsername": "Ciao Chung",
+  "gitEmail": "foobar@gmail.com",
+  "sslNotificationEmail": "foobar@com",
+  "sslSignDomains": ["foobar@com"]
 }

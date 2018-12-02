@@ -2,9 +2,8 @@ const BaseCommand = require('../BaseCommand')
 class MySqlCreateUser extends BaseCommand{
   async exec() {
     try {
-      const rootPassword = config.mysql.rootPassword
-      this.shelljs.env['MYSQL_PWD'] = rootPassword
-      for(const user of config.mysql.deleteUsers) {
+      this.shelljs.env['MYSQL_PWD'] = config.mysqlRootPassword
+      for(const user of config.mysqlDeleteUsers) {
         await execAsync(`mysql -uroot -e "DELETE FROM mysql.user WHERE user='${user}'"`)
         await execAsync(`mysql -uroot -e "FLUSH PRIVILEGES"`)
       }

@@ -3,7 +3,7 @@ class SignDomain extends BaseCommand{
   async exec() {
     let domains
     try {
-      domains = config.domains
+      domains = config.signDomains
     } catch(error) {
       log(`Sign domain fail: ${error}`, 'red')
       return
@@ -14,9 +14,8 @@ class SignDomain extends BaseCommand{
       return
     }
 
-    for(const domain in domains) {
-      const domainConfig = domains[domain]
-      await this._sign(domain, domainConfig)
+    for(const domainConfig of domains) {
+      await this._sign(domainConfig.domain, domainConfig)
     }
   }
 

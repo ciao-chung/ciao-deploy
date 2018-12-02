@@ -2,9 +2,8 @@ const BaseCommand = require('../BaseCommand')
 class MySqlCreateUser extends BaseCommand{
   async exec() {
     try {
-      const rootPassword = config.mysql.rootPassword
-      this.shelljs.env['MYSQL_PWD'] = rootPassword
-      for(const user of config.mysql.createUsers) {
+      this.shelljs.env['MYSQL_PWD'] = config.mysqlRootPassword
+      for(const user of config.mysqlCreateUsers) {
         await execAsync(`mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '${user.username}'@'%' IDENTIFIED BY '${user.password}' WITH GRANT OPTION"`)
         await execAsync(`mysql -uroot -e "FLUSH PRIVILEGES"`)
       }

@@ -42,6 +42,14 @@ class BaseRunner {
           title: 'MySQL: Install',
           instance: require('../Commands/MySQL/Install'),
         },
+        listUser: {
+          title: 'MySQL: List User',
+          instance: require('../Commands/MySQL/ListUser'),
+        },
+        listDatabase: {
+          title: 'MySQL: List Database',
+          instance: require('../Commands/MySQL/ListDB'),
+        },
         createUser: {
           title: 'MySQL: Create User',
           instance: require('../Commands/MySQL/CreateUser'),

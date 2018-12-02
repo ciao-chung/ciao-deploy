@@ -95,7 +95,10 @@ class App {
   }
 
   async setupConfig() {
-    if(!argv.config) return
+    if(!argv.config) {
+      global.config = {}
+      return
+    }
 
     try {
       global.config = await JSON.parse(readFileSync(argv.config, 'utf8'))
