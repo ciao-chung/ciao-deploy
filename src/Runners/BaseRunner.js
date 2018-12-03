@@ -62,7 +62,7 @@ class BaseRunner {
           title: 'MySQL Database: Create Database',
           instance: require('../Commands/MySQL/CreateDB'),
         },
-        DeleteDB: {
+        deleteDB: {
           title: 'MySQL Database: Delete Database',
           instance: require('../Commands/MySQL/DeleteDB'),
         },
