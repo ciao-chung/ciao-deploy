@@ -43,20 +43,28 @@ class BaseRunner {
           instance: require('../Commands/MySQL/Install'),
         },
         listUser: {
-          title: 'MySQL: List User',
+          title: 'MySQL User: List User',
           instance: require('../Commands/MySQL/ListUser'),
+        },
+        createUser: {
+          title: 'MySQL User: Create User',
+          instance: require('../Commands/MySQL/CreateUser'),
+        },
+        deleteUser: {
+          title: 'MySQL User: Delete User',
+          instance: require('../Commands/MySQL/DeleteUser'),
         },
         listDatabase: {
           title: 'MySQL: List Database',
           instance: require('../Commands/MySQL/ListDB'),
         },
-        createUser: {
-          title: 'MySQL: Create User',
-          instance: require('../Commands/MySQL/CreateUser'),
+        createDB: {
+          title: 'MySQL Database: Create Database',
+          instance: require('../Commands/MySQL/CreateDB'),
         },
-        deleteUser: {
-          title: 'MySQL: Delete User',
-          instance: require('../Commands/MySQL/DeleteUser'),
+        DeleteDB: {
+          title: 'MySQL Database: Delete Database',
+          instance: require('../Commands/MySQL/DeleteDB'),
         },
       },
       apache: {

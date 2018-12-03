@@ -51,7 +51,6 @@ class LaravelInit extends BaseCommand{
   async _installEnvSetCommandPackageIfNotExist(laravelPath) {
     const composerJson = this.readFileSync(this.resolve(laravelPath, 'composer.json'), 'utf8')
     const hasInstall = new RegExp(/imliam\/laravel-env-set-command/g).test(composerJson)
-    log(`hasInstall: ${hasInstall}`)
     if(hasInstall) {
       return
     }

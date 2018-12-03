@@ -4,6 +4,8 @@
     { "domain": "bar.com", "path": "/path/to/web" }
   ],
   "mysqlRootPassword": "foobar",
+  "mysqlCreateDBs": ["foo", "bar"],
+  "mysqlDeleteDBs": ["foo"],
   "mysqlCreateUsers": [
     { "username": "foo", "password": "foo" },
     { "username": "bar", "password": "bar" }
