@@ -12,10 +12,12 @@
   "gitUsername": "Ciao Chung",
   "gitEmail": "foobar@gmail.com",
   "sslNotificationEmail": "foobar@com",
-  "sslSignDomains": ["foobar@com"],
+  "sslSignDomains": ["foobar.com"],
   "laravelDeploy": [
     {
-      "git": "git@foobar.com/repo.git",
+      "name": "Some Project",
+      "repo": "git@foobar.com/repo.git",
+      "path": "/path/to/deploy/folder",
       "laravelFolder": "Backend",
       "migrate": true,
       "init": true,

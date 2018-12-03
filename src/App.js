@@ -63,6 +63,7 @@ class App {
   initActions() {
     this.actions = {
       setupEnv: require('./Actions/SetupEnv'),
+      laravel: require('./Actions/Laravel'),
       singleCommand: require('./Actions/SingleCommand'),
       dumpConfig: require('./Actions/DumpConfig'),
     }
@@ -77,6 +78,7 @@ class App {
       message: 'Choice deploy mode',
       choices: [
         { title: 'Setup environment', value: 'setupEnv' },
+        { title: 'Deploy laravel', value: 'laravel' },
         { title: 'Run Single Command', value: 'singleCommand' },
         { title: 'Custom command', value: 'command' },
         { title: 'Dump config.json file', value: 'dumpConfig' },

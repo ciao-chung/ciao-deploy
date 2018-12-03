@@ -75,6 +75,16 @@ class BaseRunner {
           instance: require('../Commands/LetsEncrypt/SignSSL'),
         },
       },
+      laravel: {
+        init: {
+          title: 'Laravel: Init',
+          instance: require('../Commands/Laravel/Init'),
+        },
+        deploy: {
+          title: 'Laravel: Deploy',
+          instance: require('../Commands/Laravel/Deploy'),
+        },
+      },
     }
   }
 
