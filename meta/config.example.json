@@ -16,6 +16,7 @@
   "laravelDeploy": [
     {
       "git": "git@foobar.com/repo.git",
+      "laravelFolder": "Backend",
       "migrate": true,
       "init": true,
       "env": {
@@ -23,6 +24,11 @@
         "queue": "sync",
         "cors": "http://localhost:8083",
         "db": {
+          "name": "db",
+          "username": "foobar",
+          "password": "foobar"
+        },
+        "testDb": {
           "name": "db",
           "username": "foobar",
           "password": "foobar"
