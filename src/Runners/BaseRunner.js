@@ -82,6 +82,10 @@ class BaseRunner {
           title: 'Let\s Encrypt: Install Sign SSL',
           instance: require('../Commands/LetsEncrypt/SignSSL'),
         },
+        deleteSSL: {
+          title: 'Let\s Encrypt: Delete SSL',
+          instance: require('../Commands/LetsEncrypt/DeleteSSL'),
+        },
       },
       laravel: {
         init: {
