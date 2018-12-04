@@ -13,7 +13,6 @@ class App {
     global.now = this.now
     global.prompts = prompts
     global.execAsync = this.execAsync
-    global.certbotPath = '/home'
     this.init()
   }
 
@@ -43,20 +42,28 @@ class App {
         return
       }
 
-      shelljs.exec(command, computedOptions, async(code, stdout, stderr) => {
-        if(code != 0) {
-          log(stderr, 'red')
-          return reject({
-            type: 'error',
-            log: stderr,
-          })
-        }
+      try {
+        shelljs.exec(command, computedOptions, async(code, stdout, stderr) => {
+          if(code != 0) {
+            log(stderr, 'red')
+            return reject({
+              type: 'error',
+              log: stderr,
+            })
+          }
 
-        return resolve({
-          type: 'success',
-          log: stdout,
+          return resolve({
+            type: 'success',
+            log: stdout,
+          })
         })
-      })
+      } catch(error) {
+        log(`Execute Command Fail: ${error}`, 'red')
+        return reject({
+          type: 'error',
+          log: error,
+        })
+      }
     })
   }
 

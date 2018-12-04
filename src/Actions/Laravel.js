@@ -4,6 +4,7 @@ class Laravel extends BaseAction{
     this.deployments = {
       init: async () => await this.runners.LaravelRunner().initProject(),
       deploy: async () => await this.runners.LaravelRunner().deploy(),
+      initAllInOne: async () => await this.runners.LaravelRunner().initAllInOne(),
     }
     const response = await prompts({
       type: 'select',
@@ -12,6 +13,7 @@ class Laravel extends BaseAction{
       choices: [
         { title: 'Init', value: 'init' },
         { title: 'Deploy', value: 'deploy' },
+        { title: 'Init All In One', value: 'initAllInOne' },
         { title: 'Exit', value: 'exit' },
       ]
     })

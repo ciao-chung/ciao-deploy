@@ -17,7 +17,7 @@ class SignSSL extends BaseCommand{
       return
     }
 
-    await execAsync(`sudo certbot --apache --redirect --keep-until-expiring --no-eff-email --agree-tos --email ${config.sslNotificationEmail} --domains ${domain}`, { cwd: certbotPath })
+    await execAsync(`sudo certbot --apache --redirect --keep-until-expiring --no-eff-email --agree-tos --email ${config.sslNotificationEmail} --domains ${domain}` )
   }
 }
 

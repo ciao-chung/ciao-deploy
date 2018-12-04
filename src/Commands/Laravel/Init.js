@@ -19,7 +19,6 @@ class LaravelInit extends BaseCommand{
       await this._cloneIfNotExist(deployConfig)
       await this._createEnvFileIfNotExist(laravelPath)
       await execAsync(`composer install`, { cwd: laravelPath })
-      await this._installEnvSetCommandPackageIfNotExist(laravelPath)
       await execAsync(`php artisan key:generate`, { cwd: laravelPath })
       await execAsync(`php artisan storage:link`, { cwd: laravelPath })
       await execAsync(`chmod 755 -R ./`, { cwd: laravelPath })
@@ -46,16 +45,6 @@ class LaravelInit extends BaseCommand{
     }
 
     await execAsync(`cp .env.example .env`, { cwd: laravelPath })
-  }
-
-  async _installEnvSetCommandPackageIfNotExist(laravelPath) {
-    const composerJson = this.readFileSync(this.resolve(laravelPath, 'composer.json'), 'utf8')
-    const hasInstall = new RegExp(/imliam\/laravel-env-set-command/g).test(composerJson)
-    if(hasInstall) {
-      return
-    }
-
-    await execAsync(`composer require imliam/laravel-env-set-command:^1.0.0`, { cwd: laravelPath })
   }
 
   async _createSymbolicLinkIfNotExist(laravelPath) {

@@ -1,6 +1,8 @@
 const BaseCommand = require('../BaseCommand')
 class MySqlCreateUser extends BaseCommand{
   async exec() {
+    if(!Array.isArray(config.mysqlCreateUsers)) return
+
     try {
       this.shelljs.env['MYSQL_PWD'] = config.mysqlRootPassword
       for(const user of config.mysqlCreateUsers) {

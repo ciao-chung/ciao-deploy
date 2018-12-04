@@ -1,4 +1,5 @@
 const BaseCommand = require('../BaseCommand')
+const SignDomainService = require('../../Services/SignDomains')
 class SignDomain extends BaseCommand{
   async exec() {
     let domains
@@ -15,38 +16,8 @@ class SignDomain extends BaseCommand{
     }
 
     for(const domainConfig of domains) {
-      await this._sign(domainConfig.domain, domainConfig)
+      await SignDomainService.sign(domainConfig.domain, domainConfig.path)
     }
-  }
-
-  async _sign(domain, domainConfig) {
-    const configContent = this._getDomainConfig(domain, domainConfig.path)
-    const configFilePath = this.resolve('/tmp', `${domain}.conf`)
-    log(`Start sign domain: ${domain}`, 'green')
-    await this.writeFileSync(configFilePath, configContent, 'utf-8')
-    await execAsync(`sudo mv ${configFilePath} /etc/apache2/sites-available/`)
-    await execAsync(`sudo a2ensite ${domain}`)
-    await execAsync(`sudo service apache2 restart`)
-  }
-
-  _getDomainConfig(domain, path) {
-    return `
-<VirtualHost *:80>
-    ServerName ${domain}
-    ServerAlias www.${domain}
-    DocumentRoot ${path}
-    ErrorLog $\{APACHE_LOG_DIR\}/error.log
-    CustomLog $\{APACHE_LOG_DIR\}/access.log combined
-    
-        <Directory ${path}/>
-            Options Indexes FollowSymLinks MultiViews
-            AllowOverride All
-            Order allow,deny
-            allow from all
-            Require all granted
-        </Directory>
-</VirtualHost>
-`
   }
 }
 

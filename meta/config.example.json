@@ -19,45 +19,32 @@
     {
       "name": "Some Project",
       "repo": "git@foobar.com/repo.git",
+      "branch": "branch",
+      "commit": "commit",
       "path": "/path/to/deploy/folder",
       "laravelFolder": "Backend",
       "migrate": true,
       "init": true,
       "env": {
-        "debug": "false",
-        "queue": "sync",
-        "cors": "http://localhost:8083",
-        "db": {
-          "name": "db",
-          "username": "foobar",
-          "password": "foobar"
-        },
-        "testDb": {
-          "name": "db",
-          "username": "foobar",
-          "password": "foobar"
-        },
-        "mail": {
-          "username": "foobar",
-          "password": "foobar"
-        },
-        "photo": {
-          "storePath": "/",
-          "baseUrl": "http://localhost:9000/storage",
-          "disk": "public",
-          "version": "v01"
-        },
-        "aws": {
-          "accessKeyId": "accessKeyId",
-          "secretAccessKey": "secretAccessKey",
-          "region": "ap-northeast-1",
-          "bucket": "bucket"
-        },
-        "gcs": {
-          "projectId": "projectId",
-          "keyFilePath": "/path/to/key/file",
-          "bucket": "bucket"
-        }
+        "APP_DEBUG": "false",
+        "QUEUE_DRIVER": "sync",
+        "CORS": "'http://localhost:8083'",
+        "DB_DATABASE": "db",
+        "DB_USERNAME": "foobar",
+        "DB_PASSWORD": "foobar",
+        "MAIL_USERNAME": "foobar",
+        "MAIL_PASSWORD": "foobar",
+        "PHOTO_STORE_PATH": "/",
+        "PHOTO_BASE_URL": "http://localhost:9000/storage",
+        "PHOTO_DISK": "public",
+        "PHOTO_VERSION": "v01",
+        "AWS_ACCESS_KEY_ID": "accessKeyId",
+        "AWS_SECRET_ACCESS_KEY": "secretAccessKey",
+        "AWS_DEFAULT_REGION": "ap-northeast-1",
+        "AWS_BUCKET": "bucket",
+        "GOOGLE_CLOUD_PROJECT_ID": "projectId",
+        "GOOGLE_CLOUD_KEY_FILE": "/path/to/key/file",
+        "GOOGLE_CLOUD_STORAGE_BUCKET": "bucket"
       }
     }
   ]
