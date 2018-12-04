@@ -1,5 +1,5 @@
 const BaseRunner = require('./BaseRunner')
-class EnvBaseRunner extends BaseRunner{
+class EnvWebServerRunner extends BaseRunner{
   async start() {
     // base
     await this.commands.env.base.instance.exec()
@@ -10,8 +10,8 @@ class EnvBaseRunner extends BaseRunner{
     await this.commands.mysql.install.instance.exec()
 
     // web server only
-    await this.commands.letsEncrypt.signSSL.instance.exec()
+    await this.commands.letsEncrypt.install.instance.exec()
   }
 }
 
-module.exports = () => new EnvBaseRunner()
+module.exports = () => new EnvWebServerRunner()
