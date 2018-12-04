@@ -2,7 +2,7 @@ const BaseCommand = require('../BaseCommand')
 class PhpMyAdmin extends BaseCommand{
   async exec() {
     try {
-      const password = config.mysql.rootPassword
+      const password = config.mysqlRootPassword
       await execAsync(`sudo apt-get update`)
       await execAsync(`echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | sudo debconf-set-selections`)
       await execAsync(`echo "phpmyadmin phpmyadmin/app-password-confirm password ${password}" | sudo debconf-set-selections`)
