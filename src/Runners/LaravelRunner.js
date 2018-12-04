@@ -5,6 +5,7 @@ class LaravelRunner extends BaseRunner{
     await this.commands.laravel.init.instance.exec()
     await this.commands.laravel.setEnvFile.instance.exec()
     await this.commands.laravel.initDatabase.instance.exec()
+    await this.commands.laravel.setupDomain.instance.exec()
   }
 
   async deploy() {

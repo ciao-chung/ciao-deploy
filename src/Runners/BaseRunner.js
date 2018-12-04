@@ -96,6 +96,10 @@ class BaseRunner {
           title: 'Laravel: Set Env File',
           instance: require('../Commands/Laravel/InitDatabase'),
         },
+        setupDomain: {
+          title: 'Laravel: Setup Domain',
+          instance: require('../Commands/Laravel/SetupDomain'),
+        },
         deploy: {
           title: 'Laravel: Deploy',
           instance: require('../Commands/Laravel/Deploy'),

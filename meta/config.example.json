@@ -24,7 +24,8 @@
       "path": "/path/to/deploy/folder",
       "laravelFolder": "Backend",
       "migrate": true,
-      "init": true,
+      "domain": "foobar.com",
+      "ssl": true,
       "env": {
         "APP_DEBUG": "false",
         "QUEUE_DRIVER": "sync",
