@@ -13,7 +13,7 @@ class PhpMyAdmin extends BaseCommand{
       await execAsync(`sudo a2enmod rewrite`)
       await execAsync(`sudo service apache2 restart`)
     } catch(error) {
-      log(`Create MySQL user fail: ${JSON.stringify(error)}`, 'red')
+      log(`PhpMyAdmin Install/Setup Fail: ${JSON.stringify(error)}`, 'red')
     }
   }
 }
