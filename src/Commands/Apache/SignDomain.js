@@ -1,5 +1,5 @@
 const BaseCommand = require('../BaseCommand')
-const SignDomainService = require('../../Services/SignDomains')
+const SignDomainService = require('../../Services/SignDomain')
 class SignDomain extends BaseCommand{
   async exec() {
     let domains
