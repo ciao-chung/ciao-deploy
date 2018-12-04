@@ -22,6 +22,7 @@ class LaravelInit extends BaseCommand{
       await execAsync(`php artisan key:generate`, { cwd: laravelPath })
       await execAsync(`php artisan storage:link`, { cwd: laravelPath })
       await execAsync(`chmod 755 -R ./`, { cwd: laravelPath })
+      await execAsync(`chmod -R o+w ./storage`, { cwd: laravelPath })
       await this._createSymbolicLinkIfNotExist(laravelPath)
       await execAsync(`git config core.filemode false`, { cwd: laravelPath })
     } catch(error) {
