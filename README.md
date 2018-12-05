@@ -6,7 +6,7 @@
 
 ## Required
 
-- Node.js 8.x up (can copy and execute nodejs.sh directly which in project root)
+- Node.js 8.x up (can copy and execute **nodejs.sh** directly which in project root)
 
 ## Installation
 
