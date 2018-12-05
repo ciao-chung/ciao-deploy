@@ -106,6 +106,11 @@ class App {
   async setupConfig() {
     if(!argv.config) {
       global.config = {}
+      for(const argName in argv) {
+        if(argName == '_') continue
+        if(argName == '$0') continue
+        global.config[argName] = argv[argName]
+      }
       return
     }
 

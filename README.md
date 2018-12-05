@@ -26,7 +26,7 @@ deploy
 deploy --config=/path/to/config.json
 ```
 
-### Setup SSH Key Permissions
+## Setup SSH Key Permissions
 
 ```bash
 chmod 400 ~/.ssh/ssh-key
