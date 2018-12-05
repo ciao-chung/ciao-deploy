@@ -41,7 +41,7 @@ class SetupLaravelEnvFile {
       }
     }
 
-    this.writeFileSync(envFilePath, result, 'utf-8')
+    this.writeFileSync(envFilePath, result, 'utf8')
   }
 }
 

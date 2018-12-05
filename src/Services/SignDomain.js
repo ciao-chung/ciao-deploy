@@ -1,7 +1,12 @@
 const { resolve } = require('path')
-const { writeFileSync } = require('fs')
+const { existsSync, writeFileSync } = require('fs')
 class SignDomain {
   async sign(domain, webPath) {
+    if(!existsSync(webPath)) {
+      log(`Sign domain fail cuz web path not found`, 'red')
+      return
+    }
+
     const configContent = this._getDomainConfig(domain, webPath)
     const configFilePath = resolve('/tmp', `${domain}.conf`)
     log(`Start sign domain: ${domain}`, 'green')

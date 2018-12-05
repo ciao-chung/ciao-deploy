@@ -17,6 +17,12 @@ class SignSSL extends BaseCommand{
       return
     }
 
+    const apacheConfigFilePath = this.resolve(`/etc/apache2/sites-available/${domain}.conf`)
+    if(!this.existsSync(apacheConfigFilePath)) {
+      log(`Sign domain fail cuz apache config file not found`, 'red')
+      return
+    }
+
     await execAsync(`sudo certbot --apache --redirect --keep-until-expiring --no-eff-email --agree-tos --email ${config.sslNotificationEmail} --domains ${domain}` )
   }
 }
