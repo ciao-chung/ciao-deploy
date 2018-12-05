@@ -14,6 +14,10 @@ class BaseRunner {
           title: 'Env: Install Git',
           instance: require('../Commands/Env/Git'),
         },
+        testRemoteGitRepo: {
+          title: 'Env: Test Remote Git Repo(Github/Bitbucket)',
+          instance: require('../Commands/Env/TestRemoteGitRepo'),
+        },
         php: {
           title: 'Env: Install PHP',
           instance: require('../Commands/Env/Php'),
