@@ -71,7 +71,7 @@ class App {
     this.actions = {
       setupEnv: require('./Actions/SetupEnv'),
       laravel: require('./Actions/Laravel'),
-      singleCommand: require('./Actions/SingleCommand'),
+      commandGroup: require('./Actions/CommandGroup'),
       dumpConfig: require('./Actions/DumpConfig'),
     }
   }
@@ -86,21 +86,39 @@ class App {
       choices: [
         { title: 'Setup environment', value: 'setupEnv' },
         { title: 'Deploy laravel', value: 'laravel' },
-        { title: 'Run Single Command', value: 'singleCommand' },
+        { title: 'Group: Environment', value: 'envGroup' },
+        { title: 'Group: Fish', value: 'fishGroup' },
+        { title: 'Group: Let\'s Encrypt', value: 'letsEncryptGroup' },
+        { title: 'Group: Apache', value: 'apacheGroup' },
+        { title: 'Group: MySQL', value: 'mysqlGroup' },
         { title: 'Custom command', value: 'command' },
         { title: 'Dump config.json file', value: 'dumpConfig' },
+        { title: 'Exit', value: 'exit' },
       ]
     })
 
-    if(!this.actions[response.action]) {
+    // exit
+    if(!response.action || response.action == 'exit') {
+      return
+    }
+
+    const isGroup = new RegExp('Group', 'g').test(response.action)
+    if(!this.actions[response.action] && !isGroup) {
       log('Action type is invalid', 'red')
       return
     }
 
-    const action = this.actions[response.action]()
+    const action = isGroup == true
+      ? this.actions.commandGroup()
+      : this.actions[response.action]()
+
+    const actionGroup = isGroup == true
+      ? response.action
+      : null
+    
     await this.setupConfig()
     await action.init()
-    await action.start()
+    await action.start(actionGroup)
   }
 
   async setupConfig() {

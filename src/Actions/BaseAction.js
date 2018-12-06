@@ -1,8 +1,7 @@
 const { argv } = require('yargs')
-const EnvFishRunner = require('../Runners/EnvFishRunner')
 const EnvWebServerRunner = require('../Runners/EnvWebServerRunner')
 const LaravelRunner = require('../Runners/LaravelRunner')
-const SingleCommandRunner = require('../Runners/SingleCommandRunner')
+const CommandGroupRunner = require('../Runners/CommandGroupRunner')
 class BaseAction {
   constructor() {
     this.init()
@@ -11,10 +10,9 @@ class BaseAction {
   async init() {
     this.args = argv
     this.runners = {
-      EnvFishRunner,
       EnvWebServerRunner,
       LaravelRunner,
-      SingleCommandRunner,
+      CommandGroupRunner,
     }
   }
 }

@@ -2,8 +2,6 @@ const BaseAction = require('./BaseAction.js')
 class SetupEnv extends BaseAction{
   async start() {
     this.env = {
-      installFishShell: async () => await this.runners.EnvFishRunner().install(),
-      setupFishShell: async () => await this.runners.EnvFishRunner().setup(),
       webServer: async () => await this.runners.EnvWebServerRunner().start(),
       workSpace: async () => {},
     }
@@ -12,8 +10,6 @@ class SetupEnv extends BaseAction{
       name: 'env',
       message: 'Choice environment',
       choices: [
-        { title: 'Install Fish Shell', value: 'installFishShell' },
-        { title: 'Setup Fish Shell', value: 'setupFishShell' },
         { title: 'Web server', value: 'webServer' },
         { title: 'Workspace', value: 'workSpace' },
         { title: 'Exit', value: 'exit' },
