@@ -34,9 +34,7 @@ chmod 400 ~/.ssh/ssh-key
 
 ## Actions/Sub Actions
 
-With arguments **--action** and **--subAction**.
-
-You can use quit mode(without prompt).
+With arguments **--action** and **--subAction**, you can use quit mode(without prompt).
 
 Here is all title and value(in brackets) of **actions(first level)** and **sub actions(second level)**.
 
