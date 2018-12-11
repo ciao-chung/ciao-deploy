@@ -6,6 +6,25 @@ class Laravel extends BaseAction{
       deploy: async () => await this.runners.LaravelRunner().deploy(),
       initAllInOne: async () => await this.runners.LaravelRunner().initAllInOne(),
     }
+
+    const deployment = await this.choiceDeployment()
+    if(deployment == 'exit') {
+      return
+    }
+
+    if(!this.deployments[deployment]) {
+      log('Deployment type is invalid', 'red')
+      return
+    }
+
+    this.deployments[deployment]()
+  }
+
+  async choiceDeployment() {
+    if(this.args.subAction) {
+      return this.args.subAction
+    }
+
     const response = await prompts({
       type: 'select',
       name: 'deployment',
@@ -18,16 +37,7 @@ class Laravel extends BaseAction{
       ]
     })
 
-    if(response.deployment == 'exit') {
-      return
-    }
-
-    if(!this.deployments[response.deployment]) {
-      log('Deployment type is invalid', 'red')
-      return
-    }
-
-    this.deployments[response.deployment]()
+    return response.deployment
   }
 }
 

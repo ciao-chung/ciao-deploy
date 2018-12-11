@@ -78,6 +78,37 @@ class App {
 
   async init() {
     this.initActions()
+    const action = await this.choiceAction()
+
+
+    // exit
+    if(!action || action == 'exit') {
+      return
+    }
+
+    const isGroup = new RegExp('Group', 'g').test(action)
+    if(!this.actions[action] && !isGroup) {
+      log('Action type is invalid', 'red')
+      return
+    }
+
+    const actionInstance = isGroup == true
+      ? this.actions.commandGroup()
+      : this.actions[action]()
+
+    const actionGroup = isGroup == true
+      ? action
+      : null
+    
+    await this.setupConfig()
+    await actionInstance.init()
+    await actionInstance.start(actionGroup)
+  }
+
+  async choiceAction() {
+    if(argv.action) {
+      return argv.action
+    }
 
     const response = await prompts({
       type: 'select',
@@ -98,28 +129,7 @@ class App {
       ]
     })
 
-    // exit
-    if(!response.action || response.action == 'exit') {
-      return
-    }
-
-    const isGroup = new RegExp('Group', 'g').test(response.action)
-    if(!this.actions[response.action] && !isGroup) {
-      log('Action type is invalid', 'red')
-      return
-    }
-
-    const action = isGroup == true
-      ? this.actions.commandGroup()
-      : this.actions[response.action]()
-
-    const actionGroup = isGroup == true
-      ? response.action
-      : null
-    
-    await this.setupConfig()
-    await action.init()
-    await action.start(actionGroup)
+    return response.action
   }
 
   async setupConfig() {

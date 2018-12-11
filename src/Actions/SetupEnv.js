@@ -5,6 +5,25 @@ class SetupEnv extends BaseAction{
       webServer: async () => await this.runners.EnvWebServerRunner().start(),
       workSpace: async () => {},
     }
+
+    const env = await this.choiceEnv()
+    if(env == 'exit') {
+      return
+    }
+
+    if(!this.env[env]) {
+      log('Environment type is invalid', 'red')
+      return
+    }
+
+    this.env[env]()
+  }
+
+  async choiceEnv() {
+    if(this.args.subAction) {
+      return this.args.subAction
+    }
+
     const response = await prompts({
       type: 'select',
       name: 'env',
@@ -16,16 +35,7 @@ class SetupEnv extends BaseAction{
       ]
     })
 
-    if(response.env == 'exit') {
-      return
-    }
-
-    if(!this.env[response.env]) {
-      log('Environment type is invalid', 'red')
-      return
-    }
-
-    this.env[response.env]()
+    return response.env
   }
 }
 

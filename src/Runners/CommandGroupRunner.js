@@ -3,38 +3,50 @@ class CommandGroupRunner extends BaseRunner{
   async start(group) {
     const groupName = group.replace(/Group/g, '')
 
-    let commandList = []
+    this.commandList = []
     const commandGroup = this.commands[groupName]
     for(const commandName in commandGroup) {
       const command = commandGroup[commandName]
-      commandList.push({
+      this.commandList.push({
         title: command.title,
         value: command.instance,
+        subAction: commandName,
       })
     }
 
-    commandList.push({
+    this.commandList.push({
       title: 'Exit',
       value: 'exit',
     })
+
+    const command = await this.choiceCommand()
+
+    if(command == 'exit') {
+      return
+    }
+
+    if(!command) {
+      log(`Command Not Found`, 'red')
+      return
+    }
+
+    command.exec()
+  }
+
+  async choiceCommand() {
+    if(this.args.subAction) {
+      const target =  this.commandList.find(item => item.subAction == this.args.subAction)
+      return !target ? null : target.value
+    }
 
     const response = await prompts({
       type: 'select',
       name: 'command',
       message: 'Choice Command',
-      choices: commandList,
+      choices: this.commandList,
     })
 
-    if(response.command == 'exit') {
-      return
-    }
-
-    if(!response.command) {
-      log(`Command Not Found`, 'red')
-      return
-    }
-
-    response.command.exec()
+    return response.command
   }
 }
 

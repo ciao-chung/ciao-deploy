@@ -1,9 +1,11 @@
+const { argv } = require('yargs')
 class BaseRunner {
   constructor() {
     this.init()
   }
 
   async init() {
+    this.args = argv
     this.commands = {
       env: {
         base: {
