@@ -145,7 +145,7 @@ class BaseRunner {
           instance: require('../Commands/Laravel/SetEnvFile'),
         },
         initDatabase: {
-          title: 'Laravel: Set Env File',
+          title: 'Laravel: Init Database',
           instance: require('../Commands/Laravel/InitDatabase'),
         },
         setupDomain: {
