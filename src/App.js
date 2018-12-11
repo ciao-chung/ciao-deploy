@@ -82,17 +82,18 @@ class App {
     const response = await prompts({
       type: 'select',
       name: 'action',
-      message: 'Choice deploy mode',
+      message: 'Choice Deploy Mode',
       choices: [
-        { title: 'Setup environment', value: 'setupEnv' },
-        { title: 'Deploy laravel', value: 'laravel' },
+        { title: 'Setup Environment', value: 'setupEnv' },
+        { title: 'Deploy Laravel', value: 'laravel' },
         { title: 'Group: Environment', value: 'envGroup' },
+        { title: 'Group: Work Space', value: 'workspaceGroup' },
         { title: 'Group: Fish', value: 'fishGroup' },
         { title: 'Group: Let\'s Encrypt', value: 'letsEncryptGroup' },
         { title: 'Group: Apache', value: 'apacheGroup' },
         { title: 'Group: MySQL', value: 'mysqlGroup' },
-        { title: 'Custom command', value: 'command' },
-        { title: 'Dump config.json file', value: 'dumpConfig' },
+        { title: 'Custom Command', value: 'command' },
+        { title: 'Dump Config JSON File', value: 'dumpConfig' },
         { title: 'Exit', value: 'exit' },
       ]
     })

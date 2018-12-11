@@ -1,5 +1,5 @@
 const { resolve } = require('path')
-const { homedir } = require('os')
+const { homedir, userInfo } = require('os')
 const { existsSync, readFileSync, writeFileSync, appendFileSync } = require('fs')
 const shelljs = require('shelljs')
 class BaseCommand {
@@ -10,6 +10,7 @@ class BaseCommand {
   init() {
     this.shelljs = shelljs
     this.resolve = resolve
+    this.username = userInfo().username
     this.homedir = homedir()
     this.existsSync = existsSync
     this.readFileSync = readFileSync

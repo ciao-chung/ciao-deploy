@@ -14,7 +14,7 @@ class SetupLaravelEnvFile {
       const envFileContent = this.readFileSync(envFilePath, 'utf8')
       this.variables = envFileContent.split('\n')
     } catch(error) {
-      log(`Project [${deployConfig.name}] Env File Not Found: ${error}`, 'red')
+      log(`Project [${deployConfig.name}] env file not found: ${error}`, 'red')
       return
     }
 
@@ -36,7 +36,7 @@ class SetupLaravelEnvFile {
 
       // use custom value
       else {
-        log(`Project [${deployConfig.name}] Set Env Variable, ${key}=${value}`, 'green')
+        log(`Project [${deployConfig.name}] set env variable, ${key}=${value}`, 'green')
         result += `${key}=${this.env[key]}\n`
       }
     }

@@ -31,6 +31,44 @@ class BaseRunner {
           instance: require('../Commands/Env/PhpMyAdmin'),
         },
       },
+      workspace: {
+        base: {
+          title: 'Work Space: Base',
+          instance: require('../Commands/WorkSpace/Base'),
+        },
+        createDesktopSoftLink: {
+          title: 'Work Space: Create Desktop Soft Link',
+          instance: require('../Commands/WorkSpace/CreateDesktopSoftLink'),
+        },
+        chrome: {
+          title: 'Work Space: Install Chrome',
+          instance: require('../Commands/WorkSpace/Chrome'),
+        },
+        dophin: {
+          title: 'Work Space: Install Dophin',
+          instance: require('../Commands/WorkSpace/Dophin'),
+        },
+        media: {
+          title: 'Work Space: Install Media Software',
+          instance: require('../Commands/WorkSpace/Media'),
+        },
+        ngrok: {
+          title: 'Work Space: Install Ngrok',
+          instance: require('../Commands/WorkSpace/Ngrok'),
+        },
+        phpstrom: {
+          title: 'Work Space: Install Phpstrom',
+          instance: require('../Commands/WorkSpace/Phpstrom'),
+        },
+        record: {
+          title: 'Work Space: Install Record Software',
+          instance: require('../Commands/WorkSpace/Record'),
+        },
+        unetbootin: {
+          title: 'Work Space: Install Unetbootin',
+          instance: require('../Commands/WorkSpace/Unetbootin'),
+        },
+      },
       fish: {
         install: {
           title: 'Fish Shell: Install',

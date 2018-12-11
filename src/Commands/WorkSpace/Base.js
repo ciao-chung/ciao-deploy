@@ -1,7 +1,6 @@
 const BaseCommand = require('../BaseCommand')
 class Base extends BaseCommand{
   async exec() {
-    await execAsync(`ln -s ~/桌面 ~/Desktop`)
     await execAsync(`sudo apt-get update`)
     await execAsync(`sudo apt-get install gnome-disk-utility -y`)
     await execAsync(`sudo apt-get install openvpn -y`)
