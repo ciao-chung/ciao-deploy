@@ -87,7 +87,7 @@ Third level is more description.
   - MySQL User: List User(listUser)
   - MySQL User: Create User(createUser)
   - MySQL User: Delete User(deleteUser)
-  - MySQL: List Database(listDatabase)
+  - MySQL Database: List Database(listDatabase)
   - MySQL Database: Create Database(createDB)
   - MySQL Database: Delete Database(deleteDB)
 - Custom Command(command)
