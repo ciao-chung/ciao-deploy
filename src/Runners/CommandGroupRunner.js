@@ -33,6 +33,8 @@ class CommandGroupRunner extends BaseRunner{
       log(`Command Not Found`, 'red')
       return
     }
+
+    response.command.exec()
   }
 }
 

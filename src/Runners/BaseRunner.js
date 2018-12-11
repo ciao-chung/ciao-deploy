@@ -72,6 +72,10 @@ class BaseRunner {
         },
       },
       apache: {
+        setup: {
+          title: 'Apache: Setup',
+          instance: require('../Commands/Apache/Setup'),
+        },
         signDomain: {
           title: 'Apache: Sign Domain',
           instance: require('../Commands/Apache/SignDomain'),

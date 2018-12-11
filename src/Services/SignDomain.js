@@ -10,7 +10,7 @@ class SignDomain {
     const configContent = this._getDomainConfig(domain, webPath)
     const configFilePath = resolve('/tmp', `${domain}.conf`)
     log(`Start sign domain: ${domain}`, 'green')
-    await writeFileSync(configFilePath, configContent, 'utf-8')
+    await writeFileSync(configFilePath, configContent, 'utf8')
     await execAsync(`sudo mv ${configFilePath} /etc/apache2/sites-available/`)
     await execAsync(`sudo a2ensite ${domain}`)
     await execAsync(`sudo service apache2 restart`)

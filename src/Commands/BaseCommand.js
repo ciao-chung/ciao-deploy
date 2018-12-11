@@ -1,6 +1,6 @@
 const { resolve } = require('path')
 const { homedir } = require('os')
-const { existsSync, readFileSync, writeFileSync } = require('fs')
+const { existsSync, readFileSync, writeFileSync, appendFileSync } = require('fs')
 const shelljs = require('shelljs')
 class BaseCommand {
   constructor() {
@@ -14,6 +14,7 @@ class BaseCommand {
     this.existsSync = existsSync
     this.readFileSync = readFileSync
     this.writeFileSync = writeFileSync
+    this.appendFileSync = appendFileSync
   }
 }
 

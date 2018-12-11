@@ -13,6 +13,8 @@ class Php extends BaseCommand{
     await execAsync(`sudo apt-get install php7.1-zip -y`)
     await execAsync(`sudo apt-get install php7.1-dom -y`)
     await execAsync(`sudo apt-get install libapache2-mod-php7.1 -y`)
+    await execAsync(`sudo apt-get install php-imagick -y`)
+    await execAsync(`php -m | grep imagick`)
     await execAsync(`sudo service apache2 restart`)
   }
 }
