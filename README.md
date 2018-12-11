@@ -38,9 +38,17 @@ With arguments **--action** and **--subAction**, you can use quit mode(without p
 
 Here is all title and value(in brackets) of **actions(first level)** and **sub actions(second level)**.
 
+Third level is more description.
+
 - Setup Environment(setupEnv)
   - Web server(webServer)
+    - Execute all command which in environment group.
+    - Install MySQL.
+    - Install CertBot.
   - Workspace(workSpace)
+    - Execute all command which in environment group.
+    - Install MySQL.
+    - Execute all command which in work space group.
 - Deploy Laravel(laravel)
   - Laravel: Init(init)
   - Laravel: Set Env File(setEnvFile)
