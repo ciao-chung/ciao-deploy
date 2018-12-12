@@ -3,7 +3,7 @@ class SetupEnv extends BaseAction{
   async start() {
     this.env = {
       webServer: async () => await this.runners.EnvWebServerRunner().start(),
-      workSpace: async () => {},
+      workSpace: async () => await this.runners.EnvWebWorkSpaceRunner().start(),
     }
 
     const env = await this.choiceEnv()
