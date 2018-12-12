@@ -2,6 +2,7 @@ const { argv } = require('yargs')
 const EnvWebServerRunner = require('../Runners/EnvWebServerRunner')
 const LaravelRunner = require('../Runners/LaravelRunner')
 const CommandGroupRunner = require('../Runners/CommandGroupRunner')
+const CustomCommandRunner = require('../Runners/CustomCommandRunner')
 class BaseAction {
   constructor() {
     this.init()
@@ -13,6 +14,7 @@ class BaseAction {
       EnvWebServerRunner,
       LaravelRunner,
       CommandGroupRunner,
+      CustomCommandRunner,
     }
   }
 }

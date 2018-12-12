@@ -48,5 +48,17 @@
         "GOOGLE_CLOUD_STORAGE_BUCKET": "bucket"
       }
     }
+  ],
+  "commands": [
+    {
+      "command": "mkdir foobar",
+      "description": "Create a foobar directory.",
+      "cwd": "~/Desktop"
+    },
+    {
+      "command": "echo some message > doc.txt",
+      "description": "Create a text file",
+      "cwd": "~/Desktop/foobar"
+    }
   ]
 }

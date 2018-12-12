@@ -73,6 +73,7 @@ class App {
       laravel: require('./Actions/Laravel'),
       commandGroup: require('./Actions/CommandGroup'),
       dumpConfig: require('./Actions/DumpConfig'),
+      command: require('./Actions/CustomCommand'),
     }
   }
 
