@@ -8,6 +8,12 @@
 
 - Node.js 8.x up (can copy and execute **nodejs.sh** directly which in project root)
 
+## Node.js, Yarn, PM2 Quick Installation
+
+```bash
+wget https://raw.githubusercontent.com/ciao-chung/ciao-deploy/master/nodejs.sh; bash ./nodejs.sh
+```
+
 ## Installation
 
 ```bash
