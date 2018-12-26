@@ -11,7 +11,7 @@
 ## Node.js, Yarn, PM2 Quick Installation
 
 ```bash
-wget https://raw.githubusercontent.com/ciao-chung/ciao-deploy/master/nodejs.sh; bash ./nodejs.sh
+curl -sL https://raw.githubusercontent.com/ciao-chung/ciao-deploy/master/nodejs.sh | bash
 ```
 
 ## Installation
