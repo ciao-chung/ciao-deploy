@@ -1,0 +1,38 @@
+deploy:
+    source:
+        branch: master
+        repo: repo
+        frontend: Frontend
+        backend: Backend
+    remote:
+        user: ciao
+        commands:
+            before_login: ''
+            after_login: ''
+    target:
+        frontend:
+            host: remote.host
+            domain: example.com
+            https: true
+            path: /path/to/frontend
+            apibase: api.example.com
+            apidoc:
+                exclude: BackStage
+            commands:
+                before_deploy: ''
+                after_deploy: ''
+        backend:
+            host: remote.host
+            domain: service.example.com
+            https: true
+            path: /path/to/frontend
+            migrate: true
+            commands:
+                before_deploy: ''
+                after_deploy: ''
+            env:
+                DB_DATABASE: db_name
+                DB_USERNAME: mysql_user
+                DB_PASSWORD: mysql_password
+                CORS: 'https://webcache.googleusercontent.com,http://localhost:8080,https://example.com'
+                PHOTO_BASE_URL: http://exmpale.com/storage

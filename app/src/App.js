@@ -1,9 +1,9 @@
 import AppKernel from 'AppKernel'
-import ExampleCommand from 'Commands/ExampleCommand'
+import CubeDeploy from 'Commands/CubeDeploy'
 class App extends AppKernel {
   setup() {
     this.commandList = [
-      ExampleCommand,
+      CubeDeploy,
     ]
   }
 }
