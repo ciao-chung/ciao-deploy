@@ -30,8 +30,8 @@ class Global {
     console.log(chalk[`${style}Bright`](result)+chalk.whiteBright(`\t at ${now()}`))
   }
 
-  now() {
-    return moment(new Date).format('YYYY-MM-DD HH:mm:ss')
+  now(format = 'YYYY-MM-DD HH:mm:ss') {
+    return moment(new Date).format(format)
   }
 
   execAsync(command, options = {}, quiet = false) {

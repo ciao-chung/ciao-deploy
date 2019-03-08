@@ -2,8 +2,6 @@ deploy:
     source:
         branch: master
         repo: repo
-        frontend: Frontend
-        backend: Backend
     remote:
         user: ciao
         commands:
@@ -11,6 +9,7 @@ deploy:
             after_login: ''
     target:
         frontend:
+            folder: Frontend
             host: remote.host
             domain: example.com
             https: true
@@ -22,6 +21,7 @@ deploy:
                 before_deploy: ''
                 after_deploy: ''
         backend:
+            folder: Backend
             host: remote.host
             domain: service.example.com
             https: true

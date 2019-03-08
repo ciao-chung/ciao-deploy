@@ -1,5 +1,7 @@
 import BaseCommand from 'Commands/_BaseCommand'
 import CloneSource from 'CubeDeploy/CloneSource'
+import BuildFrontend from 'CubeDeploy/BuildFrontend'
+import BuildBackend from 'CubeDeploy/BuildBackend'
 import { resolve } from 'path'
 class CubeDeploy extends BaseCommand{
   async setupCommand() {
@@ -21,9 +23,12 @@ class CubeDeploy extends BaseCommand{
 
   async start() {
     // 建立佈署的暫存資料夾名稱、路徑
-    this.deployTempFolder = `${global.projectConfig.name}-${new Date().getTime()}`
-    this.deployTempPath = resolve(process.env.PWD, this.deployTempFolder)
-    CloneSource(this.commandConfig).start(this.deployTempFolder, this.deployTempPath)
+    global.deployTempFolder = `${global.projectConfig.name}-${now('YYYYMMDDHHmmss')}`
+    global.deployTempPath = resolve(process.env.PWD, deployTempFolder)
+
+    await CloneSource(this.commandConfig).start()
+    await BuildFrontend(this.commandConfig).start()
+    await BuildBackend(this.commandConfig).start()
   }
 }
 

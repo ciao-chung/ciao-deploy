@@ -5,21 +5,18 @@ class CloneSource {
     this.branch = this.commandConfig.deploy.source.branch || 'master'
   }
 
-  async start(deployTempFolder, deployTempPath) {
-    this.deployTempPath = deployTempPath
-    this.deployTempFolder = deployTempFolder
-
+  async start() {
     log(`Start clone project at ${this.repo}`)
     mkdir('-p', deployTempPath)
     try {
-      await execAsync(`git clone ${this.repo} ${this.deployTempFolder}`, { cwd: process.env.PWD })
+      await execAsync(`git clone ${this.repo} ${deployTempFolder}`, { cwd: process.env.PWD })
     } catch (error) {
       log(error, 'red')
       log(`Clone fail`)
       process.exit()
     }
 
-    await execAsync(`git checkout origin/${this.branch}`, { cwd: this.deployTempPath })
+    await execAsync(`git checkout origin/${this.branch}`, { cwd: deployTempPath })
   }
 }
 
