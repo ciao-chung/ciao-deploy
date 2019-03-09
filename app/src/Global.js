@@ -35,6 +35,9 @@ class Global {
   }
 
   execAsync(command, options = {}, quiet = false) {
+    // 允許設定不使用sudo
+    if(withoutSudo) command = command.replace(new RegExp('sudo', 'g'), '')
+    
     let computedOptions = {
       async: true,
       ...options,
@@ -95,6 +98,7 @@ class Global {
     global.executeRemote = this.executeRemote
     global.args = yargsParser(process.argv.slice(2))
     delete global.args._
+    global.withoutSudo = !!args.withoutSudo
     this.setupEnvVariable()
   }
 }

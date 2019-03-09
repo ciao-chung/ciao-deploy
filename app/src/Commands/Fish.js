@@ -11,20 +11,7 @@ class Fish extends BaseCommand{
       property: 'config',
     }
 
-    this.argsConfig = [
-      {
-        name: 'install',
-        description: 'install',
-        defaultValue: false,
-        type: 'boolean',
-      },
-      {
-        name: 'install',
-        description: 'install',
-        defaultValue: false,
-        type: 'boolean',
-      },
-    ]
+    this.argsConfig = []
     this.description = `Fish Shell`
   }
 
@@ -35,12 +22,12 @@ class Fish extends BaseCommand{
   }
 
   async install() {
-    await execAsync(`apt-get update`)
-    await execAsync(`apt-get install git -y`)
-    await execAsync(`apt-add-repository ppa:fish-shell/release-2 -y`)
-    await execAsync(`apt-get update`)
-    await execAsync(`apt-get install fish -y`)
-    await execAsync(`usermod -s /usr/bin/fish ${os.userInfo().username}`)
+    await execAsync(`sudo apt-get update`)
+    await execAsync(`sudo apt-get install git -y`)
+    await execAsync(`sudo apt-add-repository ppa:fish-shell/release-2 -y`)
+    await execAsync(`sudo apt-get update`)
+    await execAsync(`sudo apt-get install fish -y`)
+    await execAsync(`sudo usermod -s /usr/bin/fish ${os.userInfo().username}`)
   }
 
   async setupConfigFile() {
