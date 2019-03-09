@@ -36424,6 +36424,8 @@ function () {
     value: function execAsync(command) {
       var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
       var quiet = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+      // 允許設定不使用sudo
+      if (withoutSudo) command = command.replace(new RegExp('sudo', 'g'), '');
 
       var computedOptions = _objectSpread({
         async: true
@@ -36540,9 +36542,10 @@ function () {
                 global.executeRemote = this.executeRemote;
                 global.args = yargsParser(process.argv.slice(2));
                 delete global.args._;
+                global.withoutSudo = !!args.withoutSudo;
                 this.setupEnvVariable();
 
-              case 9:
+              case 10:
               case "end":
                 return _context3.stop();
             }
@@ -55740,7 +55743,7 @@ function () {
 
               case 6:
                 _context.next = 8;
-                return execAsync("sudo add-apt-repository ppa:ondrej/php -y");
+                return execAsync("sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y");
 
               case 8:
                 _context.next = 10;
@@ -55936,7 +55939,7 @@ function () {
 
               case 2:
                 _context.next = 4;
-                return execAsync("sudo apt-add-repository ppa:ondrej/pkg-gearman -y");
+                return execAsync("sudo LC_ALL=C.UTF-8 apt-add-repository ppa:ondrej/pkg-gearman -y");
 
               case 4:
                 _context.next = 6;
@@ -56043,17 +56046,7 @@ function (_BaseCommand) {
                   required: false,
                   property: 'config'
                 };
-                this.argsConfig = [{
-                  name: 'install',
-                  description: 'install',
-                  defaultValue: false,
-                  type: 'boolean'
-                }, {
-                  name: 'install',
-                  description: 'install',
-                  defaultValue: false,
-                  type: 'boolean'
-                }];
+                this.argsConfig = [];
                 this.description = "Fish Shell";
 
               case 4:
@@ -56113,27 +56106,27 @@ function (_BaseCommand) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return execAsync("apt-get update");
+                return execAsync("sudo apt-get update");
 
               case 2:
                 _context3.next = 4;
-                return execAsync("apt-get install git -y");
+                return execAsync("sudo apt-get install git -y");
 
               case 4:
                 _context3.next = 6;
-                return execAsync("apt-add-repository ppa:fish-shell/release-2 -y");
+                return execAsync("sudo apt-add-repository ppa:fish-shell/release-2 -y");
 
               case 6:
                 _context3.next = 8;
-                return execAsync("apt-get update");
+                return execAsync("sudo apt-get update");
 
               case 8:
                 _context3.next = 10;
-                return execAsync("apt-get install fish -y");
+                return execAsync("sudo apt-get install fish -y");
 
               case 10:
                 _context3.next = 12;
-                return execAsync("usermod -s /usr/bin/fish ".concat(__WEBPACK_IMPORTED_MODULE_1_os___default.a.userInfo().username));
+                return execAsync("sudo usermod -s /usr/bin/fish ".concat(__WEBPACK_IMPORTED_MODULE_1_os___default.a.userInfo().username));
 
               case 12:
               case "end":
