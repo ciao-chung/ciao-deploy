@@ -74,6 +74,10 @@ class Global {
     })
   }
 
+  async executeRemote(user, host, command, options) {
+    await this.execAsync(`ssh -o StrictHostKeyChecking=no ${user}@${host} "${command}" `, options)
+  }
+
   notify(message) {
     notifier.notify({
       title: projectConfig.name,
@@ -88,6 +92,7 @@ class Global {
     global.log = this.log
     global.notify = this.notify
     global.execAsync = this.execAsync
+    global.executeRemote = this.executeRemote
     global.args = yargsParser(process.argv.slice(2))
     delete global.args._
     this.setupEnvVariable()

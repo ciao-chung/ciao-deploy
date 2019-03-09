@@ -10,6 +10,12 @@ class BuildFrontend {
     this.frontendPath = resolve(deployTempPath, this.folderName)
   }
 
+  async executeRemote(command, options = {}) {
+    const user = this.frontendConfig.user
+    const host = this.frontendConfig.host
+    await executeRemote(user, host, command, options)
+  }
+
   async start() {
     if(!this.deployFrontend) return
     log(`Start build frontend`)
@@ -17,6 +23,7 @@ class BuildFrontend {
     await this.setupApiBase()
     await this.installNodeModules()
     await this.buildWebpack()
+    await this.cleanNodeModules()
   }
 
   async setupApiBase() {
@@ -41,6 +48,10 @@ class BuildFrontend {
     if(apidocExclude) buildCommand = `${buildCommand} --doc_exclude=${apidocExclude} `
     log(`buildCommand: ${buildCommand}`, 'yellow')
     await execAsync(buildCommand, { cwd: this.frontendPath })
+  }
+
+  async cleanNodeModules() {
+    await execAsync(`rm -rf node_modules/`, { cwd: this.frontendPath })
   }
 }
 

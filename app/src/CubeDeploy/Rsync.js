@@ -1,0 +1,50 @@
+import { resolve } from 'path'
+class Rsync {
+  constructor(commandConfig) {
+    this.commandConfig = commandConfig
+    this.frontendConfig = this.commandConfig.deploy.target.frontend
+    this.backendConfig = this.commandConfig.deploy.target.backend
+  }
+
+  async start() {
+    await this.rsyncFrontend()
+    await this.rsyncBackend()
+  }
+
+  async rsyncFrontend() {
+    if(!this.frontendConfig) return
+    log(`Start rsync frontend`)
+    const frontendFolderName = this.frontendConfig.frontend || 'Frontend'
+    await this.rsyncTargetMkdir(this.frontendConfig)
+    await this.rsync(
+      this.frontendConfig.user,
+      this.frontendConfig.host,
+      resolve(deployTempPath, frontendFolderName, 'dist'),
+      this.frontendConfig.path,
+    )
+  }
+
+  async rsyncBackend() {
+    if(!this.backendConfig) return
+    log(`Start rsync backend`)
+    const backendFolderName = this.frontendConfig.frontend || 'Backend'
+    await this.rsyncTargetMkdir(this.backendConfig)
+    await this.rsync(
+      this.backendConfig.user,
+      this.backendConfig.host,
+      resolve(deployTempPath, backendFolderName),
+      this.backendConfig.path,
+    )
+  }
+
+  async rsync(user, host, source, target) {
+    const rsyncCommand = `rsync -e "ssh -o StrictHostKeyChecking=no" -avzh ${source}/ ${user}@${host}:${target}`
+    await execAsync(rsyncCommand)
+  }
+
+  async rsyncTargetMkdir(config) {
+    await executeRemote(config.user, config.host, `mkdir -p ${config.path}`)
+  }
+}
+
+export default (commandConfig) => new Rsync(commandConfig)
