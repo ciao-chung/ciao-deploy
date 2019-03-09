@@ -3,6 +3,7 @@ import CloneSource from 'CubeDeploy/CloneSource'
 import BuildFrontend from 'CubeDeploy/BuildFrontend'
 import BuildBackend from 'CubeDeploy/BuildBackend'
 import Rsync from 'CubeDeploy/Rsync'
+import CleanTemp from 'CubeDeploy/CleanTemp'
 import { resolve } from 'path'
 class CubeDeploy extends BaseCommand{
   async setupCommand() {
@@ -39,6 +40,7 @@ class CubeDeploy extends BaseCommand{
     await BuildFrontend(this.commandConfig).start()
     await BuildBackend(this.commandConfig).start()
     await Rsync(this.commandConfig).start()
+    await CleanTemp(this.commandConfig).start()
   }
 }
 
