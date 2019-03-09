@@ -41,6 +41,7 @@ class CubeDeploy extends BaseCommand{
     await BuildBackend(this.commandConfig).start()
     await Rsync(this.commandConfig).start()
     await CleanTemp(this.commandConfig).start()
+    this.notify('Deploy successfully');
   }
 }
 
