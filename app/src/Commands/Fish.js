@@ -51,11 +51,11 @@ class Fish extends BaseCommand{
   }
 
   async install() {
-    await execAsync(`sudo apt-get update`)
-    await execAsync(`sudo apt-get install git -y`)
-    await execAsync(`sudo apt-add-repository ppa:fish-shell/release-2 -y`)
-    await execAsync(`sudo apt-get update`)
-    spawnSync('sudo apt-get install fish -y', [], { shell: true });
+    await execAsync(`apt-get update`)
+    await execAsync(`apt-get install git -y`)
+    await execAsync(`apt-add-repository ppa:fish-shell/release-2 -y`)
+    await execAsync(`apt-get update`)
+    spawnSync('apt-get install fish -y', [], { shell: true });
     await execAsync(`fish --version`)
   }
 
@@ -64,7 +64,7 @@ class Fish extends BaseCommand{
     spawnSync('fish', ['install', '--path=~/.local/share/omf', '--config=~/.config/omf'], { shell: true });
     await execAsync(`rm ./install`)
     spawnSync('omf', ['install', 'gitstatus'], { shell: true });
-    await execAsync(`sudo usermod -s /usr/bin/fish $USER`)
+    await execAsync(`usermod -s /usr/bin/fish $USER`)
   }
 
   getFishConfig() {

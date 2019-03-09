@@ -56137,22 +56137,22 @@ function (_BaseCommand) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return execAsync("sudo apt-get update");
+                return execAsync("apt-get update");
 
               case 2:
                 _context3.next = 4;
-                return execAsync("sudo apt-get install git -y");
+                return execAsync("apt-get install git -y");
 
               case 4:
                 _context3.next = 6;
-                return execAsync("sudo apt-add-repository ppa:fish-shell/release-2 -y");
+                return execAsync("apt-add-repository ppa:fish-shell/release-2 -y");
 
               case 6:
                 _context3.next = 8;
-                return execAsync("sudo apt-get update");
+                return execAsync("apt-get update");
 
               case 8:
-                Object(__WEBPACK_IMPORTED_MODULE_2_child_process__["spawnSync"])('sudo apt-get install fish -y', [], {
+                Object(__WEBPACK_IMPORTED_MODULE_2_child_process__["spawnSync"])('apt-get install fish -y', [], {
                   shell: true
                 });
                 _context3.next = 11;
@@ -56197,7 +56197,7 @@ function (_BaseCommand) {
                   shell: true
                 });
                 _context4.next = 8;
-                return execAsync("sudo usermod -s /usr/bin/fish $USER");
+                return execAsync("usermod -s /usr/bin/fish $USER");
 
               case 8:
               case "end":
