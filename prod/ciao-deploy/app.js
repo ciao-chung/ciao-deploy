@@ -56080,44 +56080,20 @@ function (_BaseCommand) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                log("fish install");
-                _context2.prev = 1;
-                _context2.next = 4;
+                log("Fish install");
+                _context2.next = 3;
                 return this.install();
 
-              case 4:
-                _context2.next = 9;
-                break;
+              case 3:
+                _context2.next = 5;
+                return this.setupConfigFile();
 
-              case 6:
-                _context2.prev = 6;
-                _context2.t0 = _context2["catch"](1);
-                log(_context2.t0, 'red');
-
-              case 9:
-                log("omf");
-                _context2.prev = 10;
-                _context2.next = 13;
-                return this.omf();
-
-              case 13:
-                _context2.next = 18;
-                break;
-
-              case 15:
-                _context2.prev = 15;
-                _context2.t1 = _context2["catch"](10);
-                log(_context2.t1, 'red');
-
-              case 18:
-                Object(__WEBPACK_IMPORTED_MODULE_3_fs__["writeFileSync"])(Object(__WEBPACK_IMPORTED_MODULE_4_path__["resolve"])(__WEBPACK_IMPORTED_MODULE_1_os__["homedir"], '.config/fish/config.fish'), this.getFishConfig(), 'utf-8');
-
-              case 19:
+              case 5:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, this, [[1, 6], [10, 15]]);
+        }, _callee2, this);
       }));
 
       function start() {
@@ -56152,13 +56128,14 @@ function (_BaseCommand) {
                 return execAsync("apt-get update");
 
               case 8:
-                Object(__WEBPACK_IMPORTED_MODULE_2_child_process__["spawnSync"])('apt-get install fish -y', [], {
-                  shell: true
-                });
-                _context3.next = 11;
-                return execAsync("fish --version");
+                _context3.next = 10;
+                return execAsync("apt-get install fish -y");
 
-              case 11:
+              case 10:
+                _context3.next = 12;
+                return execAsync("usermod -s /usr/bin/fish ".concat(__WEBPACK_IMPORTED_MODULE_1_os___default.a.userInfo().username));
+
+              case 12:
               case "end":
                 return _context3.stop();
             }
@@ -56173,33 +56150,29 @@ function (_BaseCommand) {
       return install;
     }()
   }, {
-    key: "omf",
+    key: "setupConfigFile",
     value: function () {
-      var _omf = _asyncToGenerator(
+      var _setupConfigFile = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee4() {
+        var homedir, fishConfigPath;
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.next = 2;
-                return execAsync("curl -L https://get.oh-my.fish > install");
+                homedir = __WEBPACK_IMPORTED_MODULE_1_os___default.a.homedir();
+                fishConfigPath = Object(__WEBPACK_IMPORTED_MODULE_4_path__["resolve"])(homedir, '.config/fish/');
+                _context4.next = 4;
+                return execAsync("mkdir -p ".concat(fishConfigPath));
 
-              case 2:
-                Object(__WEBPACK_IMPORTED_MODULE_2_child_process__["spawnSync"])('fish', ['install', '--path=~/.local/share/omf', '--config=~/.config/omf'], {
-                  shell: true
-                });
-                _context4.next = 5;
-                return execAsync("rm ./install");
+              case 4:
+                _context4.next = 6;
+                return execAsync("touch ".concat(Object(__WEBPACK_IMPORTED_MODULE_4_path__["resolve"])(fishConfigPath, 'config.fish')));
 
-              case 5:
-                Object(__WEBPACK_IMPORTED_MODULE_2_child_process__["spawnSync"])('omf', ['install', 'gitstatus'], {
-                  shell: true
-                });
-                _context4.next = 8;
-                return execAsync("usermod -s /usr/bin/fish $USER");
+              case 6:
+                Object(__WEBPACK_IMPORTED_MODULE_3_fs__["writeFileSync"])(Object(__WEBPACK_IMPORTED_MODULE_4_path__["resolve"])(homedir, '.config/fish/config.fish'), this.getFishConfig(), 'utf-8');
 
-              case 8:
+              case 7:
               case "end":
                 return _context4.stop();
             }
@@ -56207,11 +56180,11 @@ function (_BaseCommand) {
         }, _callee4, this);
       }));
 
-      function omf() {
-        return _omf.apply(this, arguments);
+      function setupConfigFile() {
+        return _setupConfigFile.apply(this, arguments);
       }
 
-      return omf;
+      return setupConfigFile;
     }()
   }, {
     key: "getFishConfig",

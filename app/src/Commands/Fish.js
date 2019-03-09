@@ -1,5 +1,5 @@
 import BaseCommand from 'Commands/_BaseCommand'
-import { homedir } from 'os'
+import os from 'os'
 import { spawnSync } from 'child_process'
 import { writeFileSync } from 'fs'
 import { resolve } from 'path'
@@ -29,25 +29,9 @@ class Fish extends BaseCommand{
   }
 
   async start() {
-    log(`fish install`)
-    try {
-      await this.install()
-    } catch (error) {
-      log(error, 'red')
-    }
-
-    log(`omf`)
-    try {
-      await this.omf()
-    } catch (error) {
-      log(error, 'red')
-    }
-
-    writeFileSync(
-      resolve(homedir, '.config/fish/config.fish'),
-      this.getFishConfig(),
-      'utf-8'
-    )
+    log(`Fish install`)
+    await this.install()
+    await this.setupConfigFile()
   }
 
   async install() {
@@ -55,16 +39,20 @@ class Fish extends BaseCommand{
     await execAsync(`apt-get install git -y`)
     await execAsync(`apt-add-repository ppa:fish-shell/release-2 -y`)
     await execAsync(`apt-get update`)
-    spawnSync('apt-get install fish -y', [], { shell: true });
-    await execAsync(`fish --version`)
+    await execAsync(`apt-get install fish -y`)
+    await execAsync(`usermod -s /usr/bin/fish ${os.userInfo().username}`)
   }
 
-  async omf() {
-    await execAsync(`curl -L https://get.oh-my.fish > install`)
-    spawnSync('fish', ['install', '--path=~/.local/share/omf', '--config=~/.config/omf'], { shell: true });
-    await execAsync(`rm ./install`)
-    spawnSync('omf', ['install', 'gitstatus'], { shell: true });
-    await execAsync(`usermod -s /usr/bin/fish $USER`)
+  async setupConfigFile() {
+    const homedir = os.homedir()
+    const fishConfigPath = resolve(homedir, '.config/fish/')
+    await execAsync(`mkdir -p ${fishConfigPath}`)
+    await execAsync(`touch ${resolve(fishConfigPath, 'config.fish')}`)
+    writeFileSync(
+      resolve(homedir, '.config/fish/config.fish'),
+      this.getFishConfig(),
+      'utf-8'
+    )
   }
 
   getFishConfig() {
