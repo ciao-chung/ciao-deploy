@@ -55,6 +55,7 @@ class AppKernel {
 
   _setupConfigFile(command) {
     if(typeof command.configFile != 'object') return
+    if(command.configFile.required == false) return
     const configArgName = command.configFile.property || 'config'
     const configFilePath = resolve(args[configArgName])
     const configFileType = extname(configFilePath)
