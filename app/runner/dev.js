@@ -43,8 +43,8 @@ class dev {
 
     await execAsync(`rm -rf ${productionAppPath}`)
     mkdir('-p', productionAppPath)
-    await execAsync(`cp ${readmeFilePath} ./`, { cwd: productionAppPath })
-    await execAsync(`cp ${packageJsonPath} ./`, { cwd: productionAppPath })
+    await execAsync(`cp ${readmeFilePath} ./`, { cwd: productionPath })
+    await execAsync(`cp ${packageJsonPath} ./`, { cwd: productionPath })
     try {
       await execAsync(`cp -r ${copyfileFolderPath}/* ./`, { cwd: productionAppPath })
     } catch(error) {
