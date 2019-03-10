@@ -1,8 +1,4 @@
 import BaseCommand from 'Commands/_BaseCommand'
-import { spawnSync } from 'child_process'
-import { writeFileSync } from 'fs'
-import { resolve } from 'path'
-import { env } from 'shelljs'
 class MysqlDatabaseDelete extends BaseCommand{
   async setupCommand() {
     this.name = 'mysql-db-delete'

@@ -1,7 +1,4 @@
 import BaseCommand from 'Commands/_BaseCommand'
-import { spawnSync } from 'child_process'
-import { writeFileSync } from 'fs'
-import { resolve } from 'path'
 class Mysql extends BaseCommand{
   async setupCommand() {
     this.name = 'mysql'

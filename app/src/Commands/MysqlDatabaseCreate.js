@@ -1,7 +1,4 @@
 import BaseCommand from 'Commands/_BaseCommand'
-import { spawnSync } from 'child_process'
-import { writeFileSync } from 'fs'
-import { resolve } from 'path'
 import { env } from 'shelljs'
 class MysqlDatabaseCreate extends BaseCommand{
   async setupCommand() {
