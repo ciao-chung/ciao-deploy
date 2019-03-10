@@ -4615,6 +4615,12 @@ module.exports = $export;
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+module.exports = require("fs");
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(8);
@@ -4623,12 +4629,6 @@ module.exports = function (it) {
   if (!isObject(it)) throw TypeError(it + ' is not an object!');
   return it;
 };
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports) {
-
-module.exports = require("fs");
 
 /***/ }),
 /* 4 */
@@ -4657,9 +4657,9 @@ if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-var os = __webpack_require__(36);
+var os = __webpack_require__(34);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 var glob = __webpack_require__(111);
 
@@ -5200,7 +5200,7 @@ module.exports = !__webpack_require__(7)(function () {
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var IE8_DOM_DEFINE = __webpack_require__(125);
 
@@ -5812,6 +5812,12 @@ module.exports = function (TYPE, $create) {
 
 /***/ }),
 /* 34 */
+/***/ (function(module, exports) {
+
+module.exports = require("os");
+
+/***/ }),
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6404,7 +6410,7 @@ if (__webpack_require__(11)) {
 };
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -6476,12 +6482,6 @@ module.exports = {
   key: toMetaKey,
   exp: exp
 };
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports) {
-
-module.exports = require("os");
 
 /***/ }),
 /* 37 */
@@ -6637,7 +6637,7 @@ module.exports = function (index, length) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var dPs = __webpack_require__(128);
 
@@ -6754,7 +6754,7 @@ var call = __webpack_require__(140);
 
 var isArrayIter = __webpack_require__(99);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var toLength = __webpack_require__(10);
 
@@ -7069,9 +7069,9 @@ var path = __webpack_require__(4);
 
 var url = __webpack_require__(552);
 
-var os = __webpack_require__(36);
+var os = __webpack_require__(34);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 function clone(obj) {
   return JSON.parse(JSON.stringify(obj));
@@ -7747,7 +7747,7 @@ exports.f = {}.propertyIsEnumerable;
 "use strict";
  // 21.2.5.3 get RegExp.prototype.flags
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 module.exports = function () {
   var that = anObject(this);
@@ -7765,7 +7765,7 @@ module.exports = function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var aFunction = __webpack_require__(15);
 
@@ -8528,7 +8528,7 @@ module.exports = document && document.documentElement;
 /* eslint-disable no-proto */
 var isObject = __webpack_require__(8);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var check = function check(O, proto) {
   anObject(O);
@@ -9638,7 +9638,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 //   things that don't exist.
 module.exports = glob;
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 var rp = __webpack_require__(161);
 
@@ -11236,7 +11236,7 @@ module.exports.win32 = win32;
 /* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var os = __webpack_require__(36);
+var os = __webpack_require__(34);
 
 var common = __webpack_require__(6);
 
@@ -11285,7 +11285,7 @@ module.exports = _cd;
 /* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 var path = __webpack_require__(4);
 
@@ -11635,9 +11635,9 @@ module.exports = error;
 
 var common = __webpack_require__(6);
 
-var os = __webpack_require__(36);
+var os = __webpack_require__(34);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 common.register('tempdir', _tempDir, {
   allowGlobbing: false,
@@ -11728,7 +11728,7 @@ module.exports = _pwd;
 
 var path = __webpack_require__(4);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 var common = __webpack_require__(6);
 
@@ -11883,7 +11883,7 @@ module.exports = _ls;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 common.register('rm', _rm, {
   cmdOptions: {
@@ -12105,7 +12105,7 @@ module.exports = _rm;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 var path = __webpack_require__(4);
 
@@ -12151,7 +12151,7 @@ module.exports = _to;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 var path = __webpack_require__(4);
 
@@ -12345,7 +12345,7 @@ module.exports = function (object, names) {
 
 var dP = __webpack_require__(12);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var getKeys = __webpack_require__(42);
 
@@ -12623,7 +12623,7 @@ module.exports = Math.fround || function fround(x) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // call something on iterator step with safe closing on error
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 module.exports = function (iterator, fn, value, entries) {
   try {
@@ -12779,7 +12779,7 @@ module.exports = function (exec) {
 /* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var isObject = __webpack_require__(8);
 
@@ -13125,7 +13125,7 @@ var redefineAll = __webpack_require__(49);
 
 var getWeak = __webpack_require__(37).getWeak;
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var isObject = __webpack_require__(8);
 
@@ -13243,7 +13243,7 @@ var gOPN = __webpack_require__(45);
 
 var gOPS = __webpack_require__(69);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var Reflect = __webpack_require__(5).Reflect;
 
@@ -13411,7 +13411,7 @@ realpath.realpathSync = realpathSync;
 realpath.monkeypatch = monkeypatch;
 realpath.unmonkeypatch = unmonkeypatch;
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 var origRealpath = fs.realpath;
 var origRealpathSync = fs.realpathSync;
@@ -13785,7 +13785,7 @@ function onceStrict(fn) {
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 common.register('cat', _cat, {
   canReceivePipe: true,
@@ -13863,7 +13863,7 @@ function numberedLine(n, line) {
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 var path = __webpack_require__(4);
 
@@ -14378,7 +14378,7 @@ var _pwd = __webpack_require__(118);
 
 var path = __webpack_require__(4);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 var child = __webpack_require__(82);
 
@@ -14597,7 +14597,7 @@ module.exports = _exec;
 
 var childProcess = __webpack_require__(82);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 var paramFilePath = process.argv[2];
 var serializedParams = fs.readFileSync(paramFilePath, 'utf8');
@@ -14705,7 +14705,7 @@ module.exports = _find;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 common.register('grep', _grep, {
   globStart: 2,
@@ -14788,7 +14788,7 @@ module.exports = _grep;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 common.register('head', _head, {
   canReceivePipe: true,
@@ -14904,7 +14904,7 @@ module.exports = _head;
 /* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 var path = __webpack_require__(4);
 
@@ -14995,7 +14995,7 @@ module.exports = _ln;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 var path = __webpack_require__(4);
 
@@ -15112,7 +15112,7 @@ module.exports = _mkdir;
 /* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 var path = __webpack_require__(4);
 
@@ -15263,7 +15263,7 @@ module.exports = _mv;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 common.register('sed', _sed, {
   globStart: 3,
@@ -15421,7 +15421,7 @@ module.exports = _set;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 common.register('sort', _sort, {
   canReceivePipe: true,
@@ -15523,7 +15523,7 @@ module.exports = _sort;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 common.register('tail', _tail, {
   canReceivePipe: true,
@@ -15612,7 +15612,7 @@ module.exports = _tail;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 common.register('test', _test, {
   cmdOptions: {
@@ -15695,7 +15695,7 @@ module.exports = _test;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 common.register('touch', _touch, {
   cmdOptions: {
@@ -15809,7 +15809,7 @@ function tryStatFile(filePath) {
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(3); // add c spaces to the left of str
+var fs = __webpack_require__(2); // add c spaces to the left of str
 
 
 function lpad(c, str) {
@@ -15915,7 +15915,7 @@ module.exports = _uniq;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 var path = __webpack_require__(4);
 
@@ -29532,7 +29532,7 @@ var Toaster = __webpack_require__(314);
 
 var Growl = __webpack_require__(123);
 
-var os = __webpack_require__(36);
+var os = __webpack_require__(34);
 
 var EventEmitter = __webpack_require__(56).EventEmitter;
 
@@ -30180,7 +30180,7 @@ var enumKeys = __webpack_require__(322);
 
 var isArray = __webpack_require__(70);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var isObject = __webpack_require__(8);
 
@@ -31949,7 +31949,7 @@ if (!(TO_PRIMITIVE in proto)) __webpack_require__(17)(proto, TO_PRIMITIVE, __web
 "use strict";
 
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var toPrimitive = __webpack_require__(30);
 
@@ -32539,7 +32539,7 @@ __webpack_require__(46)('RegExp');
 
 __webpack_require__(145);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var $flags = __webpack_require__(62);
 
@@ -32576,7 +32576,7 @@ if (__webpack_require__(7)(function () {
 "use strict";
 
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var toLength = __webpack_require__(10);
 
@@ -32624,7 +32624,7 @@ __webpack_require__(75)('match', 1, function (defined, MATCH, $match, maybeCallN
 "use strict";
 
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var toObject = __webpack_require__(13);
 
@@ -32774,7 +32774,7 @@ __webpack_require__(75)('replace', 2, function (defined, REPLACE, $replace, mayb
 "use strict";
 
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var sameValue = __webpack_require__(131);
 
@@ -32812,7 +32812,7 @@ __webpack_require__(75)('search', 1, function (defined, SEARCH, $search, maybeCa
 
 var isRegExp = __webpack_require__(72);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var speciesConstructor = __webpack_require__(63);
 
@@ -33334,7 +33334,7 @@ var $typed = __webpack_require__(78);
 
 var buffer = __webpack_require__(110);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var toAbsoluteIndex = __webpack_require__(43);
 
@@ -33400,7 +33400,7 @@ $export($export.G + $export.W + $export.F * !__webpack_require__(78).ABV, {
 /* 434 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(34)('Int8', 1, function (init) {
+__webpack_require__(35)('Int8', 1, function (init) {
   return function Int8Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -33410,7 +33410,7 @@ __webpack_require__(34)('Int8', 1, function (init) {
 /* 435 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(34)('Uint8', 1, function (init) {
+__webpack_require__(35)('Uint8', 1, function (init) {
   return function Uint8Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -33420,7 +33420,7 @@ __webpack_require__(34)('Uint8', 1, function (init) {
 /* 436 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(34)('Uint8', 1, function (init) {
+__webpack_require__(35)('Uint8', 1, function (init) {
   return function Uint8ClampedArray(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -33430,7 +33430,7 @@ __webpack_require__(34)('Uint8', 1, function (init) {
 /* 437 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(34)('Int16', 2, function (init) {
+__webpack_require__(35)('Int16', 2, function (init) {
   return function Int16Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -33440,7 +33440,7 @@ __webpack_require__(34)('Int16', 2, function (init) {
 /* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(34)('Uint16', 2, function (init) {
+__webpack_require__(35)('Uint16', 2, function (init) {
   return function Uint16Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -33450,7 +33450,7 @@ __webpack_require__(34)('Uint16', 2, function (init) {
 /* 439 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(34)('Int32', 4, function (init) {
+__webpack_require__(35)('Int32', 4, function (init) {
   return function Int32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -33460,7 +33460,7 @@ __webpack_require__(34)('Int32', 4, function (init) {
 /* 440 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(34)('Uint32', 4, function (init) {
+__webpack_require__(35)('Uint32', 4, function (init) {
   return function Uint32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -33470,7 +33470,7 @@ __webpack_require__(34)('Uint32', 4, function (init) {
 /* 441 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(34)('Float32', 4, function (init) {
+__webpack_require__(35)('Float32', 4, function (init) {
   return function Float32Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -33480,7 +33480,7 @@ __webpack_require__(34)('Float32', 4, function (init) {
 /* 442 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(34)('Float64', 8, function (init) {
+__webpack_require__(35)('Float64', 8, function (init) {
   return function Float64Array(data, byteOffset, length) {
     return init(this, data, byteOffset, length);
   };
@@ -33495,7 +33495,7 @@ var $export = __webpack_require__(1);
 
 var aFunction = __webpack_require__(15);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var rApply = (__webpack_require__(5).Reflect || {}).apply;
 var fApply = Function.apply; // MS Edge argumentsList argument is optional
@@ -33523,7 +33523,7 @@ var create = __webpack_require__(44);
 
 var aFunction = __webpack_require__(15);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var isObject = __webpack_require__(8);
 
@@ -33599,7 +33599,7 @@ var dP = __webpack_require__(12);
 
 var $export = __webpack_require__(1);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var toPrimitive = __webpack_require__(30); // MS Edge has broken Reflect.defineProperty - throwing instead of returning false
 
@@ -33635,7 +33635,7 @@ var $export = __webpack_require__(1);
 
 var gOPD = __webpack_require__(22).f;
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 $export($export.S, 'Reflect', {
   deleteProperty: function deleteProperty(target, propertyKey) {
@@ -33653,7 +33653,7 @@ $export($export.S, 'Reflect', {
 
 var $export = __webpack_require__(1);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var Enumerate = function Enumerate(iterated) {
   this._t = anObject(iterated); // target
@@ -33708,7 +33708,7 @@ var $export = __webpack_require__(1);
 
 var isObject = __webpack_require__(8);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 function get(target, propertyKey
 /* , receiver */
@@ -33733,7 +33733,7 @@ var gOPD = __webpack_require__(22);
 
 var $export = __webpack_require__(1);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 $export($export.S, 'Reflect', {
   getOwnPropertyDescriptor: function getOwnPropertyDescriptor(target, propertyKey) {
@@ -33750,7 +33750,7 @@ var $export = __webpack_require__(1);
 
 var getProto = __webpack_require__(23);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 $export($export.S, 'Reflect', {
   getPrototypeOf: function getPrototypeOf(target) {
@@ -33778,7 +33778,7 @@ $export($export.S, 'Reflect', {
 // 26.1.10 Reflect.isExtensible(target)
 var $export = __webpack_require__(1);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var $isExtensible = Object.isExtensible;
 $export($export.S, 'Reflect', {
@@ -33806,7 +33806,7 @@ $export($export.S, 'Reflect', {
 // 26.1.12 Reflect.preventExtensions(target)
 var $export = __webpack_require__(1);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var $preventExtensions = Object.preventExtensions;
 $export($export.S, 'Reflect', {
@@ -33839,7 +33839,7 @@ var $export = __webpack_require__(1);
 
 var createDesc = __webpack_require__(40);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var isObject = __webpack_require__(8);
 
@@ -34662,9 +34662,9 @@ $export($export.S, 'Promise', {
 /* 502 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(35);
+var metadata = __webpack_require__(36);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var toMetaKey = metadata.key;
 var ordinaryDefineOwnMetadata = metadata.set;
@@ -34678,9 +34678,9 @@ metadata.exp({
 /* 503 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(35);
+var metadata = __webpack_require__(36);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var toMetaKey = metadata.key;
 var getOrCreateMetadataMap = metadata.map;
@@ -34703,9 +34703,9 @@ metadata.exp({
 /* 504 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(35);
+var metadata = __webpack_require__(36);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var getPrototypeOf = __webpack_require__(23);
 
@@ -34736,9 +34736,9 @@ var Set = __webpack_require__(150);
 
 var from = __webpack_require__(159);
 
-var metadata = __webpack_require__(35);
+var metadata = __webpack_require__(36);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var getPrototypeOf = __webpack_require__(23);
 
@@ -34765,9 +34765,9 @@ metadata.exp({
 /* 506 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(35);
+var metadata = __webpack_require__(36);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var ordinaryGetOwnMetadata = metadata.get;
 var toMetaKey = metadata.key;
@@ -34783,9 +34783,9 @@ metadata.exp({
 /* 507 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(35);
+var metadata = __webpack_require__(36);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var ordinaryOwnMetadataKeys = metadata.keys;
 var toMetaKey = metadata.key;
@@ -34801,9 +34801,9 @@ metadata.exp({
 /* 508 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(35);
+var metadata = __webpack_require__(36);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var getPrototypeOf = __webpack_require__(23);
 
@@ -34829,9 +34829,9 @@ metadata.exp({
 /* 509 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata = __webpack_require__(35);
+var metadata = __webpack_require__(36);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var ordinaryHasOwnMetadata = metadata.has;
 var toMetaKey = metadata.key;
@@ -34847,9 +34847,9 @@ metadata.exp({
 /* 510 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var $metadata = __webpack_require__(35);
+var $metadata = __webpack_require__(36);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var aFunction = __webpack_require__(15);
 
@@ -34901,7 +34901,7 @@ var OBSERVABLE = __webpack_require__(9)('observable');
 
 var aFunction = __webpack_require__(15);
 
-var anObject = __webpack_require__(2);
+var anObject = __webpack_require__(3);
 
 var anInstance = __webpack_require__(47);
 
@@ -36030,6 +36030,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_Commands_Ssl__ = __webpack_require__(607);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_Commands_SslSign__ = __webpack_require__(608);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_Commands_SslDelete__ = __webpack_require__(609);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_Commands_Workspace__ = __webpack_require__(610);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -36064,6 +36065,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var App =
 /*#__PURE__*/
 function (_AppKernel) {
@@ -36078,7 +36080,7 @@ function (_AppKernel) {
   _createClass(App, [{
     key: "setup",
     value: function setup() {
-      this.commandList = [__WEBPACK_IMPORTED_MODULE_1_Commands_CubeDeploy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2_Commands_Env__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3_Commands_Fish__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4_Commands_Mysql__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5_Commands_MysqlUserCreate__["a" /* default */], __WEBPACK_IMPORTED_MODULE_6_Commands_MysqlUserDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_7_Commands_MysqlDatabaseCreate__["a" /* default */], __WEBPACK_IMPORTED_MODULE_8_Commands_MysqlDatabaseDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_9_Commands_Apache__["a" /* default */], __WEBPACK_IMPORTED_MODULE_10_Commands_DomainSign__["a" /* default */], __WEBPACK_IMPORTED_MODULE_11_Commands_DomainDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12_Commands_Ssl__["a" /* default */], __WEBPACK_IMPORTED_MODULE_13_Commands_SslSign__["a" /* default */], __WEBPACK_IMPORTED_MODULE_14_Commands_SslDelete__["a" /* default */]];
+      this.commandList = [__WEBPACK_IMPORTED_MODULE_1_Commands_CubeDeploy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2_Commands_Env__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3_Commands_Fish__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4_Commands_Mysql__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5_Commands_MysqlUserCreate__["a" /* default */], __WEBPACK_IMPORTED_MODULE_6_Commands_MysqlUserDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_7_Commands_MysqlDatabaseCreate__["a" /* default */], __WEBPACK_IMPORTED_MODULE_8_Commands_MysqlDatabaseDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_9_Commands_Apache__["a" /* default */], __WEBPACK_IMPORTED_MODULE_10_Commands_DomainSign__["a" /* default */], __WEBPACK_IMPORTED_MODULE_11_Commands_DomainDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12_Commands_Ssl__["a" /* default */], __WEBPACK_IMPORTED_MODULE_13_Commands_SslSign__["a" /* default */], __WEBPACK_IMPORTED_MODULE_14_Commands_SslDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_15_Commands_Workspace__["a" /* default */]];
     }
   }]);
 
@@ -36099,7 +36101,7 @@ app.start();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_yaml___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_js_yaml__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_path__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fs__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fs__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_fs__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -36643,7 +36645,7 @@ var pathModule = __webpack_require__(4);
 
 var isWindows = process.platform === 'win32';
 
-var fs = __webpack_require__(3); // JavaScript implementation of realpath, ported from node pre-v6
+var fs = __webpack_require__(2); // JavaScript implementation of realpath, ported from node pre-v6
 
 
 var DEBUG = process.env.NODE_DEBUG && /fs/.test(process.env.NODE_DEBUG);
@@ -37234,7 +37236,7 @@ if (typeof Object.create === 'function') {
 module.exports = globSync;
 globSync.GlobSync = GlobSync;
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 var rp = __webpack_require__(161);
 
@@ -38641,7 +38643,7 @@ module.exports = function (fromModel) {
 "use strict";
 
 
-var os = __webpack_require__(36);
+var os = __webpack_require__(34);
 
 var hasFlag = __webpack_require__(541);
 
@@ -40211,7 +40213,7 @@ webpackEmptyContext.id = 548;
 /* 549 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var os = __webpack_require__(36);
+var os = __webpack_require__(34);
 
 var utils = __webpack_require__(57); // All notifiers
 
@@ -41550,7 +41552,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 /**
  * Node.js wrapper for "notify-send".
  */
-var os = __webpack_require__(36);
+var os = __webpack_require__(34);
 
 var which = __webpack_require__(554);
 
@@ -41773,7 +41775,7 @@ function whichSync(cmd, opt) {
 /* 555 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 var core;
 
@@ -41841,7 +41843,7 @@ function sync(path, options) {
 module.exports = isexe;
 isexe.sync = sync;
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 function checkPathExt(path, options) {
   var pathext = options.pathExt !== undefined ? options.pathExt : process.env.PATHEXT;
@@ -41892,7 +41894,7 @@ function sync(path, options) {
 module.exports = isexe;
 isexe.sync = sync;
 
-var fs = __webpack_require__(3);
+var fs = __webpack_require__(2);
 
 function isexe(path, options, cb) {
   fs.stat(path, function (er, stat) {
@@ -42241,7 +42243,7 @@ module.exports = new Growly();
 var net = __webpack_require__(313),
     crypto = __webpack_require__(561),
     format = __webpack_require__(29).format,
-    fs = __webpack_require__(3);
+    fs = __webpack_require__(2);
 
 var nl = '\r\n';
 /**
@@ -54960,7 +54962,7 @@ function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -56011,11 +56013,11 @@ function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_os__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_os__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_os___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_os__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_child_process__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_child_process___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_child_process__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fs__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fs__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_fs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_path__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_path__);
@@ -56923,7 +56925,7 @@ function (_BaseCommand) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_path__);
@@ -57180,7 +57182,7 @@ function (_BaseCommand) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_path__);
@@ -57307,7 +57309,7 @@ function (_BaseCommand) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -57778,7 +57780,7 @@ function (_BaseCommand) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_path__);
@@ -58021,6 +58023,1122 @@ function (_BaseCommand) {
 }(__WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["a"] = (new SslDelete());
+
+/***/ }),
+/* 610 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_Workspace_Base__ = __webpack_require__(611);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_Workspace_Chrome__ = __webpack_require__(612);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_Workspace_CreateDesktopSoftLink__ = __webpack_require__(613);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_Workspace_Dolphin__ = __webpack_require__(614);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_Workspace_Media__ = __webpack_require__(615);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_Workspace_Ngrok__ = __webpack_require__(616);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_Workspace_PhpStorm__ = __webpack_require__(617);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_Workspace_Record__ = __webpack_require__(618);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_Workspace_Unetbootin__ = __webpack_require__(619);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_Workspace_DbEaver__ = __webpack_require__(620);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+var Workspace =
+/*#__PURE__*/
+function (_BaseCommand) {
+  _inherits(Workspace, _BaseCommand);
+
+  function Workspace() {
+    _classCallCheck(this, Workspace);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Workspace).apply(this, arguments));
+  }
+
+  _createClass(Workspace, [{
+    key: "setupCommand",
+    value: function () {
+      var _setupCommand = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.name = 'workspace';
+                this.configFile = {
+                  required: false,
+                  property: 'config'
+                };
+                this.argsConfig = [{
+                  name: 'base',
+                  description: '安裝基本工具(gnome-disk-utility、apidoc、openvpn)',
+                  defaultValue: false,
+                  type: 'boolean'
+                }, {
+                  name: 'chrome',
+                  description: '安裝Google Chrome',
+                  defaultValue: false,
+                  type: 'boolean'
+                }, {
+                  name: 'desktop',
+                  description: '設定桌面Soft Link',
+                  defaultValue: false,
+                  type: 'boolean'
+                }, {
+                  name: 'dolphin',
+                  description: '設定Dolphin檔案管理',
+                  defaultValue: false,
+                  type: 'boolean'
+                }, {
+                  name: 'media',
+                  description: '安裝多媒體相關工具',
+                  defaultValue: false,
+                  type: 'boolean'
+                }, {
+                  name: 'ngrok',
+                  description: '安裝Ngrok',
+                  defaultValue: false,
+                  type: 'boolean'
+                }, {
+                  name: 'phpstorm',
+                  description: '安裝PHP Storm',
+                  defaultValue: false,
+                  type: 'boolean'
+                }, {
+                  name: 'record',
+                  description: '安裝螢幕錄影工具',
+                  defaultValue: false,
+                  type: 'boolean'
+                }, {
+                  name: 'unetbootin',
+                  description: '安裝Unetbootin',
+                  defaultValue: false,
+                  type: 'boolean'
+                }, {
+                  name: 'dbeaver',
+                  description: '安裝DBeaver',
+                  defaultValue: false,
+                  type: 'boolean'
+                }];
+                this.description = "\u5DE5\u4F5C\u74B0\u5883\u8A2D\u5B9A";
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function setupCommand() {
+        return _setupCommand.apply(this, arguments);
+      }
+
+      return setupCommand;
+    }()
+  }, {
+    key: "start",
+    value: function () {
+      var _start = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2() {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                log("Start setup workspace");
+
+                if (!this.args.base) {
+                  _context2.next = 4;
+                  break;
+                }
+
+                _context2.next = 4;
+                return __WEBPACK_IMPORTED_MODULE_1_Workspace_Base__["a" /* default */].exec();
+
+              case 4:
+                if (!this.args.chrome) {
+                  _context2.next = 7;
+                  break;
+                }
+
+                _context2.next = 7;
+                return __WEBPACK_IMPORTED_MODULE_2_Workspace_Chrome__["a" /* default */].exec();
+
+              case 7:
+                if (!this.args.desktop) {
+                  _context2.next = 10;
+                  break;
+                }
+
+                _context2.next = 10;
+                return __WEBPACK_IMPORTED_MODULE_3_Workspace_CreateDesktopSoftLink__["a" /* default */].exec();
+
+              case 10:
+                if (!this.args.dolphin) {
+                  _context2.next = 13;
+                  break;
+                }
+
+                _context2.next = 13;
+                return __WEBPACK_IMPORTED_MODULE_4_Workspace_Dolphin__["a" /* default */].exec();
+
+              case 13:
+                if (!this.args.media) {
+                  _context2.next = 16;
+                  break;
+                }
+
+                _context2.next = 16;
+                return __WEBPACK_IMPORTED_MODULE_5_Workspace_Media__["a" /* default */].exec();
+
+              case 16:
+                if (!this.args.ngrok) {
+                  _context2.next = 19;
+                  break;
+                }
+
+                _context2.next = 19;
+                return __WEBPACK_IMPORTED_MODULE_6_Workspace_Ngrok__["a" /* default */].exec();
+
+              case 19:
+                if (!this.args.phpStorm) {
+                  _context2.next = 22;
+                  break;
+                }
+
+                _context2.next = 22;
+                return __WEBPACK_IMPORTED_MODULE_7_Workspace_PhpStorm__["a" /* default */].exec();
+
+              case 22:
+                if (!this.args.record) {
+                  _context2.next = 25;
+                  break;
+                }
+
+                _context2.next = 25;
+                return __WEBPACK_IMPORTED_MODULE_8_Workspace_Record__["a" /* default */].exec();
+
+              case 25:
+                if (!this.args.unetbootin) {
+                  _context2.next = 28;
+                  break;
+                }
+
+                _context2.next = 28;
+                return __WEBPACK_IMPORTED_MODULE_9_Workspace_Unetbootin__["a" /* default */].exec();
+
+              case 28:
+                if (!this.args.dbEaver) {
+                  _context2.next = 31;
+                  break;
+                }
+
+                _context2.next = 31;
+                return __WEBPACK_IMPORTED_MODULE_10_Workspace_DbEaver__["a" /* default */].exec();
+
+              case 31:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function start() {
+        return _start.apply(this, arguments);
+      }
+
+      return start;
+    }()
+  }]);
+
+  return Workspace;
+}(__WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["a"] = (new Workspace());
+
+/***/ }),
+/* 611 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Base =
+/*#__PURE__*/
+function () {
+  function Base() {
+    _classCallCheck(this, Base);
+  }
+
+  _createClass(Base, [{
+    key: "exec",
+    value: function () {
+      var _exec = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return execAsync("sudo apt-get update");
+
+              case 2:
+                _context.next = 4;
+                return execAsync("sudo apt-get install gnome-disk-utility -y");
+
+              case 4:
+                _context.next = 6;
+                return execAsync("sudo apt-get install openvpn -y");
+
+              case 6:
+                _context.next = 8;
+                return execAsync("sudo yarn global add apidoc -y");
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function exec() {
+        return _exec.apply(this, arguments);
+      }
+
+      return exec;
+    }()
+  }]);
+
+  return Base;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (new Base());
+
+/***/ }),
+/* 612 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Chrome =
+/*#__PURE__*/
+function () {
+  function Chrome() {
+    _classCallCheck(this, Chrome);
+  }
+
+  _createClass(Chrome, [{
+    key: "exec",
+    value: function () {
+      var _exec = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return execAsync("sudo apt-get update");
+
+              case 2:
+                _context.next = 4;
+                return execAsync("sudo apt-get install libxss1 libappindicator1 libindicator7 -y");
+
+              case 4:
+                _context.next = 6;
+                return execAsync("wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb");
+
+              case 6:
+                _context.next = 8;
+                return execAsync("sudo dpkg -i google-chrome*.deb");
+
+              case 8:
+                _context.next = 10;
+                return execAsync("sudo apt-get install -f");
+
+              case 10:
+                _context.next = 12;
+                return execAsync("rm google-chrome-stable_current_amd64.deb");
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function exec() {
+        return _exec.apply(this, arguments);
+      }
+
+      return exec;
+    }()
+  }]);
+
+  return Chrome;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (new Chrome());
+
+/***/ }),
+/* 613 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_fs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_path__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_os__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_os___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_os__);
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+var CreateDesktopSoftLink =
+/*#__PURE__*/
+function () {
+  function CreateDesktopSoftLink() {
+    _classCallCheck(this, CreateDesktopSoftLink);
+  }
+
+  _createClass(CreateDesktopSoftLink, [{
+    key: "exec",
+    value: function () {
+      var _exec = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        var originDesktopPath, isOriginDesktopExist, desktopLinkPath, isDesktopLinkExist;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.homedir = __WEBPACK_IMPORTED_MODULE_2_os___default.a.homedir();
+                originDesktopPath = Object(__WEBPACK_IMPORTED_MODULE_1_path__["resolve"])(this.homedir, '桌面');
+                isOriginDesktopExist = Object(__WEBPACK_IMPORTED_MODULE_0_fs__["existsSync"])(originDesktopPath);
+                desktopLinkPath = Object(__WEBPACK_IMPORTED_MODULE_1_path__["resolve"])(this.homedir, 'Desktop');
+                isDesktopLinkExist = Object(__WEBPACK_IMPORTED_MODULE_0_fs__["existsSync"])(desktopLinkPath);
+
+                if (!(isOriginDesktopExist == false || isDesktopLinkExist == true)) {
+                  _context.next = 7;
+                  break;
+                }
+
+                return _context.abrupt("return");
+
+              case 7:
+                _context.next = 9;
+                return execAsync("ln -s ~/\u684C\u9762 ~/Desktop");
+
+              case 9:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function exec() {
+        return _exec.apply(this, arguments);
+      }
+
+      return exec;
+    }()
+  }]);
+
+  return CreateDesktopSoftLink;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (new CreateDesktopSoftLink());
+
+/***/ }),
+/* 614 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path__);
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Dolphin =
+/*#__PURE__*/
+function () {
+  function Dolphin() {
+    _classCallCheck(this, Dolphin);
+  }
+
+  _createClass(Dolphin, [{
+    key: "exec",
+    value: function () {
+      var _exec = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        var processPath;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                processPath = Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])('/tmp');
+                _context.next = 3;
+                return execAsync("sudo apt-get update");
+
+              case 3:
+                _context.next = 5;
+                return execAsync("sudo apt-get install -y build-essential cmake extra-cmake-modules kio-dev pkg-config libavformat-dev libavcodec-dev libswscale-dev");
+
+              case 5:
+                _context.next = 7;
+                return execAsync("git clone git://anongit.kde.org/ffmpegthumbs", {
+                  cwd: processPath
+                });
+
+              case 7:
+                _context.next = 9;
+                return execAsync("git checkout Applications/16.04", {
+                  cwd: Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(processPath, 'ffmpegthumbs')
+                });
+
+              case 9:
+                _context.next = 11;
+                return execAsync("mkdir -p builddir", {
+                  cwd: Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(processPath, 'ffmpegthumbs')
+                });
+
+              case 11:
+                _context.next = 13;
+                return execAsync("cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DKDE_INSTALL_QTPLUGINDIR=/usr/lib/x86_64-linux-gnu/qt5/plugins", {
+                  cwd: Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(processPath, 'ffmpegthumbs/builddir')
+                });
+
+              case 13:
+                _context.next = 15;
+                return execAsync("make", {
+                  cwd: Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(processPath, 'ffmpegthumbs/builddir')
+                });
+
+              case 15:
+                _context.next = 17;
+                return execAsync("sudo make install", {
+                  cwd: Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(processPath, 'ffmpegthumbs/builddir')
+                });
+
+              case 17:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function exec() {
+        return _exec.apply(this, arguments);
+      }
+
+      return exec;
+    }()
+  }]);
+
+  return Dolphin;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (new Dolphin());
+
+/***/ }),
+/* 615 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Media =
+/*#__PURE__*/
+function () {
+  function Media() {
+    _classCallCheck(this, Media);
+  }
+
+  _createClass(Media, [{
+    key: "exec",
+    value: function () {
+      var _exec = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return execAsync("sudo apt-get update");
+
+              case 2:
+                _context.next = 4;
+                return execAsync("sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder -y");
+
+              case 4:
+                _context.next = 6;
+                return execAsync("sudo apt-get update");
+
+              case 6:
+                _context.next = 8;
+                return execAsync("sudo apt-get install simplescreenrecorder -y");
+
+              case 8:
+                _context.next = 10;
+                return execAsync("sudo add-apt-repository ppa:peek-developers/stable -y");
+
+              case 10:
+                _context.next = 12;
+                return execAsync("sudo apt-get update");
+
+              case 12:
+                _context.next = 14;
+                return execAsync("sudo apt-get install peek -y");
+
+              case 14:
+                _context.next = 16;
+                return execAsync("sudo apt-get install pitivi -y");
+
+              case 16:
+                _context.next = 18;
+                return execAsync("sudo add-apt-repository ppa:otto-kesselgulasch/gimp-edge -y");
+
+              case 18:
+                _context.next = 20;
+                return execAsync("sudo apt-get update");
+
+              case 20:
+                _context.next = 22;
+                return execAsync("sudo apt-get install gimp gimp-gmic");
+
+              case 22:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function exec() {
+        return _exec.apply(this, arguments);
+      }
+
+      return exec;
+    }()
+  }]);
+
+  return Media;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (new Media());
+
+/***/ }),
+/* 616 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Ngrok =
+/*#__PURE__*/
+function () {
+  function Ngrok() {
+    _classCallCheck(this, Ngrok);
+  }
+
+  _createClass(Ngrok, [{
+    key: "exec",
+    value: function () {
+      var _exec = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return execAsync("sudo apt-get update");
+
+              case 2:
+                _context.next = 4;
+                return execAsync("sudo apt-get install gnome-disk-utility -y");
+
+              case 4:
+                _context.next = 6;
+                return execAsync("sudo apt-get install openvpn -y");
+
+              case 6:
+                _context.next = 8;
+                return execAsync("sudo yarn global add apidoc -y");
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function exec() {
+        return _exec.apply(this, arguments);
+      }
+
+      return exec;
+    }()
+  }]);
+
+  return Ngrok;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (new Ngrok());
+
+/***/ }),
+/* 617 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+var PhpStorm =
+/*#__PURE__*/
+function () {
+  function PhpStorm() {
+    _classCallCheck(this, PhpStorm);
+  }
+
+  _createClass(PhpStorm, [{
+    key: "exec",
+    value: function () {
+      var _exec = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        var outputConfigFilePath;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return execAsync("sudo apt-get update");
+
+              case 2:
+                _context.next = 4;
+                return execAsync("sudo apt-get install default-jre -y");
+
+              case 4:
+                _context.next = 6;
+                return execAsync("wget https://download-cf.jetbrains.com/webide/PhpStorm-2017.3.4.tar.gz");
+
+              case 6:
+                _context.next = 8;
+                return execAsync("tar xfz PhpStorm-*.tar.gz");
+
+              case 8:
+                _context.next = 10;
+                return execAsync("sudo mv PhpStorm-17*/ /opt/phpstorm/");
+
+              case 10:
+                _context.next = 12;
+                return execAsync("rm ./PhpStorm-2017.3.4.tar.gz");
+
+              case 12:
+                _context.next = 14;
+                return execAsync("sudo ln -s /opt/phpstorm/bin/phpstorm.sh /usr/local/bin/phpstorm");
+
+              case 14:
+                _context.next = 16;
+                return execAsync("sudo ln -s /opt/phpstorm/bin/phpstorm.sh /usr/bin/phpstorm");
+
+              case 16:
+                outputConfigFilePath = Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])('/tmp/phpstorm.desktop');
+                Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(outputConfigFilePath, this._getDesktopConfig(), 'utf8');
+                _context.next = 20;
+                return execAsync("sudo mv ".concat(outputConfigFilePath, " /usr/share/applications/"));
+
+              case 20:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function exec() {
+        return _exec.apply(this, arguments);
+      }
+
+      return exec;
+    }()
+  }, {
+    key: "_getDesktopConfig",
+    value: function () {
+      var _getDesktopConfig2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2() {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                return _context2.abrupt("return", "\n[Desktop Entry]\nVersion=5.0.4\nName=PhpStorm\nGenericName=Text Editor\n\nExec=phpstorm\nTerminal=false\nIcon=/opt/phpstorm/bin/phpstorm.png\nType=Application\nCategories=TextEditor;IDE;Development\nX-Ayatana-Desktop-Shortcuts=NewWindow\n\n[NewWindow Shortcut Group]\nName=New Window\nExec=phpstorm\nTargetEnvironment=Unity\n");
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function _getDesktopConfig() {
+        return _getDesktopConfig2.apply(this, arguments);
+      }
+
+      return _getDesktopConfig;
+    }()
+  }]);
+
+  return PhpStorm;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (new PhpStorm());
+
+/***/ }),
+/* 618 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Record =
+/*#__PURE__*/
+function () {
+  function Record() {
+    _classCallCheck(this, Record);
+  }
+
+  _createClass(Record, [{
+    key: "exec",
+    value: function () {
+      var _exec = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return execAsync("sudo apt-get update");
+
+              case 2:
+                _context.next = 4;
+                return execAsync("sudo add-apt-repository ppa:peek-developers/stable -y");
+
+              case 4:
+                _context.next = 6;
+                return execAsync("sudo apt-get update");
+
+              case 6:
+                _context.next = 8;
+                return execAsync("sudo apt-get install peek -y");
+
+              case 8:
+                _context.next = 10;
+                return execAsync("sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder -y");
+
+              case 10:
+                _context.next = 12;
+                return execAsync("sudo apt-get update");
+
+              case 12:
+                _context.next = 14;
+                return execAsync("sudo apt-get install simplescreenrecorder -y");
+
+              case 14:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function exec() {
+        return _exec.apply(this, arguments);
+      }
+
+      return exec;
+    }()
+  }]);
+
+  return Record;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (new Record());
+
+/***/ }),
+/* 619 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var Unetbootin =
+/*#__PURE__*/
+function () {
+  function Unetbootin() {
+    _classCallCheck(this, Unetbootin);
+  }
+
+  _createClass(Unetbootin, [{
+    key: "exec",
+    value: function () {
+      var _exec = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return execAsync("sudo apt-get update");
+
+              case 2:
+                _context.next = 4;
+                return execAsync("sudo add-apt-repository ppa:gezakovacs/ppa -y");
+
+              case 4:
+                _context.next = 6;
+                return execAsync("sudo apt-get update");
+
+              case 6:
+                _context.next = 8;
+                return execAsync("sudo apt-get install unetbootin -y");
+
+              case 8:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function exec() {
+        return _exec.apply(this, arguments);
+      }
+
+      return exec;
+    }()
+  }]);
+
+  return Unetbootin;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (new Unetbootin());
+
+/***/ }),
+/* 620 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var DbEaver =
+/*#__PURE__*/
+function () {
+  function DbEaver() {
+    _classCallCheck(this, DbEaver);
+  }
+
+  _createClass(DbEaver, [{
+    key: "exec",
+    value: function () {
+      var _exec = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return execAsync("sudo LC_ALL=C.UTF-8 add-apt-repository ppa:webupd8team/java -y");
+
+              case 2:
+                _context.next = 4;
+                return execAsync("sudo apt-get update");
+
+              case 4:
+                _context.next = 6;
+                return execAsync("sudo apt-get install oracle-java8-set-default -y");
+
+              case 6:
+                _context.next = 8;
+                return execAsync("java -version");
+
+              case 8:
+                _context.next = 10;
+                return execAsync("sudo apt install default-jdk -y");
+
+              case 10:
+                _context.next = 12;
+                return execAsync("wget -O - https://dbeaver.io/debs/dbeaver.gpg.key | sudo apt-key add -");
+
+              case 12:
+                _context.next = 14;
+                return execAsync("echo \"deb https://dbeaver.io/debs/dbeaver-ce /\" | sudo tee /etc/apt/sources.list.d/dbeaver.list");
+
+              case 14:
+                _context.next = 16;
+                return execAsync("sudo apt-get update");
+
+              case 16:
+                _context.next = 18;
+                return execAsync("sudo apt -y  install dbeaver-ce\n");
+
+              case 18:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function exec() {
+        return _exec.apply(this, arguments);
+      }
+
+      return exec;
+    }()
+  }]);
+
+  return DbEaver;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (new DbEaver());
 
 /***/ })
 /******/ ]);

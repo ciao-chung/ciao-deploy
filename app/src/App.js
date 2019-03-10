@@ -13,6 +13,7 @@ import DomainDelete from 'Commands/DomainDelete'
 import Ssl from 'Commands/Ssl'
 import SslSign from 'Commands/SslSign'
 import SslDelete from 'Commands/SslDelete'
+import Workspace from 'Commands/Workspace'
 class App extends AppKernel {
   setup() {
     this.commandList = [
@@ -30,6 +31,7 @@ class App extends AppKernel {
       Ssl,
       SslSign,
       SslDelete,
+      Workspace,
     ]
   }
 }
