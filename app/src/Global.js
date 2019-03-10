@@ -22,12 +22,14 @@ class Global {
   /**
    * log style(white, red, green, yellow, cyan, magenta)
    */
-  log(content, style = 'cyan') {
+  log(content, style = 'cyan', time = true) {
     const result = typeof content == 'object' || typeof content == 'array'
       ? JSON.stringify(content)
       : content
 
-    console.log(chalk[`${style}Bright`](result)+chalk.whiteBright(`\t at ${now()}`))
+    let display = chalk[`${style}Bright`](result)
+    if(time) display += chalk.whiteBright(`\t at ${now()}`)
+    console.log(display)
   }
 
   now(format = 'YYYY-MM-DD HH:mm:ss') {

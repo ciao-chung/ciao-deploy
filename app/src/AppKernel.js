@@ -25,7 +25,7 @@ class AppKernel {
   validate() {
     const command = this.commands[args.command]
     if(!command) {
-      log(`Command not found.`, 'red')
+      log(`Command not found.`, 'red', false)
       this._showAllCommands()
       process.exit()
       return
@@ -135,12 +135,12 @@ class AppKernel {
   }
 
   _showAllCommands() {
-    let result = 'Command List\n'
+    let result = '[Command List]\n'
     for(const index in this.commands) {
       const command = this.commands[index]
-      result += `${command.name} \t\t\t ${command.description}\n\n`
+      result += `command: ${command.name} (${command.description})\n`
     }
-    log(result)
+    log(result, 'cyan', false)
   }
 
   _showCommandHelp(command) {
