@@ -144,15 +144,17 @@ class AppKernel {
   }
 
   _showCommandHelp(command) {
-    log(`Command: ${command.name}`, 'yellow')
-    log(`Description: ${command.description}`, 'yellow')
+    log(`Command: ${command.name}`, 'yellow', false)
+    log(`Description: ${command.description}\n`, 'yellow', false)
     for(const argConfig of command.argsConfig) {
       let result = ``
-      const requiredMessage = argConfig.required == true ? '/required' : ''
+      const requiredMessage = argConfig.required == true ? '(required)' : ''
       const type = !argConfig.type ? 'string' : argConfig.type
-      result += `[${argConfig.name}]\t\t ${type}${requiredMessage}\t\t`
-      log(result)
-      log(`${argConfig.description} \n${'-'.repeat(40)}`)
+      result += `[${argConfig.name}]\n`
+      result += `Description: ${argConfig.description}\n`
+      result += `Type: ${type} ${requiredMessage}`
+      log(result, 'cyan', false)
+      log(`${'-'.repeat(40)}`, 'cyan', false)
     }
     process.exit()
   }
