@@ -1,5 +1,4 @@
 import BaseCommand from 'Commands/_BaseCommand'
-import os from 'os'
 import { spawnSync } from 'child_process'
 import { writeFileSync } from 'fs'
 import { resolve } from 'path'
@@ -14,7 +13,7 @@ class Mysql extends BaseCommand{
     this.argsConfig = [
       {
         name: 'password',
-        description: 'Root密碼',
+        description: 'MySQL root密碼',
         required: true,
         type: 'string',
       },
@@ -23,7 +22,19 @@ class Mysql extends BaseCommand{
   }
 
   async start() {
-    log('install ...')
+    log(`Install MySQL`)
+
+    try {
+      const password = this.args.password
+      await execAsync(`sudo apt-get update`)
+      await execAsync(`echo "mysql-server mysql-server/root_password password ${password}" | sudo debconf-set-selections`)
+      await execAsync(`echo "mysql-server mysql-server/root_password_again password ${password}" | sudo debconf-set-selections`)
+      await execAsync(`sudo apt-get install mysql-server -y`)
+      await execAsync(`sudo service mysql start`)
+      await execAsync(`mysql --version`)
+    } catch(error) {
+      log(`Install MySQL fail: ${JSON.stringify(error)}`, 'red')
+    }
   }
 }
 
