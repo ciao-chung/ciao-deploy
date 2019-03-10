@@ -58150,6 +58150,11 @@ function (_BaseCommand) {
                   description: '安裝DBeaver',
                   defaultValue: false,
                   type: 'boolean'
+                }, {
+                  name: 'all',
+                  description: '全部設定、安裝',
+                  defaultValue: false,
+                  type: 'boolean'
                 }];
                 this.description = "\u5DE5\u4F5C\u74B0\u5883\u8A2D\u5B9A";
 
@@ -58178,97 +58183,36 @@ function (_BaseCommand) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 log("Start setup workspace");
+                this.jobs = {
+                  base: __WEBPACK_IMPORTED_MODULE_1_Workspace_Base__["a" /* default */].exec,
+                  chrome: __WEBPACK_IMPORTED_MODULE_2_Workspace_Chrome__["a" /* default */].exec,
+                  desktop: __WEBPACK_IMPORTED_MODULE_3_Workspace_CreateDesktopSoftLink__["a" /* default */].exec,
+                  dolphin: __WEBPACK_IMPORTED_MODULE_4_Workspace_Dolphin__["a" /* default */].exec,
+                  media: __WEBPACK_IMPORTED_MODULE_5_Workspace_Media__["a" /* default */].exec,
+                  ngrok: __WEBPACK_IMPORTED_MODULE_6_Workspace_Ngrok__["a" /* default */].exec,
+                  phpstorm: __WEBPACK_IMPORTED_MODULE_7_Workspace_PhpStorm__["a" /* default */].exec,
+                  record: __WEBPACK_IMPORTED_MODULE_8_Workspace_Record__["a" /* default */].exec,
+                  unetbootin: __WEBPACK_IMPORTED_MODULE_9_Workspace_Unetbootin__["a" /* default */].exec,
+                  dbeaver: __WEBPACK_IMPORTED_MODULE_10_Workspace_DbEaver__["a" /* default */].exec
+                };
 
-                if (!this.args.base) {
-                  _context2.next = 4;
-                  break;
-                }
-
-                _context2.next = 4;
-                return __WEBPACK_IMPORTED_MODULE_1_Workspace_Base__["a" /* default */].exec();
-
-              case 4:
-                if (!this.args.chrome) {
+                if (!this.args.all) {
                   _context2.next = 7;
                   break;
                 }
 
-                _context2.next = 7;
-                return __WEBPACK_IMPORTED_MODULE_2_Workspace_Chrome__["a" /* default */].exec();
+                _context2.next = 5;
+                return this.startAllJobs();
+
+              case 5:
+                _context2.next = 9;
+                break;
 
               case 7:
-                if (!this.args.desktop) {
-                  _context2.next = 10;
-                  break;
-                }
+                _context2.next = 9;
+                return this.startJobs();
 
-                _context2.next = 10;
-                return __WEBPACK_IMPORTED_MODULE_3_Workspace_CreateDesktopSoftLink__["a" /* default */].exec();
-
-              case 10:
-                if (!this.args.dolphin) {
-                  _context2.next = 13;
-                  break;
-                }
-
-                _context2.next = 13;
-                return __WEBPACK_IMPORTED_MODULE_4_Workspace_Dolphin__["a" /* default */].exec();
-
-              case 13:
-                if (!this.args.media) {
-                  _context2.next = 16;
-                  break;
-                }
-
-                _context2.next = 16;
-                return __WEBPACK_IMPORTED_MODULE_5_Workspace_Media__["a" /* default */].exec();
-
-              case 16:
-                if (!this.args.ngrok) {
-                  _context2.next = 19;
-                  break;
-                }
-
-                _context2.next = 19;
-                return __WEBPACK_IMPORTED_MODULE_6_Workspace_Ngrok__["a" /* default */].exec();
-
-              case 19:
-                if (!this.args.phpStorm) {
-                  _context2.next = 22;
-                  break;
-                }
-
-                _context2.next = 22;
-                return __WEBPACK_IMPORTED_MODULE_7_Workspace_PhpStorm__["a" /* default */].exec();
-
-              case 22:
-                if (!this.args.record) {
-                  _context2.next = 25;
-                  break;
-                }
-
-                _context2.next = 25;
-                return __WEBPACK_IMPORTED_MODULE_8_Workspace_Record__["a" /* default */].exec();
-
-              case 25:
-                if (!this.args.unetbootin) {
-                  _context2.next = 28;
-                  break;
-                }
-
-                _context2.next = 28;
-                return __WEBPACK_IMPORTED_MODULE_9_Workspace_Unetbootin__["a" /* default */].exec();
-
-              case 28:
-                if (!this.args.dbEaver) {
-                  _context2.next = 31;
-                  break;
-                }
-
-                _context2.next = 31;
-                return __WEBPACK_IMPORTED_MODULE_10_Workspace_DbEaver__["a" /* default */].exec();
-
-              case 31:
+              case 9:
               case "end":
                 return _context2.stop();
             }
@@ -58281,6 +58225,97 @@ function (_BaseCommand) {
       }
 
       return start;
+    }()
+  }, {
+    key: "startJobs",
+    value: function () {
+      var _startJobs = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee3() {
+        var jobName;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.t0 = regeneratorRuntime.keys(this.jobs);
+
+              case 1:
+                if ((_context3.t1 = _context3.t0()).done) {
+                  _context3.next = 9;
+                  break;
+                }
+
+                jobName = _context3.t1.value;
+
+                if (this.args[jobName]) {
+                  _context3.next = 5;
+                  break;
+                }
+
+                return _context3.abrupt("continue", 1);
+
+              case 5:
+                _context3.next = 7;
+                return this.jobs[jobName]();
+
+              case 7:
+                _context3.next = 1;
+                break;
+
+              case 9:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function startJobs() {
+        return _startJobs.apply(this, arguments);
+      }
+
+      return startJobs;
+    }()
+  }, {
+    key: "startAllJobs",
+    value: function () {
+      var _startAllJobs = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee4() {
+        var jobName;
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.t0 = regeneratorRuntime.keys(this.jobs);
+
+              case 1:
+                if ((_context4.t1 = _context4.t0()).done) {
+                  _context4.next = 7;
+                  break;
+                }
+
+                jobName = _context4.t1.value;
+                _context4.next = 5;
+                return this.jobs[jobName]();
+
+              case 5:
+                _context4.next = 1;
+                break;
+
+              case 7:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function startAllJobs() {
+        return _startAllJobs.apply(this, arguments);
+      }
+
+      return startAllJobs;
     }()
   }]);
 

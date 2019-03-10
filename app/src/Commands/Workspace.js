@@ -78,6 +78,12 @@ class Workspace extends BaseCommand{
         defaultValue: false,
         type: 'boolean',
       },
+      {
+        name: 'all',
+        description: '全部設定、安裝',
+        defaultValue: false,
+        type: 'boolean',
+      },
     ]
     this.description = `工作環境設定`
   }
@@ -85,16 +91,39 @@ class Workspace extends BaseCommand{
   async start() {
     log(`Start setup workspace`)
 
-    if(this.args.base) await Base.exec()
-    if(this.args.chrome) await Chrome.exec()
-    if(this.args.desktop) await CreateDesktopSoftLink.exec()
-    if(this.args.dolphin) await Dolphin.exec()
-    if(this.args.media) await Media.exec()
-    if(this.args.ngrok) await Ngrok.exec()
-    if(this.args.phpStorm) await PhpStorm.exec()
-    if(this.args.record) await Record.exec()
-    if(this.args.unetbootin) await Unetbootin.exec()
-    if(this.args.dbEaver) await DbEaver.exec()
+    this.jobs = {
+      base: Base.exec,
+      chrome: Chrome.exec,
+      desktop: CreateDesktopSoftLink.exec,
+      dolphin: Dolphin.exec,
+      media: Media.exec,
+      ngrok: Ngrok.exec,
+      phpstorm: PhpStorm.exec,
+      record: Record.exec,
+      unetbootin: Unetbootin.exec,
+      dbeaver: DbEaver.exec,
+    }
+
+    if(this.args.all) {
+      await this.startAllJobs()
+    }
+
+    else {
+      await this.startJobs()
+    }
+  }
+
+  async startJobs() {
+    for(const jobName in this.jobs) {
+      if(!this.args[jobName]) continue
+      await this.jobs[jobName]()
+    }
+  }
+
+  async startAllJobs() {
+    for(const jobName in this.jobs) {
+      await this.jobs[jobName]()
+    }
   }
 }
 
