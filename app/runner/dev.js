@@ -39,10 +39,12 @@ class dev {
     const productionAppPath = pathResolve(productionPath, projectConfig.name)
     const copyfileFolderPath = pathResolve(appRoot, 'copyfile')
     const readmeFilePath = pathResolve(projectRoot, 'README.md')
+    const packageJsonPath = pathResolve(projectRoot, 'package.json')
 
     await execAsync(`rm -rf ${productionAppPath}`)
     mkdir('-p', productionAppPath)
     await execAsync(`cp ${readmeFilePath} ./`, { cwd: productionAppPath })
+    await execAsync(`cp ${packageJsonPath} ./`, { cwd: productionPath })
     try {
       await execAsync(`cp -r ${copyfileFolderPath}/* ./`, { cwd: productionAppPath })
     } catch(error) {
