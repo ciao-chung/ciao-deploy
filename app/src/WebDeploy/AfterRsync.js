@@ -1,4 +1,4 @@
-class AfterSync {
+class AfterRsync {
   constructor(commandConfig) {
     this.commandConfig = commandConfig
     this.frontendConfig = this.commandConfig.deploy.target.frontend
@@ -23,4 +23,4 @@ class AfterSync {
   }
 }
 
-export default (commandConfig) => new AfterSync(commandConfig)
+export default (commandConfig) => new AfterRsync(commandConfig)

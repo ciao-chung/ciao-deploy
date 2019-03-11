@@ -1,13 +1,14 @@
 import BaseCommand from 'Commands/_BaseCommand'
-import CloneSource from 'CubeDeploy/CloneSource'
-import BuildFrontend from 'CubeDeploy/BuildFrontend'
-import BuildBackend from 'CubeDeploy/BuildBackend'
-import Rsync from 'CubeDeploy/Rsync'
-import CleanTemp from 'CubeDeploy/CleanTemp'
 import { resolve } from 'path'
-class CubeDeploy extends BaseCommand{
+import CloneSource from 'WebDeploy/CloneSource'
+import BuildFrontend from 'WebDeploy/BuildFrontend'
+import BuildBackend from 'WebDeploy/BuildBackend'
+import Rsync from 'WebDeploy/Rsync'
+import CleanTemp from 'WebDeploy/CleanTemp'
+import AfterRsync from 'WebDeploy/AfterRsync'
+class WebDeploy extends BaseCommand{
   async setupCommand() {
-    this.name = 'cube-deploy'
+    this.name = 'web-deploy'
     this.configFile = {
       property: 'config',
     }
@@ -20,13 +21,12 @@ class CubeDeploy extends BaseCommand{
         type: 'boolean',
       },
     ]
-    this.description = `Deploy Cube Project`
+    this.description = `Deploy Web Project`
   }
 
   async start() {
     await this.setupVariable()
     await this.workflow()
-
   }
 
   async setupVariable() {
@@ -41,8 +41,9 @@ class CubeDeploy extends BaseCommand{
     await BuildBackend(this.commandConfig).start()
     await Rsync(this.commandConfig).start()
     await CleanTemp(this.commandConfig).start()
+    await AfterRsync(this.commandConfig).start()
     notify('Deploy successfully');
   }
 }
 
-export default new CubeDeploy()
+export default new WebDeploy()

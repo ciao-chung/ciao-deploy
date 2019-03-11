@@ -1,5 +1,5 @@
 import AppKernel from 'AppKernel'
-import CubeDeploy from 'Commands/CubeDeploy'
+import WebDeploy from 'Commands/WebDeploy'
 import Env from 'Commands/Env'
 import Fish from 'Commands/Fish'
 import Mysql from 'Commands/Mysql'
@@ -17,7 +17,7 @@ import Workspace from 'Commands/Workspace'
 class App extends AppKernel {
   setup() {
     this.commandList = [
-      CubeDeploy,
+      WebDeploy,
       Env,
       Fish,
       Mysql,
