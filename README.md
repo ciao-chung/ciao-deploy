@@ -44,8 +44,11 @@ ciao-deploy --command={command-name}
 - ssl-sign: 簽SSL
 - ssl-delete: 移除SSL
 - workspace: 工作環境設定
+- PhpMyAdmin: 安裝phpMyAdmin
 - web-deploy: 佈署Web專案(Vue、Laravel)
 - web-deploy-config: 產生Web Deploy設定檔
+- setup-deploy-env: 一鍵設定本機端佈署環境
+- setup-remote-env: 一鍵設定遠端Web佈署環境
 
 ### 基本環境安裝(env)
 
@@ -94,6 +97,12 @@ ciao-deploy --command={command-name}
 
 - domain(required): String, Web Domain
 
+### 安裝phpMyAdmin(phpmyadmin)
+
+**參數**
+
+- password(required): String, 安裝MySQL的Root密碼
+
 ### 工作環境設定(workspace)
 
 **參數**
@@ -111,6 +120,28 @@ ciao-deploy --command={command-name}
 - unetbootin(optional): Boolean, 安裝Unetbootin
 - dbeaver(optional): Boolean, 安裝DBeaver
 - all(optional): Boolean, 全部設定、安裝
+
+### 一鍵設定本機端佈署環境(setup-deploy-env)
+
+此指令將自動執行下列指令, 請斟酌情境使用
+
+- fish
+- env
+- apache
+
+### 一鍵設定遠端Web佈署環境(setup-remote-env)
+
+此指令將自動執行下列指令, 請斟酌情境使用
+
+- fish
+- env
+- apache
+- mysql
+- ssl
+
+**參數**
+
+- mysqlRootPassword(required): String, 安裝MySQL的Root密碼
 
 ## Web Deploy(web-deploy)設定
 

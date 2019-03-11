@@ -15,6 +15,9 @@ import Ssl from 'Commands/Ssl'
 import SslSign from 'Commands/SslSign'
 import SslDelete from 'Commands/SslDelete'
 import Workspace from 'Commands/Workspace'
+import PhpMyAdmin from 'Commands/PhpMyAdmin'
+import SetupDeployEnv from 'Commands/SetupDeployEnv'
+import SetupRemoteEnv from 'Commands/SetupRemoteEnv'
 class App extends AppKernel {
   setup() {
     this.commandList = [
@@ -34,6 +37,9 @@ class App extends AppKernel {
       SslSign,
       SslDelete,
       Workspace,
+      PhpMyAdmin,
+      SetupDeployEnv,
+      SetupRemoteEnv,
     ]
   }
 }
