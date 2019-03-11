@@ -145,6 +145,15 @@ ciao-deploy --command={command-name}
 
 ## Web Deploy(web-deploy)設定
 
+### 本機端環境需求
+
+> 可直接透過 ciao-deploy --command=setup-deploy-env 來一鍵設定本機端佈署環境
+
+- Node.js 8.x up
+- Yarn
+- PHP 7.1 up
+- Composer
+
 ### command參數
 
 - dump(optional): Boolean, 查看deploy設定檔內容(不會執行佈署)
