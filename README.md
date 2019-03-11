@@ -2,7 +2,7 @@
 
 > 個人的環境設定、佈署相關工具
 
-![deploy](meta/demo.gif)
+![deploy](https://raw.githubusercontent.com/ciao-chung/ciao-deploy/master/meta/demo.gif)
 
 ## 環境需求
 
