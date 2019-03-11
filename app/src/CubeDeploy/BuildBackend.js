@@ -24,6 +24,7 @@ class BuildBackend {
     await this.installVendor()
     await this.setupEnvFile()
     await this.dumpAutoload()
+    notify('backend build successfully')
   }
 
   async installVendor() {

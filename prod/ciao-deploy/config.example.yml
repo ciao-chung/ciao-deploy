@@ -2,36 +2,22 @@ deploy:
     source:
         branch: master
         repo: repo
-    remote:
-        commands:
-            before_login: ''
-            after_login: ''
     target:
         frontend:
             folder: Frontend
             user: ciao
             host: remote.host
-            domain: example.com
             https: true
             path: /path/to/frontend
             apibase: httsp://api.example.com
-            apidoc_only: false
-            apidoc:
-                exclude: BackStage
-            commands:
-                before_deploy: ''
-                after_deploy: ''
+            build_script: 'yarn build --doc --doc_exclude=BackStage'
         backend:
             folder: Backend
             user: ciao
             host: remote.host
-            domain: service.example.com
             https: true
             path: /path/to/frontend
             migrate: true
-            commands:
-                before_deploy: ''
-                after_deploy: ''
             env:
                 APP_KEY: APP_KEY
                 APP_DEBUG: false

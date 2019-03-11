@@ -9,6 +9,7 @@ class Rsync {
   async start() {
     await this.rsyncFrontend()
     await this.rsyncBackend()
+    notify('Rsync successfully')
   }
 
   async rsyncFrontend() {

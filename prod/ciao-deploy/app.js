@@ -54582,7 +54582,7 @@ function (_BaseCommand) {
                 return Object(__WEBPACK_IMPORTED_MODULE_5_CubeDeploy_CleanTemp__["a" /* default */])(this.commandConfig).start();
 
               case 10:
-                this.notify('Deploy successfully');
+                notify('Deploy successfully');
 
               case 11:
               case "end":
@@ -54801,6 +54801,9 @@ function () {
                 return this.cleanNodeModules();
 
               case 11:
+                notify('Frontend build successfully');
+
+              case 12:
               case "end":
                 return _context2.stop();
             }
@@ -54886,24 +54889,19 @@ function () {
       var _buildWebpack = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee5() {
-        var buildApidoc, apidocOnly, apidocExclude, buildCommand;
+        var buildScript;
         return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                buildApidoc = !!this.frontendConfig.apidoc;
-                apidocOnly = !!this.frontendConfig.apidoc_only;
-                apidocExclude = !buildApidoc ? null : this.frontendConfig.apidoc.exclude;
-                buildCommand = !apidocOnly ? "yarn build" : "yarn build-apidoc";
-                if (buildApidoc) buildCommand = "".concat(buildCommand, " --doc ");
-                if (apidocExclude) buildCommand = "".concat(buildCommand, " --doc_exclude=").concat(apidocExclude, " ");
-                log("buildCommand: ".concat(buildCommand), 'yellow');
-                _context5.next = 9;
-                return execAsync(buildCommand, {
+                buildScript = this.frontendConfig.build_script;
+                log("buildCommand: ".concat(buildScript), 'yellow');
+                _context5.next = 4;
+                return execAsync(buildScript, {
                   cwd: this.frontendPath
                 });
 
-              case 9:
+              case 4:
               case "end":
                 return _context5.stop();
             }
@@ -55068,6 +55066,9 @@ function () {
                 return this.dumpAutoload();
 
               case 9:
+                notify('backend build successfully');
+
+              case 10:
               case "end":
                 return _context2.stop();
             }
@@ -55261,6 +55262,9 @@ function () {
                 return this.rsyncBackend();
 
               case 4:
+                notify('Rsync successfully');
+
+              case 5:
               case "end":
                 return _context.stop();
             }

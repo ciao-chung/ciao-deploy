@@ -24,6 +24,7 @@ class BuildFrontend {
     await this.installNodeModules()
     await this.buildWebpack()
     await this.cleanNodeModules()
+    notify('Frontend build successfully')
   }
 
   async setupApiBase() {
@@ -37,17 +38,9 @@ class BuildFrontend {
   }
 
   async buildWebpack() {
-    const buildApidoc = !!this.frontendConfig.apidoc
-    const apidocOnly = !!this.frontendConfig.apidoc_only
-    const apidocExclude = !buildApidoc ? null : this.frontendConfig.apidoc.exclude
-    
-    let buildCommand = !apidocOnly
-      ? `yarn build` : `yarn build-apidoc`
-
-    if(buildApidoc) buildCommand = `${buildCommand} --doc `
-    if(apidocExclude) buildCommand = `${buildCommand} --doc_exclude=${apidocExclude} `
-    log(`buildCommand: ${buildCommand}`, 'yellow')
-    await execAsync(buildCommand, { cwd: this.frontendPath })
+    const buildScript = this.frontendConfig.build_script
+    log(`buildCommand: ${buildScript}`, 'yellow')
+    await execAsync(buildScript, { cwd: this.frontendPath })
   }
 
   async cleanNodeModules() {
