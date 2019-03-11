@@ -1,4 +1,6 @@
 import BaseCommand from 'Commands/_BaseCommand'
+import { resolve } from 'path'
+import { existsSync } from 'fs'
 class SslSign extends BaseCommand{
   async setupCommand() {
     this.name = 'ssl-sign'
@@ -27,8 +29,8 @@ class SslSign extends BaseCommand{
   async start() {
     log(`Sign SSL: ${this.args.domain}`)
 
-    const apacheConfigFilePath = this.resolve(`/etc/apache2/sites-available/${this.args.domain}.conf`)
-    if(!this.existsSync(apacheConfigFilePath)) {
+    const apacheConfigFilePath = resolve(`/etc/apache2/sites-available/${this.args.domain}.conf`)
+    if(!existsSync(apacheConfigFilePath)) {
       log(`簽SSL失敗, 找不到該domain ( ${this.args.domain} )的apache設定`, 'red')
       return
     }

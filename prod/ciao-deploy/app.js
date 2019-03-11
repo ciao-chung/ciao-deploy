@@ -56551,15 +56551,15 @@ function () {
 
               case 2:
                 _context.next = 4;
-                return this.setupFolderPermission();
+                return this.cleanBackendCache();
 
               case 4:
                 _context.next = 6;
-                return this.cleanBackendCache();
+                return this.migrate();
 
               case 6:
                 _context.next = 8;
-                return this.migrate();
+                return this.setupFolderPermission();
 
               case 8:
               case "end":
@@ -56594,9 +56594,13 @@ function () {
 
               case 2:
                 _context2.next = 4;
-                return executeRemote("cd ".concat(this.backendConfig.path, "; storage:link"));
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan storage:link"));
 
               case 4:
+                _context2.next = 6;
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan key:generate"));
+
+              case 6:
               case "end":
                 return _context2.stop();
             }
@@ -56611,28 +56615,56 @@ function () {
       return initBackend;
     }()
   }, {
-    key: "setupFolderPermission",
+    key: "executeRemoteBackend",
     value: function () {
-      var _setupFolderPermission = _asyncToGenerator(
+      var _executeRemoteBackend = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee3() {
+      regeneratorRuntime.mark(function _callee3(command, options) {
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return executeRemote("cd ".concat(this.backendConfig.path, "; chmod 755 -R ").concat(this.backendConfig.path));
+                return executeRemote(this.backendConfig.user, this.backendConfig.host, command, options);
 
               case 2:
-                _context3.next = 4;
-                return executeRemote("cd ".concat(this.backendConfig.path, "; chmod -R o+w ./storage"));
-
-              case 4:
               case "end":
                 return _context3.stop();
             }
           }
         }, _callee3, this);
+      }));
+
+      function executeRemoteBackend(_x, _x2) {
+        return _executeRemoteBackend.apply(this, arguments);
+      }
+
+      return executeRemoteBackend;
+    }()
+  }, {
+    key: "setupFolderPermission",
+    value: function () {
+      var _setupFolderPermission = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee4() {
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                log("\u6B63\u5728\u8A2D\u5B9A\u5F8C\u7AEF\u8CC7\u6599\u593E\u6A94\u6848\u6B0A\u9650: ".concat(this.backendConfig.path));
+                _context4.next = 3;
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; sudo chmod 755 -R ").concat(this.backendConfig.path));
+
+              case 3:
+                _context4.next = 5;
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; sudo chmod -R o+w ").concat(this.backendConfig.path, "/storage"));
+
+              case 5:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
       }));
 
       function setupFolderPermission() {
@@ -56645,45 +56677,6 @@ function () {
     key: "cleanBackendCache",
     value: function () {
       var _cleanBackendCache = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee4() {
-        return regeneratorRuntime.wrap(function _callee4$(_context4) {
-          while (1) {
-            switch (_context4.prev = _context4.next) {
-              case 0:
-                if (this.backendConfig) {
-                  _context4.next = 2;
-                  break;
-                }
-
-                return _context4.abrupt("return");
-
-              case 2:
-                _context4.next = 4;
-                return executeRemote("cd ".concat(this.backendConfig.path, "; php artisan cache:clear"));
-
-              case 4:
-                _context4.next = 6;
-                return executeRemote("cd ".concat(this.backendConfig.path, "; php artisan config:clear"));
-
-              case 6:
-              case "end":
-                return _context4.stop();
-            }
-          }
-        }, _callee4, this);
-      }));
-
-      function cleanBackendCache() {
-        return _cleanBackendCache.apply(this, arguments);
-      }
-
-      return cleanBackendCache;
-    }()
-  }, {
-    key: "migrate",
-    value: function () {
-      var _migrate = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee5() {
         return regeneratorRuntime.wrap(function _callee5$(_context5) {
@@ -56698,16 +56691,12 @@ function () {
                 return _context5.abrupt("return");
 
               case 2:
-                if (this.backendConfig.migrate) {
-                  _context5.next = 4;
-                  break;
-                }
-
-                return _context5.abrupt("return");
+                _context5.next = 4;
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan cache:clear"));
 
               case 4:
                 _context5.next = 6;
-                return executeRemote("cd ".concat(this.backendConfig.path, "; php artisan migrate"));
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan config:clear"));
 
               case 6:
               case "end":
@@ -56715,6 +56704,49 @@ function () {
             }
           }
         }, _callee5, this);
+      }));
+
+      function cleanBackendCache() {
+        return _cleanBackendCache.apply(this, arguments);
+      }
+
+      return cleanBackendCache;
+    }()
+  }, {
+    key: "migrate",
+    value: function () {
+      var _migrate = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee6() {
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                if (this.backendConfig) {
+                  _context6.next = 2;
+                  break;
+                }
+
+                return _context6.abrupt("return");
+
+              case 2:
+                if (this.backendConfig.migrate) {
+                  _context6.next = 4;
+                  break;
+                }
+
+                return _context6.abrupt("return");
+
+              case 4:
+                _context6.next = 6;
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan migrate"));
+
+              case 6:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
       }));
 
       function migrate() {
@@ -59033,6 +59065,10 @@ function (_BaseCommand) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_path__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_fs__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -59054,6 +59090,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
 
 
 
@@ -59122,9 +59160,9 @@ function (_BaseCommand) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 log("Sign SSL: ".concat(this.args.domain));
-                apacheConfigFilePath = this.resolve("/etc/apache2/sites-available/".concat(this.args.domain, ".conf"));
+                apacheConfigFilePath = Object(__WEBPACK_IMPORTED_MODULE_1_path__["resolve"])("/etc/apache2/sites-available/".concat(this.args.domain, ".conf"));
 
-                if (this.existsSync(apacheConfigFilePath)) {
+                if (Object(__WEBPACK_IMPORTED_MODULE_2_fs__["existsSync"])(apacheConfigFilePath)) {
                   _context2.next = 5;
                   break;
                 }

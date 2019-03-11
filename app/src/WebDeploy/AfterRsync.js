@@ -8,31 +8,37 @@ class AfterRsync {
 
   async start() {
     await this.initBackend()
-    await this.setupFolderPermission()
     await this.cleanBackendCache()
     await this.migrate()
+    await this.setupFolderPermission()
   }
 
   async initBackend() {
     if(!this.args.first) return
-    await executeRemote(`cd ${this.backendConfig.path}; storage:link`)
+    await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan storage:link`)
+    await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan key:generate`)
+  }
+  
+  async executeRemoteBackend(command, options) {
+    await executeRemote(this.backendConfig.user, this.backendConfig.host, command, options)
   }
 
   async setupFolderPermission() {
-    await executeRemote(`cd ${this.backendConfig.path}; chmod 755 -R ${this.backendConfig.path}`)
-    await executeRemote(`cd ${this.backendConfig.path}; chmod -R o+w ./storage`)
+    log(`正在設定後端資料夾檔案權限: ${this.backendConfig.path}`)
+    await this.executeRemoteBackend(`cd ${this.backendConfig.path}; sudo chmod 755 -R ${this.backendConfig.path}`)
+    await this.executeRemoteBackend(`cd ${this.backendConfig.path}; sudo chmod -R o+w ${this.backendConfig.path}/storage`)
   }
 
   async cleanBackendCache() {
     if(!this.backendConfig) return
-    await executeRemote(`cd ${this.backendConfig.path}; php artisan cache:clear`)
-    await executeRemote(`cd ${this.backendConfig.path}; php artisan config:clear`)
+    await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan cache:clear`)
+    await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan config:clear`)
   }
 
   async migrate() {
     if(!this.backendConfig) return
     if(!this.backendConfig.migrate) return
-    await executeRemote(`cd ${this.backendConfig.path}; php artisan migrate`)
+    await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan migrate`)
   }
 }
 
