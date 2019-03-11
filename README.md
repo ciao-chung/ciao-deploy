@@ -44,7 +44,7 @@ ciao-deploy --command={command-name}
 - ssl-sign: 簽SSL
 - ssl-delete: 移除SSL
 - workspace: 工作環境設定
-- PhpMyAdmin: 安裝phpMyAdmin
+- phpmyadmin: 安裝phpMyAdmin
 - web-deploy: 佈署Web專案(Vue、Laravel)
 - web-deploy-config: 產生Web Deploy設定檔
 - setup-deploy-env: 一鍵設定本機端佈署環境
@@ -167,7 +167,7 @@ deploy:
             user: ciao
             host: remote.host
             path: /path/to/frontend
-            apibase: httsp://api.example.com
+            apibase: https://api.example.com
             build_script: 'yarn build --doc --doc_exclude=BackStage'
         backend:
             folder: Backend

@@ -8,7 +8,7 @@ deploy:
             user: ciao
             host: remote.host
             path: /path/to/frontend
-            apibase: httsp://api.example.com
+            apibase: https://api.example.com
             build_script: 'yarn build --doc --doc_exclude=BackStage'
         backend:
             folder: Backend
