@@ -25,7 +25,7 @@ class AppKernel {
   validate() {
     const command = this.commands[args.command]
     if(!command) {
-      log(`Command not found.`, 'red', false)
+      if(!this._isHelpMode()) log(`Command not found.`, 'red', false)
       this._showAllCommands()
       process.exit()
       return
