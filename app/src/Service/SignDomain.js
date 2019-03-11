@@ -35,6 +35,35 @@ class SignDomain {
 </VirtualHost>
 `
   }
+
+  async proxy(domain, port) {
+    const configContent = this._getProxyConfig(domain, port)
+    const configFilePath = resolve('/tmp', `${domain}.conf`)
+    log(`Start sign domain: ${domain}`, 'green')
+    await writeFileSync(configFilePath, configContent, 'utf8')
+    await execAsync(`sudo mv ${configFilePath} /etc/apache2/sites-available/`)
+    await execAsync(`sudo a2ensite ${domain}`)
+    await execAsync(`sudo service apache2 restart`)
+  }
+
+  _getProxyConfig(domain, port) {
+    return `
+<VirtualHost *:80>
+    ServerName ${domain}
+    ServerAlias www.${domain}
+    ProxyRequests Off
+    ProxyPreserveHost On
+    ProxyVia Full
+    <Proxy *>
+        Require all granted
+    </Proxy>
+    <Location />
+        ProxyPass http://localhost:${port}/
+        ProxyPassReverse http://127.0.0.1:${port}
+    </Location>
+</VirtualHost>
+`
+  }
 }
 
 export default new SignDomain()

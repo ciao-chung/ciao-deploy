@@ -38,8 +38,9 @@ ciao-deploy --command={command-name}
 - mysql-db-create: 建立MySQL DB
 - mysql-db-delete: 刪除MySQL DB
 - apache: 初始化Apache
-- domain-sign:
-- domain-delete:
+- domain-sign: 簽Domain
+- domain-proxy: 簽Proxy Domain
+- domain-delete: 刪除domain
 - ssl: 安裝Let's Encrypt certbot
 - ssl-sign: 簽SSL
 - ssl-delete: 移除SSL
@@ -86,12 +87,30 @@ ciao-deploy --command={command-name}
 - rootPassword(required): String, MySQL的Root密碼
 - db(required): String, 資料庫名稱
 
+### Domain相關指令
+
+domain-proxy
+
+**簽Domain(domain-sign)參數**
+
+- domain(required): String, Web Domain
+- path(required): String, Web資料夾
+
+**簽Proxy Domain(domain-proxy)參數**
+
+- domain(required): String, Web Domain
+- port(required): String, 要轉的port
+
+**移除Domain(domain-delete)參數**
+
+- domain(required): String, Web Domain
+
 ### SSL相關指令
 
 **簽SSL(ssl-sign)參數**
 
 - domain(required): String, Web Domain
-- path(required): String, Web資料夾
+- email(required): String, Certbot要設定憑證過期前通知的email
 
 **移除SSL(ssl-delete)參數**
 

@@ -10,6 +10,7 @@ import MysqlDatabaseCreate from 'Commands/MysqlDatabaseCreate'
 import MysqlDatabaseDelete from 'Commands/MysqlDatabaseDelete'
 import Apache from 'Commands/Apache'
 import DomainSign from 'Commands/DomainSign'
+import DomainProxy from 'Commands/DomainProxy'
 import DomainDelete from 'Commands/DomainDelete'
 import Ssl from 'Commands/Ssl'
 import SslSign from 'Commands/SslSign'
@@ -32,6 +33,7 @@ class App extends AppKernel {
       MysqlDatabaseDelete,
       Apache,
       DomainSign,
+      DomainProxy,
       DomainDelete,
       Ssl,
       SslSign,
