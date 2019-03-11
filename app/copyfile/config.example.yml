@@ -7,7 +7,6 @@ deploy:
             folder: Frontend
             user: ciao
             host: remote.host
-            https: true
             path: /path/to/frontend
             apibase: httsp://api.example.com
             build_script: 'yarn build --doc --doc_exclude=BackStage'
@@ -15,7 +14,6 @@ deploy:
             folder: Backend
             user: ciao
             host: remote.host
-            https: true
             path: /path/to/frontend
             migrate: true
             env:

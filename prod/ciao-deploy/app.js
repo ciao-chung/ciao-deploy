@@ -54585,7 +54585,7 @@ function (_BaseCommand) {
 
               case 10:
                 _context4.next = 12;
-                return Object(__WEBPACK_IMPORTED_MODULE_7_WebDeploy_AfterRsync__["a" /* default */])(this.commandConfig).start();
+                return Object(__WEBPACK_IMPORTED_MODULE_7_WebDeploy_AfterRsync__["a" /* default */])(this.commandConfig, this.args).start();
 
               case 12:
                 notify('Deploy successfully');
@@ -55518,10 +55518,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var AfterRsync =
 /*#__PURE__*/
 function () {
-  function AfterRsync(commandConfig) {
+  function AfterRsync(commandConfig, args) {
     _classCallCheck(this, AfterRsync);
 
     this.commandConfig = commandConfig;
+    this.args = args;
     this.frontendConfig = this.commandConfig.deploy.target.frontend;
     this.backendConfig = this.commandConfig.deploy.target.backend;
   }
@@ -55537,13 +55538,21 @@ function () {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return this.cleanBackendCache();
+                return this.initBackend();
 
               case 2:
                 _context.next = 4;
-                return this.migrate();
+                return this.setupFolderPermission();
 
               case 4:
+                _context.next = 6;
+                return this.cleanBackendCache();
+
+              case 6:
+                _context.next = 8;
+                return this.migrate();
+
+              case 8:
               case "end":
                 return _context.stop();
             }
@@ -55558,16 +55567,16 @@ function () {
       return start;
     }()
   }, {
-    key: "cleanBackendCache",
+    key: "initBackend",
     value: function () {
-      var _cleanBackendCache = _asyncToGenerator(
+      var _initBackend = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee2() {
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                if (this.backendConfig) {
+                if (this.args.first) {
                   _context2.next = 2;
                   break;
                 }
@@ -55576,18 +55585,84 @@ function () {
 
               case 2:
                 _context2.next = 4;
-                return executeRemote("cd ".concat(this.backendConfig.path, "; php artisan cache:clear"));
+                return executeRemote("cd ".concat(this.backendConfig.path, "; storage:link"));
 
               case 4:
-                _context2.next = 6;
-                return executeRemote("cd ".concat(this.backendConfig.path, "; php artisan config:clear"));
-
-              case 6:
               case "end":
                 return _context2.stop();
             }
           }
         }, _callee2, this);
+      }));
+
+      function initBackend() {
+        return _initBackend.apply(this, arguments);
+      }
+
+      return initBackend;
+    }()
+  }, {
+    key: "setupFolderPermission",
+    value: function () {
+      var _setupFolderPermission = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee3() {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return executeRemote("cd ".concat(this.backendConfig.path, "; chmod 755 -R ").concat(this.backendConfig.path));
+
+              case 2:
+                _context3.next = 4;
+                return executeRemote("cd ".concat(this.backendConfig.path, "; chmod -R o+w ./storage"));
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function setupFolderPermission() {
+        return _setupFolderPermission.apply(this, arguments);
+      }
+
+      return setupFolderPermission;
+    }()
+  }, {
+    key: "cleanBackendCache",
+    value: function () {
+      var _cleanBackendCache = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee4() {
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                if (this.backendConfig) {
+                  _context4.next = 2;
+                  break;
+                }
+
+                return _context4.abrupt("return");
+
+              case 2:
+                _context4.next = 4;
+                return executeRemote("cd ".concat(this.backendConfig.path, "; php artisan cache:clear"));
+
+              case 4:
+                _context4.next = 6;
+                return executeRemote("cd ".concat(this.backendConfig.path, "; php artisan config:clear"));
+
+              case 6:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
       }));
 
       function cleanBackendCache() {
@@ -55601,36 +55676,36 @@ function () {
     value: function () {
       var _migrate = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee3() {
-        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      regeneratorRuntime.mark(function _callee5() {
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
                 if (this.backendConfig) {
-                  _context3.next = 2;
+                  _context5.next = 2;
                   break;
                 }
 
-                return _context3.abrupt("return");
+                return _context5.abrupt("return");
 
               case 2:
                 if (this.backendConfig.migrate) {
-                  _context3.next = 4;
+                  _context5.next = 4;
                   break;
                 }
 
-                return _context3.abrupt("return");
+                return _context5.abrupt("return");
 
               case 4:
-                _context3.next = 6;
+                _context5.next = 6;
                 return executeRemote("cd ".concat(this.backendConfig.path, "; php artisan migrate"));
 
               case 6:
               case "end":
-                return _context3.stop();
+                return _context5.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee5, this);
       }));
 
       function migrate() {
@@ -55644,8 +55719,8 @@ function () {
   return AfterRsync;
 }();
 
-/* harmony default export */ __webpack_exports__["a"] = (function (commandConfig) {
-  return new AfterRsync(commandConfig);
+/* harmony default export */ __webpack_exports__["a"] = (function (commandConfig, args) {
+  return new AfterRsync(commandConfig, args);
 });
 
 /***/ }),
@@ -57219,17 +57294,37 @@ function (_BaseCommand) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return execAsync("sudo apt-get install libapache2-mod-php7.1 -y");
+                return execAsync("sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y");
 
               case 2:
                 _context3.next = 4;
-                return execAsync("sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y");
+                return execAsync("sudo apt-get update");
 
               case 4:
                 _context3.next = 6;
-                return execAsync("sudo apt-get update");
+                return execAsync("sudo apt-get install libapache2-mod-php7.1 -y");
 
               case 6:
+                _context3.next = 8;
+                return execAsync("sudo a2enmod rewrite");
+
+              case 8:
+                _context3.next = 10;
+                return execAsync("sudo a2enmod headers");
+
+              case 10:
+                _context3.next = 12;
+                return execAsync("sudo a2enmod proxy");
+
+              case 12:
+                _context3.next = 14;
+                return execAsync("sudo a2enmod proxy_http");
+
+              case 14:
+                _context3.next = 16;
+                return execAsync("sudo service apache2 restart");
+
+              case 16:
               case "end":
                 return _context3.stop();
             }

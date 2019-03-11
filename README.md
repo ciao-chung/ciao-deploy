@@ -50,61 +50,133 @@ ciao-deploy --command={command-name}
 
 **參數**
 
-- base: 安裝
-- php: 安裝php7.1及相關extension
-- phpgearman: 安裝php-gearman
-- composer: 安裝composer
+- base(optional): Boolean, 安裝
+- php(optional): Boolean, 安裝php7.1及相關extension
+- phpgearman(optional): Boolean, 安裝php-gearman
+- composer(optional): Boolean, 安裝composer
 
 ### MySQL相關指令
 
 **安裝MySQL(mysql)參數**
 
-- password: 安裝MySQL的Root密碼
+- password(required): String, 安裝MySQL的Root密碼
 
 **建立MySQL使用者(mysql-user-create)參數**
 
-- rootPassword: MySQL的Root密碼
-- username: 使用者帳號
-- password: 使用者密碼
+- rootPassword(required): String, MySQL的Root密碼
+- username(required): String, 使用者帳號
+- password(required): String, 使用者密碼
 
 **刪除MySQL使用者(mysql-user-delete)參數**
 
-- rootPassword: MySQL的Root密碼
-- username: 使用者帳號
+- rootPassword(required): String, MySQL的Root密碼
+- username(required): String, 使用者帳號
 
 **刪除MySQL DB(mysql-db-create)參數**
 
-- rootPassword: MySQL的Root密碼
-- db: 資料庫名稱
+- rootPassword(required): String, MySQL的Root密碼
+- db(required): String, 資料庫名稱
 
 **建立MySQL DB(mysql-db-delete)參數**
 
-- rootPassword: MySQL的Root密碼
-- db: 資料庫名稱
+- rootPassword(required): String, MySQL的Root密碼
+- db(required): String, 資料庫名稱
 
 ### SSL相關指令
 
 **簽SSL(ssl-sign)參數**
 
-- domain: Web Domain
-- path: Web資料夾
+- domain(required): String, Web Domain
+- path(required): String, Web資料夾
 
 **移除SSL(ssl-delete)參數**
 
-- domain: Web Domain
+- domain(required): String, Web Domain
 
 ### 工作環境設定(workspace)
 
 **參數**
 
-- base: 安裝基本工具(gnome-disk-utility、apidoc、openvpn)
-- chrome: 安裝Google Chrome
-- desktop: 設定桌面Soft Link
-- dolphin: 設定Dolphin檔案管理 
-- media: 安裝多媒體相關工具
-- ngrok: 安裝Ngrok
-- phpstorm: 安裝PHP Storm
-- record: 安裝螢幕錄影工具
-- unetbootin: 安裝Unetbootin
-- dbeaver: 安裝DBeaver
-- all: 全部設定、安裝
+以下參數皆為Boolean格式
+
+- base(optional): Boolean, 安裝基本工具(gnome-disk-utility、apidoc、openvpn)
+- chrome(optional): Boolean, 安裝Google Chrome
+- desktop(optional): Boolean, 設定桌面Soft Link
+- dolphin(optional): Boolean, 設定Dolphin檔案管理 
+- media(optional): Boolean, 安裝多媒體相關工具
+- ngrok(optional): Boolean, 安裝Ngrok
+- phpstorm(optional): Boolean, 安裝PHP Storm
+- record(optional): Boolean, 安裝螢幕錄影工具
+- unetbootin(optional): Boolean, 安裝Unetbootin
+- dbeaver(optional): Boolean, 安裝DBeaver
+- all(optional): Boolean, 全部設定、安裝
+
+## Web Deploy(web-deploy)設定
+
+### command參數
+
+- first(optional): Boolean, 第一次佈署, 會另外執行下列的初始化動作
+  - 如果有佈署後端會執行 **php artisan storage:link** 建立storage link
+- config(required): String, 佈署設定檔絕對路徑
+
+### 佈署設定檔說明
+
+**範例(app/copyfile/config.example.yml)**
+
+```yaml
+deploy:
+    source:
+        branch: master
+        repo: repo
+    target:
+        frontend:
+            folder: Frontend
+            user: ciao
+            host: remote.host
+            path: /path/to/frontend
+            apibase: httsp://api.example.com
+            build_script: 'yarn build --doc --doc_exclude=BackStage'
+        backend:
+            folder: Backend
+            user: ciao
+            host: remote.host
+            path: /path/to/frontend
+            migrate: true
+            env:
+                APP_KEY: APP_KEY
+                APP_DEBUG: false
+                DB_DATABASE: db_name
+                DB_USERNAME: mysql_user
+                DB_PASSWORD: mysql_password
+                CORS: 'https://webcache.googleusercontent.com,http://localhost:8080,https://example.com'
+                PHOTO_BASE_URL: http://exmpale.com/storage
+```
+
+#### source(程式碼來源)
+
+> required
+ 
+- repo(required): String, git來源
+- branch(optional): String, 要佈署的分支, 預設為master
+
+#### target -> frontend(前端)
+
+> optional
+ 
+- folder(optional): String, 前端資料夾名稱, 預設為Frontend
+- user(required): String, 主機登入帳號
+- host(required): String, 主機位址
+- path(required): String, 主機要rsync位置(絕對路徑)
+- apibase(required): String, 前端apibase
+- build_script(required): String, 因為各種前端打包的方式太多種, 直接在這裡設定
+
+#### target -> backend(後端)
+
+> optional
+ 
+- folder(optional): String, 前端資料夾名稱, 預設為Frontend
+- user(required): String, 主機登入帳號
+- host(required): String, 主機位址
+- path(required): String, 主機要rsync位置(絕對路徑)
+- migrate(optional): Boolean, 佈署完成後自動執行migrate, 預設為false
+- env(optional): Object, 要設定的Laravel .env參數, 使用此參數的後端專案需安裝imliam/laravel-env-set-command

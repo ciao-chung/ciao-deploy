@@ -41,7 +41,7 @@ class WebDeploy extends BaseCommand{
     await BuildBackend(this.commandConfig).start()
     await Rsync(this.commandConfig).start()
     await CleanTemp(this.commandConfig).start()
-    await AfterRsync(this.commandConfig).start()
+    await AfterRsync(this.commandConfig, this.args).start()
     notify('Deploy successfully');
   }
 }
