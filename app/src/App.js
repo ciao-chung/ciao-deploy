@@ -1,5 +1,6 @@
 import AppKernel from 'AppKernel'
 import WebDeploy from 'Commands/WebDeploy'
+import WebDeployCreateConfig from 'Commands/WebDeployCreateConfig'
 import Env from 'Commands/Env'
 import Fish from 'Commands/Fish'
 import Mysql from 'Commands/Mysql'
@@ -18,6 +19,7 @@ class App extends AppKernel {
   setup() {
     this.commandList = [
       WebDeploy,
+      WebDeployCreateConfig,
       Env,
       Fish,
       Mysql,

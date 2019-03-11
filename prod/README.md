@@ -45,6 +45,7 @@ ciao-deploy --command={command-name}
 - ssl-delete: 移除SSL
 - workspace: 工作環境設定
 - web-deploy: 佈署Web專案(Vue、Laravel)
+- web-deploy-config: 產生Web Deploy設定檔
 
 ### 基本環境安裝(env)
 
@@ -115,6 +116,7 @@ ciao-deploy --command={command-name}
 
 ### command參數
 
+- dump(optional): Boolean, 查看deploy設定檔內容(不會執行佈署)
 - first(optional): Boolean, 第一次佈署, 會另外執行下列的初始化動作
   - 如果有佈署後端會執行 **php artisan storage:link** 建立storage link
 - config(required): String, 佈署設定檔絕對路徑

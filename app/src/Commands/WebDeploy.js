@@ -1,5 +1,6 @@
 import BaseCommand from 'Commands/_BaseCommand'
 import { resolve } from 'path'
+import prettyjson from 'prettyjson'
 import CloneSource from 'WebDeploy/CloneSource'
 import BuildFrontend from 'WebDeploy/BuildFrontend'
 import BuildBackend from 'WebDeploy/BuildBackend'
@@ -20,13 +21,28 @@ class WebDeploy extends BaseCommand{
         defaultValue: false,
         type: 'boolean',
       },
+      {
+        name: 'dump',
+        description: '查看設定檔',
+        defaultValue: false,
+        type: 'boolean',
+      },
     ]
     this.description = `Deploy Web Project`
   }
 
   async start() {
+    if(this.args.dump) {
+      this.dumpConfig()
+      return
+    }
+
     await this.setupVariable()
     await this.workflow()
+  }
+
+  async dumpConfig() {
+    console.log(prettyjson.render(this.commandConfig))
   }
 
   async setupVariable() {
