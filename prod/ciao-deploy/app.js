@@ -36177,6 +36177,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_Commands_PhpMyAdmin__ = __webpack_require__(638);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_Commands_SetupDeployEnv__ = __webpack_require__(639);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_Commands_SetupRemoteEnv__ = __webpack_require__(640);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_Commands_BackupDB__ = __webpack_require__(641);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -36217,6 +36218,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var App =
 /*#__PURE__*/
 function (_AppKernel) {
@@ -36231,7 +36233,7 @@ function (_AppKernel) {
   _createClass(App, [{
     key: "setup",
     value: function setup() {
-      this.commandList = [__WEBPACK_IMPORTED_MODULE_1_Commands_WebDeploy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2_Commands_WebDeployCreateConfig__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3_Commands_Env__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4_Commands_Fish__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5_Commands_Mysql__["a" /* default */], __WEBPACK_IMPORTED_MODULE_6_Commands_MysqlUserCreate__["a" /* default */], __WEBPACK_IMPORTED_MODULE_7_Commands_MysqlUserDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_8_Commands_MysqlDatabaseCreate__["a" /* default */], __WEBPACK_IMPORTED_MODULE_9_Commands_MysqlDatabaseDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_10_Commands_Apache__["a" /* default */], __WEBPACK_IMPORTED_MODULE_11_Commands_DomainSign__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12_Commands_DomainProxy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_13_Commands_DomainDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_14_Commands_Ssl__["a" /* default */], __WEBPACK_IMPORTED_MODULE_15_Commands_SslSign__["a" /* default */], __WEBPACK_IMPORTED_MODULE_16_Commands_SslDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_17_Commands_Workspace__["a" /* default */], __WEBPACK_IMPORTED_MODULE_18_Commands_PhpMyAdmin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_19_Commands_SetupDeployEnv__["a" /* default */], __WEBPACK_IMPORTED_MODULE_20_Commands_SetupRemoteEnv__["a" /* default */]];
+      this.commandList = [__WEBPACK_IMPORTED_MODULE_1_Commands_WebDeploy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2_Commands_WebDeployCreateConfig__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3_Commands_Env__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4_Commands_Fish__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5_Commands_Mysql__["a" /* default */], __WEBPACK_IMPORTED_MODULE_6_Commands_MysqlUserCreate__["a" /* default */], __WEBPACK_IMPORTED_MODULE_7_Commands_MysqlUserDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_8_Commands_MysqlDatabaseCreate__["a" /* default */], __WEBPACK_IMPORTED_MODULE_9_Commands_MysqlDatabaseDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_10_Commands_Apache__["a" /* default */], __WEBPACK_IMPORTED_MODULE_11_Commands_DomainSign__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12_Commands_DomainProxy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_13_Commands_DomainDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_14_Commands_Ssl__["a" /* default */], __WEBPACK_IMPORTED_MODULE_15_Commands_SslSign__["a" /* default */], __WEBPACK_IMPORTED_MODULE_16_Commands_SslDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_17_Commands_Workspace__["a" /* default */], __WEBPACK_IMPORTED_MODULE_18_Commands_PhpMyAdmin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_19_Commands_SetupDeployEnv__["a" /* default */], __WEBPACK_IMPORTED_MODULE_20_Commands_SetupRemoteEnv__["a" /* default */], __WEBPACK_IMPORTED_MODULE_21_Commands_BackupDB__["a" /* default */]];
     }
   }]);
 
@@ -59221,6 +59223,10 @@ function (_BaseCommand) {
                 return execAsync("sudo apt-get install python-certbot-apache -y");
 
               case 11:
+                _context2.next = 13;
+                return execAsync("sudo systemctl status certbot.timer");
+
+              case 13:
               case "end":
                 return _context2.stop();
             }
@@ -59357,6 +59363,10 @@ function (_BaseCommand) {
                 return execAsync("sudo certbot --apache --redirect --keep-until-expiring --no-eff-email --agree-tos --email ".concat(this.args.email, " --domains ").concat(this.args.domain));
 
               case 7:
+                _context2.next = 9;
+                return execAsync("sudo systemctl status certbot.timer");
+
+              case 9:
               case "end":
                 return _context2.stop();
             }
@@ -61183,6 +61193,312 @@ function (_BaseCommand) {
 }(__WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["a"] = (new SetupRemoteEnv());
+
+/***/ }),
+/* 641 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_path__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var BackupDB =
+/*#__PURE__*/
+function (_BaseCommand) {
+  _inherits(BackupDB, _BaseCommand);
+
+  function BackupDB() {
+    _classCallCheck(this, BackupDB);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(BackupDB).apply(this, arguments));
+  }
+
+  _createClass(BackupDB, [{
+    key: "setupCommand",
+    value: function () {
+      var _setupCommand = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.name = 'backup-db';
+                this.configFile = {
+                  required: false,
+                  property: 'config'
+                };
+                this.argsConfig = [{
+                  name: 'username',
+                  description: '使用者帳號',
+                  required: true,
+                  type: 'string'
+                }, {
+                  name: 'password',
+                  description: '使用者密碼',
+                  required: true,
+                  type: 'string'
+                }, {
+                  name: 'db',
+                  description: '資料庫',
+                  required: true,
+                  type: 'array'
+                }, {
+                  name: 'repo',
+                  description: 'Git Repo',
+                  required: true,
+                  type: 'string'
+                }];
+                this.description = "\u900F\u904Egit\u5099\u4EFD\u8CC7\u6599\u5EAB";
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function setupCommand() {
+        return _setupCommand.apply(this, arguments);
+      }
+
+      return setupCommand;
+    }()
+  }, {
+    key: "start",
+    value: function () {
+      var _start = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2() {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                log("Start backup MySQL Database");
+                _context2.next = 3;
+                return this.initDeployTempFolder();
+
+              case 3:
+                _context2.next = 5;
+                return this.dumpDb();
+
+              case 5:
+                _context2.next = 7;
+                return this.backup();
+
+              case 7:
+                log("Backup MySQL Database successfully");
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function start() {
+        return _start.apply(this, arguments);
+      }
+
+      return start;
+    }()
+  }, {
+    key: "initDeployTempFolder",
+    value: function () {
+      var _initDeployTempFolder = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee3() {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                // 建立佈署的暫存資料夾名稱、路徑
+                this.current = now('YYYYMMDD_HHmmss');
+                this.deployTempFolder = "db-".concat(now('YYYYMMDDHHmmss'));
+                this.deployTempPath = Object(__WEBPACK_IMPORTED_MODULE_2_path__["resolve"])(process.env.PWD, this.deployTempFolder);
+                mkdir('-p', this.deployTempPath);
+                _context3.next = 6;
+                return execAsync("git clone ".concat(this.args.repo, " backup"), {
+                  cwd: this.deployTempPath
+                });
+
+              case 6:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function initDeployTempFolder() {
+        return _initDeployTempFolder.apply(this, arguments);
+      }
+
+      return initDeployTempFolder;
+    }()
+  }, {
+    key: "dumpDb",
+    value: function () {
+      var _dumpDb = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee4() {
+        var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, db;
+
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                this.storePath = Object(__WEBPACK_IMPORTED_MODULE_2_path__["resolve"])(this.deployTempPath, 'backup', this.current);
+                mkdir('-p', this.storePath);
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                _context4.prev = 5;
+                _iterator = this.args.db[Symbol.iterator]();
+
+              case 7:
+                if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+                  _context4.next = 15;
+                  break;
+                }
+
+                db = _step.value;
+                log("\u6B63\u5728dump\u8CC7\u6599\u5EAB".concat(db), 'yellow');
+                _context4.next = 12;
+                return execAsync("mysqldump -u ".concat(this.args.username, " -p").concat(this.args.password, " ").concat(db, " > ").concat(db, ".sql"), {
+                  cwd: this.storePath
+                });
+
+              case 12:
+                _iteratorNormalCompletion = true;
+                _context4.next = 7;
+                break;
+
+              case 15:
+                _context4.next = 21;
+                break;
+
+              case 17:
+                _context4.prev = 17;
+                _context4.t0 = _context4["catch"](5);
+                _didIteratorError = true;
+                _iteratorError = _context4.t0;
+
+              case 21:
+                _context4.prev = 21;
+                _context4.prev = 22;
+
+                if (!_iteratorNormalCompletion && _iterator.return != null) {
+                  _iterator.return();
+                }
+
+              case 24:
+                _context4.prev = 24;
+
+                if (!_didIteratorError) {
+                  _context4.next = 27;
+                  break;
+                }
+
+                throw _iteratorError;
+
+              case 27:
+                return _context4.finish(24);
+
+              case 28:
+                return _context4.finish(21);
+
+              case 29:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this, [[5, 17, 21, 29], [22,, 24, 28]]);
+      }));
+
+      function dumpDb() {
+        return _dumpDb.apply(this, arguments);
+      }
+
+      return dumpDb;
+    }()
+  }, {
+    key: "backup",
+    value: function () {
+      var _backup = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee5() {
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return execAsync("git add .; git commit -am \"backup ".concat(this.current, " (").concat(this.args.db.toString(), ")\""), {
+                  cwd: this.storePath
+                });
+
+              case 2:
+                _context5.next = 4;
+                return execAsync("git push --force", {
+                  cwd: this.deployTempPath
+                });
+
+              case 4:
+                _context5.next = 6;
+                return execAsync("rm -rf ".concat(this.deployTempPath), {
+                  cwd: this.deployTempPath
+                });
+
+              case 6:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+
+      function backup() {
+        return _backup.apply(this, arguments);
+      }
+
+      return backup;
+    }()
+  }]);
+
+  return BackupDB;
+}(__WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["a"] = (new BackupDB());
 
 /***/ })
 /******/ ]);

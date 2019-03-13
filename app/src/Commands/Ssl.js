@@ -18,6 +18,7 @@ class Ssl extends BaseCommand{
     await execAsync(`sudo add-apt-repository ppa:certbot/certbot -y`)
     await execAsync(`sudo apt-get update`)
     await execAsync(`sudo apt-get install python-certbot-apache -y`)
+    await execAsync(`sudo systemctl status certbot.timer`)
   }
 }
 

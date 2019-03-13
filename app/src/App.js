@@ -19,6 +19,7 @@ import Workspace from 'Commands/Workspace'
 import PhpMyAdmin from 'Commands/PhpMyAdmin'
 import SetupDeployEnv from 'Commands/SetupDeployEnv'
 import SetupRemoteEnv from 'Commands/SetupRemoteEnv'
+import BackupDB from 'Commands/BackupDB'
 class App extends AppKernel {
   setup() {
     this.commandList = [
@@ -42,6 +43,7 @@ class App extends AppKernel {
       PhpMyAdmin,
       SetupDeployEnv,
       SetupRemoteEnv,
+      BackupDB,
     ]
   }
 }

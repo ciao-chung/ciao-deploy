@@ -37,6 +37,7 @@ ciao-deploy --command={command-name}
 - mysql-user-delete: 刪除MySQL使用者
 - mysql-db-create: 建立MySQL DB
 - mysql-db-delete: 刪除MySQL DB
+- backup-db: 透過git repo備份DB
 - apache: 初始化Apache
 - domain-sign: 簽Domain
 - domain-proxy: 簽Proxy Domain
@@ -86,6 +87,21 @@ ciao-deploy --command={command-name}
 
 - rootPassword(required): String, MySQL的Root密碼
 - db(required): String, 資料庫名稱
+
+### 透過git repo備份DB(backup-db)
+
+**參數**
+
+- username(required): String, MySQL使用者帳號
+- password(required): String, MySQL使用者密碼
+- db(required): Array, 要備份的DB名稱, 使用逗號區隔(ex: --db=db_1,db_2,db_3)
+- repo(required): String, Git Repository
+
+**範例**
+
+```bash
+ciao-deploy --command=backup-db --db=db_1,db_2,db_3 --repo=git@repo.git --username=username --password=password
+```
 
 ### Domain相關指令
 

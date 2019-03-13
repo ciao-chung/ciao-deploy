@@ -36,6 +36,7 @@ class SslSign extends BaseCommand{
     }
 
     await execAsync(`sudo certbot --apache --redirect --keep-until-expiring --no-eff-email --agree-tos --email ${this.args.email} --domains ${this.args.domain}` )
+    await execAsync(`sudo systemctl status certbot.timer`)
   }
 }
 
