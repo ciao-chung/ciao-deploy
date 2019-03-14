@@ -4617,13 +4617,13 @@ module.exports = $export;
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = require("fs");
+module.exports = require("path");
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = require("path");
+module.exports = require("fs");
 
 /***/ }),
 /* 4 */
@@ -4659,7 +4659,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 var os = __webpack_require__(30);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 var glob = __webpack_require__(111);
 
@@ -7065,13 +7065,13 @@ var cp = __webpack_require__(82);
 
 var semver = __webpack_require__(553);
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 var url = __webpack_require__(554);
 
 var os = __webpack_require__(30);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 function clone(obj) {
   return JSON.parse(JSON.stringify(obj));
@@ -9638,7 +9638,7 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 //   things that don't exist.
 module.exports = glob;
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 var rp = __webpack_require__(161);
 
@@ -9650,7 +9650,7 @@ var inherits = __webpack_require__(530);
 
 var EE = __webpack_require__(56).EventEmitter;
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 var assert = __webpack_require__(162);
 
@@ -10310,7 +10310,7 @@ var path = {
 };
 
 try {
-  path = __webpack_require__(3);
+  path = __webpack_require__(2);
 } catch (er) {}
 
 var GLOBSTAR = minimatch.GLOBSTAR = Minimatch.GLOBSTAR = {};
@@ -11285,9 +11285,9 @@ module.exports = _cd;
 /* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 var common = __webpack_require__(6);
 
@@ -11637,7 +11637,7 @@ var common = __webpack_require__(6);
 
 var os = __webpack_require__(30);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 common.register('tempdir', _tempDir, {
   allowGlobbing: false,
@@ -11704,7 +11704,7 @@ module.exports.clearCache = clearCache;
 /* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 var common = __webpack_require__(6);
 
@@ -11726,9 +11726,9 @@ module.exports = _pwd;
 /* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 var common = __webpack_require__(6);
 
@@ -11883,7 +11883,7 @@ module.exports = _ls;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 common.register('rm', _rm, {
   cmdOptions: {
@@ -12105,9 +12105,9 @@ module.exports = _rm;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 common.register('to', _to, {
   pipeOnly: true,
@@ -12151,9 +12151,9 @@ module.exports = _to;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 common.register('toEnd', _toEnd, {
   pipeOnly: true,
@@ -13411,7 +13411,7 @@ realpath.realpathSync = realpathSync;
 realpath.monkeypatch = monkeypatch;
 realpath.unmonkeypatch = unmonkeypatch;
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 var origRealpath = fs.realpath;
 var origRealpathSync = fs.realpathSync;
@@ -13493,7 +13493,7 @@ function ownProp(obj, field) {
   return Object.prototype.hasOwnProperty.call(obj, field);
 }
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 var minimatch = __webpack_require__(112);
 
@@ -13785,7 +13785,7 @@ function onceStrict(fn) {
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 common.register('cat', _cat, {
   canReceivePipe: true,
@@ -13863,9 +13863,9 @@ function numberedLine(n, line) {
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 var PERMS = function (base) {
   return {
@@ -14083,7 +14083,7 @@ var common = __webpack_require__(6);
 
 var _cd = __webpack_require__(114);
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 common.register('dirs', _dirs, {
   wrapOutput: false
@@ -14376,9 +14376,9 @@ var _tempDir = __webpack_require__(117).tempDir;
 
 var _pwd = __webpack_require__(118);
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 var child = __webpack_require__(82);
 
@@ -14597,7 +14597,7 @@ module.exports = _exec;
 
 var childProcess = __webpack_require__(82);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 var paramFilePath = process.argv[2];
 var serializedParams = fs.readFileSync(paramFilePath, 'utf8');
@@ -14632,7 +14632,7 @@ if (pipe) {
 /* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 var common = __webpack_require__(6);
 
@@ -14705,7 +14705,7 @@ module.exports = _find;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 common.register('grep', _grep, {
   globStart: 2,
@@ -14788,7 +14788,7 @@ module.exports = _grep;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 common.register('head', _head, {
   canReceivePipe: true,
@@ -14904,9 +14904,9 @@ module.exports = _head;
 /* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 var common = __webpack_require__(6);
 
@@ -14995,9 +14995,9 @@ module.exports = _ln;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 common.register('mkdir', _mkdir, {
   cmdOptions: {
@@ -15112,9 +15112,9 @@ module.exports = _mkdir;
 /* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 var common = __webpack_require__(6);
 
@@ -15263,7 +15263,7 @@ module.exports = _mv;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 common.register('sed', _sed, {
   globStart: 3,
@@ -15421,7 +15421,7 @@ module.exports = _set;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 common.register('sort', _sort, {
   canReceivePipe: true,
@@ -15523,7 +15523,7 @@ module.exports = _sort;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 common.register('tail', _tail, {
   canReceivePipe: true,
@@ -15612,7 +15612,7 @@ module.exports = _tail;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 common.register('test', _test, {
   cmdOptions: {
@@ -15695,7 +15695,7 @@ module.exports = _test;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 common.register('touch', _touch, {
   cmdOptions: {
@@ -15809,7 +15809,7 @@ function tryStatFile(filePath) {
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(2); // add c spaces to the left of str
+var fs = __webpack_require__(3); // add c spaces to the left of str
 
 
 function lpad(c, str) {
@@ -15915,9 +15915,9 @@ module.exports = _uniq;
 
 var common = __webpack_require__(6);
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 common.register('which', _which, {
   allowGlobbing: false,
@@ -29399,7 +29399,7 @@ module.exports = require("net");
 /**
  * Wrapper for the toaster (https://github.com/nels-o/toaster)
  */
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 var notifier = path.resolve(__dirname, '../vendor/snoreToast/SnoreToast.exe');
 
@@ -29520,7 +29520,7 @@ Usage
   4 = Closed or faded out
 
  */
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 var notifier = path.resolve(__dirname, '../vendor/notifu/notifu');
 
@@ -29944,9 +29944,9 @@ exports.renderString = function renderString(data, options, indentation) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -36494,9 +36494,9 @@ app.start();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Global___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_Global__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_yaml__ = __webpack_require__(565);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_js_yaml___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_js_yaml__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_path__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fs__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_fs__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -36816,7 +36816,7 @@ function () {
   _createClass(Global, [{
     key: "setupEnvVariable",
     value: function setupEnvVariable() {
-      global.pathResolve = __webpack_require__(3).resolve;
+      global.pathResolve = __webpack_require__(2).resolve;
       global.projectRoot = pathResolve(__dirname, '../../');
       global.projectConfig = __webpack_require__(564);
       global.appRoot = pathResolve(projectRoot, 'app');
@@ -37036,11 +37036,11 @@ String.prototype.toEnd = common.wrap('toEnd', _toEnd);
 // DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 // OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
 // USE OR OTHER DEALINGS IN THE SOFTWARE.
-var pathModule = __webpack_require__(3);
+var pathModule = __webpack_require__(2);
 
 var isWindows = process.platform === 'win32';
 
-var fs = __webpack_require__(2); // JavaScript implementation of realpath, ported from node pre-v6
+var fs = __webpack_require__(3); // JavaScript implementation of realpath, ported from node pre-v6
 
 
 var DEBUG = process.env.NODE_DEBUG && /fs/.test(process.env.NODE_DEBUG);
@@ -37631,7 +37631,7 @@ if (typeof Object.create === 'function') {
 module.exports = globSync;
 globSync.GlobSync = GlobSync;
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 var rp = __webpack_require__(161);
 
@@ -37643,7 +37643,7 @@ var Glob = __webpack_require__(111).Glob;
 
 var util = __webpack_require__(24);
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 var assert = __webpack_require__(162);
 
@@ -39646,7 +39646,7 @@ var camelCase = __webpack_require__(547);
 
 var decamelize = __webpack_require__(548);
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 var tokenizeArgString = __webpack_require__(549);
 
@@ -42047,7 +42047,7 @@ module.exports = which;
 which.sync = whichSync;
 var isWindows = process.platform === 'win32' || process.env.OSTYPE === 'cygwin' || process.env.OSTYPE === 'msys';
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 var COLON = isWindows ? ';' : ':';
 
@@ -42170,7 +42170,7 @@ function whichSync(cmd, opt) {
 /* 557 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 var core;
 
@@ -42238,7 +42238,7 @@ function sync(path, options) {
 module.exports = isexe;
 isexe.sync = sync;
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 function checkPathExt(path, options) {
   var pathext = options.pathExt !== undefined ? options.pathExt : process.env.PATHEXT;
@@ -42289,7 +42289,7 @@ function sync(path, options) {
 module.exports = isexe;
 isexe.sync = sync;
 
-var fs = __webpack_require__(2);
+var fs = __webpack_require__(3);
 
 function isexe(path, options, cb) {
   fs.stat(path, function (er, stat) {
@@ -42332,7 +42332,7 @@ var utils = __webpack_require__(57);
 
 var Growl = __webpack_require__(123);
 
-var path = __webpack_require__(3);
+var path = __webpack_require__(2);
 
 var notifier = path.join(__dirname, '../vendor/terminal-notifier.app/Contents/MacOS/terminal-notifier');
 
@@ -42638,7 +42638,7 @@ module.exports = new Growly();
 var net = __webpack_require__(313),
     crypto = __webpack_require__(563),
     format = __webpack_require__(24).format,
-    fs = __webpack_require__(2);
+    fs = __webpack_require__(3);
 
 var nl = '\r\n';
 /**
@@ -54804,7 +54804,7 @@ module.exports.safeDump = safeDump;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_path__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prettyjson__ = __webpack_require__(318);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prettyjson___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prettyjson__);
@@ -55862,7 +55862,7 @@ function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path__);
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -56126,9 +56126,9 @@ function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -56387,7 +56387,7 @@ function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path__);
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -56923,9 +56923,9 @@ function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_path__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_fs__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_fs__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -57573,9 +57573,9 @@ function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_os___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_os__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_child_process__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_child_process___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_child_process__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fs__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_fs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_path__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -58519,9 +58519,9 @@ function (_BaseCommand) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_path__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -58796,9 +58796,9 @@ function (_BaseCommand) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_path__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_Service_SignDomain__ = __webpack_require__(319);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -58922,9 +58922,9 @@ function (_BaseCommand) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_path__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_Service_SignDomain__ = __webpack_require__(319);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -59301,9 +59301,9 @@ function (_BaseCommand) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_path__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_fs__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_fs__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -59441,9 +59441,9 @@ function (_BaseCommand) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_path__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -60134,9 +60134,9 @@ function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_fs__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_fs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_path__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_os__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_os___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_os__);
@@ -60215,7 +60215,7 @@ function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path__);
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -60481,9 +60481,9 @@ function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -60999,7 +60999,7 @@ function (_BaseCommand) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_path__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -61117,7 +61117,7 @@ function (_BaseCommand) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_path__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -61248,9 +61248,9 @@ function (_BaseCommand) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_path__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -61554,10 +61554,11 @@ function (_BaseCommand) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_path__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prettyjson__ = __webpack_require__(318);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prettyjson___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prettyjson__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_CustomDeploy_CustomJob__ = __webpack_require__(643);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -61579,6 +61580,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -61731,7 +61733,7 @@ function (_BaseCommand) {
       var _workflow = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee5() {
-        var jobName, job;
+        var jobName, jobConfig, Job;
         return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
@@ -61740,32 +61742,43 @@ function (_BaseCommand) {
 
               case 1:
                 if ((_context5.t1 = _context5.t0()).done) {
-                  _context5.next = 8;
+                  _context5.next = 15;
                   break;
                 }
 
                 jobName = _context5.t1.value;
-                job = this.commandConfig.deploy[jobName];
-                _context5.next = 6;
-                return this.startJob(jobName, job);
+                jobConfig = this.commandConfig.deploy[jobName];
+                Job = Object(__WEBPACK_IMPORTED_MODULE_3_CustomDeploy_CustomJob__["a" /* default */])(jobName, jobConfig);
+                _context5.prev = 5;
+                _context5.next = 8;
+                return Job.execute();
 
-              case 6:
+              case 8:
+                _context5.next = 13;
+                break;
+
+              case 10:
+                _context5.prev = 10;
+                _context5.t2 = _context5["catch"](5);
+                log("Job ".concat(jobName, " fail: ").concat(_context5.t2), 'red');
+
+              case 13:
                 _context5.next = 1;
                 break;
 
-              case 8:
-                _context5.next = 10;
+              case 15:
+                _context5.next = 17;
                 return execAsync("rm -rf ".concat(deployTempPath));
 
-              case 10:
+              case 17:
                 notify('Deploy successfully');
 
-              case 11:
+              case 18:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, this);
+        }, _callee5, this, [[5, 10]]);
       }));
 
       function workflow() {
@@ -61774,188 +61787,282 @@ function (_BaseCommand) {
 
       return workflow;
     }()
-  }, {
-    key: "startJob",
-    value: function () {
-      var _startJob = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee6(jobName, job) {
-        var jobTempPath, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, command;
-
-        return regeneratorRuntime.wrap(function _callee6$(_context6) {
-          while (1) {
-            switch (_context6.prev = _context6.next) {
-              case 0:
-                jobTempPath = Object(__WEBPACK_IMPORTED_MODULE_1_path__["resolve"])(deployTempPath, jobName);
-                mkdir('-p', jobTempPath);
-                if (job.description) log("\n[".concat(job.description, "]"), 'yellow');
-                _iteratorNormalCompletion = true;
-                _didIteratorError = false;
-                _iteratorError = undefined;
-                _context6.prev = 6;
-                _iterator = job.execute[Symbol.iterator]();
-
-              case 8:
-                if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-                  _context6.next = 16;
-                  break;
-                }
-
-                command = _step.value;
-                log("".concat(command));
-                _context6.next = 13;
-                return execAsync(command, {
-                  cwd: jobTempPath
-                });
-
-              case 13:
-                _iteratorNormalCompletion = true;
-                _context6.next = 8;
-                break;
-
-              case 16:
-                _context6.next = 22;
-                break;
-
-              case 18:
-                _context6.prev = 18;
-                _context6.t0 = _context6["catch"](6);
-                _didIteratorError = true;
-                _iteratorError = _context6.t0;
-
-              case 22:
-                _context6.prev = 22;
-                _context6.prev = 23;
-
-                if (!_iteratorNormalCompletion && _iterator.return != null) {
-                  _iterator.return();
-                }
-
-              case 25:
-                _context6.prev = 25;
-
-                if (!_didIteratorError) {
-                  _context6.next = 28;
-                  break;
-                }
-
-                throw _iteratorError;
-
-              case 28:
-                return _context6.finish(25);
-
-              case 29:
-                return _context6.finish(22);
-
-              case 30:
-                if (!job.rsync) {
-                  _context6.next = 33;
-                  break;
-                }
-
-                _context6.next = 33;
-                return this.rsync(job.rsync, jobTempPath);
-
-              case 33:
-              case "end":
-                return _context6.stop();
-            }
-          }
-        }, _callee6, this, [[6, 18, 22, 30], [23,, 25, 29]]);
-      }));
-
-      function startJob(_x, _x2) {
-        return _startJob.apply(this, arguments);
-      }
-
-      return startJob;
-    }()
-  }, {
-    key: "rsync",
-    value: function () {
-      var _rsync = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee7(rsyncConfig, jobTempPath) {
-        var rsyncCommand, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, remoteCommand;
-
-        return regeneratorRuntime.wrap(function _callee7$(_context7) {
-          while (1) {
-            switch (_context7.prev = _context7.next) {
-              case 0:
-                rsyncCommand = "rsync -e \"ssh -o StrictHostKeyChecking=no\" -avzh ".concat(jobTempPath, "/ ").concat(rsyncConfig.user, "@").concat(rsyncConfig.host, ":").concat(rsyncConfig.path);
-                log(rsyncCommand); // await executeAsync(rsyncCommand)
-
-                if (Array.isArray(rsyncConfig.execute)) {
-                  _context7.next = 4;
-                  break;
-                }
-
-                return _context7.abrupt("return");
-
-              case 4:
-                _iteratorNormalCompletion2 = true;
-                _didIteratorError2 = false;
-                _iteratorError2 = undefined;
-                _context7.prev = 7;
-
-                for (_iterator2 = rsyncConfig.execute[Symbol.iterator](); !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                  remoteCommand = _step2.value;
-                  log("".concat(remoteCommand)); // await executeRemote(rsyncConfig.user, rsyncConfig.host, remoteCommand, { cwd: jobTempPath })
-                }
-
-                _context7.next = 15;
-                break;
-
-              case 11:
-                _context7.prev = 11;
-                _context7.t0 = _context7["catch"](7);
-                _didIteratorError2 = true;
-                _iteratorError2 = _context7.t0;
-
-              case 15:
-                _context7.prev = 15;
-                _context7.prev = 16;
-
-                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-                  _iterator2.return();
-                }
-
-              case 18:
-                _context7.prev = 18;
-
-                if (!_didIteratorError2) {
-                  _context7.next = 21;
-                  break;
-                }
-
-                throw _iteratorError2;
-
-              case 21:
-                return _context7.finish(18);
-
-              case 22:
-                return _context7.finish(15);
-
-              case 23:
-              case "end":
-                return _context7.stop();
-            }
-          }
-        }, _callee7, this, [[7, 11, 15, 23], [16,, 18, 22]]);
-      }));
-
-      function rsync(_x3, _x4) {
-        return _rsync.apply(this, arguments);
-      }
-
-      return rsync;
-    }()
   }]);
 
   return CustomDeploy;
 }(__WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["a"] = (new CustomDeploy());
+
+/***/ }),
+/* 643 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path__);
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var CustomJob =
+/*#__PURE__*/
+function () {
+  function CustomJob(jobName, jobConfig) {
+    _classCallCheck(this, CustomJob);
+
+    this.name = jobName;
+    this.config = jobConfig;
+    this.rsync = this.config.rsync;
+    this.jobTempPath = Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(deployTempPath, this.name);
+  }
+
+  _createClass(CustomJob, [{
+    key: "execute",
+    value: function () {
+      var _execute = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, command;
+
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                mkdir('-p', this.jobTempPath);
+                if (this.config.description) log("\n[".concat(this.config.description, "]"), 'yellow');
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                _context.prev = 5;
+                _iterator = this.config.execute[Symbol.iterator]();
+
+              case 7:
+                if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+                  _context.next = 15;
+                  break;
+                }
+
+                command = _step.value;
+                log("".concat(command));
+                _context.next = 12;
+                return execAsync(command, {
+                  cwd: this.jobTempPath
+                });
+
+              case 12:
+                _iteratorNormalCompletion = true;
+                _context.next = 7;
+                break;
+
+              case 15:
+                _context.next = 21;
+                break;
+
+              case 17:
+                _context.prev = 17;
+                _context.t0 = _context["catch"](5);
+                _didIteratorError = true;
+                _iteratorError = _context.t0;
+
+              case 21:
+                _context.prev = 21;
+                _context.prev = 22;
+
+                if (!_iteratorNormalCompletion && _iterator.return != null) {
+                  _iterator.return();
+                }
+
+              case 24:
+                _context.prev = 24;
+
+                if (!_didIteratorError) {
+                  _context.next = 27;
+                  break;
+                }
+
+                throw _iteratorError;
+
+              case 27:
+                return _context.finish(24);
+
+              case 28:
+                return _context.finish(21);
+
+              case 29:
+                if (!this.rsync) {
+                  _context.next = 32;
+                  break;
+                }
+
+                _context.next = 32;
+                return this.startRsync();
+
+              case 32:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[5, 17, 21, 29], [22,, 24, 28]]);
+      }));
+
+      function execute() {
+        return _execute.apply(this, arguments);
+      }
+
+      return execute;
+    }()
+  }, {
+    key: "executeRemote",
+    value: function (_executeRemote) {
+      function executeRemote(_x) {
+        return _executeRemote.apply(this, arguments);
+      }
+
+      executeRemote.toString = function () {
+        return _executeRemote.toString();
+      };
+
+      return executeRemote;
+    }(
+    /*#__PURE__*/
+    function () {
+      var _ref = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2(command) {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return executeRemote(this.rsync.user, this.rsync.host, command, {
+                  cwd: this.jobTempPath
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      return function (_x2) {
+        return _ref.apply(this, arguments);
+      };
+    }())
+  }, {
+    key: "startRsync",
+    value: function () {
+      var _startRsync = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee3() {
+        var rsyncCommand, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, remoteCommand;
+
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                rsyncCommand = "rsync -e \"ssh -o StrictHostKeyChecking=no\" -avzh ".concat(this.jobTempPath, "/ ").concat(this.rsync.user, "@").concat(this.rsync.host, ":").concat(this.rsync.path);
+                log(rsyncCommand);
+                _context3.next = 4;
+                return executeAsync(rsyncCommand);
+
+              case 4:
+                if (Array.isArray(this.rsync.execute)) {
+                  _context3.next = 6;
+                  break;
+                }
+
+                return _context3.abrupt("return");
+
+              case 6:
+                _iteratorNormalCompletion2 = true;
+                _didIteratorError2 = false;
+                _iteratorError2 = undefined;
+                _context3.prev = 9;
+                _iterator2 = this.rsync.execute[Symbol.iterator]();
+
+              case 11:
+                if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
+                  _context3.next = 19;
+                  break;
+                }
+
+                remoteCommand = _step2.value;
+                log("".concat(remoteCommand));
+                _context3.next = 16;
+                return this.executeRemote();
+
+              case 16:
+                _iteratorNormalCompletion2 = true;
+                _context3.next = 11;
+                break;
+
+              case 19:
+                _context3.next = 25;
+                break;
+
+              case 21:
+                _context3.prev = 21;
+                _context3.t0 = _context3["catch"](9);
+                _didIteratorError2 = true;
+                _iteratorError2 = _context3.t0;
+
+              case 25:
+                _context3.prev = 25;
+                _context3.prev = 26;
+
+                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                  _iterator2.return();
+                }
+
+              case 28:
+                _context3.prev = 28;
+
+                if (!_didIteratorError2) {
+                  _context3.next = 31;
+                  break;
+                }
+
+                throw _iteratorError2;
+
+              case 31:
+                return _context3.finish(28);
+
+              case 32:
+                return _context3.finish(25);
+
+              case 33:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this, [[9, 21, 25, 33], [26,, 28, 32]]);
+      }));
+
+      function startRsync() {
+        return _startRsync.apply(this, arguments);
+      }
+
+      return startRsync;
+    }()
+  }]);
+
+  return CustomJob;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (function (jobName, jobConfig) {
+  return new CustomJob(jobName, jobConfig);
+});
 
 /***/ })
 /******/ ]);

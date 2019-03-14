@@ -1,6 +1,7 @@
 import BaseCommand from 'Commands/_BaseCommand'
 import { resolve } from 'path'
 import prettyjson from 'prettyjson'
+import CustomJob from 'CustomDeploy/CustomJob'
 class CustomDeploy extends BaseCommand{
   async setupCommand() {
     this.name = 'custom-deploy'
@@ -41,37 +42,17 @@ class CustomDeploy extends BaseCommand{
 
   async workflow() {
     for(const jobName in this.commandConfig.deploy) {
-      const job = this.commandConfig.deploy[jobName]
-      await this.startJob(jobName, job)
+      const jobConfig = this.commandConfig.deploy[jobName]
+      const Job = CustomJob(jobName, jobConfig)
+      try {
+        await Job.execute()
+      } catch(error) {
+        log(`Job ${jobName} fail: ${error}`, 'red')
+      }
     }
 
     await execAsync(`rm -rf ${deployTempPath}`)
     notify('Deploy successfully');
-  }
-
-  async startJob(jobName, job) {
-    const jobTempPath = resolve(deployTempPath, jobName)
-    mkdir('-p', jobTempPath)
-    if(job.description) log(`\n[${job.description}]`, 'yellow')
-    for(const command of job.execute) {
-      log(`${command}`)
-      await execAsync(command, { cwd: jobTempPath })
-    }
-
-    if(job.rsync) await this.rsync(job.rsync, jobTempPath)
-  }
-
-  async rsync(rsyncConfig, jobTempPath) {
-    const rsyncCommand = `rsync -e "ssh -o StrictHostKeyChecking=no" -avzh ${jobTempPath}/ ${rsyncConfig.user}@${rsyncConfig.host}:${rsyncConfig.path}`
-    log(rsyncCommand)
-    // await executeAsync(rsyncCommand)
-
-    if(!Array.isArray(rsyncConfig.execute)) return
-    for(const remoteCommand of rsyncConfig.execute) {
-      log(`${remoteCommand}`)
-      // await executeRemote(rsyncConfig.user, rsyncConfig.host, remoteCommand, { cwd: jobTempPath })
-    }
-
   }
 }
 
