@@ -66,7 +66,7 @@ class BackupDB extends BaseCommand{
 
   async backup() {
     await execAsync(`git add .; git commit -am "backup ${this.current} (${this.args.db.toString()})"`, { cwd: this.storePath })
-    await execAsync(`git push --force`, { cwd: this.deployTempPath })
+    await execAsync(`git push --force`, { cwd: this.storePath })
     await execAsync(`rm -rf ${this.deployTempPath}`, { cwd: this.deployTempPath })
   }
 }
