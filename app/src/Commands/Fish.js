@@ -22,12 +22,19 @@ class Fish extends BaseCommand{
   }
 
   async install() {
+    const pwd = process.env.PWD
     await execAsync(`sudo apt-get update`)
     await execAsync(`sudo apt-get install git -y`)
     await execAsync(`sudo apt-add-repository ppa:fish-shell/release-2 -y`)
     await execAsync(`sudo apt-get update`)
     await execAsync(`sudo apt-get install fish -y`)
     await execAsync(`sudo usermod -s /usr/bin/fish ${os.userInfo().username}`)
+    await execAsync(`curl -L https://get.oh-my.fish > install;`, { cwd: pwd })
+    await execAsync(`fish install --path=~/.local/share/omf --config=~/.config/omf --noninteractive`, { cwd: pwd })
+    await execAsync(`rm install`, { cwd: pwd })
+    await execAsync(`echo "#!/bin/bash \nfish <<'END_FISH' \n omf install gitstatus \nEND_FISH" > omf-install.sh`, { cwd: pwd })
+    await execAsync(`bash ./omf-install.sh`, { cwd: pwd })
+    await execAsync(`rm ./omf-install.sh`, { cwd: pwd })
   }
 
   async setupConfigFile() {

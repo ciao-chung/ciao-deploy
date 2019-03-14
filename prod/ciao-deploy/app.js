@@ -57244,17 +57244,25 @@ function () {
 
               case 2:
                 _context.next = 4;
-                return execAsync("sudo apt-get install vim -y");
+                return execAsync("sudo apt-get install git -y");
 
               case 4:
                 _context.next = 6;
-                return execAsync("sudo apt-get install curl -y");
+                return execAsync("sudo apt-get install tig -y");
 
               case 6:
                 _context.next = 8;
-                return execAsync("sudo apt-get install xclip -y");
+                return execAsync("sudo apt-get install vim -y");
 
               case 8:
+                _context.next = 10;
+                return execAsync("sudo apt-get install curl -y");
+
+              case 10:
+                _context.next = 12;
+                return execAsync("sudo apt-get install xclip -y");
+
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -57678,34 +57686,72 @@ function (_BaseCommand) {
       var _install = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee3() {
+        var pwd;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
+                pwd = process.env.PWD;
+                _context3.next = 3;
                 return execAsync("sudo apt-get update");
 
-              case 2:
-                _context3.next = 4;
+              case 3:
+                _context3.next = 5;
                 return execAsync("sudo apt-get install git -y");
 
-              case 4:
-                _context3.next = 6;
+              case 5:
+                _context3.next = 7;
                 return execAsync("sudo apt-add-repository ppa:fish-shell/release-2 -y");
 
-              case 6:
-                _context3.next = 8;
+              case 7:
+                _context3.next = 9;
                 return execAsync("sudo apt-get update");
 
-              case 8:
-                _context3.next = 10;
+              case 9:
+                _context3.next = 11;
                 return execAsync("sudo apt-get install fish -y");
 
-              case 10:
-                _context3.next = 12;
+              case 11:
+                _context3.next = 13;
                 return execAsync("sudo usermod -s /usr/bin/fish ".concat(__WEBPACK_IMPORTED_MODULE_1_os___default.a.userInfo().username));
 
-              case 12:
+              case 13:
+                _context3.next = 15;
+                return execAsync("curl -L https://get.oh-my.fish > install;", {
+                  cwd: pwd
+                });
+
+              case 15:
+                _context3.next = 17;
+                return execAsync("fish install --path=~/.local/share/omf --config=~/.config/omf --noninteractive", {
+                  cwd: pwd
+                });
+
+              case 17:
+                _context3.next = 19;
+                return execAsync("rm install", {
+                  cwd: pwd
+                });
+
+              case 19:
+                _context3.next = 21;
+                return execAsync("echo \"#!/bin/bash \nfish <<'END_FISH' \n omf install gitstatus \nEND_FISH\" > omf-install.sh", {
+                  cwd: pwd
+                });
+
+              case 21:
+                _context3.next = 23;
+                return execAsync("bash ./omf-install.sh", {
+                  cwd: pwd
+                });
+
+              case 23:
+                _context3.next = 25;
+                return execAsync("rm ./omf-install.sh", {
+                  cwd: pwd
+                });
+
+              case 25:
               case "end":
                 return _context3.stop();
             }
