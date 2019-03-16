@@ -3,7 +3,7 @@ class CustomJob {
   constructor(jobName, jobConfig) {
     this.name = jobName
     this.config = jobConfig
-    this.rsync = this.config.rsync
+    this.remote = this.config.remote
     this.jobTempPath = resolve(deployTempPath, this.name)
   }
 
@@ -15,23 +15,38 @@ class CustomJob {
       await execAsync(command, { cwd: this.jobTempPath })
     }
 
-    if(this.rsync) await this.startRsync()
+    if(this.remote) await this.startRemoteJob()
+  }
+
+  async startRemoteJob() {
+    if(this.remote.rsync == true) await this.rsync()
+
+    if(args.first == true) await this.executeRemoteCommands(this.remote.first_execute)
+    await this.executeRemoteCommands(this.remote.execute)
+  }
+
+  async executeRemoteCommands(commands) {
+    if(!Array.isArray(commands)) return
+    for(const command of commands) {
+      log(`${command}`)
+      try {
+        await this.executeRemote(command)
+      } catch (error) {
+        log(`Remote command fail`, 'yellow')
+        log(error, 'yellow')
+      }
+    }
   }
 
   async executeRemote(command) {
-    await executeRemote(this.rsync.user, this.rsync.host, command, { cwd: this.jobTempPath })
+    await executeRemote(this.remote.user, this.remote.host, command, { cwd: this.jobTempPath })
   }
 
-  async startRsync() {
-    const rsyncCommand = `rsync -e "ssh -o StrictHostKeyChecking=no" -avzh ${this.jobTempPath}/ ${this.rsync.user}@${this.rsync.host}:${this.rsync.path}`
+  async rsync() {
+    await this.executeRemote(`mkdir -p ${this.remote.path}`)
+    const rsyncCommand = `rsync -e "ssh -o StrictHostKeyChecking=no" -avzh ${this.jobTempPath}/ ${this.remote.user}@${this.remote.host}:${this.remote.path}`
     log(rsyncCommand)
-    await executeAsync(rsyncCommand)
-
-    if(!Array.isArray(this.rsync.execute)) return
-    for(const remoteCommand of this.rsync.execute) {
-      log(`${remoteCommand}`)
-      await this.executeRemote()
-    }
+    await execAsync(rsyncCommand)
   }
 }
 

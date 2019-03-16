@@ -4,7 +4,11 @@ class Chrome {
     await execAsync(`sudo apt-get install libxss1 libappindicator1 libindicator7 -y`)
     await execAsync(`wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb`)
     await execAsync(`sudo dpkg -i google-chrome*.deb`)
-    await execAsync(`sudo apt-get install -f`)
+    try {
+      await execAsync(`sudo apt-get install -f`)
+    } catch(error) {
+      log(error, 'yellow')
+    }
     await execAsync(`rm google-chrome-stable_current_amd64.deb`)
   }
 }

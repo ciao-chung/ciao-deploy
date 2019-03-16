@@ -60101,19 +60101,29 @@ function () {
                 return execAsync("sudo dpkg -i google-chrome*.deb");
 
               case 8:
-                _context.next = 10;
+                _context.prev = 8;
+                _context.next = 11;
                 return execAsync("sudo apt-get install -f");
 
-              case 10:
-                _context.next = 12;
+              case 11:
+                _context.next = 16;
+                break;
+
+              case 13:
+                _context.prev = 13;
+                _context.t0 = _context["catch"](8);
+                log(_context.t0, 'yellow');
+
+              case 16:
+                _context.next = 18;
                 return execAsync("rm google-chrome-stable_current_amd64.deb");
 
-              case 12:
+              case 18:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[8, 13]]);
       }));
 
       function exec() {
@@ -61821,7 +61831,7 @@ function () {
 
     this.name = jobName;
     this.config = jobConfig;
-    this.rsync = this.config.rsync;
+    this.remote = this.config.remote;
     this.jobTempPath = Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(deployTempPath, this.name);
   }
 
@@ -61898,13 +61908,13 @@ function () {
                 return _context.finish(21);
 
               case 29:
-                if (!this.rsync) {
+                if (!this.remote) {
                   _context.next = 32;
                   break;
                 }
 
                 _context.next = 32;
-                return this.startRsync();
+                return this.startRemoteJob();
 
               case 32:
               case "end":
@@ -61919,6 +61929,152 @@ function () {
       }
 
       return execute;
+    }()
+  }, {
+    key: "startRemoteJob",
+    value: function () {
+      var _startRemoteJob = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2() {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!(this.remote.rsync == true)) {
+                  _context2.next = 3;
+                  break;
+                }
+
+                _context2.next = 3;
+                return this.rsync();
+
+              case 3:
+                if (!(args.first == true)) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                _context2.next = 6;
+                return this.executeRemoteCommands(this.remote.first_execute);
+
+              case 6:
+                _context2.next = 8;
+                return this.executeRemoteCommands(this.remote.execute);
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function startRemoteJob() {
+        return _startRemoteJob.apply(this, arguments);
+      }
+
+      return startRemoteJob;
+    }()
+  }, {
+    key: "executeRemoteCommands",
+    value: function () {
+      var _executeRemoteCommands = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee3(commands) {
+        var _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, command;
+
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (Array.isArray(commands)) {
+                  _context3.next = 2;
+                  break;
+                }
+
+                return _context3.abrupt("return");
+
+              case 2:
+                _iteratorNormalCompletion2 = true;
+                _didIteratorError2 = false;
+                _iteratorError2 = undefined;
+                _context3.prev = 5;
+                _iterator2 = commands[Symbol.iterator]();
+
+              case 7:
+                if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
+                  _context3.next = 22;
+                  break;
+                }
+
+                command = _step2.value;
+                log("".concat(command));
+                _context3.prev = 10;
+                _context3.next = 13;
+                return this.executeRemote(command);
+
+              case 13:
+                _context3.next = 19;
+                break;
+
+              case 15:
+                _context3.prev = 15;
+                _context3.t0 = _context3["catch"](10);
+                log("Remote command fail", 'yellow');
+                log(_context3.t0, 'yellow');
+
+              case 19:
+                _iteratorNormalCompletion2 = true;
+                _context3.next = 7;
+                break;
+
+              case 22:
+                _context3.next = 28;
+                break;
+
+              case 24:
+                _context3.prev = 24;
+                _context3.t1 = _context3["catch"](5);
+                _didIteratorError2 = true;
+                _iteratorError2 = _context3.t1;
+
+              case 28:
+                _context3.prev = 28;
+                _context3.prev = 29;
+
+                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                  _iterator2.return();
+                }
+
+              case 31:
+                _context3.prev = 31;
+
+                if (!_didIteratorError2) {
+                  _context3.next = 34;
+                  break;
+                }
+
+                throw _iteratorError2;
+
+              case 34:
+                return _context3.finish(31);
+
+              case 35:
+                return _context3.finish(28);
+
+              case 36:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this, [[5, 24, 28, 36], [10, 15], [29,, 31, 35]]);
+      }));
+
+      function executeRemoteCommands(_x2) {
+        return _executeRemoteCommands.apply(this, arguments);
+      }
+
+      return executeRemoteCommands;
     }()
   }, {
     key: "executeRemote",
@@ -61937,123 +62093,61 @@ function () {
     function () {
       var _ref = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(command) {
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      regeneratorRuntime.mark(function _callee4(command) {
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
-                _context2.next = 2;
-                return executeRemote(this.rsync.user, this.rsync.host, command, {
+                _context4.next = 2;
+                return executeRemote(this.remote.user, this.remote.host, command, {
                   cwd: this.jobTempPath
                 });
 
               case 2:
               case "end":
-                return _context2.stop();
+                return _context4.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee4, this);
       }));
 
-      return function (_x2) {
+      return function (_x3) {
         return _ref.apply(this, arguments);
       };
     }())
   }, {
-    key: "startRsync",
+    key: "rsync",
     value: function () {
-      var _startRsync = _asyncToGenerator(
+      var _rsync = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee3() {
-        var rsyncCommand, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, remoteCommand;
-
-        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      regeneratorRuntime.mark(function _callee5() {
+        var rsyncCommand;
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
-                rsyncCommand = "rsync -e \"ssh -o StrictHostKeyChecking=no\" -avzh ".concat(this.jobTempPath, "/ ").concat(this.rsync.user, "@").concat(this.rsync.host, ":").concat(this.rsync.path);
+                _context5.next = 2;
+                return this.executeRemote("mkdir -p ".concat(this.remote.path));
+
+              case 2:
+                rsyncCommand = "rsync -e \"ssh -o StrictHostKeyChecking=no\" -avzh ".concat(this.jobTempPath, "/ ").concat(this.remote.user, "@").concat(this.remote.host, ":").concat(this.remote.path);
                 log(rsyncCommand);
-                _context3.next = 4;
-                return executeAsync(rsyncCommand);
-
-              case 4:
-                if (Array.isArray(this.rsync.execute)) {
-                  _context3.next = 6;
-                  break;
-                }
-
-                return _context3.abrupt("return");
+                _context5.next = 6;
+                return execAsync(rsyncCommand);
 
               case 6:
-                _iteratorNormalCompletion2 = true;
-                _didIteratorError2 = false;
-                _iteratorError2 = undefined;
-                _context3.prev = 9;
-                _iterator2 = this.rsync.execute[Symbol.iterator]();
-
-              case 11:
-                if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
-                  _context3.next = 19;
-                  break;
-                }
-
-                remoteCommand = _step2.value;
-                log("".concat(remoteCommand));
-                _context3.next = 16;
-                return this.executeRemote();
-
-              case 16:
-                _iteratorNormalCompletion2 = true;
-                _context3.next = 11;
-                break;
-
-              case 19:
-                _context3.next = 25;
-                break;
-
-              case 21:
-                _context3.prev = 21;
-                _context3.t0 = _context3["catch"](9);
-                _didIteratorError2 = true;
-                _iteratorError2 = _context3.t0;
-
-              case 25:
-                _context3.prev = 25;
-                _context3.prev = 26;
-
-                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-                  _iterator2.return();
-                }
-
-              case 28:
-                _context3.prev = 28;
-
-                if (!_didIteratorError2) {
-                  _context3.next = 31;
-                  break;
-                }
-
-                throw _iteratorError2;
-
-              case 31:
-                return _context3.finish(28);
-
-              case 32:
-                return _context3.finish(25);
-
-              case 33:
               case "end":
-                return _context3.stop();
+                return _context5.stop();
             }
           }
-        }, _callee3, this, [[9, 21, 25, 33], [26,, 28, 32]]);
+        }, _callee5, this);
       }));
 
-      function startRsync() {
-        return _startRsync.apply(this, arguments);
+      function rsync() {
+        return _rsync.apply(this, arguments);
       }
 
-      return startRsync;
+      return rsync;
     }()
   }]);
 
