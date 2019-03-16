@@ -10,9 +10,12 @@ class CustomJob {
   async execute() {
     mkdir('-p', this.jobTempPath)
     if(this.config.description) log(`\n[${this.config.description}]`, 'yellow')
-    for(const command of this.config.execute) {
-      log(`${command}`)
-      await execAsync(command, { cwd: this.jobTempPath })
+
+    if(Array.isArray(this.config.execute)) {
+      for(const command of this.config.execute) {
+        log(`${command}`)
+        await execAsync(command, { cwd: this.jobTempPath })
+      }
     }
 
     if(this.remote) await this.startRemoteJob()

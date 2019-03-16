@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Ciao Chung <ciao0958@gmail.com>",
+  "private": true,
   "license": "MIT",
   "scripts": {
     "unit": "node node_modules/mocha-webpack/bin/mocha-webpack test/unit/**/*.js --webpack-config config/webpack.test.config.js",

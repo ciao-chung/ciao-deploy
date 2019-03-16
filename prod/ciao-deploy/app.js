@@ -58662,35 +58662,47 @@ function (_BaseCommand) {
                 return execAsync("sudo apt-get update");
 
               case 4:
-                _context3.next = 6;
+                _context3.prev = 4;
+                _context3.next = 7;
                 return execAsync("sudo apt-get install libapache2-mod-php7.1 -y");
 
-              case 6:
-                _context3.next = 8;
-                return execAsync("sudo a2enmod rewrite");
-
-              case 8:
-                _context3.next = 10;
-                return execAsync("sudo a2enmod headers");
-
-              case 10:
-                _context3.next = 12;
-                return execAsync("sudo a2enmod proxy");
-
-              case 12:
+              case 7:
                 _context3.next = 14;
-                return execAsync("sudo a2enmod proxy_http");
+                break;
+
+              case 9:
+                _context3.prev = 9;
+                _context3.t0 = _context3["catch"](4);
+                log("".concat(_context3.t0), 'yellow');
+                _context3.next = 14;
+                return execAsync("sudo apt-get install -y -f");
 
               case 14:
                 _context3.next = 16;
-                return execAsync("sudo service apache2 restart");
+                return execAsync("sudo a2enmod rewrite");
 
               case 16:
+                _context3.next = 18;
+                return execAsync("sudo a2enmod headers");
+
+              case 18:
+                _context3.next = 20;
+                return execAsync("sudo a2enmod proxy");
+
+              case 20:
+                _context3.next = 22;
+                return execAsync("sudo a2enmod proxy_http");
+
+              case 22:
+                _context3.next = 24;
+                return execAsync("sudo service apache2 restart");
+
+              case 24:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee3, this, [[4, 9]]);
       }));
 
       function installApache() {
@@ -60094,36 +60106,36 @@ function () {
 
               case 4:
                 _context.next = 6;
-                return execAsync("wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb");
+                return execAsync("sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P /home");
 
               case 6:
-                _context.next = 8;
-                return execAsync("sudo dpkg -i google-chrome*.deb");
+                _context.prev = 6;
+                _context.next = 9;
+                return execAsync("sudo dpkg -i /home/google-chrome*.deb");
 
-              case 8:
-                _context.prev = 8;
-                _context.next = 11;
-                return execAsync("sudo apt-get install -f");
-
-              case 11:
+              case 9:
                 _context.next = 16;
                 break;
 
-              case 13:
-                _context.prev = 13;
-                _context.t0 = _context["catch"](8);
+              case 11:
+                _context.prev = 11;
+                _context.t0 = _context["catch"](6);
+                _context.next = 15;
+                return execAsync("sudo apt-get install -f -y");
+
+              case 15:
                 log(_context.t0, 'yellow');
 
               case 16:
                 _context.next = 18;
-                return execAsync("rm google-chrome-stable_current_amd64.deb");
+                return execAsync("sudo rm -rf /home/google-chrome*.deb");
 
               case 18:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[8, 13]]);
+        }, _callee, this, [[6, 11]]);
       }));
 
       function exec() {
@@ -61849,79 +61861,85 @@ function () {
               case 0:
                 mkdir('-p', this.jobTempPath);
                 if (this.config.description) log("\n[".concat(this.config.description, "]"), 'yellow');
+
+                if (!Array.isArray(this.config.execute)) {
+                  _context.next = 30;
+                  break;
+                }
+
                 _iteratorNormalCompletion = true;
                 _didIteratorError = false;
                 _iteratorError = undefined;
-                _context.prev = 5;
+                _context.prev = 6;
                 _iterator = this.config.execute[Symbol.iterator]();
 
-              case 7:
+              case 8:
                 if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-                  _context.next = 15;
+                  _context.next = 16;
                   break;
                 }
 
                 command = _step.value;
                 log("".concat(command));
-                _context.next = 12;
+                _context.next = 13;
                 return execAsync(command, {
                   cwd: this.jobTempPath
                 });
 
-              case 12:
+              case 13:
                 _iteratorNormalCompletion = true;
-                _context.next = 7;
+                _context.next = 8;
                 break;
 
-              case 15:
-                _context.next = 21;
+              case 16:
+                _context.next = 22;
                 break;
 
-              case 17:
-                _context.prev = 17;
-                _context.t0 = _context["catch"](5);
+              case 18:
+                _context.prev = 18;
+                _context.t0 = _context["catch"](6);
                 _didIteratorError = true;
                 _iteratorError = _context.t0;
 
-              case 21:
-                _context.prev = 21;
+              case 22:
                 _context.prev = 22;
+                _context.prev = 23;
 
                 if (!_iteratorNormalCompletion && _iterator.return != null) {
                   _iterator.return();
                 }
 
-              case 24:
-                _context.prev = 24;
+              case 25:
+                _context.prev = 25;
 
                 if (!_didIteratorError) {
-                  _context.next = 27;
+                  _context.next = 28;
                   break;
                 }
 
                 throw _iteratorError;
 
-              case 27:
-                return _context.finish(24);
-
               case 28:
-                return _context.finish(21);
+                return _context.finish(25);
 
               case 29:
+                return _context.finish(22);
+
+              case 30:
                 if (!this.remote) {
-                  _context.next = 32;
+                  _context.next = 33;
                   break;
                 }
 
-                _context.next = 32;
+                _context.next = 33;
                 return this.startRemoteJob();
 
-              case 32:
+              case 33:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[5, 17, 21, 29], [22,, 24, 28]]);
+        }, _callee, this, [[6, 18, 22, 30], [23,, 25, 29]]);
       }));
 
       function execute() {
