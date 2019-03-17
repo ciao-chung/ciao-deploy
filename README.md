@@ -49,6 +49,7 @@ ciao-deploy --command={command-name}
 - phpmyadmin: 安裝phpMyAdmin
 - web-deploy: 佈署Web專案(Vue、Laravel)
 - web-deploy-config: 產生Web Deploy設定檔
+- custom-deploy: 自訂佈署
 - setup-deploy-env: 一鍵設定本機端佈署環境
 - setup-remote-env: 一鍵設定遠端Web佈署環境
 
@@ -263,8 +264,7 @@ deploy:
 ### command參數
 
 - dump(optional): Boolean, 查看deploy設定檔內容(不會執行佈署)
-- first(optional): Boolean, 第一次佈署, 會另外執行下列的初始化動作
-  - 如果有佈署後端會執行 **php artisan storage:link** 建立storage link
+- first(optional): Boolean, 定義為第一次佈署, 會另外執行下方設定檔中的**first_execute**指令
 - config(required): String, 佈署設定檔絕對路徑
 
 ### 自訂佈署設定檔說明
