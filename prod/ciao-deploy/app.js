@@ -60131,6 +60131,10 @@ function () {
                 return execAsync("sudo rm -rf /home/google-chrome*.deb");
 
               case 18:
+                _context.next = 20;
+                return execAsync("google-chrome --version");
+
+              case 20:
               case "end":
                 return _context.stop();
             }
@@ -61374,26 +61378,39 @@ function (_BaseCommand) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 log("Start backup MySQL Database");
-                _context2.next = 3;
+                _context2.prev = 1;
+                _context2.next = 4;
                 return this.initDeployTempFolder();
 
-              case 3:
-                _context2.next = 5;
+              case 4:
+                _context2.next = 6;
                 return this.dumpDb();
 
-              case 5:
-                _context2.next = 7;
+              case 6:
+                _context2.next = 8;
                 return this.backup();
 
-              case 7:
-                log("Backup MySQL Database successfully");
-
               case 8:
+                log("Backup MySQL Database successfully");
+                _context2.next = 15;
+                break;
+
+              case 11:
+                _context2.prev = 11;
+                _context2.t0 = _context2["catch"](1);
+                log("[Backup fail]", 'yellow');
+                log("".concat(_context2.t0), 'yellow');
+
+              case 15:
+                _context2.next = 17;
+                return this.cleanTempFolder();
+
+              case 17:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee2, this, [[1, 11]]);
       }));
 
       function start() {
@@ -61544,12 +61561,6 @@ function (_BaseCommand) {
                 });
 
               case 4:
-                _context5.next = 6;
-                return execAsync("rm -rf ".concat(this.deployTempPath), {
-                  cwd: this.deployTempPath
-                });
-
-              case 6:
               case "end":
                 return _context5.stop();
             }
@@ -61562,6 +61573,35 @@ function (_BaseCommand) {
       }
 
       return backup;
+    }()
+  }, {
+    key: "cleanTempFolder",
+    value: function () {
+      var _cleanTempFolder = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee6() {
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                _context6.next = 2;
+                return execAsync("rm -rf ".concat(this.deployTempPath), {
+                  cwd: this.deployTempPath
+                });
+
+              case 2:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
+      }));
+
+      function cleanTempFolder() {
+        return _cleanTempFolder.apply(this, arguments);
+      }
+
+      return cleanTempFolder;
     }()
   }]);
 

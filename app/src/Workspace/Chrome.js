@@ -10,6 +10,7 @@ class Chrome {
       log(error, 'yellow')
     }
     await execAsync(`sudo rm -rf /home/google-chrome*.deb`)
+    await execAsync(`google-chrome --version`)
   }
 }
 

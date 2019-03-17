@@ -40,10 +40,16 @@ class BackupDB extends BaseCommand{
 
   async start() {
     log(`Start backup MySQL Database`)
-    await this.initDeployTempFolder()
-    await this.dumpDb()
-    await this.backup()
-    log(`Backup MySQL Database successfully`)
+    try {
+      await this.initDeployTempFolder()
+      await this.dumpDb()
+      await this.backup()
+      log(`Backup MySQL Database successfully`)
+    } catch (error) {
+      log(`[Backup fail]`, 'yellow')
+      log(`${error}`, 'yellow')
+    }
+    await this.cleanTempFolder()
   }
 
   async initDeployTempFolder() {
@@ -67,6 +73,9 @@ class BackupDB extends BaseCommand{
   async backup() {
     await execAsync(`git add .; git commit -am "backup ${this.current} (${this.args.db.toString()})"`, { cwd: this.storePath })
     await execAsync(`git push --force`, { cwd: this.storePath })
+  }
+
+  async cleanTempFolder() {
     await execAsync(`rm -rf ${this.deployTempPath}`, { cwd: this.deployTempPath })
   }
 }

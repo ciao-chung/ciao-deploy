@@ -196,7 +196,7 @@ domain-proxy
   - 如果有佈署後端會執行 **php artisan storage:link** 建立storage link
 - config(required): String, 佈署設定檔絕對路徑
 
-### 佈署設定檔說明
+### Web佈署設定檔說明
 
 **範例(app/copyfile/config.example.yml)**
 
@@ -257,3 +257,72 @@ deploy:
 - path(required): String, 主機要rsync位置(絕對路徑)
 - migrate(optional): Boolean, 佈署完成後自動執行migrate, 預設為false
 - env(optional): Object, 要設定的Laravel .env參數, 使用此參數的後端專案需安裝imliam/laravel-env-set-command
+
+## 自訂佈署(custom-deploy)設定
+
+### command參數
+
+- dump(optional): Boolean, 查看deploy設定檔內容(不會執行佈署)
+- first(optional): Boolean, 第一次佈署, 會另外執行下列的初始化動作
+  - 如果有佈署後端會執行 **php artisan storage:link** 建立storage link
+- config(required): String, 佈署設定檔絕對路徑
+
+### 自訂佈署設定檔說明
+
+> 情境: 從無到有建立一個SSR服務
+
+**範例(app/copyfile/custom-deploy.example.yml)**
+
+```yaml
+deploy:
+    init:
+        description: '初始化環境'
+        remote:
+            user: ciao
+            host: host.com
+            first_execute:
+                - 'curl -sL https://raw.githubusercontent.com/ciao-chung/ciao-deploy/master/nodejs.sh | bash'
+                - 'sudo yarn global add ciao-deploy'
+                - 'ciao-deploy --command=fish'
+                - 'ciao-deploy --command=apache'
+                - 'ciao-deploy --command=ssl'
+    ssr:
+        description: '佈署SSR服務'
+        execute:
+            - 'cp /path/to/ssr.config ./ssr.json'
+        remote:
+            rsync: true
+            user: ciao
+            host: host.com
+            path: /home/ciao/config
+            first_execute:
+                - 'sudo yarn global add ciao-ssr'
+                - 'ciao-deploy --command=workspace --chrome'
+                - 'find /usr/local/share/.config/yarn/global/node_modules/puppeteer/.local-chromium -type d | xargs -L1 -Ixx sudo chmod 755 xx'
+                - 'find /usr/local/share/.config/yarn/global/node_modules/puppeteer/.local-chromium -type f -perm /u+x | xargs -L1 -Ixx sudo chmod 755 xx'
+                - 'find /usr/local/share/.config/yarn/global/node_modules/puppeteer/.local-chromium -type f -not -perm /u+x | xargs -L1 -Ixx sudo chmod 644 xx'
+                - 'ciao-deploy --command=domain-proxy --domain=ssr.foo.com --port=3000'
+                - 'ciao-deploy --command=ssl-sign --domain=ssr.foo.com --email=foobar@gmail.com'
+                - 'mkdir -p /home/ciao/ssr-cache'
+            execute:
+                - 'sudo pm2 unstartup'
+                - 'sudo pm2 delete ssr'
+                - 'sudo pm2 start ciao-ssr --name="ssr" -- --config=/home/ciao/config/ssr.json'
+                - 'sudo pm2 startup'
+                - 'sudo pm2 save'
+
+```
+
+在deploy屬性下的物件皆為 **自訂佈署物件**
+
+以下為 **自訂佈署物件** 說明
+
+- description(optional): String, 該佈署說明, 單純在Terminal中顯示用
+- execute(optional): Array, 本機端的操作, 可作為準備rsync檔案的準備指令或其他操作
+- remote(optional): Object, 遠端主機操作物件, 主要設定對遠端主機的操作、rsync
+    - user(required): String, 遠端主機登入帳號
+    - host(required): String, 遠端主機登入位址
+    - rsync(optional): Boolean, 將前面暫存資料夾內的所有檔案做rsync,預設為false
+    - path(optional): String, rsync到遠端的路徑
+    - first_execute(optional): Array, 首次佈署需要執行的遠端主機指令, 當執行自訂佈署時使用**--first**參數將會執行
+    - execute(optional): Array, 佈署需要執行的遠端主機指令, 每次佈署皆會執行
