@@ -264,7 +264,7 @@ deploy:
 ### command參數
 
 - dump(optional): Boolean, 查看deploy設定檔內容(不會執行佈署)
-- first(optional): Boolean, 定義為第一次佈署, 會另外執行下方設定檔中的**first_execute**指令
+- first(optional): Boolean, 定義為第一次佈署, 在對遠端主機操作(remote.execute)之前會先執行下方設定檔中的**first_execute**指令
 - config(required): String, 佈署設定檔絕對路徑
 
 ### 自訂佈署設定檔說明
@@ -314,6 +314,17 @@ deploy:
 ```
 
 在deploy屬性下的物件皆為 **自訂佈署物件**
+
+    
+**自訂佈署物件** 執行流程
+
+1. 依照為每個佈署建立一個暫存資料夾當作工作空間( **自訂佈署物件** 的key當作資料夾名稱)
+1. 先執行**execute**中的指令(如果有設定execute的話)
+1. 執行rsync, 將暫存資料夾中的檔案做rsync(如果有設定rsync的話)
+1. 執行remote中的**first_execute**中的遠端主機指令(如果有設定remote.first_execute的話)
+1. 執行remote中的**execute**中的遠端主機指令(如果有設定remote.execute的話)
+1. 繼續執行下一個 **自訂佈署物件** , 如果是最後一個就清空所有暫存資料夾
+
 
 以下為 **自訂佈署物件** 說明
 
