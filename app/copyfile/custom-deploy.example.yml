@@ -1,0 +1,36 @@
+deploy:
+    init:
+        description: '初始化環境'
+        remote:
+            user: ciao
+            host: host.com
+            first_execute:
+                - 'curl -sL https://raw.githubusercontent.com/ciao-chung/ciao-deploy/master/nodejs.sh | bash'
+                - 'sudo yarn global add ciao-deploy'
+                - 'ciao-deploy --command=fish'
+                - 'ciao-deploy --command=apache'
+                - 'ciao-deploy --command=ssl'
+    ssr:
+        description: '佈署SSR服務'
+        execute:
+            - 'cp /path/to/ssr.config ./ssr.json'
+        remote:
+            rsync: true
+            user: ciao
+            host: host.com
+            path: /home/ciao/config
+            first_execute:
+                - 'sudo yarn global add ciao-ssr'
+                - 'ciao-deploy --command=workspace --chrome'
+                - 'find /usr/local/share/.config/yarn/global/node_modules/puppeteer/.local-chromium -type d | xargs -L1 -Ixx sudo chmod 755 xx'
+                - 'find /usr/local/share/.config/yarn/global/node_modules/puppeteer/.local-chromium -type f -perm /u+x | xargs -L1 -Ixx sudo chmod 755 xx'
+                - 'find /usr/local/share/.config/yarn/global/node_modules/puppeteer/.local-chromium -type f -not -perm /u+x | xargs -L1 -Ixx sudo chmod 644 xx'
+                - 'ciao-deploy --command=domain-proxy --domain=ssr.foo.com --port=3000'
+                - 'ciao-deploy --command=ssl-sign --domain=ssr.foo.com --email=foobar@gmail.com'
+                - 'mkdir -p /home/ciao/ssr-cache'
+            execute:
+                - 'sudo pm2 unstartup'
+                - 'sudo pm2 delete ssr'
+                - 'sudo pm2 start ciao-ssr --name="ssr" -- --config=/home/ciao/config/ssr.json'
+                - 'sudo pm2 startup'
+                - 'sudo pm2 save'
