@@ -57805,7 +57805,7 @@ function (_BaseCommand) {
   }, {
     key: "getFishConfig",
     value: function getFishConfig() {
-      return "\nalias la=\"php artisan\"\nalias clip=\"xclip -i -selection clipboard\"\nalias ..=\"cd ../\"\nalias ...=\"cd ../../\"\nalias ....=\"cd ../../../\"\nalias .....=\"cd ../../../../\"\nalias phpunit=\"./vendor/bin/phpunit\"\nalias sf=\"app/console\"\nalias sshsample=\"ssh -o StrictHostKeyChecking=no username@host.com\"\n\nset -g theme_powerline_fonts no\nset -g theme_nerd_fonts no\nset -g fish_prompt_pwd_dir_length 0\nset -g theme_color_scheme base16-light\n";
+      return "\nalias la=\"php artisan\"\nalias clip=\"xclip -i -selection clipboard\"\nalias ..=\"cd ../\"\nalias ...=\"cd ../../\"\nalias ....=\"cd ../../../\"\nalias .....=\"cd ../../../../\"\nalias phpu=\"./vendor/bin/phpunit\"\nalias sf=\"app/console\"\nalias sshsample=\"ssh -o StrictHostKeyChecking=no username@host.com\"\n\nset -g theme_powerline_fonts no\nset -g theme_nerd_fonts no\nset -g fish_prompt_pwd_dir_length 0\nset -g theme_color_scheme base16-light\n";
     }
   }]);
 

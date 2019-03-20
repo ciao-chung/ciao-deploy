@@ -57,7 +57,7 @@ alias ..="cd ../"
 alias ...="cd ../../"
 alias ....="cd ../../../"
 alias .....="cd ../../../../"
-alias phpunit="./vendor/bin/phpunit"
+alias phpu="./vendor/bin/phpunit"
 alias sf="app/console"
 alias sshsample="ssh -o StrictHostKeyChecking=no username@host.com"
 
