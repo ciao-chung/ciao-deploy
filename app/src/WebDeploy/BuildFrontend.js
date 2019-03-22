@@ -21,6 +21,7 @@ class BuildFrontend {
     log(`Start build frontend`)
 
     await this.setupApiBase()
+    await this.beforeBuild()
     await this.installNodeModules()
     await this.buildWebpack()
     await this.cleanNodeModules()
@@ -29,12 +30,21 @@ class BuildFrontend {
 
   async setupApiBase() {
     const apibase = this.frontendConfig.apibase
+    if(!apibase) return
     await execAsync(`echo '{ "apibase": "${apibase}", "env": {} }' > static/config/deploy.json`, { cwd: this.frontendPath })
     await execAsync(`echo '{ "apibase": "${apibase}" }' > static/config/apibase.json`, { cwd: this.frontendPath })
   }
 
   async installNodeModules() {
     await execAsync(`yarn install`, { cwd: this.frontendPath })
+  }
+
+  async beforeBuild() {
+    const beforeBuildCommands = this.frontendConfig.before_build
+    if(!Array.isArray(beforeBuildCommands)) return
+    for (const command of beforeBuildCommands) {
+      await execAsync(`${command}`, { cwd: this.frontendPath })
+    }
   }
 
   async buildWebpack() {
