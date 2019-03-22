@@ -55958,11 +55958,11 @@ function () {
 
               case 5:
                 _context2.next = 7;
-                return this.installNodeModules();
+                return this.beforeBuild();
 
               case 7:
                 _context2.next = 9;
-                return this.beforeBuild();
+                return this.installNodeModules();
 
               case 9:
                 _context2.next = 11;

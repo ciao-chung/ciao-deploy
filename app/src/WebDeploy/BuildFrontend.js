@@ -21,8 +21,8 @@ class BuildFrontend {
     log(`Start build frontend`)
 
     await this.setupApiBase()
-    await this.installNodeModules()
     await this.beforeBuild()
+    await this.installNodeModules()
     await this.buildWebpack()
     await this.cleanNodeModules()
     notify('Frontend build successfully')
