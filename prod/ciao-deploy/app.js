@@ -55962,16 +55962,20 @@ function () {
 
               case 7:
                 _context2.next = 9;
-                return this.buildWebpack();
+                return this.beforeBuild();
 
               case 9:
                 _context2.next = 11;
-                return this.cleanNodeModules();
+                return this.buildWebpack();
 
               case 11:
+                _context2.next = 13;
+                return this.cleanNodeModules();
+
+              case 13:
                 notify('Frontend build successfully');
 
-              case 12:
+              case 14:
               case "end":
                 return _context2.stop();
             }
@@ -55997,18 +56001,27 @@ function () {
             switch (_context3.prev = _context3.next) {
               case 0:
                 apibase = this.frontendConfig.apibase;
-                _context3.next = 3;
+
+                if (apibase) {
+                  _context3.next = 3;
+                  break;
+                }
+
+                return _context3.abrupt("return");
+
+              case 3:
+                _context3.next = 5;
                 return execAsync("echo '{ \"apibase\": \"".concat(apibase, "\", \"env\": {} }' > static/config/deploy.json"), {
                   cwd: this.frontendPath
                 });
 
-              case 3:
-                _context3.next = 5;
+              case 5:
+                _context3.next = 7;
                 return execAsync("echo '{ \"apibase\": \"".concat(apibase, "\" }' > static/config/apibase.json"), {
                   cwd: this.frontendPath
                 });
 
-              case 5:
+              case 7:
               case "end":
                 return _context3.stop();
             }
@@ -56052,29 +56065,122 @@ function () {
       return installNodeModules;
     }()
   }, {
-    key: "buildWebpack",
+    key: "beforeBuild",
     value: function () {
-      var _buildWebpack = _asyncToGenerator(
+      var _beforeBuild = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee5() {
-        var buildScript;
+        var beforeBuildCommands, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, command;
+
         return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
+                beforeBuildCommands = this.frontendConfig.before_build;
+
+                if (Array.isArray(beforeBuildCommands)) {
+                  _context5.next = 3;
+                  break;
+                }
+
+                return _context5.abrupt("return");
+
+              case 3:
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                _context5.prev = 6;
+                _iterator = beforeBuildCommands[Symbol.iterator]();
+
+              case 8:
+                if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+                  _context5.next = 15;
+                  break;
+                }
+
+                command = _step.value;
+                _context5.next = 12;
+                return execAsync("".concat(command), {
+                  cwd: this.frontendPath
+                });
+
+              case 12:
+                _iteratorNormalCompletion = true;
+                _context5.next = 8;
+                break;
+
+              case 15:
+                _context5.next = 21;
+                break;
+
+              case 17:
+                _context5.prev = 17;
+                _context5.t0 = _context5["catch"](6);
+                _didIteratorError = true;
+                _iteratorError = _context5.t0;
+
+              case 21:
+                _context5.prev = 21;
+                _context5.prev = 22;
+
+                if (!_iteratorNormalCompletion && _iterator.return != null) {
+                  _iterator.return();
+                }
+
+              case 24:
+                _context5.prev = 24;
+
+                if (!_didIteratorError) {
+                  _context5.next = 27;
+                  break;
+                }
+
+                throw _iteratorError;
+
+              case 27:
+                return _context5.finish(24);
+
+              case 28:
+                return _context5.finish(21);
+
+              case 29:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this, [[6, 17, 21, 29], [22,, 24, 28]]);
+      }));
+
+      function beforeBuild() {
+        return _beforeBuild.apply(this, arguments);
+      }
+
+      return beforeBuild;
+    }()
+  }, {
+    key: "buildWebpack",
+    value: function () {
+      var _buildWebpack = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee6() {
+        var buildScript;
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
                 buildScript = this.frontendConfig.build_script;
                 log("buildCommand: ".concat(buildScript), 'yellow');
-                _context5.next = 4;
+                _context6.next = 4;
                 return execAsync(buildScript, {
                   cwd: this.frontendPath
                 });
 
               case 4:
               case "end":
-                return _context5.stop();
+                return _context6.stop();
             }
           }
-        }, _callee5, this);
+        }, _callee6, this);
       }));
 
       function buildWebpack() {
@@ -56088,22 +56194,22 @@ function () {
     value: function () {
       var _cleanNodeModules = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee6() {
-        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+      regeneratorRuntime.mark(function _callee7() {
+        return regeneratorRuntime.wrap(function _callee7$(_context7) {
           while (1) {
-            switch (_context6.prev = _context6.next) {
+            switch (_context7.prev = _context7.next) {
               case 0:
-                _context6.next = 2;
+                _context7.next = 2;
                 return execAsync("rm -rf node_modules/", {
                   cwd: this.frontendPath
                 });
 
               case 2:
               case "end":
-                return _context6.stop();
+                return _context7.stop();
             }
           }
-        }, _callee6, this);
+        }, _callee7, this);
       }));
 
       function cleanNodeModules() {
