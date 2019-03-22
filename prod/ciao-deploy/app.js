@@ -56958,6 +56958,14 @@ function () {
                 return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan config:clear"));
 
               case 6:
+                _context5.next = 8;
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan route:clear"));
+
+              case 8:
+                _context5.next = 10;
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan route:cache"));
+
+              case 10:
               case "end":
                 return _context5.stop();
             }
