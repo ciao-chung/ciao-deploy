@@ -6,6 +6,7 @@ class Base {
     await execAsync(`sudo apt-get install vim -y`)
     await execAsync(`sudo apt-get install curl -y`)
     await execAsync(`sudo apt-get install xclip -y`)
+    await execAsync(`sudo apt-get install htop -y`)
   }
 }
 

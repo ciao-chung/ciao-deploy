@@ -57143,7 +57143,7 @@ function (_BaseCommand) {
   }, {
     key: "getDefaultConfig",
     value: function getDefaultConfig() {
-      return "\ndeploy:\n    source:\n        branch: master\n        repo: repo\n    target:\n        frontend:\n            folder: Frontend\n            user: ciao\n            host: remote.host\n            path: /path/to/frontend\n            apibase: httsp://api.example.com\n            build_script: 'yarn build --doc --doc_exclude=BackStage'\n        backend:\n            folder: Backend\n            user: ciao\n            host: remote.host\n            path: /path/to/frontend\n            migrate: true\n            env:\n                APP_KEY: APP_KEY\n                APP_DEBUG: false\n                DB_DATABASE: db_name\n                DB_USERNAME: mysql_user\n                DB_PASSWORD: mysql_password\n                CORS: 'https://webcache.googleusercontent.com,http://localhost:8080,https://example.com'\n                PHOTO_BASE_URL: http://exmpale.com/storage\n";
+      return "\ndeploy:\n    source:\n        branch: master\n        repo: repo\n    target:\n        frontend:\n            folder: Frontend\n            user: ciao\n            host: remote.host\n            path: /path/to/frontend\n            apibase: httsp://api.example.com\n            before_build:\n                - 'pwd'\n            build_script: 'yarn build --doc --doc_exclude=BackStage'\n        backend:\n            folder: Backend\n            user: ciao\n            host: remote.host\n            path: /path/to/frontend\n            migrate: true\n            env:\n                APP_KEY: APP_KEY\n                APP_DEBUG: false\n                DB_DATABASE: db_name\n                DB_USERNAME: mysql_user\n                DB_PASSWORD: mysql_password\n                CORS: 'https://webcache.googleusercontent.com,http://localhost:8080,https://example.com'\n                PHOTO_BASE_URL: http://exmpale.com/storage\n";
     }
   }]);
 
@@ -57218,7 +57218,7 @@ function (_BaseCommand) {
                 };
                 this.argsConfig = [{
                   name: 'base',
-                  description: '基本工具(vim, curl, xclip)',
+                  description: '基本工具(vim, curl, xclip, htop)',
                   defaultValue: false,
                   type: 'boolean'
                 }, {
@@ -57377,6 +57377,10 @@ function () {
                 return execAsync("sudo apt-get install xclip -y");
 
               case 12:
+                _context.next = 14;
+                return execAsync("sudo apt-get install htop -y");
+
+              case 14:
               case "end":
                 return _context.stop();
             }
