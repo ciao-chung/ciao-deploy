@@ -34,6 +34,8 @@ deploy:
             host: remote.host
             path: /path/to/frontend
             apibase: httsp://api.example.com
+            before_build:
+                - 'pwd'
             build_script: 'yarn build --doc --doc_exclude=BackStage'
         backend:
             folder: Backend

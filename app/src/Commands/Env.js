@@ -14,7 +14,7 @@ class Env extends BaseCommand{
     this.argsConfig = [
       {
         name: 'base',
-        description: '基本工具(vim, curl, xclip)',
+        description: '基本工具(vim, curl, xclip, htop)',
         defaultValue: false,
         type: 'boolean',
       },

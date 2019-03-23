@@ -213,6 +213,8 @@ deploy:
             host: remote.host
             path: /path/to/frontend
             apibase: https://api.example.com
+            before_build:
+                - 'pwd'
             build_script: 'yarn build --doc --doc_exclude=BackStage'
         backend:
             folder: Backend
@@ -246,6 +248,7 @@ deploy:
 - host(required): String, 主機位址
 - path(required): String, 主機要rsync位置(絕對路徑)
 - apibase(required): String, 前端apibase
+- before_build(optional): Array, 一些Webpack安裝、打包之前要做的事情(例如寫一些前端需要的設定檔), 可以在這邊做
 - build_script(required): String, 因為各種前端打包的方式太多種, 直接在這裡設定
 
 #### target -> backend(後端)
