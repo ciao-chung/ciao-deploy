@@ -25,7 +25,11 @@ class Fish extends BaseCommand{
     const pwd = process.env.PWD
     await execAsync(`sudo apt-get update`)
     await execAsync(`sudo apt-get install git -y`)
-    await execAsync(`sudo apt-add-repository ppa:fish-shell/release-2 -y`)
+    try {
+      await execAsync(`sudo apt-add-repository ppa:fish-shell/release-2 -y`)
+    } catch {
+      await execAsync(`sudo apt-add-repository ppa:fish-shell/release-2 -r -y`)
+    }
     await execAsync(`sudo apt-get update`)
     await execAsync(`sudo apt-get install fish -y`)
     await execAsync(`sudo usermod -s /usr/bin/fish ${os.userInfo().username}`)

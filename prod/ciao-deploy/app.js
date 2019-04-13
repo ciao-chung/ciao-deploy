@@ -57445,75 +57445,86 @@ function () {
                 return execAsync("sudo apt-get update");
 
               case 6:
-                _context.next = 8;
+                _context.prev = 6;
+                _context.next = 9;
                 return execAsync("sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y");
 
-              case 8:
-                _context.next = 10;
+              case 9:
+                _context.next = 15;
+                break;
+
+              case 11:
+                _context.prev = 11;
+                _context.t0 = _context["catch"](6);
+                _context.next = 15;
+                return execAsync("sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -r -y");
+
+              case 15:
+                _context.next = 17;
                 return execAsync("sudo apt-get update");
 
-              case 10:
-                _context.next = 12;
+              case 17:
+                _context.next = 19;
                 return execAsync("sudo apt-get install php7.1 -y");
 
-              case 12:
-                _context.next = 14;
+              case 19:
+                _context.next = 21;
                 return execAsync("php --version");
 
-              case 14:
-                _context.next = 16;
+              case 21:
+                _context.next = 23;
                 return execAsync("sudo apt-get install php7.1-mysql -y");
 
-              case 16:
-                _context.next = 18;
+              case 23:
+                _context.next = 25;
                 return execAsync("sudo apt-get install php7.1-mbstring -y");
 
-              case 18:
-                _context.next = 20;
+              case 25:
+                _context.next = 27;
                 return execAsync("sudo apt-get install php7.1-mcrypt -y");
 
-              case 20:
-                _context.next = 22;
+              case 27:
+                _context.next = 29;
                 return execAsync("sudo apt-get install php7.1-gd -y");
 
-              case 22:
-                _context.next = 24;
+              case 29:
+                _context.next = 31;
                 return execAsync("sudo apt-get install php7.1-zip -y");
 
-              case 24:
-                _context.next = 26;
+              case 31:
+                _context.next = 33;
                 return execAsync("sudo apt-get install php7.1-dom -y");
 
-              case 26:
-                _context.next = 28;
+              case 33:
+                _context.next = 35;
                 return execAsync("sudo apt-get install php7.1-xml -y");
 
-              case 28:
-                _context.next = 30;
+              case 35:
+                _context.next = 37;
                 return execAsync("sudo apt-get install php7.1-curl -y");
 
-              case 30:
-                _context.next = 32;
+              case 37:
+                _context.next = 39;
                 return execAsync("sudo apt-get install libapache2-mod-php7.1 -y");
 
-              case 32:
-                _context.next = 34;
+              case 39:
+                _context.next = 41;
                 return execAsync("sudo apt-get install php-imagick -y");
 
-              case 34:
-                _context.next = 36;
+              case 41:
+                _context.next = 43;
                 return execAsync("php -m | grep imagick");
 
-              case 36:
-                _context.next = 38;
+              case 43:
+                _context.next = 45;
                 return execAsync("sudo service apache2 restart");
 
-              case 38:
+              case 45:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[6, 11]]);
       }));
 
       function exec() {
@@ -57641,31 +57652,42 @@ function () {
                 return execAsync("sudo apt-get update");
 
               case 2:
-                _context.next = 4;
+                _context.prev = 2;
+                _context.next = 5;
                 return execAsync("sudo LC_ALL=C.UTF-8 apt-add-repository ppa:ondrej/pkg-gearman -y");
 
-              case 4:
-                _context.next = 6;
+              case 5:
+                _context.next = 11;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](2);
+                _context.next = 11;
+                return execAsync("sudo LC_ALL=C.UTF-8 apt-add-repository ppa:ondrej/pkg-gearman -r -y");
+
+              case 11:
+                _context.next = 13;
                 return execAsync("sudo apt-get update");
 
-              case 6:
-                _context.next = 8;
+              case 13:
+                _context.next = 15;
                 return execAsync("sudo apt-get install php-gearman -y");
 
-              case 8:
-                _context.next = 10;
+              case 15:
+                _context.next = 17;
                 return execAsync("sudo apt-get install gearman-job-server -y");
 
-              case 10:
-                _context.next = 12;
+              case 17:
+                _context.next = 19;
                 return execAsync("sudo service gearman-job-server restart");
 
-              case 12:
+              case 19:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[2, 7]]);
       }));
 
       function exec() {
@@ -57818,63 +57840,74 @@ function (_BaseCommand) {
                 return execAsync("sudo apt-get install git -y");
 
               case 5:
-                _context3.next = 7;
+                _context3.prev = 5;
+                _context3.next = 8;
                 return execAsync("sudo apt-add-repository ppa:fish-shell/release-2 -y");
 
-              case 7:
-                _context3.next = 9;
+              case 8:
+                _context3.next = 14;
+                break;
+
+              case 10:
+                _context3.prev = 10;
+                _context3.t0 = _context3["catch"](5);
+                _context3.next = 14;
+                return execAsync("sudo apt-add-repository ppa:fish-shell/release-2 -r -y");
+
+              case 14:
+                _context3.next = 16;
                 return execAsync("sudo apt-get update");
 
-              case 9:
-                _context3.next = 11;
+              case 16:
+                _context3.next = 18;
                 return execAsync("sudo apt-get install fish -y");
 
-              case 11:
-                _context3.next = 13;
+              case 18:
+                _context3.next = 20;
                 return execAsync("sudo usermod -s /usr/bin/fish ".concat(__WEBPACK_IMPORTED_MODULE_1_os___default.a.userInfo().username));
 
-              case 13:
-                _context3.next = 15;
+              case 20:
+                _context3.next = 22;
                 return execAsync("curl -L https://get.oh-my.fish > install;", {
                   cwd: pwd
                 });
 
-              case 15:
-                _context3.next = 17;
+              case 22:
+                _context3.next = 24;
                 return execAsync("fish install --path=~/.local/share/omf --config=~/.config/omf --noninteractive", {
                   cwd: pwd
                 });
 
-              case 17:
-                _context3.next = 19;
+              case 24:
+                _context3.next = 26;
                 return execAsync("rm install", {
                   cwd: pwd
                 });
 
-              case 19:
-                _context3.next = 21;
+              case 26:
+                _context3.next = 28;
                 return execAsync("echo \"#!/bin/bash \nfish <<'END_FISH' \n omf install gitstatus \nEND_FISH\" > omf-install.sh", {
                   cwd: pwd
                 });
 
-              case 21:
-                _context3.next = 23;
+              case 28:
+                _context3.next = 30;
                 return execAsync("bash ./omf-install.sh", {
                   cwd: pwd
                 });
 
-              case 23:
-                _context3.next = 25;
+              case 30:
+                _context3.next = 32;
                 return execAsync("rm ./omf-install.sh", {
                   cwd: pwd
                 });
 
-              case 25:
+              case 32:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee3, this, [[5, 10]]);
       }));
 
       function install() {
@@ -58772,55 +58805,66 @@ function (_BaseCommand) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
+                _context3.prev = 0;
+                _context3.next = 3;
                 return execAsync("sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -y");
 
-              case 2:
-                _context3.next = 4;
-                return execAsync("sudo apt-get update");
-
-              case 4:
-                _context3.prev = 4;
-                _context3.next = 7;
-                return execAsync("sudo apt-get install libapache2-mod-php7.1 -y");
-
-              case 7:
-                _context3.next = 14;
+              case 3:
+                _context3.next = 9;
                 break;
 
+              case 5:
+                _context3.prev = 5;
+                _context3.t0 = _context3["catch"](0);
+                _context3.next = 9;
+                return execAsync("sudo LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php -r -y");
+
               case 9:
-                _context3.prev = 9;
-                _context3.t0 = _context3["catch"](4);
-                log("".concat(_context3.t0), 'yellow');
+                _context3.next = 11;
+                return execAsync("sudo apt-get update");
+
+              case 11:
+                _context3.prev = 11;
                 _context3.next = 14;
-                return execAsync("sudo apt-get install -y -f");
+                return execAsync("sudo apt-get install libapache2-mod-php7.1 -y");
 
               case 14:
-                _context3.next = 16;
-                return execAsync("sudo a2enmod rewrite");
+                _context3.next = 21;
+                break;
 
               case 16:
-                _context3.next = 18;
+                _context3.prev = 16;
+                _context3.t1 = _context3["catch"](11);
+                log("".concat(_context3.t1), 'yellow');
+                _context3.next = 21;
+                return execAsync("sudo apt-get install -y -f");
+
+              case 21:
+                _context3.next = 23;
+                return execAsync("sudo a2enmod rewrite");
+
+              case 23:
+                _context3.next = 25;
                 return execAsync("sudo a2enmod headers");
 
-              case 18:
-                _context3.next = 20;
+              case 25:
+                _context3.next = 27;
                 return execAsync("sudo a2enmod proxy");
 
-              case 20:
-                _context3.next = 22;
+              case 27:
+                _context3.next = 29;
                 return execAsync("sudo a2enmod proxy_http");
 
-              case 22:
-                _context3.next = 24;
+              case 29:
+                _context3.next = 31;
                 return execAsync("sudo service apache2 restart");
 
-              case 24:
+              case 31:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, this, [[4, 9]]);
+        }, _callee3, this, [[0, 5], [11, 16]]);
       }));
 
       function installApache() {
@@ -60492,63 +60536,88 @@ function () {
                 return execAsync("sudo apt-get update");
 
               case 2:
-                _context.next = 4;
+                _context.prev = 2;
+                _context.next = 5;
                 return execAsync("sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder -y");
 
-              case 4:
-                _context.next = 6;
+              case 5:
+                _context.next = 11;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](2);
+                _context.next = 11;
+                return execAsync("sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder -r -y");
+
+              case 11:
+                _context.next = 13;
                 return execAsync("sudo apt-get update");
 
-              case 6:
-                _context.next = 8;
+              case 13:
+                _context.next = 15;
                 return execAsync("sudo apt-get install simplescreenrecorder -y");
 
-              case 8:
-                _context.next = 10;
-                return execAsync("sudo add-apt-repository ppa:peek-developers/stable -y");
-
-              case 10:
-                _context.next = 12;
-                return execAsync("sudo apt-get update");
-
-              case 12:
-                _context.next = 14;
-                return execAsync("sudo apt-get install peek -y");
-
-              case 14:
-                _context.next = 16;
+              case 15:
+                _context.next = 17;
                 return execAsync("sudo apt-get install pitivi -y");
 
-              case 16:
-                _context.next = 18;
-                return execAsync("sudo add-apt-repository ppa:otto-kesselgulasch/gimp-edge -y");
-
-              case 18:
+              case 17:
+                _context.prev = 17;
                 _context.next = 20;
-                return execAsync("sudo apt-get update");
+                return execAsync("sudo add-apt-repository ppa:fossfreedom/rhythmbox -y");
 
               case 20:
-                _context.next = 22;
-                return execAsync("sudo apt-get install gimp gimp-gmic -y");
+                _context.next = 26;
+                break;
 
               case 22:
-                _context.next = 24;
-                return execAsync("sudo add-apt-repository ppa:otto-kesselgulasch/gimp-edge -y");
-
-              case 24:
+                _context.prev = 22;
+                _context.t1 = _context["catch"](17);
                 _context.next = 26;
-                return execAsync("sudo apt-get update");
+                return execAsync("sudo add-apt-repository ppa:fossfreedom/rhythmbox -r -y");
 
               case 26:
                 _context.next = 28;
-                return execAsync("sudo apt-get install vlc -y");
+                return execAsync("sudo apt-get install rhythmbox -y");
 
               case 28:
+                _context.prev = 28;
+                _context.next = 31;
+                return execAsync("sudo add-apt-repository ppa:otto-kesselgulasch/gimp-edge -y");
+
+              case 31:
+                _context.next = 37;
+                break;
+
+              case 33:
+                _context.prev = 33;
+                _context.t2 = _context["catch"](28);
+                _context.next = 37;
+                return execAsync("sudo add-apt-repository ppa:otto-kesselgulasch/gimp-edge -r -y");
+
+              case 37:
+                _context.next = 39;
+                return execAsync("sudo apt-get update");
+
+              case 39:
+                _context.next = 41;
+                return execAsync("sudo apt-get install gimp gimp-gmic -y");
+
+              case 41:
+                _context.next = 43;
+                return execAsync("sudo apt-get update");
+
+              case 43:
+                _context.next = 45;
+                return execAsync("sudo apt-get install vlc -y");
+
+              case 45:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[2, 7], [17, 22], [28, 33]]);
       }));
 
       function exec() {
@@ -60771,35 +60840,57 @@ function () {
                 return execAsync("sudo apt-get update");
 
               case 2:
-                _context.next = 4;
+                _context.prev = 2;
+                _context.next = 5;
                 return execAsync("sudo add-apt-repository ppa:peek-developers/stable -y");
 
-              case 4:
-                _context.next = 6;
+              case 5:
+                _context.next = 11;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](2);
+                _context.next = 11;
+                return execAsync("sudo add-apt-repository ppa:peek-developers/stable -r -y");
+
+              case 11:
+                _context.next = 13;
                 return execAsync("sudo apt-get update");
 
-              case 6:
-                _context.next = 8;
+              case 13:
+                _context.next = 15;
                 return execAsync("sudo apt-get install peek -y");
 
-              case 8:
-                _context.next = 10;
+              case 15:
+                _context.prev = 15;
+                _context.next = 18;
                 return execAsync("sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder -y");
 
-              case 10:
-                _context.next = 12;
+              case 18:
+                _context.next = 24;
+                break;
+
+              case 20:
+                _context.prev = 20;
+                _context.t1 = _context["catch"](15);
+                _context.next = 24;
+                return execAsync("sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder -r -y");
+
+              case 24:
+                _context.next = 26;
                 return execAsync("sudo apt-get update");
 
-              case 12:
-                _context.next = 14;
+              case 26:
+                _context.next = 28;
                 return execAsync("sudo apt-get install simplescreenrecorder -y");
 
-              case 14:
+              case 28:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[2, 7], [15, 20]]);
       }));
 
       function exec() {
@@ -60851,23 +60942,34 @@ function () {
                 return execAsync("sudo apt-get update");
 
               case 2:
-                _context.next = 4;
+                _context.prev = 2;
+                _context.next = 5;
                 return execAsync("sudo add-apt-repository ppa:gezakovacs/ppa -y");
 
-              case 4:
-                _context.next = 6;
+              case 5:
+                _context.next = 11;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](2);
+                _context.next = 11;
+                return execAsync("sudo add-apt-repository ppa:gezakovacs/ppa -r -y");
+
+              case 11:
+                _context.next = 13;
                 return execAsync("sudo apt-get update");
 
-              case 6:
-                _context.next = 8;
+              case 13:
+                _context.next = 15;
                 return execAsync("sudo apt-get install unetbootin -y");
 
-              case 8:
+              case 15:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[2, 7]]);
       }));
 
       function exec() {
@@ -60915,47 +61017,58 @@ function () {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                _context.prev = 0;
+                _context.next = 3;
                 return execAsync("sudo LC_ALL=C.UTF-8 add-apt-repository ppa:webupd8team/java -y");
 
-              case 2:
-                _context.next = 4;
+              case 3:
+                _context.next = 9;
+                break;
+
+              case 5:
+                _context.prev = 5;
+                _context.t0 = _context["catch"](0);
+                _context.next = 9;
+                return execAsync("sudo LC_ALL=C.UTF-8 add-apt-repository ppa:webupd8team/java -r -y");
+
+              case 9:
+                _context.next = 11;
                 return execAsync("sudo apt-get update");
 
-              case 4:
-                _context.next = 6;
+              case 11:
+                _context.next = 13;
                 return execAsync("sudo apt-get install oracle-java8-set-default -y");
 
-              case 6:
-                _context.next = 8;
+              case 13:
+                _context.next = 15;
                 return execAsync("java -version");
 
-              case 8:
-                _context.next = 10;
+              case 15:
+                _context.next = 17;
                 return execAsync("sudo apt install default-jdk -y");
 
-              case 10:
-                _context.next = 12;
+              case 17:
+                _context.next = 19;
                 return execAsync("wget -O - https://dbeaver.io/debs/dbeaver.gpg.key | sudo apt-key add -");
 
-              case 12:
-                _context.next = 14;
+              case 19:
+                _context.next = 21;
                 return execAsync("echo \"deb https://dbeaver.io/debs/dbeaver-ce /\" | sudo tee /etc/apt/sources.list.d/dbeaver.list");
 
-              case 14:
-                _context.next = 16;
+              case 21:
+                _context.next = 23;
                 return execAsync("sudo apt-get update");
 
-              case 16:
-                _context.next = 18;
+              case 23:
+                _context.next = 25;
                 return execAsync("sudo apt -y  install dbeaver-ce\n");
 
-              case 18:
+              case 25:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[0, 5]]);
       }));
 
       function exec() {
