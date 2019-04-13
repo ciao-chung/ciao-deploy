@@ -17,7 +17,7 @@ class PhpStorm {
     await execAsync(`sudo mv ${outputConfigFilePath} /usr/share/applications/`)
   }
 
-  async _getDesktopConfig() {
+  _getDesktopConfig() {
     return `
 [Desktop Entry]
 Version=5.0.4

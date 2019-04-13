@@ -18,7 +18,13 @@ class Media {
     // GIMP
     await execAsync(`sudo add-apt-repository ppa:otto-kesselgulasch/gimp-edge -y`)
     await execAsync(`sudo apt-get update`)
-    await execAsync(`sudo apt-get install gimp gimp-gmic`)
+    await execAsync(`sudo apt-get install gimp gimp-gmic -y`)
+
+    await execAsync(`sudo add-apt-repository ppa:otto-kesselgulasch/gimp-edge -y`)
+
+    await execAsync(`sudo apt-get update`)
+    await execAsync(`sudo apt-get install vlc -y`)
+
   }
 }
 

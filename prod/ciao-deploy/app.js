@@ -60529,9 +60529,21 @@ function () {
 
               case 20:
                 _context.next = 22;
-                return execAsync("sudo apt-get install gimp gimp-gmic");
+                return execAsync("sudo apt-get install gimp gimp-gmic -y");
 
               case 22:
+                _context.next = 24;
+                return execAsync("sudo add-apt-repository ppa:otto-kesselgulasch/gimp-edge -y");
+
+              case 24:
+                _context.next = 26;
+                return execAsync("sudo apt-get update");
+
+              case 26:
+                _context.next = 28;
+                return execAsync("sudo apt-get install vlc -y");
+
+              case 28:
               case "end":
                 return _context.stop();
             }
@@ -60713,30 +60725,9 @@ function () {
     }()
   }, {
     key: "_getDesktopConfig",
-    value: function () {
-      var _getDesktopConfig2 = _asyncToGenerator(
-      /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2() {
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                return _context2.abrupt("return", "\n[Desktop Entry]\nVersion=5.0.4\nName=PhpStorm\nGenericName=Text Editor\n\nExec=phpstorm\nTerminal=false\nIcon=/opt/phpstorm/bin/phpstorm.png\nType=Application\nCategories=TextEditor;IDE;Development\nX-Ayatana-Desktop-Shortcuts=NewWindow\n\n[NewWindow Shortcut Group]\nName=New Window\nExec=phpstorm\nTargetEnvironment=Unity\n");
-
-              case 1:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2, this);
-      }));
-
-      function _getDesktopConfig() {
-        return _getDesktopConfig2.apply(this, arguments);
-      }
-
-      return _getDesktopConfig;
-    }()
+    value: function _getDesktopConfig() {
+      return "\n[Desktop Entry]\nVersion=5.0.4\nName=PhpStorm\nGenericName=Text Editor\n\nExec=phpstorm\nTerminal=false\nIcon=/opt/phpstorm/bin/phpstorm.png\nType=Application\nCategories=TextEditor;IDE;Development\nX-Ayatana-Desktop-Shortcuts=NewWindow\n\n[NewWindow Shortcut Group]\nName=New Window\nExec=phpstorm\nTargetEnvironment=Unity\n";
+    }
   }]);
 
   return PhpStorm;
