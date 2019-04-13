@@ -57358,29 +57358,33 @@ function () {
 
               case 2:
                 _context.next = 4;
-                return execAsync("sudo apt-get install git -y");
+                return execAsync("sudo apt-get install vim -y");
 
               case 4:
                 _context.next = 6;
-                return execAsync("sudo apt-get install tig -y");
+                return execAsync("sudo apt-get install git -y");
 
               case 6:
                 _context.next = 8;
-                return execAsync("sudo apt-get install vim -y");
+                return execAsync("git config --global core.editor vim");
 
               case 8:
                 _context.next = 10;
-                return execAsync("sudo apt-get install curl -y");
+                return execAsync("sudo apt-get install tig -y");
 
               case 10:
                 _context.next = 12;
-                return execAsync("sudo apt-get install xclip -y");
+                return execAsync("sudo apt-get install curl -y");
 
               case 12:
                 _context.next = 14;
-                return execAsync("sudo apt-get install htop -y");
+                return execAsync("sudo apt-get install xclip -y");
 
               case 14:
+                _context.next = 16;
+                return execAsync("sudo apt-get install htop -y");
+
+              case 16:
               case "end":
                 return _context.stop();
             }
