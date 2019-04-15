@@ -32,6 +32,7 @@ ciao-deploy --command={command-name}
 
 - env: 基本環境安裝
 - fish: 安裝Fish Shell
+- php-setup-upload-max-size: 設定PHP最大上傳檔案大小
 - mysql: 安裝MySQL
 - mysql-user-create: 建立MySQL使用者
 - mysql-user-delete: 刪除MySQL使用者
@@ -61,6 +62,13 @@ ciao-deploy --command={command-name}
 - php(optional): Boolean, 安裝php7.1及相關extension
 - phpgearman(optional): Boolean, 安裝php-gearman
 - composer(optional): Boolean, 安裝composer
+
+
+### 設定PHP最大上傳檔案大小(php-setup-upload-max-size)
+
+**參數**
+
+- size(required): String, 設定的大小包含單位, 例如8M
 
 ### MySQL相關指令
 
