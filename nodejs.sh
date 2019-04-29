@@ -10,6 +10,7 @@ sudo apt-get update
 sudo apt-get install yarn -y
 sudo apt-get install libnotify-bin -y
 sudo apt-get install notify-osd -y
+sudo apt-get install build-essential -y
 sudo yarn global add pm2
 npm -v
 node -v
