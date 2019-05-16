@@ -15,7 +15,7 @@ class Rsync {
   async rsyncFrontend() {
     if(!this.frontendConfig) return
     log(`Start rsync frontend`)
-    const frontendFolderName = this.frontendConfig.frontend || 'Frontend'
+    const frontendFolderName = this.frontendConfig.folder || 'Frontend'
     // 清除原本的frontend
     await executeRemote(this.frontendConfig.user, this.frontendConfig.host, `rm -rf ${this.frontendConfig.path}`)
     await this.rsyncTargetMkdir(this.frontendConfig)
@@ -30,7 +30,7 @@ class Rsync {
   async rsyncBackend() {
     if(!this.backendConfig) return
     log(`Start rsync backend`)
-    const backendFolderName = this.frontendConfig.frontend || 'Backend'
+    const backendFolderName = this.backendConfig.folder || 'Backend'
     await this.rsyncTargetMkdir(this.backendConfig)
     await this.rsync(
       this.backendConfig.user,

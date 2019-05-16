@@ -56574,7 +56574,7 @@ function () {
 
               case 2:
                 log("Start rsync frontend");
-                frontendFolderName = this.frontendConfig.frontend || 'Frontend'; // 清除原本的frontend
+                frontendFolderName = this.frontendConfig.folder || 'Frontend'; // 清除原本的frontend
 
                 _context2.next = 6;
                 return executeRemote(this.frontendConfig.user, this.frontendConfig.host, "rm -rf ".concat(this.frontendConfig.path));
@@ -56621,7 +56621,7 @@ function () {
 
               case 2:
                 log("Start rsync backend");
-                backendFolderName = this.frontendConfig.frontend || 'Backend';
+                backendFolderName = this.backendConfig.folder || 'Backend';
                 _context3.next = 6;
                 return this.rsyncTargetMkdir(this.backendConfig);
 
