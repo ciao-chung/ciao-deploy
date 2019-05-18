@@ -56623,13 +56623,17 @@ function () {
                 log("Start rsync backend");
                 backendFolderName = this.backendConfig.folder || 'Backend';
                 _context3.next = 6;
-                return this.rsyncTargetMkdir(this.backendConfig);
+                return executeRemote(this.backendConfig.user, this.backendConfig.host, "rm -rf ".concat(this.backendConfig.path));
 
               case 6:
                 _context3.next = 8;
-                return this.rsync(this.backendConfig.user, this.backendConfig.host, Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(deployTempPath, backendFolderName), this.backendConfig.path);
+                return this.rsyncTargetMkdir(this.backendConfig);
 
               case 8:
+                _context3.next = 10;
+                return this.rsync(this.backendConfig.user, this.backendConfig.host, Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(deployTempPath, backendFolderName), this.backendConfig.path);
+
+              case 10:
               case "end":
                 return _context3.stop();
             }
@@ -56854,14 +56858,22 @@ function () {
                 return _context2.abrupt("return");
 
               case 2:
-                _context2.next = 4;
-                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan storage:link"));
+                if (this.backendConfig) {
+                  _context2.next = 4;
+                  break;
+                }
+
+                return _context2.abrupt("return");
 
               case 4:
                 _context2.next = 6;
-                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan key:generate"));
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan storage:link"));
 
               case 6:
+                _context2.next = 8;
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan key:generate"));
+
+              case 8:
               case "end":
                 return _context2.stop();
             }
@@ -56912,15 +56924,23 @@ function () {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
+                if (this.backendConfig) {
+                  _context4.next = 2;
+                  break;
+                }
+
+                return _context4.abrupt("return");
+
+              case 2:
                 log("\u6B63\u5728\u8A2D\u5B9A\u5F8C\u7AEF\u8CC7\u6599\u593E\u6A94\u6848\u6B0A\u9650: ".concat(this.backendConfig.path));
-                _context4.next = 3;
+                _context4.next = 5;
                 return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; sudo chmod 755 -R ").concat(this.backendConfig.path));
 
-              case 3:
-                _context4.next = 5;
+              case 5:
+                _context4.next = 7;
                 return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; sudo chmod -R o+w ").concat(this.backendConfig.path, "/storage"));
 
-              case 5:
+              case 7:
               case "end":
                 return _context4.stop();
             }
