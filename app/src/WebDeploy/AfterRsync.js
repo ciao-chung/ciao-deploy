@@ -42,7 +42,11 @@ class AfterRsync {
   async migrate() {
     if(!this.backendConfig) return
     if(!this.backendConfig.migrate) return
-    await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan migrate`)
+    try {
+      await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan migrate`)
+    } catch(error) {
+      log(error, 'yellow')
+    }
   }
 }
 

@@ -57027,15 +57027,25 @@ function () {
                 return _context6.abrupt("return");
 
               case 4:
-                _context6.next = 6;
+                _context6.prev = 4;
+                _context6.next = 7;
                 return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan migrate"));
 
-              case 6:
+              case 7:
+                _context6.next = 12;
+                break;
+
+              case 9:
+                _context6.prev = 9;
+                _context6.t0 = _context6["catch"](4);
+                log(_context6.t0, 'yellow');
+
+              case 12:
               case "end":
                 return _context6.stop();
             }
           }
-        }, _callee6, this);
+        }, _callee6, this, [[4, 9]]);
       }));
 
       function migrate() {
