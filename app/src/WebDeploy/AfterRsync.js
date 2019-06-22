@@ -36,7 +36,11 @@ class AfterRsync {
     await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan cache:clear`)
     await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan config:clear`)
     await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan route:clear`)
-    await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan route:cache`)
+    try {
+      await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan route:cache`)
+    } catch(error) {
+      log(error, 'yellow')
+    }
   }
 
   async migrate() {

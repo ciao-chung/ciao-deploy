@@ -56984,15 +56984,25 @@ function () {
                 return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan route:clear"));
 
               case 8:
-                _context5.next = 10;
+                _context5.prev = 8;
+                _context5.next = 11;
                 return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan route:cache"));
 
-              case 10:
+              case 11:
+                _context5.next = 16;
+                break;
+
+              case 13:
+                _context5.prev = 13;
+                _context5.t0 = _context5["catch"](8);
+                log(_context5.t0, 'yellow');
+
+              case 16:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, this);
+        }, _callee5, this, [[8, 13]]);
       }));
 
       function cleanBackendCache() {
