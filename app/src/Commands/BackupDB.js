@@ -1,6 +1,7 @@
 import BaseCommand from 'Commands/_BaseCommand'
 import { readFileSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
+import { readdirSync } from 'fs'
 class BackupDB extends BaseCommand{
   async setupCommand() {
     this.name = 'backup-db'
@@ -42,6 +43,7 @@ class BackupDB extends BaseCommand{
     log(`Start backup MySQL Database`)
     try {
       await this.initDeployTempFolder()
+      await this.removeOverLimitFiles()
       await this.dumpDb()
       await this.backup()
       log(`Backup MySQL Database successfully`)
@@ -59,6 +61,27 @@ class BackupDB extends BaseCommand{
     this.deployTempPath = resolve(process.env.PWD, this.deployTempFolder)
     mkdir('-p', this.deployTempPath)
     await execAsync(`git clone ${this.args.repo} backup`, { cwd: this.deployTempPath })
+  }
+
+  // 移除過多檔案避免浪費流量
+  async removeOverLimitFiles() {
+    const maxFileQuantity = this.args.max || 7
+    const backupFolderPath = resolve(this.deployTempPath, 'backup')
+    const files = readdirSync(backupFolderPath)
+      .filter(file => file != '.git')
+      .reverse()
+
+    // 沒超過檔案限制
+    if(files.length < maxFileQuantity) return
+
+    for(const index in files) {
+      const file = files[index]
+      const fileIndex = parseInt(index)+1
+      if(fileIndex < maxFileQuantity) continue
+      const folderFullPath = resolve(backupFolderPath, file)
+      log(`正在刪除過期備份: ${file}`, 'yellow')
+      await execAsync(`rm -r ${folderFullPath}`, { cwd: backupFolderPath })
+    }
   }
 
   async dumpDb() {

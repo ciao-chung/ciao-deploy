@@ -61562,6 +61562,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var BackupDB =
 /*#__PURE__*/
 function (_BaseCommand) {
@@ -61642,33 +61643,37 @@ function (_BaseCommand) {
 
               case 4:
                 _context2.next = 6;
-                return this.dumpDb();
+                return this.removeOverLimitFiles();
 
               case 6:
                 _context2.next = 8;
-                return this.backup();
+                return this.dumpDb();
 
               case 8:
+                _context2.next = 10;
+                return this.backup();
+
+              case 10:
                 log("Backup MySQL Database successfully");
-                _context2.next = 15;
+                _context2.next = 17;
                 break;
 
-              case 11:
-                _context2.prev = 11;
+              case 13:
+                _context2.prev = 13;
                 _context2.t0 = _context2["catch"](1);
                 log("[Backup fail]", 'yellow');
                 log("".concat(_context2.t0), 'yellow');
 
-              case 15:
-                _context2.next = 17;
+              case 17:
+                _context2.next = 19;
                 return this.cleanTempFolder();
 
-              case 17:
+              case 19:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, this, [[1, 11]]);
+        }, _callee2, this, [[1, 13]]);
       }));
 
       function start() {
@@ -61710,85 +61715,156 @@ function (_BaseCommand) {
       }
 
       return initDeployTempFolder;
+    }() // 移除過多檔案避免浪費流量
+
+  }, {
+    key: "removeOverLimitFiles",
+    value: function () {
+      var _removeOverLimitFiles = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee4() {
+        var maxFileQuantity, backupFolderPath, files, index, file, fileIndex, folderFullPath;
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                maxFileQuantity = this.args.max || 7;
+                backupFolderPath = Object(__WEBPACK_IMPORTED_MODULE_2_path__["resolve"])(this.deployTempPath, 'backup');
+                files = Object(__WEBPACK_IMPORTED_MODULE_1_fs__["readdirSync"])(backupFolderPath).filter(function (file) {
+                  return file != '.git';
+                }).reverse(); // 沒超過檔案限制
+
+                if (!(files.length < maxFileQuantity)) {
+                  _context4.next = 5;
+                  break;
+                }
+
+                return _context4.abrupt("return");
+
+              case 5:
+                _context4.t0 = regeneratorRuntime.keys(files);
+
+              case 6:
+                if ((_context4.t1 = _context4.t0()).done) {
+                  _context4.next = 18;
+                  break;
+                }
+
+                index = _context4.t1.value;
+                file = files[index];
+                fileIndex = parseInt(index) + 1;
+
+                if (!(fileIndex < maxFileQuantity)) {
+                  _context4.next = 12;
+                  break;
+                }
+
+                return _context4.abrupt("continue", 6);
+
+              case 12:
+                folderFullPath = Object(__WEBPACK_IMPORTED_MODULE_2_path__["resolve"])(backupFolderPath, file);
+                log("\u6B63\u5728\u522A\u9664\u904E\u671F\u5099\u4EFD: ".concat(file), 'yellow');
+                _context4.next = 16;
+                return execAsync("rm -r ".concat(folderFullPath), {
+                  cwd: backupFolderPath
+                });
+
+              case 16:
+                _context4.next = 6;
+                break;
+
+              case 18:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function removeOverLimitFiles() {
+        return _removeOverLimitFiles.apply(this, arguments);
+      }
+
+      return removeOverLimitFiles;
     }()
   }, {
     key: "dumpDb",
     value: function () {
       var _dumpDb = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee4() {
+      regeneratorRuntime.mark(function _callee5() {
         var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, db;
 
-        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
                 this.storePath = Object(__WEBPACK_IMPORTED_MODULE_2_path__["resolve"])(this.deployTempPath, 'backup', this.current);
                 mkdir('-p', this.storePath);
                 _iteratorNormalCompletion = true;
                 _didIteratorError = false;
                 _iteratorError = undefined;
-                _context4.prev = 5;
+                _context5.prev = 5;
                 _iterator = this.args.db[Symbol.iterator]();
 
               case 7:
                 if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-                  _context4.next = 15;
+                  _context5.next = 15;
                   break;
                 }
 
                 db = _step.value;
                 log("\u6B63\u5728dump\u8CC7\u6599\u5EAB".concat(db), 'yellow');
-                _context4.next = 12;
+                _context5.next = 12;
                 return execAsync("mysqldump -u ".concat(this.args.username, " -p").concat(this.args.password, " ").concat(db, " > ").concat(db, ".sql"), {
                   cwd: this.storePath
                 });
 
               case 12:
                 _iteratorNormalCompletion = true;
-                _context4.next = 7;
+                _context5.next = 7;
                 break;
 
               case 15:
-                _context4.next = 21;
+                _context5.next = 21;
                 break;
 
               case 17:
-                _context4.prev = 17;
-                _context4.t0 = _context4["catch"](5);
+                _context5.prev = 17;
+                _context5.t0 = _context5["catch"](5);
                 _didIteratorError = true;
-                _iteratorError = _context4.t0;
+                _iteratorError = _context5.t0;
 
               case 21:
-                _context4.prev = 21;
-                _context4.prev = 22;
+                _context5.prev = 21;
+                _context5.prev = 22;
 
                 if (!_iteratorNormalCompletion && _iterator.return != null) {
                   _iterator.return();
                 }
 
               case 24:
-                _context4.prev = 24;
+                _context5.prev = 24;
 
                 if (!_didIteratorError) {
-                  _context4.next = 27;
+                  _context5.next = 27;
                   break;
                 }
 
                 throw _iteratorError;
 
               case 27:
-                return _context4.finish(24);
+                return _context5.finish(24);
 
               case 28:
-                return _context4.finish(21);
+                return _context5.finish(21);
 
               case 29:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4, this, [[5, 17, 21, 29], [22,, 24, 28]]);
+        }, _callee5, this, [[5, 17, 21, 29], [22,, 24, 28]]);
       }));
 
       function dumpDb() {
@@ -61802,28 +61878,28 @@ function (_BaseCommand) {
     value: function () {
       var _backup = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee5() {
-        return regeneratorRuntime.wrap(function _callee5$(_context5) {
+      regeneratorRuntime.mark(function _callee6() {
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context6.prev = _context6.next) {
               case 0:
-                _context5.next = 2;
+                _context6.next = 2;
                 return execAsync("git add .; git commit -am \"backup ".concat(this.current, " (").concat(this.args.db.toString(), ")\""), {
                   cwd: this.storePath
                 });
 
               case 2:
-                _context5.next = 4;
+                _context6.next = 4;
                 return execAsync("git push --force", {
                   cwd: this.storePath
                 });
 
               case 4:
               case "end":
-                return _context5.stop();
+                return _context6.stop();
             }
           }
-        }, _callee5, this);
+        }, _callee6, this);
       }));
 
       function backup() {
@@ -61837,22 +61913,22 @@ function (_BaseCommand) {
     value: function () {
       var _cleanTempFolder = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee6() {
-        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+      regeneratorRuntime.mark(function _callee7() {
+        return regeneratorRuntime.wrap(function _callee7$(_context7) {
           while (1) {
-            switch (_context6.prev = _context6.next) {
+            switch (_context7.prev = _context7.next) {
               case 0:
-                _context6.next = 2;
+                _context7.next = 2;
                 return execAsync("rm -rf ".concat(this.deployTempPath), {
                   cwd: this.deployTempPath
                 });
 
               case 2:
               case "end":
-                return _context6.stop();
+                return _context7.stop();
             }
           }
-        }, _callee6, this);
+        }, _callee7, this);
       }));
 
       function cleanTempFolder() {
