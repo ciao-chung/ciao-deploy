@@ -56986,23 +56986,27 @@ function () {
               case 8:
                 _context5.prev = 8;
                 _context5.next = 11;
-                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan route:cache"));
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan config:cache"));
 
               case 11:
-                _context5.next = 16;
-                break;
+                _context5.next = 13;
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan route:cache"));
 
               case 13:
-                _context5.prev = 13;
+                _context5.next = 18;
+                break;
+
+              case 15:
+                _context5.prev = 15;
                 _context5.t0 = _context5["catch"](8);
                 log(_context5.t0, 'yellow');
 
-              case 16:
+              case 18:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, this, [[8, 13]]);
+        }, _callee5, this, [[8, 15]]);
       }));
 
       function cleanBackendCache() {
