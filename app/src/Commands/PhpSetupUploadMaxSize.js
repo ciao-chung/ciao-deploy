@@ -11,7 +11,7 @@ class PhpSetupUploadMaxSize extends BaseCommand{
     this.argsConfig = [
       {
         name: 'size',
-        description: '大小(例如: 8MB)',
+        description: '大小(例如: 8M, 單位不可加B)',
         required: true,
         type: 'string',
       },

@@ -13,7 +13,8 @@ class PhpStorm {
     // Add to laucher
     await execAsync(`sudo ln -s /opt/phpstorm/bin/phpstorm.sh /usr/bin/phpstorm`)
     const outputConfigFilePath = resolve('/tmp/phpstorm.desktop')
-    writeFileSync(outputConfigFilePath, this._getDesktopConfig(), 'utf8')
+    const config = this._getDesktopConfig()
+    writeFileSync(outputConfigFilePath, config, 'utf8')
     await execAsync(`sudo mv ${outputConfigFilePath} /usr/share/applications/`)
   }
 
