@@ -56972,41 +56972,51 @@ function () {
                 return _context5.abrupt("return");
 
               case 2:
-                _context5.next = 4;
+                _context5.prev = 2;
+                _context5.next = 5;
                 return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan cache:clear"));
 
-              case 4:
-                _context5.next = 6;
-                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan config:clear"));
-
-              case 6:
-                _context5.next = 8;
-                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan route:clear"));
-
-              case 8:
-                _context5.prev = 8;
-                _context5.next = 11;
-                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan config:cache"));
-
-              case 11:
-                _context5.next = 13;
-                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan route:cache"));
-
-              case 13:
-                _context5.next = 18;
+              case 5:
+                _context5.next = 10;
                 break;
 
-              case 15:
-                _context5.prev = 15;
-                _context5.t0 = _context5["catch"](8);
+              case 7:
+                _context5.prev = 7;
+                _context5.t0 = _context5["catch"](2);
                 log(_context5.t0, 'yellow');
 
-              case 18:
+              case 10:
+                _context5.next = 12;
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan config:clear"));
+
+              case 12:
+                _context5.next = 14;
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan route:clear"));
+
+              case 14:
+                _context5.prev = 14;
+                _context5.next = 17;
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan config:cache"));
+
+              case 17:
+                _context5.next = 19;
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan route:cache"));
+
+              case 19:
+                _context5.next = 24;
+                break;
+
+              case 21:
+                _context5.prev = 21;
+                _context5.t1 = _context5["catch"](14);
+                log(_context5.t1, 'yellow');
+
+              case 24:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, this, [[8, 15]]);
+        }, _callee5, this, [[2, 7], [14, 21]]);
       }));
 
       function cleanBackendCache() {
@@ -60786,7 +60796,7 @@ function () {
       var _exec = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee() {
-        var outputConfigFilePath;
+        var outputConfigFilePath, config;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -60824,11 +60834,12 @@ function () {
 
               case 16:
                 outputConfigFilePath = Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])('/tmp/phpstorm.desktop');
-                Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(outputConfigFilePath, this._getDesktopConfig(), 'utf8');
-                _context.next = 20;
+                config = this._getDesktopConfig();
+                Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(outputConfigFilePath, config, 'utf8');
+                _context.next = 21;
                 return execAsync("sudo mv ".concat(outputConfigFilePath, " /usr/share/applications/"));
 
-              case 20:
+              case 21:
               case "end":
                 return _context.stop();
             }
@@ -61086,39 +61097,48 @@ function () {
                 return execAsync("sudo apt-get update");
 
               case 11:
-                _context.next = 13;
+                _context.prev = 11;
+                _context.next = 14;
                 return execAsync("sudo apt-get install oracle-java8-set-default -y");
 
-              case 13:
-                _context.next = 15;
+              case 14:
+                _context.next = 18;
+                break;
+
+              case 16:
+                _context.prev = 16;
+                _context.t1 = _context["catch"](11);
+
+              case 18:
+                _context.next = 20;
                 return execAsync("java -version");
 
-              case 15:
-                _context.next = 17;
+              case 20:
+                _context.next = 22;
                 return execAsync("sudo apt install default-jdk -y");
 
-              case 17:
-                _context.next = 19;
+              case 22:
+                _context.next = 24;
                 return execAsync("wget -O - https://dbeaver.io/debs/dbeaver.gpg.key | sudo apt-key add -");
 
-              case 19:
-                _context.next = 21;
+              case 24:
+                _context.next = 26;
                 return execAsync("echo \"deb https://dbeaver.io/debs/dbeaver-ce /\" | sudo tee /etc/apt/sources.list.d/dbeaver.list");
 
-              case 21:
-                _context.next = 23;
+              case 26:
+                _context.next = 28;
                 return execAsync("sudo apt-get update");
 
-              case 23:
-                _context.next = 25;
-                return execAsync("sudo apt -y  install dbeaver-ce\n");
+              case 28:
+                _context.next = 30;
+                return execAsync("sudo apt -y  install dbeaver-ce");
 
-              case 25:
+              case 30:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[0, 5]]);
+        }, _callee, this, [[0, 5], [11, 16]]);
       }));
 
       function exec() {
@@ -62625,7 +62645,7 @@ function (_BaseCommand) {
                 };
                 this.argsConfig = [{
                   name: 'size',
-                  description: '大小(例如: 8MB)',
+                  description: '大小(例如: 8M, 單位不可加B)',
                   required: true,
                   type: 'string'
                 }];
