@@ -11,6 +11,7 @@ class AfterRsync {
     await this.cleanBackendCache()
     await this.migrate()
     await this.setupFolderPermission()
+    await this.cleanBackendCache()
   }
 
   async initBackend() {
@@ -38,8 +39,14 @@ class AfterRsync {
     } catch(error) {
       log(error, 'yellow')
     }
-    await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan config:clear`)
-    await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan route:clear`)
+    
+    try {
+      await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan config:clear`)
+      await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan route:clear`)
+    } catch(error) {
+      log(error, 'yellow')
+    }
+
     try {
       await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan config:cache`)
       await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan route:cache`)

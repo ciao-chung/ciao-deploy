@@ -56827,6 +56827,10 @@ function () {
                 return this.setupFolderPermission();
 
               case 8:
+                _context.next = 10;
+                return this.cleanBackendCache();
+
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -56986,37 +56990,47 @@ function () {
                 log(_context5.t0, 'yellow');
 
               case 10:
-                _context5.next = 12;
+                _context5.prev = 10;
+                _context5.next = 13;
                 return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan config:clear"));
 
-              case 12:
-                _context5.next = 14;
+              case 13:
+                _context5.next = 15;
                 return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan route:clear"));
 
-              case 14:
-                _context5.prev = 14;
-                _context5.next = 17;
-                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan config:cache"));
-
-              case 17:
-                _context5.next = 19;
-                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan route:cache"));
-
-              case 19:
-                _context5.next = 24;
+              case 15:
+                _context5.next = 20;
                 break;
 
-              case 21:
-                _context5.prev = 21;
-                _context5.t1 = _context5["catch"](14);
+              case 17:
+                _context5.prev = 17;
+                _context5.t1 = _context5["catch"](10);
                 log(_context5.t1, 'yellow');
 
-              case 24:
+              case 20:
+                _context5.prev = 20;
+                _context5.next = 23;
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan config:cache"));
+
+              case 23:
+                _context5.next = 25;
+                return this.executeRemoteBackend("cd ".concat(this.backendConfig.path, "; php artisan route:cache"));
+
+              case 25:
+                _context5.next = 30;
+                break;
+
+              case 27:
+                _context5.prev = 27;
+                _context5.t2 = _context5["catch"](20);
+                log(_context5.t2, 'yellow');
+
+              case 30:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, this, [[2, 7], [14, 21]]);
+        }, _callee5, this, [[2, 7], [10, 17], [20, 27]]);
       }));
 
       function cleanBackendCache() {
