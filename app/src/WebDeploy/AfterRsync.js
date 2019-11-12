@@ -48,7 +48,6 @@ class AfterRsync {
     }
 
     try {
-      await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan config:cache`)
       await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan route:cache`)
     } catch(error) {
       log(error, 'yellow')
