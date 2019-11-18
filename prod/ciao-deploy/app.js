@@ -60806,55 +60806,97 @@ function () {
       var _exec = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee() {
-        var outputConfigFilePath, config;
+        var desktopConfig, outputConfigFilePath;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                desktopConfig = "\n[Desktop Entry]\nVersion=5.0.4\nName=PhpStorm\nGenericName=Text Editor\n\nExec=phpstorm\nTerminal=false\nIcon=/opt/phpstorm/bin/phpstorm.png\nType=Application\nCategories=TextEditor;IDE;Development\nX-Ayatana-Desktop-Shortcuts=NewWindow\n\n[NewWindow Shortcut Group]\nName=New Window\nExec=phpstorm\nTargetEnvironment=Unity\n";
+                _context.next = 3;
                 return execAsync("sudo apt-get update");
 
-              case 2:
-                _context.next = 4;
+              case 3:
+                _context.next = 5;
                 return execAsync("sudo apt-get install default-jre -y");
 
-              case 4:
-                _context.next = 6;
+              case 5:
+                _context.next = 7;
                 return execAsync("wget https://download-cf.jetbrains.com/webide/PhpStorm-2017.3.4.tar.gz");
 
-              case 6:
-                _context.next = 8;
+              case 7:
+                _context.next = 9;
                 return execAsync("tar xfz PhpStorm-*.tar.gz");
 
-              case 8:
-                _context.next = 10;
+              case 9:
+                _context.prev = 9;
+                _context.next = 12;
                 return execAsync("sudo mv PhpStorm-17*/ /opt/phpstorm/");
 
-              case 10:
-                _context.next = 12;
-                return execAsync("rm ./PhpStorm-2017.3.4.tar.gz");
-
               case 12:
-                _context.next = 14;
-                return execAsync("sudo ln -s /opt/phpstorm/bin/phpstorm.sh /usr/local/bin/phpstorm");
+                _context.next = 21;
+                break;
 
               case 14:
-                _context.next = 16;
-                return execAsync("sudo ln -s /opt/phpstorm/bin/phpstorm.sh /usr/bin/phpstorm");
+                _context.prev = 14;
+                _context.t0 = _context["catch"](9);
+                log(_context.t0, 'yellow');
+                _context.next = 19;
+                return execAsync("sudo rm -rf /opt/phpstorm/");
 
-              case 16:
-                outputConfigFilePath = Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])('/tmp/phpstorm.desktop');
-                config = this._getDesktopConfig();
-                Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(outputConfigFilePath, config, 'utf8');
+              case 19:
                 _context.next = 21;
-                return execAsync("sudo mv ".concat(outputConfigFilePath, " /usr/share/applications/"));
+                return execAsync("sudo mv PhpStorm-17*/ /opt/phpstorm/");
 
               case 21:
+                _context.next = 23;
+                return execAsync("rm ./PhpStorm-2017.3.4.tar.gz");
+
+              case 23:
+                _context.prev = 23;
+                _context.next = 26;
+                return execAsync("sudo ln -s /opt/phpstorm/bin/phpstorm.sh /usr/local/bin/phpstorm");
+
+              case 26:
+                _context.next = 31;
+                break;
+
+              case 28:
+                _context.prev = 28;
+                _context.t1 = _context["catch"](23);
+                log(_context.t1, 'yellow');
+
+              case 31:
+                _context.prev = 31;
+                _context.next = 34;
+                return execAsync("sudo ln -s /opt/phpstorm/bin/phpstorm.sh /usr/bin/phpstorm");
+
+              case 34:
+                _context.next = 43;
+                break;
+
+              case 36:
+                _context.prev = 36;
+                _context.t2 = _context["catch"](31);
+                log(_context.t2, 'yellow');
+                _context.next = 41;
+                return execAsync("sudo rm /usr/bin/phpstorm");
+
+              case 41:
+                _context.next = 43;
+                return execAsync("sudo ln -s /opt/phpstorm/bin/phpstorm.sh /usr/bin/phpstorm");
+
+              case 43:
+                outputConfigFilePath = Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])('/tmp/phpstorm.desktop');
+                Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(outputConfigFilePath, desktopConfig, 'utf8');
+                _context.next = 47;
+                return execAsync("sudo mv ".concat(outputConfigFilePath, " /usr/share/applications/"));
+
+              case 47:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[9, 14], [23, 28], [31, 36]]);
       }));
 
       function exec() {
@@ -60863,11 +60905,6 @@ function () {
 
       return exec;
     }()
-  }, {
-    key: "_getDesktopConfig",
-    value: function _getDesktopConfig() {
-      return "\n[Desktop Entry]\nVersion=5.0.4\nName=PhpStorm\nGenericName=Text Editor\n\nExec=phpstorm\nTerminal=false\nIcon=/opt/phpstorm/bin/phpstorm.png\nType=Application\nCategories=TextEditor;IDE;Development\nX-Ayatana-Desktop-Shortcuts=NewWindow\n\n[NewWindow Shortcut Group]\nName=New Window\nExec=phpstorm\nTargetEnvironment=Unity\n";
-    }
   }]);
 
   return PhpStorm;

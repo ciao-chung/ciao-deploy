@@ -1,6 +1,6 @@
 {
   "name": "ciao-deploy",
-  "version": "1.1.9",
+  "version": "1.1.13",
   "description": "A deploy tools base on node.js",
   "main": "index.js",
   "repository": "https://github.com/ciao-chung/ciao-deploy",
