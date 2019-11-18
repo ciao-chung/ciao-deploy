@@ -57575,21 +57575,25 @@ function () {
 
               case 37:
                 _context.next = 39;
-                return execAsync("sudo apt-get install libapache2-mod-php7.1 -y");
+                return execAsync("sudo apt-get install php7.1-bcmath -y");
 
               case 39:
                 _context.next = 41;
-                return execAsync("sudo apt-get install php-imagick -y");
+                return execAsync("sudo apt-get install libapache2-mod-php7.1 -y");
 
               case 41:
                 _context.next = 43;
-                return execAsync("php -m | grep imagick");
+                return execAsync("sudo apt-get install php-imagick -y");
 
               case 43:
                 _context.next = 45;
-                return execAsync("sudo service apache2 restart");
+                return execAsync("php -m | grep imagick");
 
               case 45:
+                _context.next = 47;
+                return execAsync("sudo service apache2 restart");
+
+              case 47:
               case "end":
                 return _context.stop();
             }
