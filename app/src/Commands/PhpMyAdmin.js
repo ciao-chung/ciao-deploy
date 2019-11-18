@@ -1,4 +1,5 @@
 import BaseCommand from 'Commands/_BaseCommand'
+import { appendFileSync } from 'fs'
 class PhpMyAdmin extends BaseCommand{
   async setupCommand() {
     this.name = 'phpmyadmin'
@@ -30,10 +31,21 @@ class PhpMyAdmin extends BaseCommand{
       await execAsync(`echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | sudo debconf-set-selections`)
       await execAsync(`sudo apt-get install phpmyadmin -y`)
       await execAsync(`sudo a2enmod rewrite`)
+      await this.setupTimeout()
       await execAsync(`sudo service apache2 restart`)
     } catch(error) {
       log(`phpMyAdmin安裝失敗: ${JSON.stringify(error)}`, 'red')
     }
+  }
+
+  async setupTimeout() {
+    log(`Setup phpMyAdmin Timeout`)
+    const ttl = 86400
+    const phpIniPath = '/etc/php/7.1/cli/php.ini'
+    await execAsync(`sudo sed -i 's,^session.gc_maxlifetime =.*$,session.gc_maxlifetime = ${ttl},' ${phpIniPath}`)
+
+    const configIncPhp = '/etc/phpmyadmin/config.inc.php'
+    await appendFileSync(configIncPhp, `\n$cfg['LoginCookieValidity'] = ${ttl};\n`, 'utf-8')
   }
 }
 

@@ -61153,38 +61153,39 @@ function () {
                 return execAsync("sudo apt-get install oracle-java8-set-default -y");
 
               case 14:
-                _context.next = 18;
+                _context.next = 19;
                 break;
 
               case 16:
                 _context.prev = 16;
                 _context.t1 = _context["catch"](11);
+                log(_context.t1, 'yellow');
 
-              case 18:
-                _context.next = 20;
+              case 19:
+                _context.next = 21;
                 return execAsync("java -version");
 
-              case 20:
-                _context.next = 22;
+              case 21:
+                _context.next = 23;
                 return execAsync("sudo apt install default-jdk -y");
 
-              case 22:
-                _context.next = 24;
+              case 23:
+                _context.next = 25;
                 return execAsync("wget -O - https://dbeaver.io/debs/dbeaver.gpg.key | sudo apt-key add -");
 
-              case 24:
-                _context.next = 26;
+              case 25:
+                _context.next = 27;
                 return execAsync("echo \"deb https://dbeaver.io/debs/dbeaver-ce /\" | sudo tee /etc/apt/sources.list.d/dbeaver.list");
 
-              case 26:
-                _context.next = 28;
+              case 27:
+                _context.next = 29;
                 return execAsync("sudo apt-get update");
 
-              case 28:
-                _context.next = 30;
+              case 29:
+                _context.next = 31;
                 return execAsync("sudo apt -y  install dbeaver-ce");
 
-              case 30:
+              case 31:
               case "end":
                 return _context.stop();
             }
@@ -61211,6 +61212,8 @@ function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -61232,6 +61235,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -61330,23 +61334,27 @@ function (_BaseCommand) {
 
               case 19:
                 _context2.next = 21;
-                return execAsync("sudo service apache2 restart");
+                return this.setupTimeout();
 
               case 21:
-                _context2.next = 26;
-                break;
+                _context2.next = 23;
+                return execAsync("sudo service apache2 restart");
 
               case 23:
-                _context2.prev = 23;
+                _context2.next = 28;
+                break;
+
+              case 25:
+                _context2.prev = 25;
                 _context2.t0 = _context2["catch"](2);
                 log("phpMyAdmin\u5B89\u88DD\u5931\u6557: ".concat(JSON.stringify(_context2.t0)), 'red');
 
-              case 26:
+              case 28:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, this, [[2, 23]]);
+        }, _callee2, this, [[2, 25]]);
       }));
 
       function start() {
@@ -61354,6 +61362,42 @@ function (_BaseCommand) {
       }
 
       return start;
+    }()
+  }, {
+    key: "setupTimeout",
+    value: function () {
+      var _setupTimeout = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee3() {
+        var ttl, phpIniPath, configIncPhp;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                log("Setup phpMyAdmin Timeout");
+                ttl = 86400;
+                phpIniPath = '/etc/php/7.1/cli/php.ini';
+                _context3.next = 5;
+                return execAsync("sudo sed -i 's,^session.gc_maxlifetime =.*$,session.gc_maxlifetime = ".concat(ttl, ",' ").concat(phpIniPath));
+
+              case 5:
+                configIncPhp = '/etc/phpmyadmin/config.inc.php';
+                _context3.next = 8;
+                return Object(__WEBPACK_IMPORTED_MODULE_1_fs__["appendFileSync"])(configIncPhp, "\n$cfg['LoginCookieValidity'] = ".concat(ttl, ";\n"), 'utf-8');
+
+              case 8:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function setupTimeout() {
+        return _setupTimeout.apply(this, arguments);
+      }
+
+      return setupTimeout;
     }()
   }]);
 

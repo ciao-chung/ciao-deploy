@@ -8,8 +8,8 @@ class DbEaver {
     await execAsync(`sudo apt-get update`)
     try {
       await execAsync(`sudo apt-get install oracle-java8-set-default -y`)
-    } catch {
-
+    } catch (error){
+      log(error, 'yellow')
     }
     await execAsync(`java -version`)
     await execAsync(`sudo apt install default-jdk -y`)
