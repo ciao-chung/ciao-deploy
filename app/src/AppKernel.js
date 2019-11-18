@@ -9,7 +9,7 @@ class AppKernel {
 
   async start() {
     this.setup()
-    log('app start')
+    log(`app start (${packageJsonContent.version})`)
     this.error = []
     this.commands = {}
     this.commandList.forEach(command => {

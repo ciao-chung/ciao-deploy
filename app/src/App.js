@@ -22,6 +22,7 @@ import SetupRemoteEnv from 'Commands/SetupRemoteEnv'
 import BackupDB from 'Commands/BackupDB'
 import CustomDeploy from 'Commands/CustomDeploy'
 import PhpSetupUploadMaxSize from 'Commands/PhpSetupUploadMaxSize'
+import Version from 'Commands/Version'
 class App extends AppKernel {
   setup() {
     this.commandList = [
@@ -48,6 +49,7 @@ class App extends AppKernel {
       BackupDB,
       CustomDeploy,
       PhpSetupUploadMaxSize,
+      Version,
     ]
   }
 }

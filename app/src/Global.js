@@ -4,7 +4,7 @@ const chalk = require('chalk')
 const moment = require('moment')
 const yargsParser = require('yargs-parser')
 const notifier = require('node-notifier')
-
+const packageJsonContent = require('../../package')
 class Global {
   constructor() {
     this.init()
@@ -17,6 +17,7 @@ class Global {
     global.appRoot = pathResolve(projectRoot, 'app')
     global.outputPath = pathResolve(appRoot, 'dist')
     global.productionPath = pathResolve(projectRoot, 'prod')
+    global.packageJsonContent = packageJsonContent
   }
 
   /**
