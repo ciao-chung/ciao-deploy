@@ -20,7 +20,8 @@ class Media {
     } catch {
       await execAsync(`sudo add-apt-repository ppa:fossfreedom/rhythmbox -r -y`)
     }
-    await execAsync(`sudo apt-get install rhythmbox -y`)
+    await execAsync(`sudo apt-get update`)
+    await execAsync(`sudo apt-get install rhythmbox gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gnome-control-center rhythmbox-plugin-visualizer -y`)
 
     // GIMP
     try {
@@ -33,6 +34,11 @@ class Media {
 
     await execAsync(`sudo apt-get update`)
     await execAsync(`sudo apt-get install vlc -y`)
+
+    // inkscape
+    await execAsync(`sudo add-apt-repository ppa:inkscape.dev/stable -y`)
+    await execAsync(`sudo apt-get update`)
+    await execAsync(`sudo apt install inkscape -y`)
 
   }
 }

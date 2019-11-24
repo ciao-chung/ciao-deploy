@@ -42841,7 +42841,7 @@ module.exports = require("crypto");
 /* 564 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"1.1.16","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"1.1.18","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 565 */
@@ -60664,45 +60664,61 @@ function () {
 
               case 26:
                 _context.next = 28;
-                return execAsync("sudo apt-get install rhythmbox -y");
+                return execAsync("sudo apt-get update");
 
               case 28:
-                _context.prev = 28;
-                _context.next = 31;
+                _context.next = 30;
+                return execAsync("sudo apt-get install rhythmbox gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gnome-control-center rhythmbox-plugin-visualizer -y");
+
+              case 30:
+                _context.prev = 30;
+                _context.next = 33;
                 return execAsync("sudo add-apt-repository ppa:otto-kesselgulasch/gimp-edge -y");
 
-              case 31:
-                _context.next = 37;
+              case 33:
+                _context.next = 39;
                 break;
 
-              case 33:
-                _context.prev = 33;
-                _context.t2 = _context["catch"](28);
-                _context.next = 37;
-                return execAsync("sudo add-apt-repository ppa:otto-kesselgulasch/gimp-edge -r -y");
-
-              case 37:
+              case 35:
+                _context.prev = 35;
+                _context.t2 = _context["catch"](30);
                 _context.next = 39;
-                return execAsync("sudo apt-get update");
+                return execAsync("sudo add-apt-repository ppa:otto-kesselgulasch/gimp-edge -r -y");
 
               case 39:
                 _context.next = 41;
-                return execAsync("sudo apt-get install gimp gimp-gmic -y");
+                return execAsync("sudo apt-get update");
 
               case 41:
                 _context.next = 43;
-                return execAsync("sudo apt-get update");
+                return execAsync("sudo apt-get install gimp gimp-gmic -y");
 
               case 43:
                 _context.next = 45;
-                return execAsync("sudo apt-get install vlc -y");
+                return execAsync("sudo apt-get update");
 
               case 45:
+                _context.next = 47;
+                return execAsync("sudo apt-get install vlc -y");
+
+              case 47:
+                _context.next = 49;
+                return execAsync("sudo add-apt-repository ppa:inkscape.dev/stable -y");
+
+              case 49:
+                _context.next = 51;
+                return execAsync("sudo apt-get update");
+
+              case 51:
+                _context.next = 53;
+                return execAsync("sudo apt install inkscape -y");
+
+              case 53:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[2, 7], [17, 22], [28, 33]]);
+        }, _callee, this, [[2, 7], [17, 22], [30, 35]]);
       }));
 
       function exec() {
@@ -60755,17 +60771,21 @@ function () {
 
               case 2:
                 _context.next = 4;
-                return execAsync("sudo apt-get install gnome-disk-utility -y");
+                return execAsync("wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip");
 
               case 4:
                 _context.next = 6;
-                return execAsync("sudo apt-get install openvpn -y");
+                return execAsync("unzip ngrok-stable-linux-amd64.zip");
 
               case 6:
                 _context.next = 8;
-                return execAsync("sudo yarn global add apidoc -y");
+                return execAsync("sudo mv ngrok /usr/bin");
 
               case 8:
+                _context.next = 10;
+                return execAsync("ngrok");
+
+              case 10:
               case "end":
                 return _context.stop();
             }
