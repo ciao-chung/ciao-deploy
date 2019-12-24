@@ -24,6 +24,7 @@ class BuildFrontend {
     await this.beforeBuild()
     await this.installNodeModules()
     await this.buildWebpack()
+    await this.afterBuildWebpack()
     await this.cleanNodeModules()
     notify('Frontend build successfully')
   }
@@ -51,6 +52,14 @@ class BuildFrontend {
     const buildScript = this.frontendConfig.build_script
     log(`buildCommand: ${buildScript}`, 'yellow')
     await execAsync(buildScript, { cwd: this.frontendPath })
+  }
+
+  async afterBuildWebpack() {
+    const afterBuildCommands = this.frontendConfig.after_build
+    if(!Array.isArray(afterBuildCommands)) return
+    for (const command of afterBuildCommands) {
+      await execAsync(`${command}`, { cwd: this.frontendPath })
+    }
   }
 
   async cleanNodeModules() {

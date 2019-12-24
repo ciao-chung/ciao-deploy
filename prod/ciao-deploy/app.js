@@ -42841,7 +42841,7 @@ module.exports = require("crypto");
 /* 564 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"1.1.18","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"1.1.19","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 565 */
@@ -55983,12 +55983,16 @@ function () {
 
               case 11:
                 _context2.next = 13;
-                return this.cleanNodeModules();
+                return this.afterBuildWebpack();
 
               case 13:
+                _context2.next = 15;
+                return this.cleanNodeModules();
+
+              case 15:
                 notify('Frontend build successfully');
 
-              case 14:
+              case 16:
               case "end":
                 return _context2.stop();
             }
@@ -56203,26 +56207,119 @@ function () {
       return buildWebpack;
     }()
   }, {
-    key: "cleanNodeModules",
+    key: "afterBuildWebpack",
     value: function () {
-      var _cleanNodeModules = _asyncToGenerator(
+      var _afterBuildWebpack = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee7() {
+        var afterBuildCommands, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, command;
+
         return regeneratorRuntime.wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                _context7.next = 2;
+                afterBuildCommands = this.frontendConfig.after_build;
+
+                if (Array.isArray(afterBuildCommands)) {
+                  _context7.next = 3;
+                  break;
+                }
+
+                return _context7.abrupt("return");
+
+              case 3:
+                _iteratorNormalCompletion2 = true;
+                _didIteratorError2 = false;
+                _iteratorError2 = undefined;
+                _context7.prev = 6;
+                _iterator2 = afterBuildCommands[Symbol.iterator]();
+
+              case 8:
+                if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
+                  _context7.next = 15;
+                  break;
+                }
+
+                command = _step2.value;
+                _context7.next = 12;
+                return execAsync("".concat(command), {
+                  cwd: this.frontendPath
+                });
+
+              case 12:
+                _iteratorNormalCompletion2 = true;
+                _context7.next = 8;
+                break;
+
+              case 15:
+                _context7.next = 21;
+                break;
+
+              case 17:
+                _context7.prev = 17;
+                _context7.t0 = _context7["catch"](6);
+                _didIteratorError2 = true;
+                _iteratorError2 = _context7.t0;
+
+              case 21:
+                _context7.prev = 21;
+                _context7.prev = 22;
+
+                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                  _iterator2.return();
+                }
+
+              case 24:
+                _context7.prev = 24;
+
+                if (!_didIteratorError2) {
+                  _context7.next = 27;
+                  break;
+                }
+
+                throw _iteratorError2;
+
+              case 27:
+                return _context7.finish(24);
+
+              case 28:
+                return _context7.finish(21);
+
+              case 29:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7, this, [[6, 17, 21, 29], [22,, 24, 28]]);
+      }));
+
+      function afterBuildWebpack() {
+        return _afterBuildWebpack.apply(this, arguments);
+      }
+
+      return afterBuildWebpack;
+    }()
+  }, {
+    key: "cleanNodeModules",
+    value: function () {
+      var _cleanNodeModules = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee8() {
+        return regeneratorRuntime.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                _context8.next = 2;
                 return execAsync("rm -rf node_modules/", {
                   cwd: this.frontendPath
                 });
 
               case 2:
               case "end":
-                return _context7.stop();
+                return _context8.stop();
             }
           }
-        }, _callee7, this);
+        }, _callee8, this);
       }));
 
       function cleanNodeModules() {
@@ -56441,7 +56538,7 @@ function () {
                 key = _context4.t1.value;
                 value = this.backendConfig.env[key];
                 _context4.next = 12;
-                return execAsync("php artisan env:set ".concat(key, " ").concat(value), {
+                return execAsync("php artisan env:set ".concat(key, " ").concat(value, " --quiet"), {
                   cwd: this.backendPath
                 }, true);
 

@@ -39,7 +39,7 @@ class BuildBackend {
 
     for(const key in this.backendConfig.env) {
       const value = this.backendConfig.env[key]
-      await execAsync(`php artisan env:set ${key} ${value}`, { cwd: this.backendPath }, true)
+      await execAsync(`php artisan env:set ${key} ${value} --quiet`, { cwd: this.backendPath }, true)
     }
   }
 
