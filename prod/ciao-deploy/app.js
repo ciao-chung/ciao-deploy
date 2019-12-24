@@ -42857,7 +42857,7 @@ module.exports = require("crypto");
 /* 564 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"1.1.20","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"1.1.21","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 565 */
@@ -56701,7 +56701,9 @@ function () {
                 frontendFolderName = this.frontendConfig.folder || 'Frontend'; // 清除原本的frontend
 
                 _context2.next = 6;
-                return executeRemote(this.frontendConfig.user, this.frontendConfig.host, "rm -rf ".concat(this.frontendConfig.path));
+                return executeRemote(this.frontendConfig.user, this.frontendConfig.host, "rm -rf ".concat(this.frontendConfig.path), {
+                  local: this.frontendConfig.local
+                });
 
               case 6:
                 _context2.next = 8;

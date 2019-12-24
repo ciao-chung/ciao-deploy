@@ -17,7 +17,9 @@ class Rsync {
     log(`Start rsync frontend`)
     const frontendFolderName = this.frontendConfig.folder || 'Frontend'
     // 清除原本的frontend
-    await executeRemote(this.frontendConfig.user, this.frontendConfig.host, `rm -rf ${this.frontendConfig.path}`)
+    await executeRemote(this.frontendConfig.user, this.frontendConfig.host, `rm -rf ${this.frontendConfig.path}`, {
+      local: this.frontendConfig.local,
+    })
     await this.rsyncTargetMkdir(this.frontendConfig)
     await this.rsync(
       this.frontendConfig.user,
