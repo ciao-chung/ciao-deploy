@@ -22,6 +22,10 @@ class AfterRsync {
   }
   
   async executeRemoteBackend(command, options) {
+    if(this.backendConfig.local) {
+      await execAsync(command, options)
+      return
+    }
     await executeRemote(this.backendConfig.user, this.backendConfig.host, command, options)
   }
 

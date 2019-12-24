@@ -24,6 +24,7 @@ class Rsync {
       this.frontendConfig.host,
       resolve(deployTempPath, frontendFolderName, 'dist'),
       this.frontendConfig.path,
+      this.frontendConfig.local,
     )
   }
 
@@ -31,23 +32,31 @@ class Rsync {
     if(!this.backendConfig) return
     log(`Start rsync backend`)
     const backendFolderName = this.backendConfig.folder || 'Backend'
-    await executeRemote(this.backendConfig.user, this.backendConfig.host, `rm -rf ${this.backendConfig.path}`)
+    await executeRemote(this.backendConfig.user, this.backendConfig.host, `rm -rf ${this.backendConfig.path}`, {
+      local: this.backendConfig.local,
+    })
     await this.rsyncTargetMkdir(this.backendConfig)
     await this.rsync(
       this.backendConfig.user,
       this.backendConfig.host,
       resolve(deployTempPath, backendFolderName),
       this.backendConfig.path,
+      this.backendConfig.local,
     )
   }
 
-  async rsync(user, host, source, target) {
-    const rsyncCommand = `rsync -e "ssh -o StrictHostKeyChecking=no" -avzh ${source}/ ${user}@${host}:${target}`
+  async rsync(user, host, source, target, local = false) {
+    let rsyncCommand = `rsync -e "ssh -o StrictHostKeyChecking=no" -avzh ${source}/ ${user}@${host}:${target}`
+    if(local) {
+      rsyncCommand = `rsync -avzh ${source}/ ${target}`
+    }
     await execAsync(rsyncCommand)
   }
 
   async rsyncTargetMkdir(config) {
-    await executeRemote(config.user, config.host, `mkdir -p ${config.path}`)
+    await executeRemote(config.user, config.host, `mkdir -p ${config.path}`, {
+      local: config.local ? 1 : 0,
+    })
   }
 }
 

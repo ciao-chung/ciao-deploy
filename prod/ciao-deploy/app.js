@@ -36924,15 +36924,31 @@ function () {
     value: function () {
       var _executeRemote = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(user, host, command, options) {
+      regeneratorRuntime.mark(function _callee2(user, host, command) {
+        var options,
+            _args2 = arguments;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
-                return this.execAsync("ssh -o StrictHostKeyChecking=no ".concat(user, "@").concat(host, " \"").concat(command, "\" "), options);
+                options = _args2.length > 3 && _args2[3] !== undefined ? _args2[3] : {};
 
-              case 2:
+                if (!options.local) {
+                  _context2.next = 5;
+                  break;
+                }
+
+                _context2.next = 4;
+                return this.execAsync(command, options);
+
+              case 4:
+                return _context2.abrupt("return");
+
+              case 5:
+                _context2.next = 7;
+                return this.execAsync("ssh -o StrictHostKeyChecking=no ".concat(user, "@").concat(host, " \"").concat(command, "\""), options);
+
+              case 7:
               case "end":
                 return _context2.stop();
             }
@@ -36940,7 +36956,7 @@ function () {
         }, _callee2, this);
       }));
 
-      function executeRemote(_x4, _x5, _x6, _x7) {
+      function executeRemote(_x4, _x5, _x6) {
         return _executeRemote.apply(this, arguments);
       }
 
@@ -42841,7 +42857,7 @@ module.exports = require("crypto");
 /* 564 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"1.1.19","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"1.1.20","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 565 */
@@ -56693,7 +56709,7 @@ function () {
 
               case 8:
                 _context2.next = 10;
-                return this.rsync(this.frontendConfig.user, this.frontendConfig.host, Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(deployTempPath, frontendFolderName, 'dist'), this.frontendConfig.path);
+                return this.rsync(this.frontendConfig.user, this.frontendConfig.host, Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(deployTempPath, frontendFolderName, 'dist'), this.frontendConfig.path, this.frontendConfig.local);
 
               case 10:
               case "end":
@@ -56731,7 +56747,9 @@ function () {
                 log("Start rsync backend");
                 backendFolderName = this.backendConfig.folder || 'Backend';
                 _context3.next = 6;
-                return executeRemote(this.backendConfig.user, this.backendConfig.host, "rm -rf ".concat(this.backendConfig.path));
+                return executeRemote(this.backendConfig.user, this.backendConfig.host, "rm -rf ".concat(this.backendConfig.path), {
+                  local: this.backendConfig.local
+                });
 
               case 6:
                 _context3.next = 8;
@@ -56739,7 +56757,7 @@ function () {
 
               case 8:
                 _context3.next = 10;
-                return this.rsync(this.backendConfig.user, this.backendConfig.host, Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(deployTempPath, backendFolderName), this.backendConfig.path);
+                return this.rsync(this.backendConfig.user, this.backendConfig.host, Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(deployTempPath, backendFolderName), this.backendConfig.path, this.backendConfig.local);
 
               case 10:
               case "end":
@@ -56761,16 +56779,24 @@ function () {
       var _rsync = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee4(user, host, source, target) {
-        var rsyncCommand;
+        var local,
+            rsyncCommand,
+            _args4 = arguments;
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
+                local = _args4.length > 4 && _args4[4] !== undefined ? _args4[4] : false;
                 rsyncCommand = "rsync -e \"ssh -o StrictHostKeyChecking=no\" -avzh ".concat(source, "/ ").concat(user, "@").concat(host, ":").concat(target);
-                _context4.next = 3;
+
+                if (local) {
+                  rsyncCommand = "rsync -avzh ".concat(source, "/ ").concat(target);
+                }
+
+                _context4.next = 5;
                 return execAsync(rsyncCommand);
 
-              case 3:
+              case 5:
               case "end":
                 return _context4.stop();
             }
@@ -56795,7 +56821,9 @@ function () {
             switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return executeRemote(config.user, config.host, "mkdir -p ".concat(config.path));
+                return executeRemote(config.user, config.host, "mkdir -p ".concat(config.path), {
+                  local: config.local ? 1 : 0
+                });
 
               case 2:
               case "end":
@@ -57009,10 +57037,22 @@ function () {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
+                if (!this.backendConfig.local) {
+                  _context3.next = 4;
+                  break;
+                }
+
+                _context3.next = 3;
+                return execAsync(command, options);
+
+              case 3:
+                return _context3.abrupt("return");
+
+              case 4:
+                _context3.next = 6;
                 return executeRemote(this.backendConfig.user, this.backendConfig.host, command, options);
 
-              case 2:
+              case 6:
               case "end":
                 return _context3.stop();
             }

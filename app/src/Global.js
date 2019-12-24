@@ -80,8 +80,13 @@ class Global {
     })
   }
 
-  async executeRemote(user, host, command, options) {
-    await this.execAsync(`ssh -o StrictHostKeyChecking=no ${user}@${host} "${command}" `, options)
+  async executeRemote(user, host, command, options = {}) {
+    if(options.local) {
+      await this.execAsync(command, options)
+      return
+    }
+
+    await this.execAsync(`ssh -o StrictHostKeyChecking=no ${user}@${host} "${command}"`, options)
   }
 
   notify(message) {
