@@ -20,6 +20,7 @@ class Php {
     await execAsync(`sudo apt-get install php7.1-xml -y`)
     await execAsync(`sudo apt-get install php7.1-curl -y`)
     await execAsync(`sudo apt-get install php7.1-bcmath -y`)
+    await execAsync(`sudo apt-get install php7.1-xdebug -y`)
     await execAsync(`sudo apt-get install libapache2-mod-php7.1 -y`)
     await execAsync(`sudo apt-get install php-imagick -y`)
     await execAsync(`php -m | grep imagick`)

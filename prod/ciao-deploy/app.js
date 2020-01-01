@@ -42857,7 +42857,7 @@ module.exports = require("crypto");
 /* 564 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"1.1.21","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"1.1.22","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 565 */
@@ -57729,21 +57729,25 @@ function () {
 
               case 39:
                 _context.next = 41;
-                return execAsync("sudo apt-get install libapache2-mod-php7.1 -y");
+                return execAsync("sudo apt-get install php7.1-xdebug -y");
 
               case 41:
                 _context.next = 43;
-                return execAsync("sudo apt-get install php-imagick -y");
+                return execAsync("sudo apt-get install libapache2-mod-php7.1 -y");
 
               case 43:
                 _context.next = 45;
-                return execAsync("php -m | grep imagick");
+                return execAsync("sudo apt-get install php-imagick -y");
 
               case 45:
                 _context.next = 47;
-                return execAsync("sudo service apache2 restart");
+                return execAsync("php -m | grep imagick");
 
               case 47:
+                _context.next = 49;
+                return execAsync("sudo service apache2 restart");
+
+              case 49:
               case "end":
                 return _context.stop();
             }
