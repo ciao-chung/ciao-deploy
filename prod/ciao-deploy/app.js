@@ -42857,7 +42857,7 @@ module.exports = require("crypto");
 /* 564 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"1.1.22","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"1.1.23","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 565 */
@@ -56749,7 +56749,7 @@ function () {
                 log("Start rsync backend");
                 backendFolderName = this.backendConfig.folder || 'Backend';
                 _context3.next = 6;
-                return executeRemote(this.backendConfig.user, this.backendConfig.host, "rm -rf ".concat(this.backendConfig.path), {
+                return executeRemote(this.backendConfig.user, this.backendConfig.host, "rm -rf ".concat(this.backendConfig.path, "/vendor"), {
                   local: this.backendConfig.local
                 });
 
