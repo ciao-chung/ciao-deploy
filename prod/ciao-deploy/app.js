@@ -42857,7 +42857,7 @@ module.exports = require("crypto");
 /* 564 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"1.1.23","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"1.1.24","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 565 */
@@ -56917,6 +56917,10 @@ function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -56926,6 +56930,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
 
 var AfterRsync =
 /*#__PURE__*/
@@ -56969,6 +56976,14 @@ function () {
                 return this.cleanBackendCache();
 
               case 10:
+                _context.next = 12;
+                return this.cleanupCronJob();
+
+              case 12:
+                _context.next = 14;
+                return this.setupCronJob();
+
+              case 14:
               case "end":
                 return _context.stop();
             }
@@ -57237,6 +57252,163 @@ function () {
       }
 
       return migrate;
+    }()
+  }, {
+    key: "cleanupCronJob",
+    value: function () {
+      var _cleanupCronJob = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee7() {
+        var cron, cronPath, hasExistCron;
+        return regeneratorRuntime.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                if (this.backendConfig) {
+                  _context7.next = 2;
+                  break;
+                }
+
+                return _context7.abrupt("return");
+
+              case 2:
+                cron = this.backendConfig.cron;
+
+                if (cron) {
+                  _context7.next = 5;
+                  break;
+                }
+
+                return _context7.abrupt("return");
+
+              case 5:
+                if (cron.name) {
+                  _context7.next = 7;
+                  break;
+                }
+
+                return _context7.abrupt("return");
+
+              case 7:
+                cronPath = "/etc/cron.d/".concat(cron.name);
+                hasExistCron = Object(__WEBPACK_IMPORTED_MODULE_1_fs__["existsSync"])(cronPath);
+
+                if (hasExistCron) {
+                  _context7.next = 11;
+                  break;
+                }
+
+                return _context7.abrupt("return");
+
+              case 11:
+                _context7.prev = 11;
+                _context7.next = 14;
+                return Object(__WEBPACK_IMPORTED_MODULE_1_fs__["existsSync"])();
+
+              case 14:
+                _context7.next = 16;
+                return this.executeRemoteBackend("sudo rm -rf ".concat(cronPath));
+
+              case 16:
+                _context7.next = 18;
+                return this.executeRemoteBackend("sudo service cron restart");
+
+              case 18:
+                _context7.next = 23;
+                break;
+
+              case 20:
+                _context7.prev = 20;
+                _context7.t0 = _context7["catch"](11);
+                log(_context7.t0, 'yellow');
+
+              case 23:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7, this, [[11, 20]]);
+      }));
+
+      function cleanupCronJob() {
+        return _cleanupCronJob.apply(this, arguments);
+      }
+
+      return cleanupCronJob;
+    }()
+  }, {
+    key: "setupCronJob",
+    value: function () {
+      var _setupCronJob = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee8() {
+        var cron, cronJobContent, cronJobConfigFilePath;
+        return regeneratorRuntime.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                if (this.backendConfig) {
+                  _context8.next = 2;
+                  break;
+                }
+
+                return _context8.abrupt("return");
+
+              case 2:
+                cron = this.backendConfig.cron;
+
+                if (cron) {
+                  _context8.next = 5;
+                  break;
+                }
+
+                return _context8.abrupt("return");
+
+              case 5:
+                if (!(!cron.user || !cron.name)) {
+                  _context8.next = 7;
+                  break;
+                }
+
+                return _context8.abrupt("return");
+
+              case 7:
+                cronJobContent = "* * * * * ".concat(cron.user, " cd ").concat(this.backendConfig.path, " && php artisan schedule:run >> /dev/null 2>&1");
+                cronJobConfigFilePath = "".concat(this.backendConfig.path, "/cron");
+                _context8.next = 11;
+                return this.executeRemoteBackend("echo '".concat(cronJobContent, "' > ").concat(cronJobConfigFilePath));
+
+              case 11:
+                _context8.prev = 11;
+                _context8.next = 14;
+                return this.executeRemoteBackend("sudo mv ".concat(cronJobConfigFilePath, " /etc/cron.d/").concat(cron.name));
+
+              case 14:
+                _context8.next = 16;
+                return this.executeRemoteBackend("sudo service cron restart");
+
+              case 16:
+                _context8.next = 21;
+                break;
+
+              case 18:
+                _context8.prev = 18;
+                _context8.t0 = _context8["catch"](11);
+                log(_context8.t0, 'yellow');
+
+              case 21:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8, this, [[11, 18]]);
+      }));
+
+      function setupCronJob() {
+        return _setupCronJob.apply(this, arguments);
+      }
+
+      return setupCronJob;
     }()
   }]);
 
