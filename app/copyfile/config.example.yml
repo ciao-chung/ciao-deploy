@@ -24,3 +24,6 @@ deploy:
                 DB_PASSWORD: mysql_password
                 CORS: 'https://webcache.googleusercontent.com,http://localhost:8080,https://example.com'
                 PHOTO_BASE_URL: http://exmpale.com/storage
+            cron:
+                name: demo-laravel-project
+                user: ciao
