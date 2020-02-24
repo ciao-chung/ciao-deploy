@@ -42857,7 +42857,7 @@ module.exports = require("crypto");
 /* 564 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"1.2.1","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"1.2.2","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 565 */
@@ -57259,7 +57259,7 @@ function () {
       var _cleanupCronJob = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee7() {
-        var cron, cronPath, hasExistCron;
+        var cron, cronPath;
         return regeneratorRuntime.wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
@@ -57291,43 +57291,29 @@ function () {
 
               case 7:
                 cronPath = "/etc/cron.d/".concat(cron.name);
-                hasExistCron = Object(__WEBPACK_IMPORTED_MODULE_1_fs__["existsSync"])(cronPath);
-
-                if (hasExistCron) {
-                  _context7.next = 11;
-                  break;
-                }
-
-                return _context7.abrupt("return");
-
-              case 11:
-                _context7.prev = 11;
-                _context7.next = 14;
-                return Object(__WEBPACK_IMPORTED_MODULE_1_fs__["existsSync"])();
-
-              case 14:
-                _context7.next = 16;
+                _context7.prev = 8;
+                _context7.next = 11;
                 return this.executeRemoteBackend("sudo rm -rf ".concat(cronPath));
 
-              case 16:
-                _context7.next = 18;
+              case 11:
+                _context7.next = 13;
                 return this.executeRemoteBackend("sudo service cron restart");
 
-              case 18:
-                _context7.next = 23;
+              case 13:
+                _context7.next = 18;
                 break;
 
-              case 20:
-                _context7.prev = 20;
-                _context7.t0 = _context7["catch"](11);
+              case 15:
+                _context7.prev = 15;
+                _context7.t0 = _context7["catch"](8);
                 log(_context7.t0, 'yellow');
 
-              case 23:
+              case 18:
               case "end":
                 return _context7.stop();
             }
           }
-        }, _callee7, this, [[11, 20]]);
+        }, _callee7, this, [[8, 15]]);
       }));
 
       function cleanupCronJob() {

@@ -79,11 +79,7 @@ class AfterRsync {
     if(!cron.name) return
 
     const cronPath = `/etc/cron.d/${cron.name}`
-    const hasExistCron = existsSync(cronPath)
-    if(!hasExistCron) return
-
     try {
-      await existsSync()
       await this.executeRemoteBackend(`sudo rm -rf ${cronPath}`)
       await this.executeRemoteBackend(`sudo service cron restart`)
     } catch(error) {
