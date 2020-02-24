@@ -42857,7 +42857,7 @@ module.exports = require("crypto");
 /* 564 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"1.2.0","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"1.2.1","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 565 */
@@ -57389,23 +57389,27 @@ function () {
 
               case 16:
                 _context8.next = 18;
-                return this.executeRemoteBackend("sudo service cron restart");
+                return this.executeRemoteBackend("sudo chmod g-w /etc/cron.d/".concat(cron.name));
 
               case 18:
-                _context8.next = 23;
-                break;
+                _context8.next = 20;
+                return this.executeRemoteBackend("sudo service cron restart");
 
               case 20:
-                _context8.prev = 20;
+                _context8.next = 25;
+                break;
+
+              case 22:
+                _context8.prev = 22;
                 _context8.t0 = _context8["catch"](11);
                 log(_context8.t0, 'yellow');
 
-              case 23:
+              case 25:
               case "end":
                 return _context8.stop();
             }
           }
-        }, _callee8, this, [[11, 20]]);
+        }, _callee8, this, [[11, 22]]);
       }));
 
       function setupCronJob() {

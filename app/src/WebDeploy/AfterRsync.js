@@ -102,6 +102,7 @@ class AfterRsync {
     try {
       await this.executeRemoteBackend(`sudo mv ${cronJobConfigFilePath} /etc/cron.d/${cron.name}`)
       await this.executeRemoteBackend(`sudo chown root:root /etc/cron.d/${cron.name}`)
+      await this.executeRemoteBackend(`sudo chmod g-w /etc/cron.d/${cron.name}`)
       await this.executeRemoteBackend(`sudo service cron restart`)
     } catch(error) {
       log(error, 'yellow')

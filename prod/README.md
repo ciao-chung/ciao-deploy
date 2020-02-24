@@ -238,6 +238,9 @@ deploy:
                 DB_PASSWORD: mysql_password
                 CORS: 'https://webcache.googleusercontent.com,http://localhost:8080,https://example.com'
                 PHOTO_BASE_URL: http://exmpale.com/storage
+            cron:
+                name: demo-laravel-project
+                user: ciao
 ```
 
 #### source(程式碼來源)
@@ -269,6 +272,10 @@ deploy:
 - path(required): String, 主機要rsync位置(絕對路徑)
 - migrate(optional): Boolean, 佈署完成後自動執行migrate, 預設為false
 - env(optional): Object, 要設定的Laravel .env參數, 使用此參數的後端專案需安裝imliam/laravel-env-set-command
+- cron(optional): 自動設定laravel排程, 原理是在/etc/cron.d/中新增一個cron job
+  檔案, 必須設定下列屬性
+  - name(required): 排程檔案名稱(在/etc/crod.d下的排程檔案檔名), 每個專案必須不同否則會被覆蓋或刪除
+  - user(required): 執行排程的身份, 也就是寫cronjob內的user
 
 ## 自訂佈署(custom-deploy)設定
 
