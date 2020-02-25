@@ -9,6 +9,7 @@ import PhpStorm from 'Workspace/PhpStorm'
 import Record from 'Workspace/Record'
 import Unetbootin from 'Workspace/Unetbootin'
 import DbEaver from 'Workspace/DbEaver'
+import RedisDesktopManager from 'Workspace/RedisDesktopManager'
 class Workspace extends BaseCommand{
   async setupCommand() {
     this.name = 'workspace'
@@ -79,6 +80,12 @@ class Workspace extends BaseCommand{
         type: 'boolean',
       },
       {
+        name: 'redisDesktopManager',
+        description: '安裝Redis Desktop Manager',
+        defaultValue: false,
+        type: 'boolean',
+      },
+      {
         name: 'all',
         description: '全部設定、安裝',
         defaultValue: false,
@@ -102,6 +109,7 @@ class Workspace extends BaseCommand{
       record: Record.exec,
       unetbootin: Unetbootin.exec,
       dbeaver: DbEaver.exec,
+      redisDesktopManager: RedisDesktopManager.exec,
     }
 
     if(this.args.all) {

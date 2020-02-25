@@ -23,6 +23,7 @@ class Php {
     await execAsync(`sudo apt-get install php7.1-xdebug -y`)
     await execAsync(`sudo apt-get install libapache2-mod-php7.1 -y`)
     await execAsync(`sudo apt-get install php-imagick -y`)
+    await execAsync(`sudo apt-get install php-redis -y`)
     await execAsync(`php -m | grep imagick`)
     await execAsync(`sudo service apache2 restart`)
   }
