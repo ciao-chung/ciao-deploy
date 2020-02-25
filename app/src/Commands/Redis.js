@@ -37,4 +37,4 @@ class Redis extends BaseCommand{
   }
 }
 
-export default new Redisc()
+export default new Redis()
