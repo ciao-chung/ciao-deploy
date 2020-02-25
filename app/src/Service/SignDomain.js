@@ -64,6 +64,34 @@ class SignDomain {
 </VirtualHost>
 `
   }
+
+  async socketProxy(domain, port) {
+    const configContent = this._getSocketProxyConfig(domain, port)
+    const configFilePath = resolve('/tmp', `${domain}.conf`)
+    log(`Start sign domain: ${domain}`, 'green')
+    await writeFileSync(configFilePath, configContent, 'utf8')
+    await execAsync(`sudo a2enmod proxy_wstunnel`)
+    await execAsync(`sudo mv ${configFilePath} /etc/apache2/sites-available/`)
+    await execAsync(`sudo a2ensite ${domain}`)
+    await execAsync(`sudo service apache2 restart`)
+  }
+
+  _getSocketProxyConfig(domain, port) {
+    return `
+<VirtualHost *:80>
+    ServerName ${domain}
+    ServerAlias www.${domain}
+    
+    RewriteEngine On
+    RewriteCond %{REQUEST_URI}  ^/socket.io            [NC]
+    RewriteCond %{QUERY_STRING} transport=websocket    [NC]
+    RewriteRule /(.*)           ws://localhost:${port}/$1 [P,L]
+    
+    ProxyPass / http://localhost:${port}/
+    ProxyPassReverse / http://localhost:${port}/
+</VirtualHost>
+`
+  }
 }
 
 export default new SignDomain()
