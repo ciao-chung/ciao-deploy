@@ -4,6 +4,7 @@ import WebDeployCreateConfig from 'Commands/WebDeployCreateConfig'
 import Env from 'Commands/Env'
 import Fish from 'Commands/Fish'
 import Redis from 'Commands/Redis'
+import RedisSetPassword from 'Commands/RedisSetPassword'
 import Mysql from 'Commands/Mysql'
 import MysqlUserCreate from 'Commands/MysqlUserCreate'
 import MysqlUserDelete from 'Commands/MysqlUserDelete'
@@ -32,6 +33,7 @@ class App extends AppKernel {
       Env,
       Fish,
       Redis,
+      RedisSetPassword,
       Mysql,
       MysqlUserCreate,
       MysqlUserDelete,
