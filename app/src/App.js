@@ -6,6 +6,7 @@ import Fish from 'Commands/Fish'
 import Redis from 'Commands/Redis'
 import RedisSetPassword from 'Commands/RedisSetPassword'
 import Mysql from 'Commands/Mysql'
+import MysqlCloneTables from 'Commands/MysqlCloneTables'
 import MysqlUserCreate from 'Commands/MysqlUserCreate'
 import MysqlUserDelete from 'Commands/MysqlUserDelete'
 import MysqlDatabaseCreate from 'Commands/MysqlDatabaseCreate'
@@ -36,6 +37,7 @@ class App extends AppKernel {
       Redis,
       RedisSetPassword,
       Mysql,
+      MysqlCloneTables,
       MysqlUserCreate,
       MysqlUserDelete,
       MysqlDatabaseCreate,
