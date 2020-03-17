@@ -42917,7 +42917,7 @@ module.exports = require("crypto");
 /* 564 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"1.2.8","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"1.2.9","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 565 */
@@ -59144,6 +59144,10 @@ function (_BaseCommand) {
                   description: '使用者密碼',
                   required: true,
                   type: 'string'
+                }, {
+                  name: 'ver8',
+                  description: '使用版本8的script',
+                  type: 'boolean'
                 }];
                 this.description = "MySQL\u5EFA\u7ACB\u4F7F\u7528\u8005";
 
@@ -59175,7 +59179,7 @@ function (_BaseCommand) {
                 _context2.prev = 1;
                 __WEBPACK_IMPORTED_MODULE_1_shelljs__["env"]['MYSQL_PWD'] = this.args.rootPassword;
                 _context2.next = 5;
-                return execAsync("mysql -uroot -e \"GRANT ALL PRIVILEGES ON *.* TO '".concat(this.args.username, "'@'%' IDENTIFIED BY '").concat(this.args.password, "' WITH GRANT OPTION\""));
+                return execAsync(this.getMysqlCreateUserScript());
 
               case 5:
                 _context2.next = 7;
@@ -59208,6 +59212,12 @@ function (_BaseCommand) {
 
       return start;
     }()
+  }, {
+    key: "getMysqlCreateUserScript",
+    value: function getMysqlCreateUserScript() {
+      if (this.args.ver8) return "CREATE USER '".concat(this.args.username, "'@'%' IDENTIFIED BY '").concat(this.args.password, "';");
+      return "mysql -uroot -e \"GRANT ALL PRIVILEGES ON *.* TO '".concat(this.args.username, "'@'%' IDENTIFIED BY '").concat(this.args.password, "' WITH GRANT OPTION\"");
+    }
   }]);
 
   return MysqlUserCreate;
@@ -61529,56 +61539,66 @@ function () {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _context.prev = 0;
                 processPath = Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])('/tmp');
-                _context.next = 3;
+                _context.next = 4;
                 return execAsync("sudo apt-get update");
 
-              case 3:
-                _context.next = 5;
+              case 4:
+                _context.next = 6;
                 return execAsync("sudo apt-get install -y build-essential cmake extra-cmake-modules kio-dev pkg-config libavformat-dev libavcodec-dev libswscale-dev");
 
-              case 5:
-                _context.next = 7;
+              case 6:
+                _context.next = 8;
                 return execAsync("git clone git://anongit.kde.org/ffmpegthumbs", {
                   cwd: processPath
                 });
 
-              case 7:
-                _context.next = 9;
+              case 8:
+                _context.next = 10;
                 return execAsync("git checkout Applications/16.04", {
                   cwd: Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(processPath, 'ffmpegthumbs')
                 });
 
-              case 9:
-                _context.next = 11;
+              case 10:
+                _context.next = 12;
                 return execAsync("mkdir -p builddir", {
                   cwd: Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(processPath, 'ffmpegthumbs')
                 });
 
-              case 11:
-                _context.next = 13;
+              case 12:
+                _context.next = 14;
                 return execAsync("cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DKDE_INSTALL_QTPLUGINDIR=/usr/lib/x86_64-linux-gnu/qt5/plugins", {
                   cwd: Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(processPath, 'ffmpegthumbs/builddir')
                 });
 
-              case 13:
-                _context.next = 15;
+              case 14:
+                _context.next = 16;
                 return execAsync("make", {
                   cwd: Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(processPath, 'ffmpegthumbs/builddir')
                 });
 
-              case 15:
-                _context.next = 17;
+              case 16:
+                _context.next = 18;
                 return execAsync("sudo make install", {
                   cwd: Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(processPath, 'ffmpegthumbs/builddir')
                 });
 
-              case 17:
+              case 18:
+                _context.next = 23;
+                break;
+
+              case 20:
+                _context.prev = 20;
+                _context.t0 = _context["catch"](0);
+                log(_context.t0, 'yellow');
+
+              case 23:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this);
+        }, _callee, this, [[0, 20]]);
       }));
 
       function exec() {
@@ -61676,43 +61696,41 @@ function () {
                 return execAsync("sudo apt-get update");
 
               case 28:
-                _context.next = 30;
+                _context.prev = 28;
+                _context.next = 31;
                 return execAsync("sudo apt-get install rhythmbox gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gnome-control-center rhythmbox-plugin-visualizer -y");
 
-              case 30:
-                _context.prev = 30;
-                _context.next = 33;
-                return execAsync("sudo add-apt-repository ppa:otto-kesselgulasch/gimp-edge -y");
-
-              case 33:
-                _context.next = 39;
+              case 31:
+                _context.next = 36;
                 break;
 
-              case 35:
-                _context.prev = 35;
-                _context.t2 = _context["catch"](30);
+              case 33:
+                _context.prev = 33;
+                _context.t2 = _context["catch"](28);
+                log('rhythmbox安裝失敗', 'yellow');
+
+              case 36:
+                _context.prev = 36;
                 _context.next = 39;
-                return execAsync("sudo add-apt-repository ppa:otto-kesselgulasch/gimp-edge -r -y");
+                return execAsync("sudo add-apt-repository ppa:otto-kesselgulasch/gimp-edge -y");
 
               case 39:
-                _context.next = 41;
-                return execAsync("sudo apt-get update");
+                _context.next = 45;
+                break;
 
               case 41:
-                _context.next = 43;
-                return execAsync("sudo apt-get install gimp gimp-gmic -y");
-
-              case 43:
+                _context.prev = 41;
+                _context.t3 = _context["catch"](36);
                 _context.next = 45;
-                return execAsync("sudo apt-get update");
+                return execAsync("sudo add-apt-repository ppa:otto-kesselgulasch/gimp-edge -r -y");
 
               case 45:
                 _context.next = 47;
-                return execAsync("sudo apt-get install vlc -y");
+                return execAsync("sudo apt-get update");
 
               case 47:
                 _context.next = 49;
-                return execAsync("sudo add-apt-repository ppa:inkscape.dev/stable -y");
+                return execAsync("sudo apt-get install gimp gimp-gmic -y");
 
               case 49:
                 _context.next = 51;
@@ -61720,14 +61738,26 @@ function () {
 
               case 51:
                 _context.next = 53;
-                return execAsync("sudo apt install inkscape -y");
+                return execAsync("sudo apt-get install vlc -y");
 
               case 53:
+                _context.next = 55;
+                return execAsync("sudo add-apt-repository ppa:inkscape.dev/stable -y");
+
+              case 55:
+                _context.next = 57;
+                return execAsync("sudo apt-get update");
+
+              case 57:
+                _context.next = 59;
+                return execAsync("sudo apt install inkscape -y");
+
+              case 59:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[2, 7], [17, 22], [30, 35]]);
+        }, _callee, this, [[2, 7], [17, 22], [28, 33], [36, 41]]);
       }));
 
       function exec() {
@@ -62425,36 +62455,50 @@ function (_BaseCommand) {
                 return execAsync("echo \"phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2\" | sudo debconf-set-selections");
 
               case 15:
-                _context2.next = 17;
-                return execAsync("sudo apt-get install phpmyadmin -y");
+                _context2.prev = 15;
+                _context2.next = 18;
+                return execAsync("sudo add-apt-repository ppa:phpmyadmin/ppa -y");
 
-              case 17:
-                _context2.next = 19;
-                return execAsync("sudo a2enmod rewrite");
-
-              case 19:
-                _context2.next = 21;
-                return this.setupTimeout();
-
-              case 21:
+              case 18:
                 _context2.next = 23;
-                return execAsync("sudo service apache2 restart");
-
-              case 23:
-                _context2.next = 28;
                 break;
 
-              case 25:
-                _context2.prev = 25;
-                _context2.t0 = _context2["catch"](2);
-                log("phpMyAdmin\u5B89\u88DD\u5931\u6557: ".concat(JSON.stringify(_context2.t0)), 'red');
+              case 20:
+                _context2.prev = 20;
+                _context2.t0 = _context2["catch"](15);
+                log(_context2.t0, 'yellow');
 
-              case 28:
+              case 23:
+                _context2.next = 25;
+                return execAsync("sudo apt-get install phpmyadmin -y");
+
+              case 25:
+                _context2.next = 27;
+                return execAsync("sudo a2enmod rewrite");
+
+              case 27:
+                _context2.next = 29;
+                return this.setupTimeout();
+
+              case 29:
+                _context2.next = 31;
+                return execAsync("sudo service apache2 restart");
+
+              case 31:
+                _context2.next = 36;
+                break;
+
+              case 33:
+                _context2.prev = 33;
+                _context2.t1 = _context2["catch"](2);
+                log("phpMyAdmin\u5B89\u88DD\u5931\u6557: ".concat(JSON.stringify(_context2.t1)), 'red');
+
+              case 36:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, this, [[2, 25]]);
+        }, _callee2, this, [[2, 33], [15, 20]]);
       }));
 
       function start() {

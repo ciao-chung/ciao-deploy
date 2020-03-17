@@ -21,7 +21,12 @@ class Media {
       await execAsync(`sudo add-apt-repository ppa:fossfreedom/rhythmbox -r -y`)
     }
     await execAsync(`sudo apt-get update`)
-    await execAsync(`sudo apt-get install rhythmbox gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gnome-control-center rhythmbox-plugin-visualizer -y`)
+    try {
+      await execAsync(`sudo apt-get install rhythmbox gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gnome-control-center rhythmbox-plugin-visualizer -y`)
+    } catch {
+      log('rhythmbox安裝失敗', 'yellow')
+    }
+
 
     // GIMP
     try {

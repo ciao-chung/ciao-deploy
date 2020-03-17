@@ -27,6 +27,11 @@ class MysqlUserCreate extends BaseCommand{
         required: true,
         type: 'string',
       },
+      {
+        name: 'ver8',
+        description: '使用版本8的script',
+        type: 'boolean',
+      },
     ]
     this.description = `MySQL建立使用者`
   }
@@ -35,12 +40,17 @@ class MysqlUserCreate extends BaseCommand{
     log(`Mysql user start create`)
     try {
       env['MYSQL_PWD'] = this.args.rootPassword
-      await execAsync(`mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '${this.args.username}'@'%' IDENTIFIED BY '${this.args.password}' WITH GRANT OPTION"`)
+      await execAsync(this.getMysqlCreateUserScript())
       await execAsync(`mysql -uroot -e "FLUSH PRIVILEGES"`)
       await execAsync(`mysql -uroot -e "SELECT user FROM mysql.user"`)
     } catch(error) {
       log(`MySQL帳號建立失敗: ${JSON.stringify(error)}`, 'red')
     }
+  }
+
+  getMysqlCreateUserScript() {
+    if(this.args.ver8) return `CREATE USER '${this.args.username}'@'%' IDENTIFIED BY '${this.args.password}';`
+    return `mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '${this.args.username}'@'%' IDENTIFIED BY '${this.args.password}' WITH GRANT OPTION"`
   }
 }
 

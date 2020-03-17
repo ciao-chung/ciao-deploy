@@ -29,6 +29,11 @@ class PhpMyAdmin extends BaseCommand{
       await execAsync(`echo "phpmyadmin phpmyadmin/mysql/admin-pass password ${password}" | sudo debconf-set-selections`)
       await execAsync(`echo "phpmyadmin phpmyadmin/mysql/app-pass password ${password}" | sudo debconf-set-selections`)
       await execAsync(`echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | sudo debconf-set-selections`)
+      try {
+        await execAsync(`sudo add-apt-repository ppa:phpmyadmin/ppa -y`)
+      } catch(error) {
+        log(error, 'yellow')
+      }
       await execAsync(`sudo apt-get install phpmyadmin -y`)
       await execAsync(`sudo a2enmod rewrite`)
       await this.setupTimeout()
