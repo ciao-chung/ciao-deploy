@@ -42917,7 +42917,7 @@ module.exports = require("crypto");
 /* 564 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"1.2.9","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"1.2.10","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 565 */
@@ -59215,7 +59215,7 @@ function (_BaseCommand) {
   }, {
     key: "getMysqlCreateUserScript",
     value: function getMysqlCreateUserScript() {
-      if (this.args.ver8) return "CREATE USER '".concat(this.args.username, "'@'%' IDENTIFIED BY '").concat(this.args.password, "';");
+      if (this.args.ver8) return "mysql -uroot -e \"CREATE USER '".concat(this.args.username, "'@'%' IDENTIFIED BY '").concat(this.args.password, "';\"");
       return "mysql -uroot -e \"GRANT ALL PRIVILEGES ON *.* TO '".concat(this.args.username, "'@'%' IDENTIFIED BY '").concat(this.args.password, "' WITH GRANT OPTION\"");
     }
   }]);

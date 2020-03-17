@@ -49,7 +49,7 @@ class MysqlUserCreate extends BaseCommand{
   }
 
   getMysqlCreateUserScript() {
-    if(this.args.ver8) return `CREATE USER '${this.args.username}'@'%' IDENTIFIED BY '${this.args.password}';`
+    if(this.args.ver8) return `mysql -uroot -e "CREATE USER '${this.args.username}'@'%' IDENTIFIED BY '${this.args.password}';"`
     return `mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '${this.args.username}'@'%' IDENTIFIED BY '${this.args.password}' WITH GRANT OPTION"`
   }
 }
