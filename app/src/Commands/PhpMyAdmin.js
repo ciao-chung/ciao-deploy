@@ -1,5 +1,5 @@
 import BaseCommand from 'Commands/_BaseCommand'
-import { appendFileSync } from 'fs'
+import { appendFileSync, readFileSync } from 'fs'
 class PhpMyAdmin extends BaseCommand{
   async setupCommand() {
     this.name = 'phpmyadmin'
@@ -50,7 +50,10 @@ class PhpMyAdmin extends BaseCommand{
     await execAsync(`sudo sed -i 's,^session.gc_maxlifetime =.*$,session.gc_maxlifetime = ${ttl},' ${phpIniPath}`)
 
     const configIncPhp = '/etc/phpmyadmin/config.inc.php'
-    await appendFileSync(configIncPhp, `\n$cfg['LoginCookieValidity'] = ${ttl};\n`, 'utf-8')
+    const tempFilePath = '/tmp/config.inc.php'
+    await execAsync(`sudo cp ${configIncPhp} ${tempFilePath}`)
+    await appendFileSync(tempFilePath, `\n$cfg['LoginCookieValidity'] = ${ttl};\n`, 'utf-8')
+    await execAsync(`sudo mv ${tempFilePath} ${configIncPhp}`)
   }
 }
 

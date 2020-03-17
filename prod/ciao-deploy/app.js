@@ -42917,7 +42917,7 @@ module.exports = require("crypto");
 /* 564 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"1.2.10","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"1.2.12","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 565 */
@@ -61741,23 +61741,34 @@ function () {
                 return execAsync("sudo apt-get install vlc -y");
 
               case 53:
-                _context.next = 55;
+                _context.prev = 53;
+                _context.next = 56;
                 return execAsync("sudo add-apt-repository ppa:inkscape.dev/stable -y");
 
-              case 55:
-                _context.next = 57;
+              case 56:
+                _context.next = 62;
+                break;
+
+              case 58:
+                _context.prev = 58;
+                _context.t4 = _context["catch"](53);
+                _context.next = 62;
+                return execAsync("sudo add-apt-repository ppa:inkscape.dev/stable -r -y");
+
+              case 62:
+                _context.next = 64;
                 return execAsync("sudo apt-get update");
 
-              case 57:
-                _context.next = 59;
+              case 64:
+                _context.next = 66;
                 return execAsync("sudo apt install inkscape -y");
 
-              case 59:
+              case 66:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[2, 7], [17, 22], [28, 33], [36, 41]]);
+        }, _callee, this, [[2, 7], [17, 22], [28, 33], [36, 41], [53, 58]]);
       }));
 
       function exec() {
@@ -62513,7 +62524,7 @@ function (_BaseCommand) {
       var _setupTimeout = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee3() {
-        var ttl, phpIniPath, configIncPhp;
+        var ttl, phpIniPath, configIncPhp, tempFilePath;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
@@ -62526,10 +62537,19 @@ function (_BaseCommand) {
 
               case 5:
                 configIncPhp = '/etc/phpmyadmin/config.inc.php';
-                _context3.next = 8;
-                return Object(__WEBPACK_IMPORTED_MODULE_1_fs__["appendFileSync"])(configIncPhp, "\n$cfg['LoginCookieValidity'] = ".concat(ttl, ";\n"), 'utf-8');
+                tempFilePath = '/tmp/config.inc.php';
+                _context3.next = 9;
+                return execAsync("sudo cp ".concat(configIncPhp, " ").concat(tempFilePath));
 
-              case 8:
+              case 9:
+                _context3.next = 11;
+                return Object(__WEBPACK_IMPORTED_MODULE_1_fs__["appendFileSync"])(tempFilePath, "\n$cfg['LoginCookieValidity'] = ".concat(ttl, ";\n"), 'utf-8');
+
+              case 11:
+                _context3.next = 13;
+                return execAsync("sudo mv ".concat(tempFilePath, " ").concat(configIncPhp));
+
+              case 13:
               case "end":
                 return _context3.stop();
             }
