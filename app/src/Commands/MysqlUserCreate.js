@@ -40,17 +40,19 @@ class MysqlUserCreate extends BaseCommand{
     log(`Mysql user start create`)
     try {
       env['MYSQL_PWD'] = this.args.rootPassword
-      await execAsync(this.getMysqlCreateUserScript())
+      if(this.args.ver8) {
+        await execAsync(`mysql -uroot -e "CREATE USER '${this.args.username}'@'%' IDENTIFIED BY '${this.args.password}';"`)
+        await execAsync(`mysql -uroot -e "ALTER USER ${this.args.username} IDENTIFIED WITH mysql_native_password BY '${this.args.password}';"`)
+      }
+
+      else {
+        await execAsync(`mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '${this.args.username}'@'%' IDENTIFIED BY '${this.args.password}' WITH GRANT OPTION"`)
+      }
       await execAsync(`mysql -uroot -e "FLUSH PRIVILEGES"`)
       await execAsync(`mysql -uroot -e "SELECT user FROM mysql.user"`)
     } catch(error) {
       log(`MySQL帳號建立失敗: ${JSON.stringify(error)}`, 'red')
     }
-  }
-
-  getMysqlCreateUserScript() {
-    if(this.args.ver8) return `mysql -uroot -e "CREATE USER '${this.args.username}'@'%' IDENTIFIED BY '${this.args.password}';"`
-    return `mysql -uroot -e "GRANT ALL PRIVILEGES ON *.* TO '${this.args.username}'@'%' IDENTIFIED BY '${this.args.password}' WITH GRANT OPTION"`
   }
 }
 

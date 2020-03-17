@@ -42917,7 +42917,7 @@ module.exports = require("crypto");
 /* 564 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"1.2.12","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"1.2.14","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 565 */
@@ -59178,32 +59178,50 @@ function (_BaseCommand) {
                 log("Mysql user start create");
                 _context2.prev = 1;
                 __WEBPACK_IMPORTED_MODULE_1_shelljs__["env"]['MYSQL_PWD'] = this.args.rootPassword;
-                _context2.next = 5;
-                return execAsync(this.getMysqlCreateUserScript());
 
-              case 5:
-                _context2.next = 7;
-                return execAsync("mysql -uroot -e \"FLUSH PRIVILEGES\"");
+                if (!this.args.ver8) {
+                  _context2.next = 10;
+                  break;
+                }
 
-              case 7:
-                _context2.next = 9;
-                return execAsync("mysql -uroot -e \"SELECT user FROM mysql.user\"");
+                _context2.next = 6;
+                return execAsync("mysql -uroot -e \"CREATE USER '".concat(this.args.username, "'@'%' IDENTIFIED BY '").concat(this.args.password, "';\""));
 
-              case 9:
-                _context2.next = 14;
+              case 6:
+                _context2.next = 8;
+                return execAsync("mysql -uroot -e \"ALTER USER ".concat(this.args.username, " IDENTIFIED WITH mysql_native_password BY '").concat(this.args.password, "';\""));
+
+              case 8:
+                _context2.next = 12;
                 break;
 
-              case 11:
-                _context2.prev = 11;
+              case 10:
+                _context2.next = 12;
+                return execAsync("mysql -uroot -e \"GRANT ALL PRIVILEGES ON *.* TO '".concat(this.args.username, "'@'%' IDENTIFIED BY '").concat(this.args.password, "' WITH GRANT OPTION\""));
+
+              case 12:
+                _context2.next = 14;
+                return execAsync("mysql -uroot -e \"FLUSH PRIVILEGES\"");
+
+              case 14:
+                _context2.next = 16;
+                return execAsync("mysql -uroot -e \"SELECT user FROM mysql.user\"");
+
+              case 16:
+                _context2.next = 21;
+                break;
+
+              case 18:
+                _context2.prev = 18;
                 _context2.t0 = _context2["catch"](1);
                 log("MySQL\u5E33\u865F\u5EFA\u7ACB\u5931\u6557: ".concat(JSON.stringify(_context2.t0)), 'red');
 
-              case 14:
+              case 21:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, this, [[1, 11]]);
+        }, _callee2, this, [[1, 18]]);
       }));
 
       function start() {
@@ -59212,12 +59230,6 @@ function (_BaseCommand) {
 
       return start;
     }()
-  }, {
-    key: "getMysqlCreateUserScript",
-    value: function getMysqlCreateUserScript() {
-      if (this.args.ver8) return "mysql -uroot -e \"CREATE USER '".concat(this.args.username, "'@'%' IDENTIFIED BY '").concat(this.args.password, "';\"");
-      return "mysql -uroot -e \"GRANT ALL PRIVILEGES ON *.* TO '".concat(this.args.username, "'@'%' IDENTIFIED BY '").concat(this.args.password, "' WITH GRANT OPTION\"");
-    }
   }]);
 
   return MysqlUserCreate;
@@ -62412,7 +62424,7 @@ function (_BaseCommand) {
                   required: true,
                   type: 'string'
                 }];
-                this.description = "\u5B89\u88DDphpMyAdmin";
+                this.description = "\u5B89\u88DDphpMyAdmin(\u8ACB\u4F7F\u7528sudo\u57F7\u884C)";
 
               case 4:
               case "end":
@@ -62524,7 +62536,7 @@ function (_BaseCommand) {
       var _setupTimeout = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee3() {
-        var ttl, phpIniPath, configIncPhp, tempFilePath;
+        var ttl, phpIniPath, configIncPhp;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
@@ -62537,19 +62549,10 @@ function (_BaseCommand) {
 
               case 5:
                 configIncPhp = '/etc/phpmyadmin/config.inc.php';
-                tempFilePath = '/tmp/config.inc.php';
-                _context3.next = 9;
-                return execAsync("sudo cp ".concat(configIncPhp, " ").concat(tempFilePath));
+                _context3.next = 8;
+                return Object(__WEBPACK_IMPORTED_MODULE_1_fs__["appendFileSync"])(configIncPhp, "\n$cfg['LoginCookieValidity'] = ".concat(ttl, ";\n"), 'utf-8');
 
-              case 9:
-                _context3.next = 11;
-                return Object(__WEBPACK_IMPORTED_MODULE_1_fs__["appendFileSync"])(tempFilePath, "\n$cfg['LoginCookieValidity'] = ".concat(ttl, ";\n"), 'utf-8');
-
-              case 11:
-                _context3.next = 13;
-                return execAsync("sudo mv ".concat(tempFilePath, " ").concat(configIncPhp));
-
-              case 13:
+              case 8:
               case "end":
                 return _context3.stop();
             }
