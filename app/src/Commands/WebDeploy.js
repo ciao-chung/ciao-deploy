@@ -52,6 +52,10 @@ class WebDeploy extends BaseCommand{
   }
 
   async workflow() {
+    if(this.getInfoLabel()) {
+      log(`開始執行佈署: ${this.getInfoLabel()}`, 'yellow')
+    }
+
     await CloneSource(this.commandConfig).start()
     await BuildFrontend(this.commandConfig).start()
     await BuildBackend(this.commandConfig).start()
@@ -59,6 +63,11 @@ class WebDeploy extends BaseCommand{
     await CleanTemp(this.commandConfig).start()
     await AfterRsync(this.commandConfig, this.args).start()
     notify('Deploy successfully');
+  }
+
+  getInfoLabel() {
+    if(!this.commandConfig.info) return null
+    return this.commandConfig.info.label
   }
 }
 

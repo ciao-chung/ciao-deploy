@@ -42917,7 +42917,7 @@ module.exports = require("crypto");
 /* 564 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"1.2.15","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"1.2.16","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 565 */
@@ -55091,33 +55091,37 @@ function (_BaseCommand) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                _context5.next = 2;
+                if (this.getInfoLabel()) {
+                  log("\u958B\u59CB\u57F7\u884C\u4F48\u7F72: ".concat(this.getInfoLabel()), 'yellow');
+                }
+
+                _context5.next = 3;
                 return Object(__WEBPACK_IMPORTED_MODULE_3_WebDeploy_CloneSource__["a" /* default */])(this.commandConfig).start();
 
-              case 2:
-                _context5.next = 4;
+              case 3:
+                _context5.next = 5;
                 return Object(__WEBPACK_IMPORTED_MODULE_4_WebDeploy_BuildFrontend__["a" /* default */])(this.commandConfig).start();
 
-              case 4:
-                _context5.next = 6;
+              case 5:
+                _context5.next = 7;
                 return Object(__WEBPACK_IMPORTED_MODULE_5_WebDeploy_BuildBackend__["a" /* default */])(this.commandConfig).start();
 
-              case 6:
-                _context5.next = 8;
+              case 7:
+                _context5.next = 9;
                 return Object(__WEBPACK_IMPORTED_MODULE_6_WebDeploy_Rsync__["a" /* default */])(this.commandConfig).start();
 
-              case 8:
-                _context5.next = 10;
+              case 9:
+                _context5.next = 11;
                 return Object(__WEBPACK_IMPORTED_MODULE_7_WebDeploy_CleanTemp__["a" /* default */])(this.commandConfig).start();
 
-              case 10:
-                _context5.next = 12;
+              case 11:
+                _context5.next = 13;
                 return Object(__WEBPACK_IMPORTED_MODULE_8_WebDeploy_AfterRsync__["a" /* default */])(this.commandConfig, this.args).start();
 
-              case 12:
+              case 13:
                 notify('Deploy successfully');
 
-              case 13:
+              case 14:
               case "end":
                 return _context5.stop();
             }
@@ -55131,6 +55135,12 @@ function (_BaseCommand) {
 
       return workflow;
     }()
+  }, {
+    key: "getInfoLabel",
+    value: function getInfoLabel() {
+      if (!this.commandConfig.info) return null;
+      return this.commandConfig.info.label;
+    }
   }]);
 
   return WebDeploy;
