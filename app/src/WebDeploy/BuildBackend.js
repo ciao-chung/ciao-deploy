@@ -1,5 +1,6 @@
 import { resolve } from 'path'
 import { existsSync } from 'fs'
+import QueueService from 'Service/QueueService.js'
 class BuildBackend {
   constructor(commandConfig) {
     this.commandConfig = commandConfig
@@ -24,6 +25,8 @@ class BuildBackend {
     await this.installVendor()
     await this.setupEnvFile()
     await this.dumpAutoload()
+    this.queueService = new QueueService(this.backendConfig, this.backendPath)
+    await this.queueService.setupConfigFile()
     notify('backend build successfully')
   }
 

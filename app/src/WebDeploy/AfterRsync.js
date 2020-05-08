@@ -21,6 +21,7 @@ class AfterRsync {
   async initBackend() {
     if(!this.args.first) return
     if(!this.backendConfig) return
+    if(this.backendConfig.stop_rsync === true) return
     await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan storage:link`)
     await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan key:generate`)
   }
@@ -35,6 +36,7 @@ class AfterRsync {
 
   async setupFolderPermission() {
     if(!this.backendConfig) return
+    if(this.backendConfig.stop_rsync === true) return
     log(`正在設定後端資料夾檔案權限: ${this.backendConfig.path}`)
     await this.executeRemoteBackend(`cd ${this.backendConfig.path}; sudo chmod 755 -R ${this.backendConfig.path}`)
     await this.executeRemoteBackend(`cd ${this.backendConfig.path}; sudo chmod -R o+w ${this.backendConfig.path}/storage`)
@@ -42,6 +44,7 @@ class AfterRsync {
 
   async cleanBackendCache() {
     if(!this.backendConfig) return
+    if(this.backendConfig.stop_rsync === true) return
     try {
       await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan cache:clear`)
     } catch(error) {
@@ -64,6 +67,7 @@ class AfterRsync {
 
   async migrate() {
     if(!this.backendConfig) return
+    if(this.backendConfig.stop_rsync === true) return
     if(!this.backendConfig.migrate) return
     try {
       await this.executeRemoteBackend(`cd ${this.backendConfig.path}; php artisan migrate`)

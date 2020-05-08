@@ -7,6 +7,7 @@ import BuildBackend from 'WebDeploy/BuildBackend'
 import Rsync from 'WebDeploy/Rsync'
 import CleanTemp from 'WebDeploy/CleanTemp'
 import AfterRsync from 'WebDeploy/AfterRsync'
+import SetupExtraService from 'WebDeploy/SetupExtraService'
 class WebDeploy extends BaseCommand{
   async setupCommand() {
     this.name = 'web-deploy'
@@ -62,6 +63,7 @@ class WebDeploy extends BaseCommand{
     await Rsync(this.commandConfig).start()
     await CleanTemp(this.commandConfig).start()
     await AfterRsync(this.commandConfig, this.args).start()
+    await SetupExtraService(this.commandConfig, this.args).start()
     notify('Deploy successfully');
   }
 

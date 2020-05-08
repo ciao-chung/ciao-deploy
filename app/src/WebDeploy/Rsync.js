@@ -32,6 +32,7 @@ class Rsync {
 
   async rsyncBackend() {
     if(!this.backendConfig) return
+    if(this.backendConfig.stop_rsync === true) return
     log(`Start rsync backend`)
     const backendFolderName = this.backendConfig.folder || 'Backend'
     await executeRemote(this.backendConfig.user, this.backendConfig.host, `rm -rf ${this.backendConfig.path}/vendor`, {
