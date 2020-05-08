@@ -30308,20 +30308,24 @@ function () {
 
               case 14:
                 _context3.next = 16;
-                return this.executeRemoteBackend("sudo pm2 start ".concat(configFilePath, " --restart-delay=1000"));
+                return this.executeRemoteBackend("sudo pm2 flush ".concat(this.queue.appName));
 
               case 16:
                 _context3.next = 18;
-                return this.executeRemoteBackend("sudo pm2 startup");
+                return this.executeRemoteBackend("sudo pm2 start ".concat(configFilePath, " --restart-delay=1000"));
 
               case 18:
                 _context3.next = 20;
-                return this.executeRemoteBackend("sudo pm2 save");
+                return this.executeRemoteBackend("sudo pm2 startup");
 
               case 20:
+                _context3.next = 22;
+                return this.executeRemoteBackend("sudo pm2 save");
+
+              case 22:
                 notify('Setup cron queue finished');
 
-              case 21:
+              case 23:
               case "end":
                 return _context3.stop();
             }
@@ -43127,7 +43131,7 @@ module.exports = require("crypto");
 /* 565 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"1.3.0","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"1.3.1","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 566 */

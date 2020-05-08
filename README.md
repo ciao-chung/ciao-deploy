@@ -241,6 +241,8 @@ deploy:
             cron:
                 name: demo-laravel-project
                 user: ciao
+            queue:
+                appName: laravel-project-queue 
 ```
 
 #### source(程式碼來源)
@@ -276,6 +278,8 @@ deploy:
   檔案, 必須設定下列屬性
   - name(required): 排程檔案名稱(在/etc/crod.d下的排程檔案檔名), 每個專案必須不同否則會被覆蓋或刪除
   - user(required): 執行排程的身份, 也就是寫cronjob內的user
+- queue(optional): 透過pm2背景執行laravel queue worker
+  - appName(required): 顯示在pm2的app name 
 
 ## 自訂佈署(custom-deploy)設定
 

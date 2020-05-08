@@ -55,6 +55,7 @@ apps:
       log(error, 'yellow')
     }
 
+    await this.executeRemoteBackend(`sudo pm2 flush ${this.queue.appName}`)
     await this.executeRemoteBackend(`sudo pm2 start ${configFilePath} --restart-delay=1000`)
     await this.executeRemoteBackend(`sudo pm2 startup`)
     await this.executeRemoteBackend(`sudo pm2 save`)
