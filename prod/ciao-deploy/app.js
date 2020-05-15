@@ -12373,7 +12373,7 @@ function () {
   }, {
     key: "_getDomainConfig",
     value: function _getDomainConfig(domain, path) {
-      return "\n<VirtualHost *:80>\n    ServerName ".concat(domain, "\n    ServerAlias www.").concat(domain, "\n    DocumentRoot ").concat(path, "\n    ErrorLog ${APACHE_LOG_DIR}/error.log\n    CustomLog ${APACHE_LOG_DIR}/access.log combined\n    \n        <Directory ").concat(path, "/>\n            Options Indexes FollowSymLinks MultiViews\n            AllowOverride All\n            Order allow,deny\n            allow from all\n            Require all granted\n        </Directory>\n</VirtualHost>\n");
+      return "\n<VirtualHost *:80>\n    ServerName ".concat(domain, "\n    ServerAlias www.").concat(domain, "\n    DocumentRoot ").concat(path, "\n    ErrorLog ${APACHE_LOG_DIR}/error.log\n    CustomLog ${APACHE_LOG_DIR}/access.log combined\n    \n        <Directory ").concat(path, "/>\n            Options Indexes FollowSymLinks MultiViews\n            AllowOverride All\n            Order allow,deny\n            allow from all\n            Require all granted\n        </Directory>\n        \n        <Files \"deploy.commit\">  \n            Require all denied\n        </Files>\n</VirtualHost>\n");
     }
   }, {
     key: "proxy",
@@ -43135,7 +43135,7 @@ module.exports = require("crypto");
 /* 565 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"1.3.2","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"1.3.5","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 566 */
@@ -56293,16 +56293,22 @@ function () {
 
               case 11:
                 _context2.next = 13;
-                return this.afterBuildWebpack();
+                return execAsync("git log -1 --pretty=\"%H %BAuthor: %aN, Date: %ai\" > deploy.commit", {
+                  cwd: Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(this.frontendPath, 'dist')
+                });
 
               case 13:
                 _context2.next = 15;
-                return this.cleanNodeModules();
+                return this.afterBuildWebpack();
 
               case 15:
+                _context2.next = 17;
+                return this.cleanNodeModules();
+
+              case 17:
                 notify('Frontend build successfully');
 
-              case 16:
+              case 18:
               case "end":
                 return _context2.stop();
             }
@@ -56751,25 +56757,31 @@ function () {
               case 2:
                 log("Start build backend");
                 _context2.next = 5;
-                return this.installVendor();
+                return execAsync("git log -1 --pretty=\"%H %BAuthor: %aN, Date: %ai\" > deploy.commit", {
+                  cwd: this.backendPath
+                });
 
               case 5:
                 _context2.next = 7;
-                return this.setupEnvFile();
+                return this.installVendor();
 
               case 7:
                 _context2.next = 9;
-                return this.dumpAutoload();
+                return this.setupEnvFile();
 
               case 9:
+                _context2.next = 11;
+                return this.dumpAutoload();
+
+              case 11:
                 this.queueService = new __WEBPACK_IMPORTED_MODULE_2_Service_QueueService_js__["a" /* default */](this.backendConfig, this.backendPath);
-                _context2.next = 12;
+                _context2.next = 14;
                 return this.queueService.setupConfigFile();
 
-              case 12:
+              case 14:
                 notify('backend build successfully');
 
-              case 13:
+              case 15:
               case "end":
                 return _context2.stop();
             }

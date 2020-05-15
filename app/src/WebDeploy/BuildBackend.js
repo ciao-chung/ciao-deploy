@@ -21,7 +21,7 @@ class BuildBackend {
   async start() {
     if(!this.deployBackend) return
     log(`Start build backend`)
-
+    await execAsync(`git log -1 --pretty="%H %BAuthor: %aN, Date: %ai" > deploy.commit`, { cwd: this.backendPath })
     await this.installVendor()
     await this.setupEnvFile()
     await this.dumpAutoload()

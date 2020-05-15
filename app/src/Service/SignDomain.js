@@ -32,6 +32,10 @@ class SignDomain {
             allow from all
             Require all granted
         </Directory>
+        
+        <Files "deploy.commit">  
+            Require all denied
+        </Files>
 </VirtualHost>
 `
   }

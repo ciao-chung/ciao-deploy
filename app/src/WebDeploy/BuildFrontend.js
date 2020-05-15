@@ -24,6 +24,7 @@ class BuildFrontend {
     await this.beforeBuild()
     await this.installNodeModules()
     await this.buildWebpack()
+    await execAsync(`git log -1 --pretty="%H %BAuthor: %aN, Date: %ai" > deploy.commit`, { cwd: resolve(this.frontendPath, 'dist') })
     await this.afterBuildWebpack()
     await this.cleanNodeModules()
     notify('Frontend build successfully')
