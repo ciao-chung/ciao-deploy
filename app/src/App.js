@@ -12,6 +12,7 @@ import MysqlUserDelete from 'Commands/MysqlUserDelete'
 import MysqlDatabaseCreate from 'Commands/MysqlDatabaseCreate'
 import MysqlDatabaseDelete from 'Commands/MysqlDatabaseDelete'
 import Apache from 'Commands/Apache'
+import Nginx from 'Commands/Nginx'
 import DomainSign from 'Commands/DomainSign'
 import DomainProxy from 'Commands/DomainProxy'
 import DomainSocketProxy from 'Commands/DomainSocketProxy'
@@ -43,6 +44,7 @@ class App extends AppKernel {
       MysqlDatabaseCreate,
       MysqlDatabaseDelete,
       Apache,
+      Nginx,
       DomainSign,
       DomainProxy,
       DomainSocketProxy,

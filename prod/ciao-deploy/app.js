@@ -14561,7 +14561,7 @@ module.exports = _echo;
 /* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(__dirname) {function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 var common = __webpack_require__(6);
 
@@ -14778,7 +14778,6 @@ function _exec(command, options, callback) {
 }
 
 module.exports = _exec;
-/* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ }),
 /* 172 */
@@ -29587,7 +29586,7 @@ module.exports = require("net");
 /* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(__dirname) {function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 /**
  * Wrapper for the toaster (https://github.com/nels-o/toaster)
@@ -29684,13 +29683,12 @@ WindowsToaster.prototype.notify = function (options, callback) {
   utils.fileCommand(this.options.customPath || notifier, argsList, actionJackedCallback);
   return this;
 };
-/* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ }),
 /* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(__dirname) {/**
+/**
  * Wrapper for the notifu 1.6 (http://www.paralint.com/projects/notifu/)
 
 Usage
@@ -29852,7 +29850,6 @@ function fromErrorCodeToAction(errorCode) {
       return 'error';
   }
 }
-/* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ }),
 /* 317 */
@@ -36680,21 +36677,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_Commands_MysqlDatabaseCreate__ = __webpack_require__(624);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_Commands_MysqlDatabaseDelete__ = __webpack_require__(625);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_Commands_Apache__ = __webpack_require__(626);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_Commands_DomainSign__ = __webpack_require__(627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_Commands_DomainProxy__ = __webpack_require__(628);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_Commands_DomainSocketProxy__ = __webpack_require__(629);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_Commands_DomainDelete__ = __webpack_require__(630);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_Commands_Ssl__ = __webpack_require__(631);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_Commands_SslSign__ = __webpack_require__(632);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_Commands_SslDelete__ = __webpack_require__(633);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_Commands_Workspace__ = __webpack_require__(634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_Commands_PhpMyAdmin__ = __webpack_require__(646);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_Commands_SetupDeployEnv__ = __webpack_require__(647);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_Commands_SetupRemoteEnv__ = __webpack_require__(648);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_Commands_BackupDB__ = __webpack_require__(649);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_Commands_CustomDeploy__ = __webpack_require__(650);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_Commands_PhpSetupUploadMaxSize__ = __webpack_require__(652);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_Commands_Version__ = __webpack_require__(653);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_Commands_Nginx__ = __webpack_require__(627);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_Commands_DomainSign__ = __webpack_require__(628);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_Commands_DomainProxy__ = __webpack_require__(629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_Commands_DomainSocketProxy__ = __webpack_require__(630);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_Commands_DomainDelete__ = __webpack_require__(631);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_Commands_Ssl__ = __webpack_require__(632);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_Commands_SslSign__ = __webpack_require__(633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_Commands_SslDelete__ = __webpack_require__(634);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_Commands_Workspace__ = __webpack_require__(635);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_Commands_PhpMyAdmin__ = __webpack_require__(647);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_Commands_SetupDeployEnv__ = __webpack_require__(648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_Commands_SetupRemoteEnv__ = __webpack_require__(649);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_Commands_BackupDB__ = __webpack_require__(650);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_Commands_CustomDeploy__ = __webpack_require__(651);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_Commands_PhpSetupUploadMaxSize__ = __webpack_require__(653);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_Commands_Version__ = __webpack_require__(654);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -36743,6 +36741,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var App =
 /*#__PURE__*/
 function (_AppKernel) {
@@ -36757,7 +36756,7 @@ function (_AppKernel) {
   _createClass(App, [{
     key: "setup",
     value: function setup() {
-      this.commandList = [__WEBPACK_IMPORTED_MODULE_1_Commands_WebDeploy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2_Commands_WebDeployCreateConfig__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3_Commands_Env__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4_Commands_Fish__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5_Commands_Redis__["a" /* default */], __WEBPACK_IMPORTED_MODULE_6_Commands_RedisSetPassword__["a" /* default */], __WEBPACK_IMPORTED_MODULE_7_Commands_Mysql__["a" /* default */], __WEBPACK_IMPORTED_MODULE_8_Commands_MysqlCloneTables__["a" /* default */], __WEBPACK_IMPORTED_MODULE_9_Commands_MysqlUserCreate__["a" /* default */], __WEBPACK_IMPORTED_MODULE_10_Commands_MysqlUserDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_11_Commands_MysqlDatabaseCreate__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12_Commands_MysqlDatabaseDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_13_Commands_Apache__["a" /* default */], __WEBPACK_IMPORTED_MODULE_14_Commands_DomainSign__["a" /* default */], __WEBPACK_IMPORTED_MODULE_15_Commands_DomainProxy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_16_Commands_DomainSocketProxy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_17_Commands_DomainDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_18_Commands_Ssl__["a" /* default */], __WEBPACK_IMPORTED_MODULE_19_Commands_SslSign__["a" /* default */], __WEBPACK_IMPORTED_MODULE_20_Commands_SslDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_21_Commands_Workspace__["a" /* default */], __WEBPACK_IMPORTED_MODULE_22_Commands_PhpMyAdmin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_23_Commands_SetupDeployEnv__["a" /* default */], __WEBPACK_IMPORTED_MODULE_24_Commands_SetupRemoteEnv__["a" /* default */], __WEBPACK_IMPORTED_MODULE_25_Commands_BackupDB__["a" /* default */], __WEBPACK_IMPORTED_MODULE_26_Commands_CustomDeploy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_27_Commands_PhpSetupUploadMaxSize__["a" /* default */], __WEBPACK_IMPORTED_MODULE_28_Commands_Version__["a" /* default */]];
+      this.commandList = [__WEBPACK_IMPORTED_MODULE_1_Commands_WebDeploy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2_Commands_WebDeployCreateConfig__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3_Commands_Env__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4_Commands_Fish__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5_Commands_Redis__["a" /* default */], __WEBPACK_IMPORTED_MODULE_6_Commands_RedisSetPassword__["a" /* default */], __WEBPACK_IMPORTED_MODULE_7_Commands_Mysql__["a" /* default */], __WEBPACK_IMPORTED_MODULE_8_Commands_MysqlCloneTables__["a" /* default */], __WEBPACK_IMPORTED_MODULE_9_Commands_MysqlUserCreate__["a" /* default */], __WEBPACK_IMPORTED_MODULE_10_Commands_MysqlUserDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_11_Commands_MysqlDatabaseCreate__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12_Commands_MysqlDatabaseDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_13_Commands_Apache__["a" /* default */], __WEBPACK_IMPORTED_MODULE_14_Commands_Nginx__["a" /* default */], __WEBPACK_IMPORTED_MODULE_15_Commands_DomainSign__["a" /* default */], __WEBPACK_IMPORTED_MODULE_16_Commands_DomainProxy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_17_Commands_DomainSocketProxy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_18_Commands_DomainDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_19_Commands_Ssl__["a" /* default */], __WEBPACK_IMPORTED_MODULE_20_Commands_SslSign__["a" /* default */], __WEBPACK_IMPORTED_MODULE_21_Commands_SslDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_22_Commands_Workspace__["a" /* default */], __WEBPACK_IMPORTED_MODULE_23_Commands_PhpMyAdmin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_24_Commands_SetupDeployEnv__["a" /* default */], __WEBPACK_IMPORTED_MODULE_25_Commands_SetupRemoteEnv__["a" /* default */], __WEBPACK_IMPORTED_MODULE_26_Commands_BackupDB__["a" /* default */], __WEBPACK_IMPORTED_MODULE_27_Commands_CustomDeploy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_28_Commands_PhpSetupUploadMaxSize__["a" /* default */], __WEBPACK_IMPORTED_MODULE_29_Commands_Version__["a" /* default */]];
     }
   }]);
 
@@ -37058,7 +37057,7 @@ function () {
 /* 525 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(__dirname) {function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
@@ -37290,7 +37289,6 @@ function () {
 }();
 
 new Global();
-/* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ }),
 /* 526 */
@@ -42624,7 +42622,7 @@ function checkMode(stat, options) {
 /* 561 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(__dirname) {function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 /**
  * A Node.js wrapper for terminal-notify (with fallback).
@@ -42724,7 +42722,6 @@ function identificator() {
     _ref: 'val'
   };
 }
-/* WEBPACK VAR INJECTION */}.call(exports, "/"))
 
 /***/ }),
 /* 562 */
@@ -43135,7 +43132,7 @@ module.exports = require("crypto");
 /* 565 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"1.3.5","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"2.0.0-alpha.1","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 566 */
@@ -58336,7 +58333,7 @@ function () {
 
               case 41:
                 _context.next = 43;
-                return execAsync("sudo apt-get install libapache2-mod-php7.1 -y");
+                return execAsync("sudo apt-get install php7.1-fpm -y");
 
               case 43:
                 _context.next = 45;
@@ -58351,10 +58348,6 @@ function () {
                 return execAsync("php -m | grep imagick");
 
               case 49:
-                _context.next = 51;
-                return execAsync("sudo service apache2 restart");
-
-              case 51:
               case "end":
                 return _context.stop();
             }
@@ -60333,6 +60326,388 @@ function (_BaseCommand) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_path__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var Nginx =
+/*#__PURE__*/
+function (_BaseCommand) {
+  _inherits(Nginx, _BaseCommand);
+
+  function Nginx() {
+    _classCallCheck(this, Nginx);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Nginx).apply(this, arguments));
+  }
+
+  _createClass(Nginx, [{
+    key: "setupCommand",
+    value: function () {
+      var _setupCommand = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.name = 'nginx';
+                this.configFile = {
+                  required: false,
+                  property: 'config'
+                };
+                this.argsConfig = [{
+                  name: 'install',
+                  description: '安裝Nginx',
+                  required: false,
+                  type: 'boolean'
+                }];
+                this.description = "\u521D\u59CB\u5316Nginx";
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function setupCommand() {
+        return _setupCommand.apply(this, arguments);
+      }
+
+      return setupCommand;
+    }()
+  }, {
+    key: "start",
+    value: function () {
+      var _start = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2() {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                log("Init Nginx");
+
+                if (!this.args.install) {
+                  _context2.next = 4;
+                  break;
+                }
+
+                _context2.next = 4;
+                return this.installNginx();
+
+              case 4:
+                _context2.next = 6;
+                return this.setupDefaultPage();
+
+              case 6:
+                _context2.next = 8;
+                return this.setupNginxConf();
+
+              case 8:
+                _context2.next = 10;
+                return this.setupNginxDefaultSitesAvailableConf();
+
+              case 10:
+                _context2.next = 12;
+                return this.initPhpFpm();
+
+              case 12:
+                _context2.next = 14;
+                return execAsync("sudo service nginx restart");
+
+              case 14:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function start() {
+        return _start.apply(this, arguments);
+      }
+
+      return start;
+    }()
+  }, {
+    key: "installNginx",
+    value: function () {
+      var _installNginx = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee3() {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return execAsync("sudo apt-get install nginx -y");
+
+              case 2:
+                _context3.next = 4;
+                return execAsync("sudo apt-add-repository -y ppa:hda-me/nginx-stable -y");
+
+              case 4:
+                _context3.next = 6;
+                return execAsync("sudo apt-get update -y");
+
+              case 6:
+                _context3.next = 8;
+                return execAsync("sudo apt-get install nginx-module-brotli -y");
+
+              case 8:
+                _context3.next = 10;
+                return execAsync("sudo mkdir -p /ciao-deploy/origin");
+
+              case 10:
+                _context3.next = 12;
+                return execAsync("sudo cp -r /etc/nginx/nginx.conf /ciao-deploy/origin/nginx.conf");
+
+              case 12:
+                _context3.next = 14;
+                return execAsync("sudo cp -r /etc/nginx/sites-available/default /ciao-deploy/origin/default");
+
+              case 14:
+                _context3.prev = 14;
+                _context3.next = 17;
+                return execAsync("sudo service nginx restart");
+
+              case 17:
+                _context3.next = 22;
+                break;
+
+              case 19:
+                _context3.prev = 19;
+                _context3.t0 = _context3["catch"](14);
+                log('nginx server重啟失敗, 確認是否安裝nginx', 'yellow');
+
+              case 22:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this, [[14, 19]]);
+      }));
+
+      function installNginx() {
+        return _installNginx.apply(this, arguments);
+      }
+
+      return installNginx;
+    }()
+  }, {
+    key: "setupDefaultPage",
+    value: function () {
+      var _setupDefaultPage = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee4() {
+        var path, result, tempPath;
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                log("\u6B63\u5728\u8A2D\u5B9A /var/www/html/index.html");
+                path = Object(__WEBPACK_IMPORTED_MODULE_2_path__["resolve"])(__dirname, 'nginx', 'default.html');
+                result = Object(__WEBPACK_IMPORTED_MODULE_1_fs__["readFileSync"])(path, {
+                  encoding: 'utf-8'
+                });
+                _context4.next = 5;
+                return execAsync("mkdir -p /tmp/ciao-deploy");
+
+              case 5:
+                tempPath = '/tmp/ciao-deploy/nginx-index.html';
+                Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(tempPath, result, 'utf-8');
+                _context4.next = 9;
+                return execAsync("sudo cp ".concat(tempPath, " /var/www/html/index.html"));
+
+              case 9:
+                _context4.next = 11;
+                return execAsync("sudo rm -rf ".concat(tempPath));
+
+              case 11:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function setupDefaultPage() {
+        return _setupDefaultPage.apply(this, arguments);
+      }
+
+      return setupDefaultPage;
+    }()
+  }, {
+    key: "setupNginxConf",
+    value: function () {
+      var _setupNginxConf = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee5() {
+        var path, result, tempPath;
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                log("\u6B63\u5728\u8A2D\u5B9A /etc/nginx/nginx.conf");
+                path = Object(__WEBPACK_IMPORTED_MODULE_2_path__["resolve"])(__dirname, 'nginx', 'nginx.conf');
+                result = Object(__WEBPACK_IMPORTED_MODULE_1_fs__["readFileSync"])(path, {
+                  encoding: 'utf-8'
+                });
+                _context5.next = 5;
+                return execAsync("mkdir -p /tmp/ciao-deploy");
+
+              case 5:
+                tempPath = '/tmp/ciao-deploy/nginx.conf';
+                Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(tempPath, result, 'utf-8');
+                _context5.next = 9;
+                return execAsync("sudo cp ".concat(tempPath, " /etc/nginx/nginx.conf"));
+
+              case 9:
+                _context5.next = 11;
+                return execAsync("sudo rm -rf ".concat(tempPath));
+
+              case 11:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+
+      function setupNginxConf() {
+        return _setupNginxConf.apply(this, arguments);
+      }
+
+      return setupNginxConf;
+    }()
+  }, {
+    key: "setupNginxDefaultSitesAvailableConf",
+    value: function () {
+      var _setupNginxDefaultSitesAvailableConf = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee6() {
+        var path, result, tempPath;
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                log("\u6B63\u5728\u8A2D\u5B9A /etc/nginx/sites-available/default");
+                path = Object(__WEBPACK_IMPORTED_MODULE_2_path__["resolve"])(__dirname, 'nginx', 'default.conf');
+                result = Object(__WEBPACK_IMPORTED_MODULE_1_fs__["readFileSync"])(path, {
+                  encoding: 'utf-8'
+                });
+                _context6.next = 5;
+                return execAsync("mkdir -p /tmp/ciao-deploy");
+
+              case 5:
+                tempPath = '/tmp/ciao-deploy/nginx-default';
+                Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(tempPath, result, 'utf-8');
+                _context6.next = 9;
+                return execAsync("sudo cp ".concat(tempPath, " /etc/nginx/sites-available/default"));
+
+              case 9:
+                _context6.next = 11;
+                return execAsync("sudo rm -rf ".concat(tempPath));
+
+              case 11:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
+      }));
+
+      function setupNginxDefaultSitesAvailableConf() {
+        return _setupNginxDefaultSitesAvailableConf.apply(this, arguments);
+      }
+
+      return setupNginxDefaultSitesAvailableConf;
+    }()
+  }, {
+    key: "initPhpFpm",
+    value: function () {
+      var _initPhpFpm = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee7() {
+        var path, result, tempPath;
+        return regeneratorRuntime.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                log("\u6B63\u5728\u8A2D\u5B9A /etc/php/7.1/fpm/pool.d/www.conf");
+                path = Object(__WEBPACK_IMPORTED_MODULE_2_path__["resolve"])(__dirname, 'php-fpm', 'www.conf');
+                result = Object(__WEBPACK_IMPORTED_MODULE_1_fs__["readFileSync"])(path, {
+                  encoding: 'utf-8'
+                });
+                _context7.next = 5;
+                return execAsync("mkdir -p /tmp/ciao-deploy");
+
+              case 5:
+                tempPath = '/tmp/ciao-deploy/php-fpm-www.conf';
+                Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(tempPath, result, 'utf-8');
+                _context7.next = 9;
+                return execAsync("sudo cp ".concat(tempPath, " /etc/php/7.1/fpm/pool.d/www.conf"));
+
+              case 9:
+                _context7.next = 11;
+                return execAsync("sudo rm -rf ".concat(tempPath));
+
+              case 11:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7, this);
+      }));
+
+      function initPhpFpm() {
+        return _initPhpFpm.apply(this, arguments);
+      }
+
+      return initPhpFpm;
+    }()
+  }]);
+
+  return Nginx;
+}(__WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["a"] = (new Nginx());
+
+/***/ }),
+/* 628 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_path__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_Service_SignDomain__ = __webpack_require__(125);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -60450,7 +60825,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new DomainSign());
 
 /***/ }),
-/* 628 */
+/* 629 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60576,7 +60951,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new DomainProxy());
 
 /***/ }),
-/* 629 */
+/* 630 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60702,7 +61077,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new DomainSocketProxy());
 
 /***/ }),
-/* 630 */
+/* 631 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60827,7 +61202,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new DomainDelete());
 
 /***/ }),
-/* 631 */
+/* 632 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60955,7 +61330,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new Ssl());
 
 /***/ }),
-/* 632 */
+/* 633 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61095,7 +61470,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new SslSign());
 
 /***/ }),
-/* 633 */
+/* 634 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61345,22 +61720,22 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new SslDelete());
 
 /***/ }),
-/* 634 */
+/* 635 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_Workspace_Base__ = __webpack_require__(635);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_Workspace_Chrome__ = __webpack_require__(636);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_Workspace_CreateDesktopSoftLink__ = __webpack_require__(637);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_Workspace_Dolphin__ = __webpack_require__(638);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_Workspace_Media__ = __webpack_require__(639);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_Workspace_Ngrok__ = __webpack_require__(640);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_Workspace_PhpStorm__ = __webpack_require__(641);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_Workspace_Record__ = __webpack_require__(642);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_Workspace_Unetbootin__ = __webpack_require__(643);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_Workspace_DbEaver__ = __webpack_require__(644);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_Workspace_RedisDesktopManager__ = __webpack_require__(645);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_Workspace_Base__ = __webpack_require__(636);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_Workspace_Chrome__ = __webpack_require__(637);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_Workspace_CreateDesktopSoftLink__ = __webpack_require__(638);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_Workspace_Dolphin__ = __webpack_require__(639);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_Workspace_Media__ = __webpack_require__(640);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_Workspace_Ngrok__ = __webpack_require__(641);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_Workspace_PhpStorm__ = __webpack_require__(642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_Workspace_Record__ = __webpack_require__(643);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_Workspace_Unetbootin__ = __webpack_require__(644);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_Workspace_DbEaver__ = __webpack_require__(645);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_Workspace_RedisDesktopManager__ = __webpack_require__(646);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -61653,7 +62028,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new Workspace());
 
 /***/ }),
-/* 635 */
+/* 636 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61721,7 +62096,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new Base());
 
 /***/ }),
-/* 636 */
+/* 637 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61811,7 +62186,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new Chrome());
 
 /***/ }),
-/* 637 */
+/* 638 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61892,7 +62267,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new CreateDesktopSoftLink());
 
 /***/ }),
-/* 638 */
+/* 639 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62004,7 +62379,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new Dolphin());
 
 /***/ }),
-/* 639 */
+/* 640 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62174,7 +62549,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new Media());
 
 /***/ }),
-/* 640 */
+/* 641 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62246,7 +62621,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new Ngrok());
 
 /***/ }),
-/* 641 */
+/* 642 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62387,7 +62762,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new PhpStorm());
 
 /***/ }),
-/* 642 */
+/* 643 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62489,7 +62864,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new Record());
 
 /***/ }),
-/* 643 */
+/* 644 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62568,7 +62943,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new Unetbootin());
 
 /***/ }),
-/* 644 */
+/* 645 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62677,7 +63052,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new DbEaver());
 
 /***/ }),
-/* 645 */
+/* 646 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62737,7 +63112,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new RedisDesktopManager());
 
 /***/ }),
-/* 646 */
+/* 647 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62951,7 +63326,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new PhpMyAdmin());
 
 /***/ }),
-/* 647 */
+/* 648 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63069,7 +63444,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new SetupDeployEnv());
 
 /***/ }),
-/* 648 */
+/* 649 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63200,7 +63575,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new SetupRemoteEnv());
 
 /***/ }),
-/* 649 */
+/* 650 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63618,7 +63993,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new BackupDB());
 
 /***/ }),
-/* 650 */
+/* 651 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63627,7 +64002,7 @@ function (_BaseCommand) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_path__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prettyjson__ = __webpack_require__(319);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prettyjson___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prettyjson__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_CustomDeploy_CustomJob__ = __webpack_require__(651);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_CustomDeploy_CustomJob__ = __webpack_require__(652);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -63864,7 +64239,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new CustomDeploy());
 
 /***/ }),
-/* 651 */
+/* 652 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64224,7 +64599,7 @@ function () {
 });
 
 /***/ }),
-/* 652 */
+/* 653 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64381,7 +64756,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new PhpSetupUploadMaxSize());
 
 /***/ }),
-/* 653 */
+/* 654 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

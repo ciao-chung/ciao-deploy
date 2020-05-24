@@ -1,6 +1,9 @@
 require('../src/Global')
 module.exports = () => {
   return {
+    node: {
+      __dirname: false,
+    },
     target: 'node',
     entry: ['babel-polyfill', pathResolve(appRoot, 'src/App.js')],
     output: {
