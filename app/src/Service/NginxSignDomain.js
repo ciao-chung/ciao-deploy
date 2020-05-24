@@ -31,10 +31,11 @@ class NginxSignDomain {
     
     await this._setupSsl()
     await this._createNginxConfig(nginxConfig)
+    await execAsync(`sudo service nginx restart`)
   }
   
   async _checkIsFirstTime() {
-    this.first = existsSync(`/etc/nginx/sites-available/${this.domain}.conf`)
+    this.first = !existsSync(`/etc/nginx/sites-available/${this.domain}.conf`)
   }
   
   async enableSite() {
@@ -52,6 +53,7 @@ class NginxSignDomain {
   }
 
   async _createNginxConfig(content) {
+    await execAsync(`mkdir -p /tmp/ciao-deploy`)
     const tempPath = `/tmp/ciao-deploy/${this.domain}.conf`
     writeFileSync(tempPath, content, 'utf-8')
     await execAsync(`sudo mv ${tempPath} /etc/nginx/sites-available/${this.domain}.conf`)
