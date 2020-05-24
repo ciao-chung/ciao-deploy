@@ -60481,40 +60481,48 @@ function (_BaseCommand) {
 
               case 8:
                 _context3.next = 10;
-                return execAsync("sudo python-certbot-nginx -y");
+                return execAsync("sudo add-apt-repository ppa:certbot/certbot -y");
 
               case 10:
                 _context3.next = 12;
-                return execAsync("sudo mkdir -p /ciao-deploy/origin");
+                return execAsync("sudo apt-get update -y");
 
               case 12:
                 _context3.next = 14;
-                return execAsync("sudo cp -r /etc/nginx/nginx.conf /ciao-deploy/origin/nginx.conf");
+                return execAsync("sudo apt-get install python-certbot-nginx -y");
 
               case 14:
                 _context3.next = 16;
-                return execAsync("sudo cp -r /etc/nginx/sites-available/default /ciao-deploy/origin/default");
+                return execAsync("sudo mkdir -p /ciao-deploy/origin");
 
               case 16:
-                _context3.prev = 16;
-                _context3.next = 19;
+                _context3.next = 18;
+                return execAsync("sudo cp -r /etc/nginx/nginx.conf /ciao-deploy/origin/nginx.conf");
+
+              case 18:
+                _context3.next = 20;
+                return execAsync("sudo cp -r /etc/nginx/sites-available/default /ciao-deploy/origin/default");
+
+              case 20:
+                _context3.prev = 20;
+                _context3.next = 23;
                 return execAsync("sudo service nginx restart");
 
-              case 19:
-                _context3.next = 24;
+              case 23:
+                _context3.next = 28;
                 break;
 
-              case 21:
-                _context3.prev = 21;
-                _context3.t0 = _context3["catch"](16);
+              case 25:
+                _context3.prev = 25;
+                _context3.t0 = _context3["catch"](20);
                 log('nginx server重啟失敗, 確認是否安裝nginx', 'yellow');
 
-              case 24:
+              case 28:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, this, [[16, 21]]);
+        }, _callee3, this, [[20, 25]]);
       }));
 
       function installNginx() {
