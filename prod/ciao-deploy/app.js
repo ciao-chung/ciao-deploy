@@ -43136,7 +43136,7 @@ module.exports = require("crypto");
 /* 565 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"2.0.0-alpha.14","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"2.0.0-beta","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 566 */
@@ -60944,6 +60944,10 @@ function () {
                 return this._createNginxConfig(nginxConfig);
 
               case 30:
+                _context.next = 32;
+                return execAsync("sudo service nginx restart");
+
+              case 32:
               case "end":
                 return _context.stop();
             }
@@ -61040,7 +61044,7 @@ function () {
 
               case 2:
                 _context4.next = 4;
-                return Object(__WEBPACK_IMPORTED_MODULE_1_fs__["existsSync"])("sudo certbot --nginx --redirect --keep-until-expiring --no-eff-email --agree-tos --domains ".concat(this.domain));
+                return execAsync("sudo certbot --nginx --redirect --keep-until-expiring --no-eff-email --agree-tos --domains ".concat(this.domain));
 
               case 4:
               case "end":

@@ -20,24 +20,24 @@ class NginxSignDomain {
         return
       }
     }
-    
+
     this._checkIsFirstTime()
     const nginxConfig = await this._getConfigContent()
-    
+
     if(this.first) {
       await this._createNginxConfig(nginxConfig)
       await this.enableSite(nginxConfig)
     }
-    
+
     await this._setupSsl()
     await this._createNginxConfig(nginxConfig)
     await execAsync(`sudo service nginx restart`)
   }
-  
+
   async _checkIsFirstTime() {
     this.first = !existsSync(`/etc/nginx/sites-available/${this.domain}.conf`)
   }
-  
+
   async enableSite() {
     try {
       await execAsync(`sudo ln -s /etc/nginx/sites-available/${this.domain}.conf /etc/nginx/sites-enabled/${this.domain}.conf`)
@@ -49,7 +49,7 @@ class NginxSignDomain {
 
   async _setupSsl() {
     if(!this.ssl) return
-    await existsSync(`sudo certbot --nginx --redirect --keep-until-expiring --no-eff-email --agree-tos --domains ${this.domain}`)
+    await execAsync(`sudo certbot --nginx --redirect --keep-until-expiring --no-eff-email --agree-tos --domains ${this.domain}`)
   }
 
   async _createNginxConfig(content) {
