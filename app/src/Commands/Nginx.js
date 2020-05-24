@@ -35,6 +35,9 @@ class Nginx extends BaseCommand{
     await execAsync(`sudo apt-add-repository -y ppa:hda-me/nginx-stable -y`)
     await execAsync(`sudo apt-get update -y`)
     await execAsync(`sudo apt-get install nginx-module-brotli -y`)
+    await execAsync(`sudo add-apt-repository ppa:certbot/certbot -y`)
+    await execAsync(`sudo apt-get update -y`)
+    await execAsync(`sudo apt-get install python-certbot-nginx -y`)
     await execAsync(`sudo mkdir -p /ciao-deploy/origin`)
     await execAsync(`sudo cp -r /etc/nginx/nginx.conf /ciao-deploy/origin/nginx.conf`)
     await execAsync(`sudo cp -r /etc/nginx/sites-available/default /ciao-deploy/origin/default`)
@@ -53,8 +56,7 @@ class Nginx extends BaseCommand{
     await execAsync(`mkdir -p /tmp/ciao-deploy`)
     const tempPath = '/tmp/ciao-deploy/nginx-index.html'
     writeFileSync(tempPath, result, 'utf-8')
-    await execAsync(`sudo cp ${tempPath} /var/www/html/index.html`)
-    await execAsync(`sudo rm -rf ${tempPath}`)
+    await execAsync(`sudo mv ${tempPath} /var/www/html/index.html`)
   }
 
   async setupNginxConf() {
@@ -64,8 +66,7 @@ class Nginx extends BaseCommand{
     await execAsync(`mkdir -p /tmp/ciao-deploy`)
     const tempPath = '/tmp/ciao-deploy/nginx.conf'
     writeFileSync(tempPath, result, 'utf-8')
-    await execAsync(`sudo cp ${tempPath} /etc/nginx/nginx.conf`)
-    await execAsync(`sudo rm -rf ${tempPath}`)
+    await execAsync(`sudo mv ${tempPath} /etc/nginx/nginx.conf`)
   }
 
   async setupNginxDefaultSitesAvailableConf() {
@@ -75,8 +76,7 @@ class Nginx extends BaseCommand{
     await execAsync(`mkdir -p /tmp/ciao-deploy`)
     const tempPath = '/tmp/ciao-deploy/nginx-default'
     writeFileSync(tempPath, result, 'utf-8')
-    await execAsync(`sudo cp ${tempPath} /etc/nginx/sites-available/default`)
-    await execAsync(`sudo rm -rf ${tempPath}`)
+    await execAsync(`sudo mv ${tempPath} /etc/nginx/sites-available/default`)
   }
 
   async initPhpFpm() {
@@ -86,8 +86,7 @@ class Nginx extends BaseCommand{
     await execAsync(`mkdir -p /tmp/ciao-deploy`)
     const tempPath = '/tmp/ciao-deploy/php-fpm-www.conf'
     writeFileSync(tempPath, result, 'utf-8')
-    await execAsync(`sudo cp ${tempPath} /etc/php/7.1/fpm/pool.d/www.conf`)
-    await execAsync(`sudo rm -rf ${tempPath}`)
+    await execAsync(`sudo mv ${tempPath} /etc/php/7.1/fpm/pool.d/www.conf`)
   }
 }
 

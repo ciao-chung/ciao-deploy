@@ -60481,36 +60481,40 @@ function (_BaseCommand) {
 
               case 8:
                 _context3.next = 10;
-                return execAsync("sudo mkdir -p /ciao-deploy/origin");
+                return execAsync("sudo python-certbot-nginx -y");
 
               case 10:
                 _context3.next = 12;
-                return execAsync("sudo cp -r /etc/nginx/nginx.conf /ciao-deploy/origin/nginx.conf");
+                return execAsync("sudo mkdir -p /ciao-deploy/origin");
 
               case 12:
                 _context3.next = 14;
-                return execAsync("sudo cp -r /etc/nginx/sites-available/default /ciao-deploy/origin/default");
+                return execAsync("sudo cp -r /etc/nginx/nginx.conf /ciao-deploy/origin/nginx.conf");
 
               case 14:
-                _context3.prev = 14;
-                _context3.next = 17;
+                _context3.next = 16;
+                return execAsync("sudo cp -r /etc/nginx/sites-available/default /ciao-deploy/origin/default");
+
+              case 16:
+                _context3.prev = 16;
+                _context3.next = 19;
                 return execAsync("sudo service nginx restart");
 
-              case 17:
-                _context3.next = 22;
+              case 19:
+                _context3.next = 24;
                 break;
 
-              case 19:
-                _context3.prev = 19;
-                _context3.t0 = _context3["catch"](14);
+              case 21:
+                _context3.prev = 21;
+                _context3.t0 = _context3["catch"](16);
                 log('nginx server重啟失敗, 確認是否安裝nginx', 'yellow');
 
-              case 22:
+              case 24:
               case "end":
                 return _context3.stop();
             }
           }
-        }, _callee3, this, [[14, 19]]);
+        }, _callee3, this, [[16, 21]]);
       }));
 
       function installNginx() {
@@ -60542,13 +60546,9 @@ function (_BaseCommand) {
                 tempPath = '/tmp/ciao-deploy/nginx-index.html';
                 Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(tempPath, result, 'utf-8');
                 _context4.next = 9;
-                return execAsync("sudo cp ".concat(tempPath, " /var/www/html/index.html"));
+                return execAsync("sudo mv ".concat(tempPath, " /var/www/html/index.html"));
 
               case 9:
-                _context4.next = 11;
-                return execAsync("sudo rm -rf ".concat(tempPath));
-
-              case 11:
               case "end":
                 return _context4.stop();
             }
@@ -60585,13 +60585,9 @@ function (_BaseCommand) {
                 tempPath = '/tmp/ciao-deploy/nginx.conf';
                 Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(tempPath, result, 'utf-8');
                 _context5.next = 9;
-                return execAsync("sudo cp ".concat(tempPath, " /etc/nginx/nginx.conf"));
+                return execAsync("sudo mv ".concat(tempPath, " /etc/nginx/nginx.conf"));
 
               case 9:
-                _context5.next = 11;
-                return execAsync("sudo rm -rf ".concat(tempPath));
-
-              case 11:
               case "end":
                 return _context5.stop();
             }
@@ -60628,13 +60624,9 @@ function (_BaseCommand) {
                 tempPath = '/tmp/ciao-deploy/nginx-default';
                 Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(tempPath, result, 'utf-8');
                 _context6.next = 9;
-                return execAsync("sudo cp ".concat(tempPath, " /etc/nginx/sites-available/default"));
+                return execAsync("sudo mv ".concat(tempPath, " /etc/nginx/sites-available/default"));
 
               case 9:
-                _context6.next = 11;
-                return execAsync("sudo rm -rf ".concat(tempPath));
-
-              case 11:
               case "end":
                 return _context6.stop();
             }
@@ -60671,13 +60663,9 @@ function (_BaseCommand) {
                 tempPath = '/tmp/ciao-deploy/php-fpm-www.conf';
                 Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(tempPath, result, 'utf-8');
                 _context7.next = 9;
-                return execAsync("sudo cp ".concat(tempPath, " /etc/php/7.1/fpm/pool.d/www.conf"));
+                return execAsync("sudo mv ".concat(tempPath, " /etc/php/7.1/fpm/pool.d/www.conf"));
 
               case 9:
-                _context7.next = 11;
-                return execAsync("sudo rm -rf ".concat(tempPath));
-
-              case 11:
               case "end":
                 return _context7.stop();
             }

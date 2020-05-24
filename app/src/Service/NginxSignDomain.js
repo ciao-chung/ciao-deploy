@@ -3,6 +3,7 @@ import { existsSync, writeFileSync, readFileSync } from 'fs'
 import mustache from 'mustache'
 class NginxSignDomain {
   async sign(domain, path, ssl, spa) {
+    this.domain = domain
     if(!existsSync(path)) {
       log(`Domain設定失敗, 找不到web路徑`, 'red')
       return
@@ -17,13 +18,27 @@ class NginxSignDomain {
       }
     }
 
-    const nginxConfig = this._getConfigContent(ssl, spa)
+    const nginxConfig = await this._getConfigContent(ssl, spa)
+    await this._createNginxConfig(nginxConfig)
+    await this._setupSsl(ssl)
+    await this._createNginxConfig(nginxConfig)
+  }
+
+  async _setupSsl(ssl) {
+    if(!ssl) return
+    await existsSync(`sudo certbot --nginx --redirect --keep-until-expiring --no-eff-email --agree-tos --domains ${this.domain}`)
+  }
+
+  async _createNginxConfig(content) {
+    const tempPath = `/tmp/ciao-deploy/${this.domain}.conf`
+    writeFileSync(tempPath, content, 'utf-8')
+    await execAsync(`sudo mv ${tempPath} /etc/nginx/sites-available/${this.domain}.conf`)
   }
 
   async _getConfigContent(ssl, spa) {
     const template = this._getConfigTemplate(ssl, spa)
     const configContent = mustache.render(template, {
-      domain,
+      domain: this.domain,
       path,
     })
     return configContent
