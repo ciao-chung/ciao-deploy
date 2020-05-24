@@ -36679,20 +36679,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_Commands_Apache__ = __webpack_require__(626);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_Commands_Nginx__ = __webpack_require__(627);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_Commands_DomainSign__ = __webpack_require__(628);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_Commands_DomainProxy__ = __webpack_require__(629);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_Commands_DomainSocketProxy__ = __webpack_require__(630);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_Commands_DomainDelete__ = __webpack_require__(631);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_Commands_Ssl__ = __webpack_require__(632);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_Commands_SslSign__ = __webpack_require__(633);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_Commands_SslDelete__ = __webpack_require__(634);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_Commands_Workspace__ = __webpack_require__(635);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_Commands_PhpMyAdmin__ = __webpack_require__(647);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_Commands_SetupDeployEnv__ = __webpack_require__(648);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_Commands_SetupRemoteEnv__ = __webpack_require__(649);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_Commands_BackupDB__ = __webpack_require__(650);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_Commands_CustomDeploy__ = __webpack_require__(651);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_Commands_PhpSetupUploadMaxSize__ = __webpack_require__(653);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_Commands_Version__ = __webpack_require__(654);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_Commands_NginxDomainSign__ = __webpack_require__(629);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_Commands_DomainProxy__ = __webpack_require__(632);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_Commands_DomainSocketProxy__ = __webpack_require__(633);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_Commands_DomainDelete__ = __webpack_require__(634);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20_Commands_Ssl__ = __webpack_require__(635);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_Commands_SslSign__ = __webpack_require__(636);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22_Commands_SslDelete__ = __webpack_require__(637);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_Commands_Workspace__ = __webpack_require__(638);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24_Commands_PhpMyAdmin__ = __webpack_require__(650);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25_Commands_SetupDeployEnv__ = __webpack_require__(651);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_Commands_SetupRemoteEnv__ = __webpack_require__(652);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_Commands_BackupDB__ = __webpack_require__(653);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28_Commands_CustomDeploy__ = __webpack_require__(654);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29_Commands_PhpSetupUploadMaxSize__ = __webpack_require__(656);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30_Commands_Version__ = __webpack_require__(657);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -36742,6 +36743,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var App =
 /*#__PURE__*/
 function (_AppKernel) {
@@ -36756,7 +36758,7 @@ function (_AppKernel) {
   _createClass(App, [{
     key: "setup",
     value: function setup() {
-      this.commandList = [__WEBPACK_IMPORTED_MODULE_1_Commands_WebDeploy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2_Commands_WebDeployCreateConfig__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3_Commands_Env__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4_Commands_Fish__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5_Commands_Redis__["a" /* default */], __WEBPACK_IMPORTED_MODULE_6_Commands_RedisSetPassword__["a" /* default */], __WEBPACK_IMPORTED_MODULE_7_Commands_Mysql__["a" /* default */], __WEBPACK_IMPORTED_MODULE_8_Commands_MysqlCloneTables__["a" /* default */], __WEBPACK_IMPORTED_MODULE_9_Commands_MysqlUserCreate__["a" /* default */], __WEBPACK_IMPORTED_MODULE_10_Commands_MysqlUserDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_11_Commands_MysqlDatabaseCreate__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12_Commands_MysqlDatabaseDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_13_Commands_Apache__["a" /* default */], __WEBPACK_IMPORTED_MODULE_14_Commands_Nginx__["a" /* default */], __WEBPACK_IMPORTED_MODULE_15_Commands_DomainSign__["a" /* default */], __WEBPACK_IMPORTED_MODULE_16_Commands_DomainProxy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_17_Commands_DomainSocketProxy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_18_Commands_DomainDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_19_Commands_Ssl__["a" /* default */], __WEBPACK_IMPORTED_MODULE_20_Commands_SslSign__["a" /* default */], __WEBPACK_IMPORTED_MODULE_21_Commands_SslDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_22_Commands_Workspace__["a" /* default */], __WEBPACK_IMPORTED_MODULE_23_Commands_PhpMyAdmin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_24_Commands_SetupDeployEnv__["a" /* default */], __WEBPACK_IMPORTED_MODULE_25_Commands_SetupRemoteEnv__["a" /* default */], __WEBPACK_IMPORTED_MODULE_26_Commands_BackupDB__["a" /* default */], __WEBPACK_IMPORTED_MODULE_27_Commands_CustomDeploy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_28_Commands_PhpSetupUploadMaxSize__["a" /* default */], __WEBPACK_IMPORTED_MODULE_29_Commands_Version__["a" /* default */]];
+      this.commandList = [__WEBPACK_IMPORTED_MODULE_1_Commands_WebDeploy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2_Commands_WebDeployCreateConfig__["a" /* default */], __WEBPACK_IMPORTED_MODULE_3_Commands_Env__["a" /* default */], __WEBPACK_IMPORTED_MODULE_4_Commands_Fish__["a" /* default */], __WEBPACK_IMPORTED_MODULE_5_Commands_Redis__["a" /* default */], __WEBPACK_IMPORTED_MODULE_6_Commands_RedisSetPassword__["a" /* default */], __WEBPACK_IMPORTED_MODULE_7_Commands_Mysql__["a" /* default */], __WEBPACK_IMPORTED_MODULE_8_Commands_MysqlCloneTables__["a" /* default */], __WEBPACK_IMPORTED_MODULE_9_Commands_MysqlUserCreate__["a" /* default */], __WEBPACK_IMPORTED_MODULE_10_Commands_MysqlUserDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_11_Commands_MysqlDatabaseCreate__["a" /* default */], __WEBPACK_IMPORTED_MODULE_12_Commands_MysqlDatabaseDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_13_Commands_Apache__["a" /* default */], __WEBPACK_IMPORTED_MODULE_14_Commands_Nginx__["a" /* default */], __WEBPACK_IMPORTED_MODULE_16_Commands_NginxDomainSign__["a" /* default */], __WEBPACK_IMPORTED_MODULE_15_Commands_DomainSign__["a" /* default */], __WEBPACK_IMPORTED_MODULE_17_Commands_DomainProxy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_18_Commands_DomainSocketProxy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_19_Commands_DomainDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_20_Commands_Ssl__["a" /* default */], __WEBPACK_IMPORTED_MODULE_21_Commands_SslSign__["a" /* default */], __WEBPACK_IMPORTED_MODULE_22_Commands_SslDelete__["a" /* default */], __WEBPACK_IMPORTED_MODULE_23_Commands_Workspace__["a" /* default */], __WEBPACK_IMPORTED_MODULE_24_Commands_PhpMyAdmin__["a" /* default */], __WEBPACK_IMPORTED_MODULE_25_Commands_SetupDeployEnv__["a" /* default */], __WEBPACK_IMPORTED_MODULE_26_Commands_SetupRemoteEnv__["a" /* default */], __WEBPACK_IMPORTED_MODULE_27_Commands_BackupDB__["a" /* default */], __WEBPACK_IMPORTED_MODULE_28_Commands_CustomDeploy__["a" /* default */], __WEBPACK_IMPORTED_MODULE_29_Commands_PhpSetupUploadMaxSize__["a" /* default */], __WEBPACK_IMPORTED_MODULE_30_Commands_Version__["a" /* default */]];
     }
   }]);
 
@@ -43132,7 +43134,7 @@ module.exports = require("crypto");
 /* 565 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"2.0.0-alpha.1","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"2.0.0-alpha.12","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 566 */
@@ -60830,6 +60832,485 @@ function (_BaseCommand) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_path__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_Service_NginxSignDomain__ = __webpack_require__(630);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+var DomainSign =
+/*#__PURE__*/
+function (_BaseCommand) {
+  _inherits(DomainSign, _BaseCommand);
+
+  function DomainSign() {
+    _classCallCheck(this, DomainSign);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(DomainSign).apply(this, arguments));
+  }
+
+  _createClass(DomainSign, [{
+    key: "setupCommand",
+    value: function () {
+      var _setupCommand = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee() {
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.name = 'nginx-domain-sign';
+                this.configFile = {
+                  required: false,
+                  property: 'config'
+                };
+                this.argsConfig = [{
+                  name: 'domain',
+                  description: 'Domain',
+                  required: true,
+                  type: 'string'
+                }, {
+                  name: 'path',
+                  description: 'Web路徑',
+                  required: true,
+                  type: 'string'
+                }, {
+                  name: 'ssl',
+                  description: '是否使用SSL',
+                  required: false,
+                  type: 'boolean'
+                }, {
+                  name: 'ssl',
+                  description: '是否使用SSL',
+                  required: false,
+                  type: 'boolean'
+                }, {
+                  name: 'spa',
+                  description: '是否為SPA',
+                  required: false,
+                  type: 'boolean'
+                }];
+                this.description = "\u8A2D\u5B9ANginx Virtual Host";
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function setupCommand() {
+        return _setupCommand.apply(this, arguments);
+      }
+
+      return setupCommand;
+    }()
+  }, {
+    key: "start",
+    value: function () {
+      var _start = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2() {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                log("Start sign nginx domain: ".concat(this.args.domain));
+                _context2.next = 3;
+                return __WEBPACK_IMPORTED_MODULE_3_Service_NginxSignDomain__["a" /* default */].sign(this.args.domain, this.args.path, this.args.ssl, this.args.spa);
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function start() {
+        return _start.apply(this, arguments);
+      }
+
+      return start;
+    }()
+  }]);
+
+  return DomainSign;
+}(__WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["a"] = (new DomainSign());
+
+/***/ }),
+/* 630 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_path__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_Nginx_NginxSiteConfig_js__ = __webpack_require__(631);
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+var NginxSignDomain =
+/*#__PURE__*/
+function () {
+  function NginxSignDomain() {
+    _classCallCheck(this, NginxSignDomain);
+  }
+
+  _createClass(NginxSignDomain, [{
+    key: "sign",
+    value: function () {
+      var _sign = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee(domain, path, ssl, spa) {
+        var nginxConfig;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.domain = domain;
+                this.path = path;
+                this.ssl = ssl;
+                this.spa = spa;
+
+                if (Object(__WEBPACK_IMPORTED_MODULE_1_fs__["existsSync"])(path)) {
+                  _context.next = 7;
+                  break;
+                }
+
+                log("Domain\u8A2D\u5B9A\u5931\u6557, \u627E\u4E0D\u5230web\u8DEF\u5F91", 'red');
+                return _context.abrupt("return");
+
+              case 7:
+                if (!this.ssl) {
+                  _context.next = 17;
+                  break;
+                }
+
+                _context.prev = 8;
+                _context.next = 11;
+                return execAsync("certbot --help");
+
+              case 11:
+                _context.next = 17;
+                break;
+
+              case 13:
+                _context.prev = 13;
+                _context.t0 = _context["catch"](8);
+                log('Domain設定失敗, 請確認是否安裝certbot', 'red');
+                return _context.abrupt("return");
+
+              case 17:
+                this._checkIsFirstTime();
+
+                _context.next = 20;
+                return this._getConfigContent();
+
+              case 20:
+                nginxConfig = _context.sent;
+
+                if (!this.first) {
+                  _context.next = 26;
+                  break;
+                }
+
+                _context.next = 24;
+                return this._createNginxConfig(nginxConfig);
+
+              case 24:
+                _context.next = 26;
+                return this.enableSite(nginxConfig);
+
+              case 26:
+                _context.next = 28;
+                return this._setupSsl();
+
+              case 28:
+                _context.next = 30;
+                return this._createNginxConfig(nginxConfig);
+
+              case 30:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[8, 13]]);
+      }));
+
+      function sign(_x, _x2, _x3, _x4) {
+        return _sign.apply(this, arguments);
+      }
+
+      return sign;
+    }()
+  }, {
+    key: "_checkIsFirstTime",
+    value: function () {
+      var _checkIsFirstTime2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2() {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                this.first = Object(__WEBPACK_IMPORTED_MODULE_1_fs__["existsSync"])("/etc/nginx/sites-available/".concat(this.domain, ".conf"));
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function _checkIsFirstTime() {
+        return _checkIsFirstTime2.apply(this, arguments);
+      }
+
+      return _checkIsFirstTime;
+    }()
+  }, {
+    key: "enableSite",
+    value: function () {
+      var _enableSite = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee3() {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.prev = 0;
+                _context3.next = 3;
+                return execAsync("sudo ln -s /etc/nginx/sites-available/".concat(this.domain, ".conf /etc/nginx/sites-enabled/").concat(this.domain, ".conf"));
+
+              case 3:
+                _context3.next = 9;
+                break;
+
+              case 5:
+                _context3.prev = 5;
+                _context3.t0 = _context3["catch"](0);
+                log(_context3.t0, 'yellow');
+                log("".concat(this.domain, "\u555F\u7528\u5931\u6557"), 'red');
+
+              case 9:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this, [[0, 5]]);
+      }));
+
+      function enableSite() {
+        return _enableSite.apply(this, arguments);
+      }
+
+      return enableSite;
+    }()
+  }, {
+    key: "_setupSsl",
+    value: function () {
+      var _setupSsl2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee4() {
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                if (this.ssl) {
+                  _context4.next = 2;
+                  break;
+                }
+
+                return _context4.abrupt("return");
+
+              case 2:
+                _context4.next = 4;
+                return Object(__WEBPACK_IMPORTED_MODULE_1_fs__["existsSync"])("sudo certbot --nginx --redirect --keep-until-expiring --no-eff-email --agree-tos --domains ".concat(this.domain));
+
+              case 4:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+
+      function _setupSsl() {
+        return _setupSsl2.apply(this, arguments);
+      }
+
+      return _setupSsl;
+    }()
+  }, {
+    key: "_createNginxConfig",
+    value: function () {
+      var _createNginxConfig2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee5(content) {
+        var tempPath;
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                tempPath = "/tmp/ciao-deploy/".concat(this.domain, ".conf");
+                Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(tempPath, content, 'utf-8');
+                _context5.next = 4;
+                return execAsync("sudo mv ".concat(tempPath, " /etc/nginx/sites-available/").concat(this.domain, ".conf"));
+
+              case 4:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+
+      function _createNginxConfig(_x5) {
+        return _createNginxConfig2.apply(this, arguments);
+      }
+
+      return _createNginxConfig;
+    }()
+  }, {
+    key: "_getConfigContent",
+    value: function () {
+      var _getConfigContent2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee6() {
+        var content;
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                content = null;
+
+                if (this.ssl == true && this.spa === true) {
+                  content = __WEBPACK_IMPORTED_MODULE_2_Nginx_NginxSiteConfig_js__["a" /* default */].siteSslSpa(this.path, this.domain);
+                } else if (this.ssl == true && this.spa === false) {
+                  content = __WEBPACK_IMPORTED_MODULE_2_Nginx_NginxSiteConfig_js__["a" /* default */].siteSslPhp(this.path, this.domain);
+                } else if (this.ssl == false && this.spa === true) {
+                  content = __WEBPACK_IMPORTED_MODULE_2_Nginx_NginxSiteConfig_js__["a" /* default */].siteSpa(this.path, this.domain);
+                } else if (this.ssl == false && this.spa === false) {
+                  content = __WEBPACK_IMPORTED_MODULE_2_Nginx_NginxSiteConfig_js__["a" /* default */].sitePhp(this.path, this.domain);
+                }
+
+                return _context6.abrupt("return", content);
+
+              case 3:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
+      }));
+
+      function _getConfigContent() {
+        return _getConfigContent2.apply(this, arguments);
+      }
+
+      return _getConfigContent;
+    }()
+  }]);
+
+  return NginxSignDomain;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (new NginxSignDomain());
+
+/***/ }),
+/* 631 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var NginxSiteConfig =
+/*#__PURE__*/
+function () {
+  function NginxSiteConfig() {
+    _classCallCheck(this, NginxSiteConfig);
+  }
+
+  _createClass(NginxSiteConfig, [{
+    key: "sitePhp",
+    value: function sitePhp(path, domain) {
+      return "\nserver {\n        listen 80;\n        listen [::]:80;\n\n        server_name ".concat(domain, ";\n        root ").concat(path, ";\n        index index.php;\n\n        location / {\n                try_files $uri $uri/ =404;\n        }\n\n        location ~ \\.php$ {\n                include snippets/fastcgi-php.conf;\n                fastcgi_pass unix:/run/php/php7.1-fpm.sock;\n        }\n}\n    ");
+    }
+  }, {
+    key: "siteSpa",
+    value: function siteSpa(path, domain) {
+      return "\nserver {\n        listen 80;\n        listen [::]:80;\n\n        server_name ".concat(domain, ";\n        root ").concat(path, ";\n        index index.html;\n\n        location ~ .(html)$ {\n            add_header Cache-Control \"max-age=0, no-cache, no-store, must-revalidate\";\n            add_header Pragma \"no-cache\";\n        }\n\n        location ~ (css|js|map|jpg|jpeg|png|ico|gif|woff|woff2|svg|ttf|eto|br|gz)$ {\n            add_header Cache-Control \"max-age=86400, must-revalidate\";\n        }\n\n        include ").concat(path, "/nginx.conf;\n}\n    ");
+    }
+  }, {
+    key: "siteSslPhp",
+    value: function siteSslPhp(path, domain) {
+      return "\nserver {\n        server_name ".concat(domain, ";\n        root ").concat(path, ";\n        index index.php;\n\n        location / {\n                try_files $uri $uri/ =404;\n        }\n\n        location ~ \\.php$ {\n                include snippets/fastcgi-php.conf;\n                fastcgi_pass unix:/run/php/php7.1-fpm.sock;\n        }\n\n        listen [::]:443 ssl http2 ipv6only=on;\n        listen 443 ssl http2;\n        ssl_certificate /etc/letsencrypt/live/").concat(domain, "/fullchain.pem;\n        ssl_certificate_key /etc/letsencrypt/live/").concat(domain, "/privkey.pem;\n        include /etc/letsencrypt/options-ssl-nginx.conf;\n        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;\n}\n\nserver {\n        if ($host = ").concat(domain, ") {\n            return 301 https://$host$request_uri;\n        }\n\n        listen 80;\n        listen [::]:80;\n\n        server_name ").concat(domain, ";\n        return 404;\n}\n\n");
+    }
+  }, {
+    key: "siteSslSpa",
+    value: function siteSslSpa(path, domain) {
+      return "\nserver {\n        server_name ".concat(domain, ";\n        root ").concat(path, ";\n        index index.html;\n\n        location ~ .(html)$ {\n            add_header Cache-Control \"max-age=0, no-cache, no-store, must-revalidate\";\n            add_header Pragma \"no-cache\";\n        }\n\n        location ~ (css|js|map|jpg|jpeg|png|ico|gif|woff|woff2|svg|ttf|eto|br|gz)$ {\n            add_header Cache-Control \"max-age=86400, must-revalidate\";\n        }\n\n        include ").concat(path, "/nginx.conf;\n\n        listen [::]:443 ssl http2 ipv6only=on;\n        listen 443 ssl http2;\n        ssl_certificate /etc/letsencrypt/live/").concat(domain, "/fullchain.pem;\n        ssl_certificate_key /etc/letsencrypt/live/").concat(domain, "/privkey.pem;\n        include /etc/letsencrypt/options-ssl-nginx.conf;\n        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;\n}\n\nserver {\n        if ($host = ").concat(domain, ") {\n            return 301 https://$host$request_uri;\n        }\n\n        listen 80;\n        listen [::]:80;\n\n        server_name ").concat(domain, ";\n        return 404;\n}\n\n");
+    }
+  }]);
+
+  return NginxSiteConfig;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (new NginxSiteConfig());
+
+/***/ }),
+/* 632 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_fs__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_path__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_Service_SignDomain__ = __webpack_require__(125);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -60947,7 +61428,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new DomainProxy());
 
 /***/ }),
-/* 630 */
+/* 633 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61073,7 +61554,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new DomainSocketProxy());
 
 /***/ }),
-/* 631 */
+/* 634 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61198,7 +61679,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new DomainDelete());
 
 /***/ }),
-/* 632 */
+/* 635 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61326,7 +61807,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new Ssl());
 
 /***/ }),
-/* 633 */
+/* 636 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61466,7 +61947,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new SslSign());
 
 /***/ }),
-/* 634 */
+/* 637 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61716,22 +62197,22 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new SslDelete());
 
 /***/ }),
-/* 635 */
+/* 638 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_Commands_BaseCommand__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_Workspace_Base__ = __webpack_require__(636);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_Workspace_Chrome__ = __webpack_require__(637);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_Workspace_CreateDesktopSoftLink__ = __webpack_require__(638);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_Workspace_Dolphin__ = __webpack_require__(639);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_Workspace_Media__ = __webpack_require__(640);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_Workspace_Ngrok__ = __webpack_require__(641);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_Workspace_PhpStorm__ = __webpack_require__(642);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_Workspace_Record__ = __webpack_require__(643);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_Workspace_Unetbootin__ = __webpack_require__(644);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_Workspace_DbEaver__ = __webpack_require__(645);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_Workspace_RedisDesktopManager__ = __webpack_require__(646);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_Workspace_Base__ = __webpack_require__(639);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_Workspace_Chrome__ = __webpack_require__(640);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_Workspace_CreateDesktopSoftLink__ = __webpack_require__(641);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_Workspace_Dolphin__ = __webpack_require__(642);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_Workspace_Media__ = __webpack_require__(643);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_Workspace_Ngrok__ = __webpack_require__(644);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_Workspace_PhpStorm__ = __webpack_require__(645);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_Workspace_Record__ = __webpack_require__(646);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_Workspace_Unetbootin__ = __webpack_require__(647);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_Workspace_DbEaver__ = __webpack_require__(648);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_Workspace_RedisDesktopManager__ = __webpack_require__(649);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -62024,7 +62505,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new Workspace());
 
 /***/ }),
-/* 636 */
+/* 639 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62092,7 +62573,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new Base());
 
 /***/ }),
-/* 637 */
+/* 640 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62182,7 +62663,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new Chrome());
 
 /***/ }),
-/* 638 */
+/* 641 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62263,7 +62744,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new CreateDesktopSoftLink());
 
 /***/ }),
-/* 639 */
+/* 642 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62375,7 +62856,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new Dolphin());
 
 /***/ }),
-/* 640 */
+/* 643 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62545,7 +63026,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new Media());
 
 /***/ }),
-/* 641 */
+/* 644 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62617,7 +63098,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new Ngrok());
 
 /***/ }),
-/* 642 */
+/* 645 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62758,7 +63239,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new PhpStorm());
 
 /***/ }),
-/* 643 */
+/* 646 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62860,7 +63341,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new Record());
 
 /***/ }),
-/* 644 */
+/* 647 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -62939,7 +63420,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new Unetbootin());
 
 /***/ }),
-/* 645 */
+/* 648 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63048,7 +63529,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new DbEaver());
 
 /***/ }),
-/* 646 */
+/* 649 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63108,7 +63589,7 @@ function () {
 /* harmony default export */ __webpack_exports__["a"] = (new RedisDesktopManager());
 
 /***/ }),
-/* 647 */
+/* 650 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63322,7 +63803,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new PhpMyAdmin());
 
 /***/ }),
-/* 648 */
+/* 651 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63440,7 +63921,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new SetupDeployEnv());
 
 /***/ }),
-/* 649 */
+/* 652 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63571,7 +64052,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new SetupRemoteEnv());
 
 /***/ }),
-/* 650 */
+/* 653 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63989,7 +64470,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new BackupDB());
 
 /***/ }),
-/* 651 */
+/* 654 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63998,7 +64479,7 @@ function (_BaseCommand) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_path___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_path__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prettyjson__ = __webpack_require__(319);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_prettyjson___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_prettyjson__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_CustomDeploy_CustomJob__ = __webpack_require__(652);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_CustomDeploy_CustomJob__ = __webpack_require__(655);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -64235,7 +64716,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new CustomDeploy());
 
 /***/ }),
-/* 652 */
+/* 655 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64595,7 +65076,7 @@ function () {
 });
 
 /***/ }),
-/* 653 */
+/* 656 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64752,7 +65233,7 @@ function (_BaseCommand) {
 /* harmony default export */ __webpack_exports__["a"] = (new PhpSetupUploadMaxSize());
 
 /***/ }),
-/* 654 */
+/* 657 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

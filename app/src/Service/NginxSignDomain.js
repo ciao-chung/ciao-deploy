@@ -1,6 +1,6 @@
 import { resolve } from 'path'
 import { existsSync, writeFileSync, readFileSync } from 'fs'
-import mustache from 'mustache'
+import NginxSiteConfig from 'Nginx/NginxSiteConfig.js'
 class NginxSignDomain {
   async sign(domain, path, ssl, spa) {
     this.domain = domain
@@ -20,11 +20,30 @@ class NginxSignDomain {
         return
       }
     }
-
+    
+    this._checkIsFirstTime()
     const nginxConfig = await this._getConfigContent()
-    await this._createNginxConfig(nginxConfig)
+    
+    if(this.first) {
+      await this._createNginxConfig(nginxConfig)
+      await this.enableSite(nginxConfig)
+    }
+    
     await this._setupSsl()
     await this._createNginxConfig(nginxConfig)
+  }
+  
+  async _checkIsFirstTime() {
+    this.first = existsSync(`/etc/nginx/sites-available/${this.domain}.conf`)
+  }
+  
+  async enableSite() {
+    try {
+      await execAsync(`sudo ln -s /etc/nginx/sites-available/${this.domain}.conf /etc/nginx/sites-enabled/${this.domain}.conf`)
+    } catch (error) {
+      log(error, 'yellow')
+      log(`${this.domain}啟用失敗`, 'red')
+    }
   }
 
   async _setupSsl() {
@@ -39,23 +58,23 @@ class NginxSignDomain {
   }
 
   async _getConfigContent() {
-    const template = this._getConfigTemplate()
-    const configContent = mustache.render(template, {
-      domain: this.domain,
-      path: this.path,
-    })
-    return configContent
-  }
+    let content = null
+    if(this.ssl == true && this.spa === true) {
+      content = NginxSiteConfig.siteSslSpa(this.path, this.domain)
+    }
 
-  async _getConfigTemplate() {
-    let filename = null
-    if(this.ssl == true && this.spa === true) filename = 'site-ssl-spa.conf'
-    if(this.ssl == true && this.spa === false) filename = 'site-ssl-php.conf'
-    if(this.ssl == false && this.spa === true) filename = 'site-spa.conf'
-    if(this.ssl == false && this.spa === false) filename = 'site-php.conf'
-    const path = resolve(__dirname, 'nginx', filename)
-    const result = readFileSync(path, { encoding: 'utf-8'})
-    return result
+    else if(this.ssl == true && this.spa === false) {
+      content = NginxSiteConfig.siteSslPhp(this.path, this.domain)
+    }
+
+    else if(this.ssl == false && this.spa === true) {
+      content = NginxSiteConfig.siteSpa(this.path, this.domain)
+    }
+
+    else if(this.ssl == false && this.spa === false) {
+      content = NginxSiteConfig.sitePhp(this.path, this.domain)
+    }
+    return content
   }
 }
 
