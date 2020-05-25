@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 sudo apt-get update
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install nodejs -y
 sudo ln -s /usr/bin/nodejs /usr/bin/node
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
