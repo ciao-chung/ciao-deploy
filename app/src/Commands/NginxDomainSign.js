@@ -36,6 +36,12 @@ class DomainSign extends BaseCommand{
         type: 'boolean',
       },
       {
+        name: 'email',
+        description: 'Certbot使用的email',
+        required: false,
+        type: 'string',
+      },
+      {
         name: 'spa',
         description: '是否為SPA',
         required: false,
@@ -52,6 +58,7 @@ class DomainSign extends BaseCommand{
       this.args.path,
       this.args.ssl,
       this.args.spa,
+      this.args.email,
     )
   }
 }

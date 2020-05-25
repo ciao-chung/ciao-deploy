@@ -43136,7 +43136,7 @@ module.exports = require("crypto");
 /* 565 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"2.0.2","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"2.0.7","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 566 */
@@ -60505,7 +60505,7 @@ function (_BaseCommand) {
 
               case 18:
                 _context3.next = 20;
-                return execAsync("sudo cp -r /etc/nginx/sites-available/default /ciao-deploy/origin/default");
+                return execAsync("sudo cp -r /etc/nginx/sites-available/default.conf /ciao-deploy/origin/default");
 
               case 20:
                 _context3.prev = 20;
@@ -60624,8 +60624,8 @@ function (_BaseCommand) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                log("\u6B63\u5728\u8A2D\u5B9A /etc/nginx/sites-available/default");
-                path = Object(__WEBPACK_IMPORTED_MODULE_2_path__["resolve"])(__dirname, 'nginx', 'default');
+                log("\u6B63\u5728\u8A2D\u5B9A /etc/nginx/sites-available/default.conf");
+                path = Object(__WEBPACK_IMPORTED_MODULE_2_path__["resolve"])(__dirname, 'nginx', 'default.conf');
                 result = Object(__WEBPACK_IMPORTED_MODULE_1_fs__["readFileSync"])(path, {
                   encoding: 'utf-8'
                 });
@@ -60633,10 +60633,10 @@ function (_BaseCommand) {
                 return execAsync("mkdir -p /tmp/ciao-deploy");
 
               case 5:
-                tempPath = '/tmp/ciao-deploy/nginx-default';
+                tempPath = '/tmp/ciao-deploy/nginx-default.conf';
                 Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(tempPath, result, 'utf-8');
                 _context6.next = 9;
-                return execAsync("sudo mv ".concat(tempPath, " /etc/nginx/sites-available/default"));
+                return execAsync("sudo mv ".concat(tempPath, " /etc/nginx/sites-available/default.conf"));
 
               case 9:
               case "end":
@@ -60783,6 +60783,11 @@ function (_BaseCommand) {
                   required: false,
                   type: 'boolean'
                 }, {
+                  name: 'email',
+                  description: 'Certbot使用的email',
+                  required: false,
+                  type: 'string'
+                }, {
                   name: 'spa',
                   description: '是否為SPA',
                   required: false,
@@ -60816,7 +60821,7 @@ function (_BaseCommand) {
               case 0:
                 log("Start sign nginx domain: ".concat(this.args.domain));
                 _context2.next = 3;
-                return __WEBPACK_IMPORTED_MODULE_3_Service_NginxSignDomain__["a" /* default */].sign(this.args.domain, this.args.path, this.args.ssl, this.args.spa);
+                return __WEBPACK_IMPORTED_MODULE_3_Service_NginxSignDomain__["a" /* default */].sign(this.args.domain, this.args.path, this.args.ssl, this.args.spa, this.args.email);
 
               case 3:
               case "end":
@@ -60875,7 +60880,7 @@ function () {
     value: function () {
       var _sign = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee(domain, path, ssl, spa) {
+      regeneratorRuntime.mark(function _callee(domain, path, ssl, spa, email) {
         var nginxConfig;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
@@ -60885,77 +60890,78 @@ function () {
                 this.path = path;
                 this.ssl = ssl;
                 this.spa = spa;
+                this.email = email;
 
                 if (Object(__WEBPACK_IMPORTED_MODULE_1_fs__["existsSync"])(path)) {
-                  _context.next = 7;
+                  _context.next = 8;
                   break;
                 }
 
                 log("Domain\u8A2D\u5B9A\u5931\u6557, \u627E\u4E0D\u5230web\u8DEF\u5F91", 'red');
                 return _context.abrupt("return");
 
-              case 7:
+              case 8:
                 if (!this.ssl) {
-                  _context.next = 17;
+                  _context.next = 18;
                   break;
                 }
 
-                _context.prev = 8;
-                _context.next = 11;
+                _context.prev = 9;
+                _context.next = 12;
                 return execAsync("certbot --help");
 
-              case 11:
-                _context.next = 17;
+              case 12:
+                _context.next = 18;
                 break;
 
-              case 13:
-                _context.prev = 13;
-                _context.t0 = _context["catch"](8);
+              case 14:
+                _context.prev = 14;
+                _context.t0 = _context["catch"](9);
                 log('Domain設定失敗, 請確認是否安裝certbot', 'red');
                 return _context.abrupt("return");
 
-              case 17:
+              case 18:
                 this._checkIsFirstTime();
 
-                _context.next = 20;
+                _context.next = 21;
                 return this._getConfigContent();
 
-              case 20:
+              case 21:
                 nginxConfig = _context.sent;
 
                 if (!this.first) {
-                  _context.next = 26;
+                  _context.next = 27;
                   break;
                 }
 
-                _context.next = 24;
-                return this._createNginxConfig(nginxConfig);
+                _context.next = 25;
+                return this._createHttpNginxConfig();
 
-              case 24:
-                _context.next = 26;
-                return this.enableSite(nginxConfig);
+              case 25:
+                _context.next = 27;
+                return this.enableSite();
 
-              case 26:
-                _context.next = 28;
+              case 27:
+                _context.next = 29;
                 return this._setupSsl();
 
-              case 28:
-                _context.next = 30;
+              case 29:
+                _context.next = 31;
                 return this._createNginxConfig(nginxConfig);
 
-              case 30:
-                _context.next = 32;
+              case 31:
+                _context.next = 33;
                 return execAsync("sudo service nginx restart");
 
-              case 32:
+              case 33:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[8, 13]]);
+        }, _callee, this, [[9, 14]]);
       }));
 
-      function sign(_x, _x2, _x3, _x4) {
+      function sign(_x, _x2, _x3, _x4, _x5) {
         return _sign.apply(this, arguments);
       }
 
@@ -61044,7 +61050,7 @@ function () {
 
               case 2:
                 _context4.next = 4;
-                return execAsync("sudo certbot --nginx --redirect --keep-until-expiring --no-eff-email --agree-tos --domains ".concat(this.domain));
+                return execAsync("sudo certbot --nginx --redirect --keep-until-expiring --no-eff-email --agree-tos --email ".concat(this.email, " --domains ").concat(this.domain));
 
               case 4:
               case "end":
@@ -61088,22 +61094,62 @@ function () {
         }, _callee5, this);
       }));
 
-      function _createNginxConfig(_x5) {
+      function _createNginxConfig(_x6) {
         return _createNginxConfig2.apply(this, arguments);
       }
 
       return _createNginxConfig;
     }()
   }, {
+    key: "_createHttpNginxConfig",
+    value: function () {
+      var _createHttpNginxConfig2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee6() {
+        var content, tempPath;
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                if (this.spa === true) {
+                  content = __WEBPACK_IMPORTED_MODULE_2_Nginx_NginxSiteConfig_js__["a" /* default */].siteSpa(this.path, this.domain);
+                } else if (!this.spa) {
+                  content = __WEBPACK_IMPORTED_MODULE_2_Nginx_NginxSiteConfig_js__["a" /* default */].sitePhp(this.path, this.domain);
+                }
+
+                _context6.next = 3;
+                return execAsync("mkdir -p /tmp/ciao-deploy");
+
+              case 3:
+                tempPath = "/tmp/ciao-deploy/".concat(this.domain, ".conf");
+                Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(tempPath, content, 'utf-8');
+                _context6.next = 7;
+                return execAsync("sudo mv ".concat(tempPath, " /etc/nginx/sites-available/").concat(this.domain, ".conf"));
+
+              case 7:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this);
+      }));
+
+      function _createHttpNginxConfig() {
+        return _createHttpNginxConfig2.apply(this, arguments);
+      }
+
+      return _createHttpNginxConfig;
+    }()
+  }, {
     key: "_getConfigContent",
     value: function () {
       var _getConfigContent2 = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee6() {
+      regeneratorRuntime.mark(function _callee7() {
         var content;
-        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+        return regeneratorRuntime.wrap(function _callee7$(_context7) {
           while (1) {
-            switch (_context6.prev = _context6.next) {
+            switch (_context7.prev = _context7.next) {
               case 0:
                 content = null;
 
@@ -61117,14 +61163,14 @@ function () {
                   content = __WEBPACK_IMPORTED_MODULE_2_Nginx_NginxSiteConfig_js__["a" /* default */].sitePhp(this.path, this.domain);
                 }
 
-                return _context6.abrupt("return", content);
+                return _context7.abrupt("return", content);
 
               case 3:
               case "end":
-                return _context6.stop();
+                return _context7.stop();
             }
           }
-        }, _callee6, this);
+        }, _callee7, this);
       }));
 
       function _getConfigContent() {
@@ -61161,7 +61207,7 @@ function () {
   _createClass(NginxSiteConfig, [{
     key: "sitePhp",
     value: function sitePhp(path, domain) {
-      return "\nserver {\n        listen 80;\n        listen [::]:80;\n\n        server_name ".concat(domain, ";\n        root ").concat(path, ";\n        index index.php;\n\n        location / {\n                try_files $uri $uri/ =404;\n        }\n\n        location ~ \\.php$ {\n                include snippets/fastcgi-php.conf;\n                fastcgi_pass unix:/run/php/php7.1-fpm.sock;\n        }\n}\n    ");
+      return "\nserver {\n        listen 80;\n        listen [::]:80;\n\n        server_name ".concat(domain, ";\n        root ").concat(path, ";\n        index index.php;\n\n        location / {\n                try_files $uri $uri/ /index.php$is_args$args;\n        }\n\n        location ~ \\.php$ {\n                include snippets/fastcgi-php.conf;\n                fastcgi_pass unix:/run/php/php7.1-fpm.sock;\n        }\n}\n    ");
     }
   }, {
     key: "siteSpa",
@@ -61171,12 +61217,12 @@ function () {
   }, {
     key: "siteSslPhp",
     value: function siteSslPhp(path, domain) {
-      return "\nserver {\n        server_name ".concat(domain, ";\n        root ").concat(path, ";\n        index index.php;\n\n        location / {\n                try_files $uri $uri/ =404;\n        }\n\n        location ~ \\.php$ {\n                include snippets/fastcgi-php.conf;\n                fastcgi_pass unix:/run/php/php7.1-fpm.sock;\n        }\n\n        listen [::]:443 ssl http2 ipv6only=on;\n        listen 443 ssl http2;\n        ssl_certificate /etc/letsencrypt/live/").concat(domain, "/fullchain.pem;\n        ssl_certificate_key /etc/letsencrypt/live/").concat(domain, "/privkey.pem;\n        include /etc/letsencrypt/options-ssl-nginx.conf;\n        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;\n}\n\nserver {\n        if ($host = ").concat(domain, ") {\n            return 301 https://$host$request_uri;\n        }\n\n        listen 80;\n        listen [::]:80;\n\n        server_name ").concat(domain, ";\n        return 404;\n}\n\n");
+      return "\nserver {\n        server_name ".concat(domain, ";\n        root ").concat(path, ";\n        index index.php;\n\n        location / {\n                try_files $uri $uri/ /index.php$is_args$args;\n        }\n\n        location ~ \\.php$ {\n                include snippets/fastcgi-php.conf;\n                fastcgi_pass unix:/run/php/php7.1-fpm.sock;\n        }\n\n        listen [::]:443 ssl http2;\n        listen 443 ssl http2;\n        ssl_certificate /etc/letsencrypt/live/").concat(domain, "/fullchain.pem;\n        ssl_certificate_key /etc/letsencrypt/live/").concat(domain, "/privkey.pem;\n        include /etc/letsencrypt/options-ssl-nginx.conf;\n        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;\n}\n\nserver {\n        if ($host = ").concat(domain, ") {\n            return 301 https://$host$request_uri;\n        }\n\n        listen 80;\n        listen [::]:80;\n\n        server_name ").concat(domain, ";\n        return 404;\n}\n\n");
     }
   }, {
     key: "siteSslSpa",
     value: function siteSslSpa(path, domain) {
-      return "\nserver {\n        server_name ".concat(domain, ";\n        root ").concat(path, ";\n        index index.html;\n\n        location ~ .(html)$ {\n            add_header Cache-Control \"max-age=0, no-cache, no-store, must-revalidate\";\n            add_header Pragma \"no-cache\";\n        }\n\n        location ~ (css|js|map|jpg|jpeg|png|ico|gif|woff|woff2|svg|ttf|eto|br|gz)$ {\n            add_header Cache-Control \"max-age=86400, must-revalidate\";\n        }\n\n        include ").concat(path, "/nginx.conf;\n\n        listen [::]:443 ssl http2 ipv6only=on;\n        listen 443 ssl http2;\n        ssl_certificate /etc/letsencrypt/live/").concat(domain, "/fullchain.pem;\n        ssl_certificate_key /etc/letsencrypt/live/").concat(domain, "/privkey.pem;\n        include /etc/letsencrypt/options-ssl-nginx.conf;\n        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;\n}\n\nserver {\n        if ($host = ").concat(domain, ") {\n            return 301 https://$host$request_uri;\n        }\n\n        listen 80;\n        listen [::]:80;\n\n        server_name ").concat(domain, ";\n        return 404;\n}\n\n");
+      return "\nserver {\n        server_name ".concat(domain, ";\n        root ").concat(path, ";\n        index index.html;\n\n        location ~ .(html)$ {\n            add_header Cache-Control \"max-age=0, no-cache, no-store, must-revalidate\";\n            add_header Pragma \"no-cache\";\n        }\n\n        location ~ (css|js|map|jpg|jpeg|png|ico|gif|woff|woff2|svg|ttf|eto|br|gz)$ {\n            add_header Cache-Control \"max-age=86400, must-revalidate\";\n        }\n\n        include ").concat(path, "/nginx.conf;\n\n        listen [::]:443 ssl http2;\n        listen 443 ssl http2;\n        ssl_certificate /etc/letsencrypt/live/").concat(domain, "/fullchain.pem;\n        ssl_certificate_key /etc/letsencrypt/live/").concat(domain, "/privkey.pem;\n        include /etc/letsencrypt/options-ssl-nginx.conf;\n        ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;\n}\n\nserver {\n        if ($host = ").concat(domain, ") {\n            return 301 https://$host$request_uri;\n        }\n\n        listen 80;\n        listen [::]:80;\n\n        server_name ").concat(domain, ";\n        return 404;\n}\n\n");
     }
   }]);
 

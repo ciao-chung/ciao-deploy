@@ -40,7 +40,7 @@ class Nginx extends BaseCommand{
     await execAsync(`sudo apt-get install python-certbot-nginx -y`)
     await execAsync(`sudo mkdir -p /ciao-deploy/origin`)
     await execAsync(`sudo cp -r /etc/nginx/nginx.conf /ciao-deploy/origin/nginx.conf`)
-    await execAsync(`sudo cp -r /etc/nginx/sites-available/default /ciao-deploy/origin/default`)
+    await execAsync(`sudo cp -r /etc/nginx/sites-available/default.conf /ciao-deploy/origin/default`)
 
     try {
       await execAsync(`sudo service nginx restart`)
@@ -70,13 +70,13 @@ class Nginx extends BaseCommand{
   }
 
   async setupNginxDefaultSitesAvailableConf() {
-    log(`正在設定 /etc/nginx/sites-available/default`)
-    const path = resolve(__dirname, 'nginx', 'default')
+    log(`正在設定 /etc/nginx/sites-available/default.conf`)
+    const path = resolve(__dirname, 'nginx', 'default.conf')
     const result = readFileSync(path, { encoding: 'utf-8'})
     await execAsync(`mkdir -p /tmp/ciao-deploy`)
-    const tempPath = '/tmp/ciao-deploy/nginx-default'
+    const tempPath = '/tmp/ciao-deploy/nginx-default.conf'
     writeFileSync(tempPath, result, 'utf-8')
-    await execAsync(`sudo mv ${tempPath} /etc/nginx/sites-available/default`)
+    await execAsync(`sudo mv ${tempPath} /etc/nginx/sites-available/default.conf`)
   }
 
   async initPhpFpm() {

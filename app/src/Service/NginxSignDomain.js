@@ -2,11 +2,12 @@ import { resolve } from 'path'
 import { existsSync, writeFileSync, readFileSync } from 'fs'
 import NginxSiteConfig from 'Nginx/NginxSiteConfig.js'
 class NginxSignDomain {
-  async sign(domain, path, ssl, spa) {
+  async sign(domain, path, ssl, spa, email) {
     this.domain = domain
     this.path = path
     this.ssl = ssl
     this.spa = spa
+    this.email = email
     if(!existsSync(path)) {
       log(`Domain設定失敗, 找不到web路徑`, 'red')
       return
@@ -25,8 +26,8 @@ class NginxSignDomain {
     const nginxConfig = await this._getConfigContent()
 
     if(this.first) {
-      await this._createNginxConfig(nginxConfig)
-      await this.enableSite(nginxConfig)
+      await this._createHttpNginxConfig()
+      await this.enableSite()
     }
 
     await this._setupSsl()
@@ -49,10 +50,26 @@ class NginxSignDomain {
 
   async _setupSsl() {
     if(!this.ssl) return
-    await execAsync(`sudo certbot --nginx --redirect --keep-until-expiring --no-eff-email --agree-tos --domains ${this.domain}`)
+    await execAsync(`sudo certbot --nginx --redirect --keep-until-expiring --no-eff-email --agree-tos --email ${this.email} --domains ${this.domain}`)
   }
 
   async _createNginxConfig(content) {
+    await execAsync(`mkdir -p /tmp/ciao-deploy`)
+    const tempPath = `/tmp/ciao-deploy/${this.domain}.conf`
+    writeFileSync(tempPath, content, 'utf-8')
+    await execAsync(`sudo mv ${tempPath} /etc/nginx/sites-available/${this.domain}.conf`)
+  }
+
+  async _createHttpNginxConfig() {
+    let content
+    if(this.spa === true) {
+      content = NginxSiteConfig.siteSpa(this.path, this.domain)
+    }
+
+    else if (!this.spa){
+      content = NginxSiteConfig.sitePhp(this.path, this.domain)
+    }
+
     await execAsync(`mkdir -p /tmp/ciao-deploy`)
     const tempPath = `/tmp/ciao-deploy/${this.domain}.conf`
     writeFileSync(tempPath, content, 'utf-8')
