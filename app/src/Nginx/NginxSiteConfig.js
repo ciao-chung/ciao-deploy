@@ -31,6 +31,11 @@ server {
         root ${path};
         index index.html;
 
+        location ~ .php$ {
+            include snippets/fastcgi-php.conf;
+            fastcgi_pass unix:/run/php/php7.1-fpm.sock;
+        }
+        
         location ~ .(html)$ {
             add_header Cache-Control "max-age=0, no-cache, no-store, must-revalidate";
             add_header Pragma "no-cache";
@@ -56,7 +61,7 @@ server {
                 try_files $uri $uri/ /index.php$is_args$args;
         }
 
-        location ~ \\.php$ {
+        location ~ .php$ {
                 include snippets/fastcgi-php.conf;
                 fastcgi_pass unix:/run/php/php7.1-fpm.sock;
         }
@@ -91,6 +96,11 @@ server {
         root ${path};
         index index.html;
 
+        location ~ .php$ {
+            include snippets/fastcgi-php.conf;
+            fastcgi_pass unix:/run/php/php7.1-fpm.sock;
+        }
+        
         location ~ .(html)$ {
             add_header Cache-Control "max-age=0, no-cache, no-store, must-revalidate";
             add_header Pragma "no-cache";
