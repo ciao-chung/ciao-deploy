@@ -43136,7 +43136,7 @@ module.exports = require("crypto");
 /* 565 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"2.0.0-beta","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"2.0.2","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 566 */
@@ -60625,7 +60625,7 @@ function (_BaseCommand) {
             switch (_context6.prev = _context6.next) {
               case 0:
                 log("\u6B63\u5728\u8A2D\u5B9A /etc/nginx/sites-available/default");
-                path = Object(__WEBPACK_IMPORTED_MODULE_2_path__["resolve"])(__dirname, 'nginx', 'default.conf');
+                path = Object(__WEBPACK_IMPORTED_MODULE_2_path__["resolve"])(__dirname, 'nginx', 'default');
                 result = Object(__WEBPACK_IMPORTED_MODULE_1_fs__["readFileSync"])(path, {
                   encoding: 'utf-8'
                 });

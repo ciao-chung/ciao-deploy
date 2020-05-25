@@ -71,7 +71,7 @@ class Nginx extends BaseCommand{
 
   async setupNginxDefaultSitesAvailableConf() {
     log(`正在設定 /etc/nginx/sites-available/default`)
-    const path = resolve(__dirname, 'nginx', 'default.conf')
+    const path = resolve(__dirname, 'nginx', 'default')
     const result = readFileSync(path, { encoding: 'utf-8'})
     await execAsync(`mkdir -p /tmp/ciao-deploy`)
     const tempPath = '/tmp/ciao-deploy/nginx-default'
