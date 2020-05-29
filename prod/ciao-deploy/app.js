@@ -43136,7 +43136,7 @@ module.exports = require("crypto");
 /* 565 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"2.0.8","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"2.0.9","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 566 */
