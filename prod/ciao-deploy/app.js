@@ -30161,15 +30161,33 @@ function () {
     this.backendPath = backendPath;
     if (!this.backendConfig) return;
     this.queue = this.backendConfig.queue;
+    this.queueConfigList = []; // 範例
+
+    this.queueConfigListExample = [{
+      appName: 'queue-default',
+      queue: 'default'
+    }, {
+      appName: 'queue-emails',
+      queue: 'emails'
+    }, {
+      appName: 'queue-sms',
+      queue: 'sms'
+    }];
   }
 
   _createClass(QueueService, [{
+    key: "_isMultipleQueueMode",
+    value: function _isMultipleQueueMode() {
+      if (!this.queue) return false;
+      return Array.isArray(this.queue.workers);
+    }
+  }, {
     key: "setupConfigFile",
     value: function () {
       var _setupConfigFile = _asyncToGenerator(
       /*#__PURE__*/
       regeneratorRuntime.mark(function _callee() {
-        var content, queuePm2ConfigFilePath;
+        var index, queueConfig, content, queuePm2ConfigFilePath;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -30182,28 +30200,54 @@ function () {
                 return _context.abrupt("return");
 
               case 2:
-                if (this.queue.appName) {
-                  _context.next = 4;
+                if (!(this._isMultipleQueueMode() === false)) {
+                  _context.next = 7;
                   break;
                 }
 
-                return _context.abrupt("return");
+                _context.next = 5;
+                return this._initDefaultQueue();
 
-              case 4:
-                log("=====>>>>> Setup laravel queue config file", 'green');
-                content = this._getQueuePm2ConfigFileContent();
-                _context.next = 8;
+              case 5:
+                _context.next = 9;
+                break;
+
+              case 7:
+                _context.next = 9;
+                return this._initMultipleQueues();
+
+              case 9:
+                _context.t0 = regeneratorRuntime.keys(this.queueConfigList);
+
+              case 10:
+                if ((_context.t1 = _context.t0()).done) {
+                  _context.next = 25;
+                  break;
+                }
+
+                index = _context.t1.value;
+                queueConfig = this.queueConfigList[index]; // 設定檔名
+
+                this.queueConfigList[index].filename = "queue-worker-".concat(queueConfig.appName, ".yml");
+                queueConfig.filename = "queue-worker-".concat(queueConfig.appName, ".yml");
+                log("=====>>>>> Setup laravel queue(".concat(queueConfig.queue, ") config file"), 'green');
+                content = this._getQueuePm2ConfigFileContent(queueConfig.appName, queueConfig.queue);
+                _context.next = 19;
                 return execAsync("mkdir -p ".concat(Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(this.backendPath, 'pm2')), {
                   cwd: this.backendPath
                 });
 
-              case 8:
-                queuePm2ConfigFilePath = Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(this.backendPath, 'pm2', 'queue-worker.yml');
+              case 19:
+                queuePm2ConfigFilePath = Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(this.backendPath, 'pm2', queueConfig.filename);
                 log("queue service pm2 config: ".concat(content), 'yellow');
-                _context.next = 12;
+                _context.next = 23;
                 return Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(queuePm2ConfigFilePath, content, 'utf8');
 
-              case 12:
+              case 23:
+                _context.next = 10;
+                break;
+
+              case 25:
               case "end":
                 return _context.stop();
             }
@@ -30218,41 +30262,127 @@ function () {
       return setupConfigFile;
     }()
   }, {
+    key: "_initDefaultQueue",
+    value: function () {
+      var _initDefaultQueue2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee2() {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (this.queue) {
+                  _context2.next = 2;
+                  break;
+                }
+
+                return _context2.abrupt("return");
+
+              case 2:
+                if (this.queue.appName) {
+                  _context2.next = 4;
+                  break;
+                }
+
+                return _context2.abrupt("return");
+
+              case 4:
+                this.queueConfigList.push({
+                  appName: this.queue.appName,
+                  queue: 'default'
+                });
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function _initDefaultQueue() {
+        return _initDefaultQueue2.apply(this, arguments);
+      }
+
+      return _initDefaultQueue;
+    }()
+  }, {
+    key: "_initMultipleQueues",
+    value: function () {
+      var _initMultipleQueues2 = _asyncToGenerator(
+      /*#__PURE__*/
+      regeneratorRuntime.mark(function _callee3() {
+        var validQueueConfigs;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (Array.isArray(this.queue.workers)) {
+                  _context3.next = 2;
+                  break;
+                }
+
+                return _context3.abrupt("return");
+
+              case 2:
+                validQueueConfigs = this.queue.workers.filter(function (queue) {
+                  if (!queue.appName) return false;
+                  if (!queue.queue) return false;
+                  return true;
+                });
+                this.queueConfigList = this.queueConfigList.concat(validQueueConfigs);
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function _initMultipleQueues() {
+        return _initMultipleQueues2.apply(this, arguments);
+      }
+
+      return _initMultipleQueues;
+    }()
+  }, {
     key: "_getQueuePm2ConfigFileContent",
-    value: function _getQueuePm2ConfigFileContent() {
-      return "\napps:\n  - name: ".concat(this.queue.appName, "\n    cwd: ").concat(this.backendConfig.path, "\n    script: artisan\n    exec_mode: fork\n    interpreter: php\n    instances: 1\n    args:\n      - queue:work\n      - --tries=5\n      - --sleep=5\n    ");
+    value: function _getQueuePm2ConfigFileContent(appName) {
+      var queue = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'default';
+      return "\napps:\n  - name: ".concat(appName, "\n    cwd: ").concat(this.backendConfig.path, "\n    script: artisan\n    exec_mode: fork\n    interpreter: php\n    instances: 1\n    args:\n      - queue:work\n      - --queue=").concat(queue, "\n      - --tries=5\n      - --sleep=5\n    ");
     }
   }, {
     key: "executeRemoteBackend",
     value: function () {
       var _executeRemoteBackend = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee2(command, options) {
-        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      regeneratorRuntime.mark(function _callee4(command, options) {
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
                 if (!this.backendConfig.local) {
-                  _context2.next = 4;
+                  _context4.next = 4;
                   break;
                 }
 
-                _context2.next = 3;
+                _context4.next = 3;
                 return execAsync(command, options);
 
               case 3:
-                return _context2.abrupt("return");
+                return _context4.abrupt("return");
 
               case 4:
-                _context2.next = 6;
+                _context4.next = 6;
                 return executeRemote(this.backendConfig.user, this.backendConfig.host, command, options);
 
               case 6:
               case "end":
-                return _context2.stop();
+                return _context4.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee4, this);
       }));
 
       function executeRemoteBackend(_x, _x2) {
@@ -30266,72 +30396,125 @@ function () {
     value: function () {
       var _startService = _asyncToGenerator(
       /*#__PURE__*/
-      regeneratorRuntime.mark(function _callee3() {
-        var configFilePath;
-        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      regeneratorRuntime.mark(function _callee5() {
+        var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, queueConfig, configFilePath;
+
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context5.prev = _context5.next) {
               case 0:
-                if (this.queue) {
-                  _context3.next = 2;
+                if (Array.isArray(this.queueConfigList)) {
+                  _context5.next = 2;
                   break;
                 }
 
-                return _context3.abrupt("return");
+                return _context5.abrupt("return");
 
               case 2:
-                if (this.queue.appName) {
-                  _context3.next = 4;
+                if (!(this.queueConfigList.length == 0)) {
+                  _context5.next = 4;
                   break;
                 }
 
-                return _context3.abrupt("return");
+                return _context5.abrupt("return");
 
               case 4:
                 log("=====>>>>> Start queue service", 'green');
-                configFilePath = "".concat(this.backendConfig.path, "/pm2/queue-worker.yml");
-                _context3.prev = 6;
-                _context3.next = 9;
-                return this.executeRemoteBackend("sudo pm2 delete ".concat(this.queue.appName));
+                _iteratorNormalCompletion = true;
+                _didIteratorError = false;
+                _iteratorError = undefined;
+                _context5.prev = 8;
+                _iterator = this.queueConfigList[Symbol.iterator]();
 
-              case 9:
-                _context3.next = 14;
-                break;
+              case 10:
+                if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
+                  _context5.next = 34;
+                  break;
+                }
 
-              case 11:
-                _context3.prev = 11;
-                _context3.t0 = _context3["catch"](6);
-                log(_context3.t0, 'yellow');
-
-              case 14:
-                _context3.next = 16;
-                return this.executeRemoteBackend("sudo pm2 flush ".concat(this.queue.appName));
+                queueConfig = _step.value;
+                configFilePath = "".concat(this.backendConfig.path, "/pm2/").concat(queueConfig.filename);
+                _context5.prev = 13;
+                _context5.next = 16;
+                return this.executeRemoteBackend("sudo pm2 delete ".concat(queueConfig.appName));
 
               case 16:
-                _context3.next = 18;
-                return this.executeRemoteBackend("sudo pm2 start ".concat(configFilePath, " --restart-delay=1000"));
+                _context5.next = 21;
+                break;
 
               case 18:
-                _context3.next = 20;
-                return this.executeRemoteBackend("sudo pm2 restart ".concat(this.queue.appName));
+                _context5.prev = 18;
+                _context5.t0 = _context5["catch"](13);
+                log(_context5.t0, 'yellow');
 
-              case 20:
-                _context3.next = 22;
-                return this.executeRemoteBackend("sudo pm2 startup");
+              case 21:
+                _context5.next = 23;
+                return this.executeRemoteBackend("sudo pm2 flush ".concat(queueConfig.appName));
 
-              case 22:
-                _context3.next = 24;
-                return this.executeRemoteBackend("sudo pm2 save");
-
-              case 24:
-                notify('Setup cron queue finished');
+              case 23:
+                _context5.next = 25;
+                return this.executeRemoteBackend("sudo pm2 start ".concat(configFilePath, " --restart-delay=1000"));
 
               case 25:
+                _context5.next = 27;
+                return this.executeRemoteBackend("sudo pm2 restart ".concat(queueConfig.appName));
+
+              case 27:
+                _context5.next = 29;
+                return this.executeRemoteBackend("sudo pm2 startup");
+
+              case 29:
+                _context5.next = 31;
+                return this.executeRemoteBackend("sudo pm2 save");
+
+              case 31:
+                _iteratorNormalCompletion = true;
+                _context5.next = 10;
+                break;
+
+              case 34:
+                _context5.next = 40;
+                break;
+
+              case 36:
+                _context5.prev = 36;
+                _context5.t1 = _context5["catch"](8);
+                _didIteratorError = true;
+                _iteratorError = _context5.t1;
+
+              case 40:
+                _context5.prev = 40;
+                _context5.prev = 41;
+
+                if (!_iteratorNormalCompletion && _iterator.return != null) {
+                  _iterator.return();
+                }
+
+              case 43:
+                _context5.prev = 43;
+
+                if (!_didIteratorError) {
+                  _context5.next = 46;
+                  break;
+                }
+
+                throw _iteratorError;
+
+              case 46:
+                return _context5.finish(43);
+
+              case 47:
+                return _context5.finish(40);
+
+              case 48:
+                notify('Setup cron queue finished');
+
+              case 49:
               case "end":
-                return _context3.stop();
+                return _context5.stop();
             }
           }
-        }, _callee3, this, [[6, 11]]);
+        }, _callee5, this, [[8, 36, 40, 48], [13, 18], [41,, 43, 47]]);
       }));
 
       function startService() {
@@ -43136,7 +43319,7 @@ module.exports = require("crypto");
 /* 565 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"2.0.10","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"2.0.11","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 566 */
@@ -55333,17 +55516,18 @@ function (_BaseCommand) {
 
               case 9:
                 _context5.next = 11;
-                return Object(__WEBPACK_IMPORTED_MODULE_7_WebDeploy_CleanTemp__["a" /* default */])(this.commandConfig).start();
+                return Object(__WEBPACK_IMPORTED_MODULE_8_WebDeploy_AfterRsync__["a" /* default */])(this.commandConfig, this.args).start();
 
               case 11:
                 _context5.next = 13;
-                return Object(__WEBPACK_IMPORTED_MODULE_8_WebDeploy_AfterRsync__["a" /* default */])(this.commandConfig, this.args).start();
+                return Object(__WEBPACK_IMPORTED_MODULE_9_WebDeploy_SetupExtraService__["a" /* default */])(this.commandConfig, this.args).start();
 
               case 13:
                 _context5.next = 15;
-                return Object(__WEBPACK_IMPORTED_MODULE_9_WebDeploy_SetupExtraService__["a" /* default */])(this.commandConfig, this.args).start();
+                return Object(__WEBPACK_IMPORTED_MODULE_7_WebDeploy_CleanTemp__["a" /* default */])(this.commandConfig).start();
 
               case 15:
+                // 一定要擺最後
                 notify('Deploy successfully');
 
               case 16:
@@ -57824,11 +58008,17 @@ function () {
 
               case 2:
                 log('=====>>>>> Setup extra service', 'green');
+                this.folderName = this.backendConfig.folder || 'Backend';
+                this.backendPath = Object(__WEBPACK_IMPORTED_MODULE_0_path__["resolve"])(deployTempPath, this.folderName);
                 this.queueService = new __WEBPACK_IMPORTED_MODULE_2_Service_QueueService_js__["a" /* default */](this.backendConfig, this.backendPath);
-                _context.next = 6;
+                _context.next = 8;
+                return this.queueService.setupConfigFile();
+
+              case 8:
+                _context.next = 10;
                 return this.queueService.startService();
 
-              case 6:
+              case 10:
               case "end":
                 return _context.stop();
             }

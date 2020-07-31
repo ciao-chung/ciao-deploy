@@ -14,7 +14,10 @@ class SetupExtraService {
   async start() {
     if(!this.backendConfig) return
     log('=====>>>>> Setup extra service', 'green')
+    this.folderName = this.backendConfig.folder || 'Backend'
+    this.backendPath = resolve(deployTempPath, this.folderName)
     this.queueService = new QueueService(this.backendConfig, this.backendPath)
+    await this.queueService.setupConfigFile()
     await this.queueService.startService()
   }
 }
