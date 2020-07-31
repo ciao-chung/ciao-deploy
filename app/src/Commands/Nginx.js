@@ -1,5 +1,5 @@
 import BaseCommand from 'Commands/_BaseCommand'
-import { readFileSync, writeFileSync } from 'fs'
+import { existsSync, readFileSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 class Nginx extends BaseCommand{
   async setupCommand() {
@@ -80,6 +80,7 @@ class Nginx extends BaseCommand{
   }
 
   async initPhpFpm() {
+    if(!existsSync(`/etc/php/7.1/fpm/pool.d/www.conf`)) return
     log(`正在設定 /etc/php/7.1/fpm/pool.d/www.conf`)
     const path = resolve(__dirname, 'php-fpm', 'www.conf')
     const result = readFileSync(path, { encoding: 'utf-8'})

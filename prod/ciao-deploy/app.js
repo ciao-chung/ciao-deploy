@@ -43136,7 +43136,7 @@ module.exports = require("crypto");
 /* 565 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"2.0.9","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"2.0.10","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 566 */
@@ -60663,21 +60663,29 @@ function (_BaseCommand) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
+                if (Object(__WEBPACK_IMPORTED_MODULE_1_fs__["existsSync"])("/etc/php/7.1/fpm/pool.d/www.conf")) {
+                  _context7.next = 2;
+                  break;
+                }
+
+                return _context7.abrupt("return");
+
+              case 2:
                 log("\u6B63\u5728\u8A2D\u5B9A /etc/php/7.1/fpm/pool.d/www.conf");
                 path = Object(__WEBPACK_IMPORTED_MODULE_2_path__["resolve"])(__dirname, 'php-fpm', 'www.conf');
                 result = Object(__WEBPACK_IMPORTED_MODULE_1_fs__["readFileSync"])(path, {
                   encoding: 'utf-8'
                 });
-                _context7.next = 5;
+                _context7.next = 7;
                 return execAsync("mkdir -p /tmp/ciao-deploy");
 
-              case 5:
+              case 7:
                 tempPath = '/tmp/ciao-deploy/php-fpm-www.conf';
                 Object(__WEBPACK_IMPORTED_MODULE_1_fs__["writeFileSync"])(tempPath, result, 'utf-8');
-                _context7.next = 9;
+                _context7.next = 11;
                 return execAsync("sudo mv ".concat(tempPath, " /etc/php/7.1/fpm/pool.d/www.conf"));
 
-              case 9:
+              case 11:
               case "end":
                 return _context7.stop();
             }
