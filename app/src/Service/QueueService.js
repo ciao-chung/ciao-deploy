@@ -23,7 +23,7 @@ class QueueService {
 
   async setupConfigFile() {
     if(!this.queue) return
-    
+
     // 單一worker模式
     if(this._isMultipleQueueMode() === false) {
       await this._initDefaultQueue()
@@ -104,7 +104,11 @@ apps:
         log(error, 'yellow')
       }
 
-      await this.executeRemoteBackend(`sudo pm2 flush ${queueConfig.appName}`)
+      try {
+        await this.executeRemoteBackend(`sudo pm2 flush ${queueConfig.appName}`)
+      } catch (error) {
+        log(error, 'yellow')
+      }
       await this.executeRemoteBackend(`sudo pm2 start ${configFilePath} --restart-delay=1000`)
       await this.executeRemoteBackend(`sudo pm2 restart ${queueConfig.appName}`)
       await this.executeRemoteBackend(`sudo pm2 startup`)

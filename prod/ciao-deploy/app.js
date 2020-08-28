@@ -30428,7 +30428,7 @@ function () {
 
               case 10:
                 if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-                  _context5.next = 34;
+                  _context5.next = 40;
                   break;
                 }
 
@@ -30448,73 +30448,83 @@ function () {
                 log(_context5.t0, 'yellow');
 
               case 21:
-                _context5.next = 23;
+                _context5.prev = 21;
+                _context5.next = 24;
                 return this.executeRemoteBackend("sudo pm2 flush ".concat(queueConfig.appName));
 
-              case 23:
-                _context5.next = 25;
-                return this.executeRemoteBackend("sudo pm2 start ".concat(configFilePath, " --restart-delay=1000"));
-
-              case 25:
-                _context5.next = 27;
-                return this.executeRemoteBackend("sudo pm2 restart ".concat(queueConfig.appName));
-
-              case 27:
+              case 24:
                 _context5.next = 29;
-                return this.executeRemoteBackend("sudo pm2 startup");
+                break;
+
+              case 26:
+                _context5.prev = 26;
+                _context5.t1 = _context5["catch"](21);
+                log(_context5.t1, 'yellow');
 
               case 29:
                 _context5.next = 31;
-                return this.executeRemoteBackend("sudo pm2 save");
+                return this.executeRemoteBackend("sudo pm2 start ".concat(configFilePath, " --restart-delay=1000"));
 
               case 31:
+                _context5.next = 33;
+                return this.executeRemoteBackend("sudo pm2 restart ".concat(queueConfig.appName));
+
+              case 33:
+                _context5.next = 35;
+                return this.executeRemoteBackend("sudo pm2 startup");
+
+              case 35:
+                _context5.next = 37;
+                return this.executeRemoteBackend("sudo pm2 save");
+
+              case 37:
                 _iteratorNormalCompletion = true;
                 _context5.next = 10;
                 break;
 
-              case 34:
-                _context5.next = 40;
+              case 40:
+                _context5.next = 46;
                 break;
 
-              case 36:
-                _context5.prev = 36;
-                _context5.t1 = _context5["catch"](8);
+              case 42:
+                _context5.prev = 42;
+                _context5.t2 = _context5["catch"](8);
                 _didIteratorError = true;
-                _iteratorError = _context5.t1;
+                _iteratorError = _context5.t2;
 
-              case 40:
-                _context5.prev = 40;
-                _context5.prev = 41;
+              case 46:
+                _context5.prev = 46;
+                _context5.prev = 47;
 
                 if (!_iteratorNormalCompletion && _iterator.return != null) {
                   _iterator.return();
                 }
 
-              case 43:
-                _context5.prev = 43;
+              case 49:
+                _context5.prev = 49;
 
                 if (!_didIteratorError) {
-                  _context5.next = 46;
+                  _context5.next = 52;
                   break;
                 }
 
                 throw _iteratorError;
 
-              case 46:
-                return _context5.finish(43);
+              case 52:
+                return _context5.finish(49);
 
-              case 47:
-                return _context5.finish(40);
+              case 53:
+                return _context5.finish(46);
 
-              case 48:
+              case 54:
                 notify('Setup cron queue finished');
 
-              case 49:
+              case 55:
               case "end":
                 return _context5.stop();
             }
           }
-        }, _callee5, this, [[8, 36, 40, 48], [13, 18], [41,, 43, 47]]);
+        }, _callee5, this, [[8, 42, 46, 54], [13, 18], [21, 26], [47,, 49, 53]]);
       }));
 
       function startService() {
@@ -43319,7 +43329,7 @@ module.exports = require("crypto");
 /* 565 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"2.0.11","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"2.0.13","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 566 */
