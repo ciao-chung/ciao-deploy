@@ -3,6 +3,7 @@ import { existsSync } from 'fs'
 import QueueService from 'Service/QueueService.js'
 class BuildBackend {
   constructor(commandConfig) {
+    this.args = args
     this.commandConfig = commandConfig
     this.backendConfig = this.commandConfig.deploy.target.backend
     this.deployBackend = !!this.backendConfig
@@ -27,6 +28,11 @@ class BuildBackend {
     await this.dumpAutoload()
     this.queueService = new QueueService(this.backendConfig, this.backendPath)
     await this.queueService.setupConfigFile()
+    if(this.args.buildOnlyPath) {
+      log(`=====>>>>> copy to build only path`, 'green')
+      await execAsync(`mkdir -p ${this.args.buildOnlyPath}`)
+      await execAsync(`cp -r ${this.backendPath} ${this.args.buildOnlyPath}`)
+    }
     notify('backend build successfully')
   }
 

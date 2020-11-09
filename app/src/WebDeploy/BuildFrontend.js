@@ -1,6 +1,7 @@
 import { resolve } from 'path'
 class BuildFrontend {
   constructor(commandConfig) {
+    this.args = args
     this.commandConfig = commandConfig
     this.frontendConfig = this.commandConfig.deploy.target.frontend
     this.deployFrontend = !!this.frontendConfig
@@ -27,6 +28,11 @@ class BuildFrontend {
     await execAsync(`git log -1 --pretty="%H %BAuthor: %aN, Date: %ai" > deploy.commit`, { cwd: resolve(this.frontendPath, 'dist') })
     await this.afterBuildWebpack()
     await this.cleanNodeModules()
+    if(this.args.buildOnlyPath) {
+      log(`=====>>>>> copy to build only path`, 'green')
+      await execAsync(`mkdir -p ${this.args.buildOnlyPath}`)
+      await execAsync(`cp -r ${this.frontendPath} ${this.args.buildOnlyPath}`)
+    }
     notify('Frontend build successfully')
   }
 

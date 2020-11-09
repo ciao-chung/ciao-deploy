@@ -28,6 +28,11 @@ class WebDeploy extends BaseCommand{
         defaultValue: false,
         type: 'boolean',
       },
+      {
+        name: 'buildOnlyPath',
+        description: '僅執行build階段, 此參數設定build的目標路徑',
+        type: 'string',
+      },
     ]
     this.description = `Deploy Web Project`
   }
@@ -60,12 +65,16 @@ class WebDeploy extends BaseCommand{
     await CloneSource(this.commandConfig).start()
     await BuildFrontend(this.commandConfig).start()
     await BuildBackend(this.commandConfig).start()
-    await Rsync(this.commandConfig).start()
-    await AfterRsync(this.commandConfig, this.args).start()
-    await SetupExtraService(this.commandConfig, this.args).start()
+    notify('Build successfully');
+
+    if(!this.args.buildOnlyPath) {
+      await Rsync(this.commandConfig).start()
+      await AfterRsync(this.commandConfig, this.args).start()
+      await SetupExtraService(this.commandConfig, this.args).start()
+      notify('Deploy successfully');
+    }
 
     await CleanTemp(this.commandConfig).start() // 一定要擺最後
-    notify('Deploy successfully');
   }
 
   getInfoLabel() {

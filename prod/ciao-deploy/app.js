@@ -43329,7 +43329,7 @@ module.exports = require("crypto");
 /* 565 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"2.0.13","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"3.0.0","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 566 */
@@ -55384,6 +55384,10 @@ function (_BaseCommand) {
                   description: '查看設定檔',
                   defaultValue: false,
                   type: 'boolean'
+                }, {
+                  name: 'buildOnlyPath',
+                  description: '僅執行build階段, 此參數設定build的目標路徑',
+                  type: 'string'
                 }];
                 this.description = "Deploy Web Project";
 
@@ -55521,26 +55525,32 @@ function (_BaseCommand) {
                 return Object(__WEBPACK_IMPORTED_MODULE_5_WebDeploy_BuildBackend__["a" /* default */])(this.commandConfig).start();
 
               case 7:
-                _context5.next = 9;
-                return Object(__WEBPACK_IMPORTED_MODULE_6_WebDeploy_Rsync__["a" /* default */])(this.commandConfig).start();
+                notify('Build successfully');
 
-              case 9:
+                if (this.args.buildOnlyPath) {
+                  _context5.next = 16;
+                  break;
+                }
+
                 _context5.next = 11;
-                return Object(__WEBPACK_IMPORTED_MODULE_8_WebDeploy_AfterRsync__["a" /* default */])(this.commandConfig, this.args).start();
+                return Object(__WEBPACK_IMPORTED_MODULE_6_WebDeploy_Rsync__["a" /* default */])(this.commandConfig).start();
 
               case 11:
                 _context5.next = 13;
-                return Object(__WEBPACK_IMPORTED_MODULE_9_WebDeploy_SetupExtraService__["a" /* default */])(this.commandConfig, this.args).start();
+                return Object(__WEBPACK_IMPORTED_MODULE_8_WebDeploy_AfterRsync__["a" /* default */])(this.commandConfig, this.args).start();
 
               case 13:
                 _context5.next = 15;
-                return Object(__WEBPACK_IMPORTED_MODULE_7_WebDeploy_CleanTemp__["a" /* default */])(this.commandConfig).start();
+                return Object(__WEBPACK_IMPORTED_MODULE_9_WebDeploy_SetupExtraService__["a" /* default */])(this.commandConfig, this.args).start();
 
               case 15:
-                // 一定要擺最後
                 notify('Deploy successfully');
 
               case 16:
+                _context5.next = 18;
+                return Object(__WEBPACK_IMPORTED_MODULE_7_WebDeploy_CleanTemp__["a" /* default */])(this.commandConfig).start();
+
+              case 18:
               case "end":
                 return _context5.stop();
             }
@@ -56400,6 +56410,7 @@ function () {
   function BuildFrontend(commandConfig) {
     _classCallCheck(this, BuildFrontend);
 
+    this.args = args;
     this.commandConfig = commandConfig;
     this.frontendConfig = this.commandConfig.deploy.target.frontend;
     this.deployFrontend = !!this.frontendConfig;
@@ -56501,9 +56512,23 @@ function () {
                 return this.cleanNodeModules();
 
               case 17:
+                if (!this.args.buildOnlyPath) {
+                  _context2.next = 23;
+                  break;
+                }
+
+                log("=====>>>>> copy to build only path", 'green');
+                _context2.next = 21;
+                return execAsync("mkdir -p ".concat(this.args.buildOnlyPath));
+
+              case 21:
+                _context2.next = 23;
+                return execAsync("cp -r ".concat(this.frontendPath, " ").concat(this.args.buildOnlyPath));
+
+              case 23:
                 notify('Frontend build successfully');
 
-              case 18:
+              case 24:
               case "end":
                 return _context2.stop();
             }
@@ -56880,6 +56905,7 @@ function () {
   function BuildBackend(commandConfig) {
     _classCallCheck(this, BuildBackend);
 
+    this.args = args;
     this.commandConfig = commandConfig;
     this.backendConfig = this.commandConfig.deploy.target.backend;
     this.deployBackend = !!this.backendConfig;
@@ -56974,9 +57000,23 @@ function () {
                 return this.queueService.setupConfigFile();
 
               case 14:
+                if (!this.args.buildOnlyPath) {
+                  _context2.next = 20;
+                  break;
+                }
+
+                log("=====>>>>> copy to build only path", 'green');
+                _context2.next = 18;
+                return execAsync("mkdir -p ".concat(this.args.buildOnlyPath));
+
+              case 18:
+                _context2.next = 20;
+                return execAsync("cp -r ".concat(this.backendPath, " ").concat(this.args.buildOnlyPath));
+
+              case 20:
                 notify('backend build successfully');
 
-              case 15:
+              case 21:
               case "end":
                 return _context2.stop();
             }
