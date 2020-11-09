@@ -359,3 +359,66 @@ deploy:
     - path(optional): String, rsync到遠端的路徑
     - first_execute(optional): Array, 首次佈署需要執行的遠端主機指令, 當執行自訂佈署時使用**--first**參數將會執行
     - execute(optional): Array, 佈署需要執行的遠端主機指令, 每次佈署皆會執行
+    
+### Multi Server架構
+
+> 適合多台主機需要佈署時使用
+
+**先執行web-deploy指令使用純打包模式**
+
+****
+```bash
+
+# 使用web-deploy指令的buildOnlyPath選項打包後的路徑
+ciao-deploy --command=web-deploy \
+    --config=/path/to/config.yml \
+    --buildOnlyPath /home/site/project/
+
+# 使用rsync-multi指定前面打包完成的路徑
+ciao-deploy --command=rsync-multi \
+    --config=/path/to/config.yml \
+    --source=/home/site/project/
+```
+
+**多台Server的設定檔YAML範例**
+
+```yaml
+deploy:
+    source:
+        branch: master
+        repo: repo
+    target:
+        backend:
+            folder: Backend
+            user: ciao
+            host: remote.host
+            path: /path/to/frontend
+            cron:
+                name: demo-laravel-project
+                user: ciao
+            queue:
+                appName: laravel-project-queue
+    rsync:
+        rules:
+            -
+                #  master server
+                backend:
+                    folder: Backend
+                    user: ciao
+                    host: remote.host
+                    path: /path/to/frontend
+                    cron:
+                        name: demo-laravel-project
+                        user: ciao
+                    queue:
+                        appName: laravel-project-queue
+            -
+                # slave server不需要設定cron job
+                backend:
+                    folder: Backend
+                    user: ciao
+                    host: remote.host
+                    path: /path/to/frontend
+                    queue:
+                        appName: laravel-project-queue
+```

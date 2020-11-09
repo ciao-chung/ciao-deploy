@@ -1,5 +1,6 @@
 import AppKernel from 'AppKernel'
 import WebDeploy from 'Commands/WebDeploy'
+import RsyncMulti from 'Commands/RsyncMulti'
 import WebDeployCreateConfig from 'Commands/WebDeployCreateConfig'
 import Env from 'Commands/Env'
 import Fish from 'Commands/Fish'
@@ -33,6 +34,7 @@ import Version from 'Commands/Version'
 class App extends AppKernel {
   setup() {
     this.commandList = [
+      RsyncMulti,
       WebDeploy,
       WebDeployCreateConfig,
       Env,
