@@ -44198,7 +44198,7 @@ module.exports = require("crypto");
 /* 568 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"ciao-deploy","version":"3.0.1","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
+module.exports = {"name":"ciao-deploy","version":"3.0.2","description":"A deploy tools base on node.js","main":"index.js","repository":"https://github.com/ciao-chung/ciao-deploy","author":"Ciao Chung <ciao0958@gmail.com>","license":"MIT","bin":{"ciao-deploy":"./index.js"}}
 
 /***/ }),
 /* 569 */
@@ -65819,6 +65819,10 @@ function (_BaseCommand) {
                   description: '大小(例如: 8M, 單位不可加B)',
                   required: true,
                   type: 'string'
+                }, {
+                  name: 'phpfpm',
+                  description: '是否為phpfpm',
+                  type: 'boolean'
                 }];
                 this.description = "\u8A2D\u5B9APHP\u6700\u5927\u4E0A\u50B3\u6A94\u6848\u5927\u5C0F";
 
@@ -65847,14 +65851,28 @@ function (_BaseCommand) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 log("Setup PHP Upload Max Size: ".concat(this.args.size));
-                _context2.next = 3;
+
+                if (!this.args.phpfpm) {
+                  _context2.next = 6;
+                  break;
+                }
+
+                _context2.next = 4;
+                return this.setupFile('/etc/php/7.1/fpm/php.ini');
+
+              case 4:
+                _context2.next = 10;
+                break;
+
+              case 6:
+                _context2.next = 8;
                 return this.setupFile('/etc/php/7.1/cli/php.ini');
 
-              case 3:
-                _context2.next = 5;
+              case 8:
+                _context2.next = 10;
                 return this.setupFile('/etc/php/7.1/apache2/php.ini');
 
-              case 5:
+              case 10:
               case "end":
                 return _context2.stop();
             }

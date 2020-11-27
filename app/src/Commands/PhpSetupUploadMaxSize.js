@@ -15,14 +15,25 @@ class PhpSetupUploadMaxSize extends BaseCommand{
         required: true,
         type: 'string',
       },
+      {
+        name: 'phpfpm',
+        description: '是否為phpfpm',
+        type: 'boolean',
+      },
     ]
     this.description = `設定PHP最大上傳檔案大小`
   }
 
   async start() {
     log(`Setup PHP Upload Max Size: ${this.args.size}`)
-    await this.setupFile('/etc/php/7.1/cli/php.ini')
-    await this.setupFile('/etc/php/7.1/apache2/php.ini')
+    if(this.args.phpfpm) {
+      await this.setupFile('/etc/php/7.1/fpm/php.ini')
+    }
+
+    else {
+      await this.setupFile('/etc/php/7.1/cli/php.ini')
+      await this.setupFile('/etc/php/7.1/apache2/php.ini')
+    }
   }
 
   async setupFile(file) {
