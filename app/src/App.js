@@ -30,6 +30,8 @@ import SetupRemoteEnv from 'Commands/SetupRemoteEnv'
 import BackupDB from 'Commands/BackupDB'
 import CustomDeploy from 'Commands/CustomDeploy'
 import PhpSetupUploadMaxSize from 'Commands/PhpSetupUploadMaxSize'
+import CreateRootUser from 'Commands/CreateRootUser'
+import DeleteUser from 'Commands/DeleteUser'
 import Version from 'Commands/Version'
 class App extends AppKernel {
   setup() {
@@ -65,6 +67,8 @@ class App extends AppKernel {
       BackupDB,
       CustomDeploy,
       PhpSetupUploadMaxSize,
+      CreateRootUser,
+      DeleteUser,
       Version,
     ]
   }
