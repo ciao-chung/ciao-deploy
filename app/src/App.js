@@ -4,6 +4,7 @@ import RsyncMulti from 'Commands/RsyncMulti'
 import WebDeployCreateConfig from 'Commands/WebDeployCreateConfig'
 import Env from 'Commands/Env'
 import Fish from 'Commands/Fish'
+import OhMyFish from 'Commands/OhMyFish'
 import Redis from 'Commands/Redis'
 import RedisSetPassword from 'Commands/RedisSetPassword'
 import Mysql from 'Commands/Mysql'
@@ -32,6 +33,7 @@ import CustomDeploy from 'Commands/CustomDeploy'
 import PhpSetupUploadMaxSize from 'Commands/PhpSetupUploadMaxSize'
 import CreateRootUser from 'Commands/CreateRootUser'
 import DeleteUser from 'Commands/DeleteUser'
+import Vsftpd from 'Commands/Vsftpd'
 import Version from 'Commands/Version'
 class App extends AppKernel {
   setup() {
@@ -41,6 +43,7 @@ class App extends AppKernel {
       WebDeployCreateConfig,
       Env,
       Fish,
+      OhMyFish,
       Redis,
       RedisSetPassword,
       Mysql,
@@ -69,6 +72,7 @@ class App extends AppKernel {
       PhpSetupUploadMaxSize,
       CreateRootUser,
       DeleteUser,
+      Vsftpd,
       Version,
     ]
   }

@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  ciao-deploy:
+    container_name: ciao-deploy
+    build:
+      context: ../
+      dockerfile: ./workspace/Dockerfile
+    restart: unless-stopped
+    tty: true
+    working_dir: /workspace
+    ports:
+      - 21:21 # ftp
+    volumes:
+      - ../prod:/ciao-deploy-prod
+
